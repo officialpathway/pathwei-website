@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import { CyberpunkLoader } from './components/Loader';
+import Hero from './components/Hero';
 
 export default function CyberpunkCity() {
   const [isLoading, setIsLoading] = useState(true);
@@ -39,12 +40,8 @@ export default function CyberpunkCity() {
           </div>
         </div>
 
-        {/* 3D Scene placeholder */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-neon-pink font-mono text-xl tracking-widest">
-            3D CYBERPUNK CITYSCAPE WILL BE HERE
-          </div>
-        </div>
+        {/* Hero section */}
+        <Hero />
 
         {/* UI Elements */}
         <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center">
