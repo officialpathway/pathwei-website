@@ -18,3 +18,12 @@
     --neon-yellow: #f9f002;
   }
 }
+
+.grid-item {
+  animation: pulse calc(5s + var(--random-duration)) infinite;
+  animation-delay: calc(var(--random-delay));
+}
+
+.hidden {
+  display: none !important;
+}
