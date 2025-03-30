@@ -57,6 +57,7 @@ export default function VirusSection({ onRebootComplete }: { onRebootComplete: (
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

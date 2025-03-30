@@ -1,59 +1,83 @@
-// components/Story/StorySection.tsx
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useScreenContext } from '@/app/context/ScreenContext';
+import { useRef } from 'react';
+import ProblemSection from './Problem/Problem';
+import AboutSection from './About';
+import VisionSection from './Vision/VisionSection';
+import ProductGridSection from './Grid/ProductGridSection';
+import DataVizSection from './Graphs/DataVizSection';
 
 export default function StorySection() {
   const { resetTransition } = useScreenContext();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const problemContainerRef = useRef<HTMLDivElement>(null);
+  
+  // Track scroll progress through the problem section
+  const { scrollYProgress } = useScroll({
+    target: problemContainerRef,
+    offset: ['start end', 'end end']
+  });
+
+  // Animation values
+  const problemY = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const problemOpacity = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
 
   return (
     <motion.div 
-      className="fixed inset-0 z-50 overflow-y-auto pt-20 pb-20 px-6 md:px-12"
+      className="fixed inset-0 z-50 overflow-y-auto bg-black"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      ref={containerRef}
     >
-      <div className="max-w-4xl mx-auto bg-black/90 border-2 border-neon-cyan p-8 md:p-12 rounded-lg">
-        {/* Close button */}
-        <button 
-          onClick={resetTransition}
-          className="absolute top-4 right-4 text-neon-pink hover:text-neon-cyan transition-colors"
+      {/* Close button */}
+      <button 
+        type="button"
+        onClick={resetTransition}
+        className="fixed top-4 right-4 text-neon-pink hover:text-neon-cyan transition-colors z-[100]"
+      >
+        [CLOSE]
+      </button>
+
+      <div className="w-full">
+        {/* About Section */}
+        <div className="w-full min-h-screen">
+          <AboutSection />
+        </div>
+
+        {/* Problem Section Container - 3x screen height for scroll effect */}
+        <div 
+          ref={problemContainerRef} 
+          className="relative w-full"
+          style={{ height: '300vh' }}
         >
-          [CLOSE]
-        </button>
+          {/* Sticky Problem Section */}
+          <motion.div
+            className="w-full min-h-screen sticky top-0 left-0"
+            style={{
+              y: problemY,
+              opacity: problemOpacity
+            }}
+          >
+            <ProblemSection />
+          </motion.div>
+        </div>
 
-        {/* Content */}
-        <h2 className="text-4xl md:text-6xl font-bold text-neon-cyan mb-8">
-          ABOUT AI HAVEN LABS
-        </h2>
-        
-        <div className="space-y-6 text-neon-green font-mono text-lg leading-relaxed">
-          <p>
-            We&apos;re pioneering the next generation of human-AI collaboration tools. 
-            Our mission is to create technology that enhances human potential 
-            without replacing the human touch.
-          </p>
-          
-          <div className="border-t border-neon-purple/50 pt-6">
-            <h3 className="text-2xl md:text-3xl text-neon-purple mb-4">OUR PHILOSOPHY</h3>
-            <ul className="space-y-4 list-disc list-inside">
-              <li>AI should be invisible until needed</li>
-              <li>Technology must respect cognitive limits</li>
-              <li>Ethical design is non-negotiable</li>
-            </ul>
-          </div>
+        {/* Vision Section */}
+        <div className="w-full min-h-screen">
+          <VisionSection />
+        </div>
 
-          <div className="border-t border-neon-purple/50 pt-6">
-            <h3 className="text-2xl md:text-3xl text-neon-purple mb-4">TECH STACK</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {['React', 'TensorFlow', 'Three.js', 'Rust', 'PostgreSQL', 'WebGL'].map((tech) => (
-                <div key={tech} className="border border-neon-cyan/30 p-3 text-center">
-                  {tech}
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* Data Visualization Section */}
+        <div className="w-full min-h-screen">
+          <DataVizSection />
+        </div>
+
+        {/* Product Grid Section */}
+        <div className="w-full min-h-screen">
+          <ProductGridSection />
         </div>
       </div>
     </motion.div>
