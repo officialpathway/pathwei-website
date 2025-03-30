@@ -1,6 +1,8 @@
-"use client";
+// components/Loader/CyberpunkLoader.tsx
+'use client';
 
 import { useState, useEffect } from 'react';
+import '@/app/styles/Loader.css';
 
 export const CyberpunkLoader = ({ onLoadingComplete }: { onLoadingComplete: () => void }) => {
   const [progress, setProgress] = useState(0);
@@ -60,6 +62,7 @@ export const CyberpunkLoader = ({ onLoadingComplete }: { onLoadingComplete: () =
       clearInterval(progressInterval);
       clearInterval(messageInterval);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onLoadingComplete]);
 
   return (
@@ -138,51 +141,6 @@ export const CyberpunkLoader = ({ onLoadingComplete }: { onLoadingComplete: () =
           />
         ))}
       </div>
-
-      <style jsx>{`
-        @keyframes blink {
-          0%, 100% { opacity: 0.2; }
-          50% { opacity: 1; }
-        }
-        @keyframes pulse {
-          0%, 100% { opacity: 0.1; }
-          50% { opacity: 0.3; }
-        }
-        .glitch-effect {
-          position: relative;
-        }
-        .glitch-effect::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: linear-gradient(
-            0deg,
-            transparent 0%,
-            rgba(255, 0, 230, 0.1) 50%,
-            transparent 100%
-          );
-          animation: glitch-anim 0.3s infinite;
-          z-index: 10;
-          pointer-events: none;
-        }
-        @keyframes glitch-anim {
-          0% { transform: translateX(0); opacity: 0.8; }
-          20% { transform: translateX(-3px); opacity: 0.6; }
-          40% { transform: translateX(3px); opacity: 0.4; }
-          60% { transform: translateX(-3px); opacity: 0.6; }
-          80% { transform: translateX(3px); opacity: 0.4; }
-          100% { transform: translateX(0); opacity: 0.8; }
-        }
-        .terminal-scroll::-webkit-scrollbar {
-          width: 4px;
-        }
-        .terminal-scroll::-webkit-scrollbar-thumb {
-          background-color: rgba(0, 240, 255, 0.5);
-        }
-      `}</style>
     </div>
   );
 };

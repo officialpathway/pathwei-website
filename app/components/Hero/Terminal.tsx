@@ -58,9 +58,10 @@ export default function Terminal() {
       setOutput([]);
     } 
     else if (cmd === 'about') {
-      // Trigger the darkening transition
-      startTransition(ANIMATION_PRESETS.CYBERPUNK, { particles: true });
-      // Show the about message
+      startTransition('about', { 
+        ...ANIMATION_PRESETS.CYBERPUNK,
+        duration: 800 // Shorter duration for faster transition
+      }, { particles: true });
       setOutput(prev => [...prev, `> ${input}`, COMMANDS.about]);
     }
     else {

@@ -16,7 +16,9 @@ type AnimationConfig = {
 
 type ScreenContextType = {
   isDarkened: boolean;
-  startTransition: (config?: AnimationConfig, options?: { particles?: boolean }) => void;
+  currentContent: string | null;
+  showContent: boolean;
+  startTransition: (content?: string | null, config?: AnimationConfig, options?: { particles?: boolean }) => void;
   resetTransition: () => void;
 };
 
@@ -26,15 +28,31 @@ export function ScreenProvider({ children }: { children: ReactNode }) {
   const [transitionState, setTransitionState] = useState({
     isActive: false,
     config: ANIMATION_PRESETS.DARKEN,
-    particles: false,
+    particles: true,
+    currentContent: null as string | null,
+    showContent: false,
   });
 
-  const startTransition = (config: AnimationConfig = ANIMATION_PRESETS.DARKEN, options: { particles?: boolean } = {}) => {
+  const startTransition = (
+    content: string | null = null,
+    config: AnimationConfig = ANIMATION_PRESETS.DARKEN, 
+    options: { particles?: boolean } = {}
+  ) => {
     setTransitionState({
+      ...transitionState,
       isActive: true,
       config: { ...ANIMATION_PRESETS.DARKEN, ...config },
       particles: options.particles || false,
+      currentContent: content,
     });
+
+    // Delay content appearance until after darkening
+    setTimeout(() => {
+      setTransitionState(prev => ({
+        ...prev,
+        showContent: true
+      }));
+    }, config.duration || 1000);
   };
 
   const resetTransition = () => {
@@ -42,6 +60,8 @@ export function ScreenProvider({ children }: { children: ReactNode }) {
       isActive: false,
       config: ANIMATION_PRESETS.DARKEN,
       particles: false,
+      currentContent: null,
+      showContent: false,
     });
   };
 
@@ -49,6 +69,8 @@ export function ScreenProvider({ children }: { children: ReactNode }) {
     <ScreenContext.Provider
       value={{
         isDarkened: transitionState.isActive,
+        currentContent: transitionState.currentContent,
+        showContent: transitionState.showContent,
         startTransition,
         resetTransition,
       }}
@@ -63,14 +85,13 @@ export function ScreenProvider({ children }: { children: ReactNode }) {
           backdropFilter: transitionState.config.blur,
           boxShadow: transitionState.config.glow ? `inset ${transitionState.config.glow}` : 'none',
         }}
-        transition={{ duration: transitionState.config.duration / 1000 }}
+        transition={{ duration: (transitionState.config.duration || 1000) / 1000 }}
       />
       {children}
     </ScreenContext.Provider>
   );
 }
 
-// Make sure this export is present
 export const useScreenContext = () => {
   const context = useContext(ScreenContext);
   if (!context) {
