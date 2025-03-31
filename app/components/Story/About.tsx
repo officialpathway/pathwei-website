@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 export default function AboutSection() {
   return (
     <motion.div 
-      className="space-y-8 text-neon-green font-mono text-lg leading-relaxed p-6 md:p-10 lg:p-12 bg-black/80 border border-neon-cyan/20 rounded-lg"
+      className="space-y-8 text-neon-green font-mono text-lg leading-relaxed p-6 md:p-10 lg:p-12 bg-black/80 border border-neon-cyan/20 rounded-lg mt-0" // Added mt-0
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}

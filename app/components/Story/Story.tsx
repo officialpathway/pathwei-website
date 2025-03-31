@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionTemplate } from 'framer-motion';
 import { useScreenContext } from '@/app/context/ScreenContext';
 import { useEffect, useRef } from 'react';
 import ProblemSection from './Problem/Problem';
@@ -8,51 +8,55 @@ import AboutSection from './About';
 import VisionSection from './Vision/VisionSection';
 import ProductGridSection from './Grid/ProductGridSection';
 import DataVizSection from './Graphs/DataVizSection';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useWindowSize } from '@/app/hooks/useWindowSize';
+import Lenis from '@studio-freight/lenis';
 
 export default function StorySection() {
   const { resetTransition } = useScreenContext();
   const containerRef = useRef<HTMLDivElement>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const locomotiveScrollRef = useRef<any>(null);
+  const visionTriggerRef = useRef<HTMLDivElement>(null);
+  const { height: windowHeight, width: windowWidth } = useWindowSize();
+
+  // Scroll animation for the mask transition
+  const { scrollYProgress } = useScroll({
+    target: visionTriggerRef,
+    offset: ["start start", "250vh start"] // Changed to match working example
+  });
+
+  const maskSize = useTransform(
+    scrollYProgress,
+    [0, 0.6], // Reverted to original working values
+    [
+      windowWidth > 800 ? 0.66 * windowHeight : 0.3 * windowHeight,
+      1.5 * windowWidth + 1.5 * windowHeight
+    ]
+  );
+  const maskSizeTemplate = useMotionTemplate`${maskSize}px`;
+  
+  // Additional transforms from working example
+  const opacity = useTransform(scrollYProgress, [0.6, 1], [0, 0.75]);
 
   useEffect(() => {
-    const initScroll = async () => {
-      const LocomotiveScroll = (await import('locomotive-scroll')).default;
-      
-      locomotiveScrollRef.current = new LocomotiveScroll({
-        el: containerRef.current!,
-        smooth: true,
-        smartphone: { smooth: true },
-        tablet: { smooth: true, breakpoint: 1024 },
-        lerp: 0.1
-      });
+    // Replace Locomotive Scroll with Lenis (from working example)
+    const lenis = new Lenis();
+    
+    let rafId: number;
 
-      // Initialize GSAP ScrollTrigger after Locomotive Scroll
-      gsap.registerPlugin(ScrollTrigger);
-      
-      // Refresh ScrollTrigger when everything is loaded
-      locomotiveScrollRef.current.on('scroll', () => {
-        ScrollTrigger.update();
-      });
-      
-      ScrollTrigger.refresh();
-
-      return () => {
-        if (locomotiveScrollRef.current) {
-          locomotiveScrollRef.current.destroy();
-        }
-        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-      };
+    const raf = (time: number) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
     };
+    
+    rafId = requestAnimationFrame(raf);
 
-    initScroll();
+    return () => {
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (
     <motion.div 
-      className="fixed inset-0 z-50 bg-black"
+      className="relative z-50 bg-black w-full"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -63,24 +67,41 @@ export default function StorySection() {
       >
         [CLOSE]
       </button>
-
-      <div ref={containerRef} data-scroll-container>
-        <div data-scroll-section>
+  
+      <div ref={containerRef} className="relative">
+        {/* About Section - Added pt-0 to remove top padding */}
+        <div data-scroll-section className="pt-0">
           <AboutSection />
         </div>
-
+  
+        {/* Rest remains exactly the same */}
         <div id="problem-section" data-scroll-section>
           <ProblemSection />
         </div>
-
-        <div id="vision-section" data-scroll-section>
-          <VisionSection />
+  
+        <div 
+          className="relative w-full h-[250vh]" 
+          ref={visionTriggerRef} 
+          data-scroll-section
+        >
+          <div className="sticky">
+            <motion.div
+              style={{
+                WebkitMaskSize: maskSizeTemplate,
+                maskSize: maskSizeTemplate,
+              }}
+              className="mask"
+            >
+              <VisionSection />
+            </motion.div>
+            <motion.div style={{ opacity }} className="ackground absolute inset-0 bg-black z-10" />
+          </div>
         </div>
-
+  
         <div data-scroll-section>
           <DataVizSection />
         </div>
-
+  
         <div data-scroll-section>
           <ProductGridSection />
         </div>

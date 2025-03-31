@@ -1,13 +1,8 @@
-/* Only this line is needed in globals.css */
+/* ====== IMPORTS ====== */
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap');
 @import "tailwindcss";
 
-/* Custom animations if needed */
-@layer utilities {
-  /* Add more as needed */
-}
-
-/* Custom styles for neon colors and effects */
+/* ====== ROOT VARIABLES ====== */
 @layer base {
   :root {
     --neon-pink: #ff2a6d;
@@ -16,30 +11,54 @@
     --neon-cyan: #00f1ff;
     --neon-green: #00ff85;
     --neon-yellow: #f9f002;
+    --scroll-y: 0;
+  }
+
+  body {
+    overflow-x: hidden;
+    font-family: 'Rajdhani', sans-serif;
   }
 }
 
-.text-neon-pink { color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); }
-.text-neon-blue { color: var(--neon-blue); text-shadow: 0 0 5px var(--neon-blue); }
-.text-neon-purple { color: var(--neon-purple); text-shadow: 0 0 5px var(--neon-purple); }
-.text-neon-cyan { color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); }
-.text-neon-green { color: var(--neon-green); text-shadow: 0 0 5px var(--neon-green); }
-.text-neon-yellow { color: var(--neon-yellow); text-shadow: 0 0 5px var(--neon-yellow); }
-
-.bg-neon-pink { background-color: var(--neon-pink); }
-.bg-neon-blue { background-color: var(--neon-blue); }
-
-/* I dont know what this is for */
-.text-neon-cyan {
-  color: var(--neon-cyan);
-  text-shadow: 0 0 10px var(--neon-cyan);
-}
-
-.text-neon-pink {
-  color: var(--neon-pink);
+/* ====== NEON TEXT COLORS ====== */
+.text-neon-pink { 
+  color: var(--neon-pink); 
+  text-shadow: 0 0 5px var(--neon-pink);
   animation: flicker 3s infinite alternate;
 }
 
+.text-neon-blue { 
+  color: var(--neon-blue); 
+  text-shadow: 0 0 5px var(--neon-blue); 
+}
+
+.text-neon-purple { 
+  color: var(--neon-purple); 
+  text-shadow: 0 0 5px var(--neon-purple); 
+}
+
+.text-neon-cyan { 
+  color: var(--neon-cyan); 
+  text-shadow: 0 0 10px var(--neon-cyan); 
+}
+
+.text-neon-green { 
+  color: var(--neon-green); 
+  text-shadow: 0 0 5px var(--neon-green); 
+}
+
+.text-neon-yellow { 
+  color: var(--neon-yellow); 
+  text-shadow: 0 0 5px var(--neon-yellow); 
+}
+
+/* ====== NEON BACKGROUNDS & BORDERS ====== */
+.bg-neon-pink { background-color: var(--neon-pink); }
+.bg-neon-blue { background-color: var(--neon-blue); }
+.border-neon-blue { border-color: var(--neon-blue); }
+.border-neon-purple { border-color: var(--neon-purple); }
+
+/* ====== ANIMATIONS ====== */
 @keyframes flicker {
   0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--neon-pink);
@@ -47,13 +66,6 @@
   20%, 24%, 55% {
     text-shadow: none;
   }
-}
-
-.typewriter {
-  border-right: 3px solid var(--neon-pink);
-  white-space: nowrap;
-  overflow: hidden;
-  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
 
 @keyframes typing {
@@ -66,24 +78,44 @@
   50% { border-color: var(--neon-pink); }
 }
 
-.grid-item {
-  animation: pulse calc(5s + var(--random-duration)) infinite;
-  animation-delay: calc(var(--random-delay));
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-3px, 3px); }
+  40% { transform: translate(-3px, -3px); }
+  60% { transform: translate(3px, 3px); }
+  80% { transform: translate(3px, -3px); }
+  100% { transform: translate(0); }
 }
 
-.hidden {
-  display: none !important;
+@keyframes glitch-flicker {
+  0% { opacity: 0.8; }
+  20% { opacity: 0.3; }
+  40% { opacity: 0.7; }
+  60% { opacity: 0.1; }
+  80% { opacity: 0.9; }
+  100% { opacity: 0.5; }
 }
 
-.text-neon-blue { color: var(--neon-blue); text-shadow: 0 0 5px var(--neon-blue); }
-.text-neon-purple { color: var(--neon-purple); text-shadow: 0 0 5px var(--neon-purple); }
-.text-neon-green { color: var(--neon-green); text-shadow: 0 0 5px var(--neon-green); }
-.text-neon-pink { color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); }
+/* ====== COMPONENT STYLES ====== */
+/* Typewriter effect */
+.typewriter {
+  border-right: 3px solid var(--neon-pink);
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
 
-.border-neon-blue { border-color: var(--neon-blue); }
-.border-neon-purple { border-color: var(--neon-purple); }
+/* Glitch effects */
+.glitch-text {
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+  animation: glitch 2s infinite alternate;
+}
 
-/* CRT scanline effect */
+.glow-cyan {
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+}
+
+/* CRT effects */
 .scanlines {
   background: linear-gradient(
     to bottom,
@@ -94,57 +126,6 @@
   pointer-events: none;
 }
 
-/* Terminal and Hero */
-.terminal-scroll::-webkit-scrollbar {
-  width: 6px;
-}
-
-.terminal-scroll::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 255, 255, 0.3);
-  border-radius: 3px;
-}
-
-input::selection {
-  background: rgba(0, 255, 255, 0.3);
-}
-
-/* Problem Section */
-.glow-cyan {
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
-}
-
-.glitch-text {
-  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-  animation: glitch 2s infinite alternate;
-}
-
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-3px, 3px); }
-  40% { transform: translate(-3px, -3px); }
-  60% { transform: translate(3px, 3px); }
-  80% { transform: translate(3px, -3px); }
-  100% { transform: translate(0); }
-}
-
-.typewriter {
-  border-right: 3px solid #00ff88;
-  white-space: nowrap;
-  overflow: hidden;
-  animation: blink-caret 0.75s step-end infinite;
-}
-
-/* Transition from terminal to about */
-body.transitioning {
-  transition: background-color 1s ease;
-  background-color: black;
-}
-
-.page-content.hidden {
-  display: none;
-}
-
-/* Virus Animation */
 .glitch-overlay {
   background: 
     linear-gradient(
@@ -158,11 +139,73 @@ body.transitioning {
   animation: glitch-flicker 0.1s infinite;
 }
 
-@keyframes glitch-flicker {
-  0% { opacity: 0.8; }
-  20% { opacity: 0.3; }
-  40% { opacity: 0.7; }
-  60% { opacity: 0.1; }
-  80% { opacity: 0.9; }
-  100% { opacity: 0.5; }
+/* Scroll styles */
+.terminal-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.terminal-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+/* Selection style */
+input::selection {
+  background: rgba(0, 255, 255, 0.3);
+}
+
+/* Transition classes */
+body.transitioning {
+  transition: background-color 1s ease;
+  background-color: black;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ====== MASK TRANSITION STYLES ====== */
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-mask-image: url('/shape.svg');
+  mask-image: url('/shape.svg');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  z-index: 20;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 5;
+}
+
+:root {
+  --scroll-y: 0;
+}
+
+/* Reset default margins */
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure scroll sections take full width */
+[data-scroll-section] {
+  width: 100%;
 }
