@@ -10,6 +10,7 @@ import ProductGridSection from './Grid/ProductGridSection';
 import DataVizSection from './Graphs/DataVizSection';
 import { useWindowSize } from '@/app/hooks/useWindowSize';
 import Lenis from '@studio-freight/lenis';
+import { TeamSection } from './Team/Team';
 
 export default function StorySection() {
   const { resetTransition } = useScreenContext();
@@ -104,6 +105,10 @@ export default function StorySection() {
   
         <div data-scroll-section>
           <ProductGridSection />
+        </div>
+
+        <div data-scroll-section>
+          <TeamSection />
         </div>
       </div>
     </motion.div>

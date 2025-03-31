@@ -3,6 +3,7 @@
 
 import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import Particles from '@/app/components/common/Particles';
 
 const AnimatedGraph = ({ isVisible }: { isVisible: boolean }) => {
   const [width, setWidth] = useState(0);
@@ -179,7 +180,14 @@ export default function DataVizSection() {
 
   return (
     <section ref={ref} className="relative h-screen w-full bg-white flex items-center">
+
       <div className="container mx-auto px-6">
+
+        {/* Particles Background */}
+        <div className="absolute inset-0 z-0">
+          <Particles color="#000000" />
+        </div>
+
         <div className="max-w-6xl mx-auto">
           <motion.h2 
             className="text-4xl md:text-6xl font-bold mb-12 text-neon-pink"

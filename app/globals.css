@@ -199,13 +199,11 @@ body.transitioning {
   --scroll-y: 0;
 }
 
-/* Reset default margins */
 body, html {
   margin: 0;
   padding: 0;
 }
 
-/* Ensure scroll sections take full width */
 [data-scroll-section] {
   width: 100%;
 }

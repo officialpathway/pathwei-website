@@ -5,18 +5,6 @@ import Image from 'next/image';
 export default function ProblemSection() {
   return (
     <section id="problem-section" className="relative min-h-screen bg-black overflow-hidden">
-      {/* Static Background
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/cyberpunk-street.jpg"
-          alt="Overwhelming digital world"
-          fill
-          className="object-cover opacity-50"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black/30" />
-      </div> */}
-      
 
       {/* Main Content */}
       <div className="relative z-10 min-h-screen flex items-center py-20">
