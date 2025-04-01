@@ -46,12 +46,12 @@ export function CyberpunkCard({
       <div className="p-4 flex flex-col">
         <div>
           <h3 className={`text-xl font-bold ${colors[color].text} truncate`}>{name}</h3>
-          <p className="text-gray-400 font-mono text-sm truncate">{role}</p>
+          <p className="text-gray-400 text-sm truncate">{role}</p>
         </div>
         
         {/* Stats Bar - Pushed to bottom */}
         <div className="mt-auto border-t border-gray-800">
-          <div className="flex justify-between text-xs font-mono">
+          <div className="flex justify-between text-xs ">
             <span className={colors[color].text}>INNOVATION</span>
             <span>87%</span>
           </div>

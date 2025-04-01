@@ -3,7 +3,6 @@
 
 import { createContext, useState, useContext, ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import { ParticleOverlay } from '@/app/components/common/ParticleOverlay';
 import { ANIMATION_PRESETS } from '@/lib/animationPresets';
 
 type AnimationConfig = {
@@ -75,7 +74,6 @@ export function ScreenProvider({ children }: { children: ReactNode }) {
         resetTransition,
       }}
     >
-      <ParticleOverlay active={transitionState.particles} />
       <motion.div
         className="fixed inset-0 z-40 pointer-events-none"
         initial={{ opacity: 0 }}

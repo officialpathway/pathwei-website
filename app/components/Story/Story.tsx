@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform, useMotionTemplate } from 'framer-motio
 import { useScreenContext } from '@/app/context/ScreenContext';
 import { useEffect, useRef } from 'react';
 import ProblemSection from './Problem/Problem';
-import AboutSection from './About';
 import VisionSection from './Vision/VisionSection';
 import ProductGridSection from './Grid/ProductGridSection';
 import DataVizSection from './Graphs/DataVizSection';
@@ -71,9 +70,7 @@ export default function StorySection() {
   
       <div ref={containerRef} className="relative">
         {/* About Section - Added pt-0 to remove top padding */}
-        <div data-scroll-section className="pt-0">
-          <AboutSection />
-        </div>
+
   
         {/* Rest remains exactly the same */}
         <div id="problem-section" data-scroll-section>
