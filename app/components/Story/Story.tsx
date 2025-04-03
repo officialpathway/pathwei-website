@@ -10,6 +10,7 @@ import DataVizSection from './Graphs/DataVizSection';
 import { useWindowSize } from '@/app/hooks/useWindowSize';
 import Lenis from '@studio-freight/lenis';
 import { TeamSection } from './Team/Team';
+//import SplineScene from '../common/SplineModel';
 
 export default function StorySection() {
   const { resetTransition } = useScreenContext();
@@ -33,7 +34,6 @@ export default function StorySection() {
   );
   const maskSizeTemplate = useMotionTemplate`${maskSize}px`;
   
-  // Additional transforms from working example
   const opacity = useTransform(scrollYProgress, [0.6, 1], [0, 0.75]);
 
   useEffect(() => {
@@ -61,16 +61,18 @@ export default function StorySection() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <button 
+      <button
+        type='button' 
         onClick={resetTransition}
         className="fixed top-4 right-4 text-neon-pink hover:text-neon-cyan z-[100]"
       >
         [CLOSE]
       </button>
   
-      <div ref={containerRef} className="relative">
-        {/* About Section - Added pt-0 to remove top padding */}
+      {/* Spline Model */}
+      {/*<SplineScene />*/}
 
+      <div ref={containerRef} className="relative">
   
         {/* Rest remains exactly the same */}
         <div id="problem-section" data-scroll-section>
@@ -96,15 +98,15 @@ export default function StorySection() {
           </div>
         </div>
   
-        <div data-scroll-section>
+        <div id='part1' data-scroll-section>
           <DataVizSection />
         </div>
   
-        <div data-scroll-section>
+        <div id='part2' data-scroll-section>
           <ProductGridSection />
         </div>
 
-        <div data-scroll-section>
+        <div id='part3' data-scroll-section>
           <TeamSection />
         </div>
       </div>

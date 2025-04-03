@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@splinetool/react-spline": "^4.0.0",
     "@studio-freight/lenis": "^1.0.42",
     "@types/gsap": "^3.0.0",
     "@types/locomotive-scroll": "^4.1.4",
