@@ -13,6 +13,10 @@
     --neon-yellow: #f9f002;
     --neon-red: #ff1a1a;
     --font-orbitron: 'Orbitron', sans-serif
+    --neon-electric: #00f2ff;
+    --neon-fuchsia: #ff00ff;
+    --neon-aqua: #00ffcc;
+    --neon-violet: #aa00ff;
   }
 
   body, html {
@@ -69,6 +73,23 @@
   color: var(--neon-red);
   text-shadow: 0 0 5px var(--neon-red); 
 }
+
+/* Add to your globals.css */
+.neon-electric { color: #00f2ff; }
+.bg-neon-electric { background-color: #00f2ff; }
+.border-neon-electric { border-color: #00f2ff; }
+
+.neon-fuchsia { color: #ff00ff; }
+.bg-neon-fuchsia { background-color: #ff00ff; }
+.border-neon-fuchsia { border-color: #ff00ff; }
+
+.neon-aqua { color: #00ffcc; }
+.bg-neon-aqua { background-color: #00ffcc; }
+.border-neon-aqua { border-color: #00ffcc; }
+
+.neon-violet { color: #aa00ff; }
+.bg-neon-violet { background-color: #aa00ff; }
+.border-neon-violet { border-color: #aa00ff; }
 
 /* ====== NEON BACKGROUNDS & BORDERS ====== */
 .bg-neon-pink { background-color: var(--neon-pink); }

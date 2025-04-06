@@ -36,11 +36,11 @@ const products: Product[] = [
 
 export default function ProductGridSection() {
   return (
-    <section className="relative bg-white py-20 px-6 overflow-hidden">
+    <section className="relativepy-20 px-6 overflow-hidden">
       <div className="container mx-auto">
         {/* Particles Background */}
         <div className="absolute inset-0 z-0">
-          <Particles color="#000000" />
+          <Particles color="#ffffff" />
         </div>
 
         <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black">

@@ -34,7 +34,7 @@ export function ProductCard({ product }: { product: Product }) {
   const colors = colorMap[product.color as keyof typeof colorMap];
 
   return (
-    <div className={`relative bg-white p-6 h-full border-2 ${colors.border} ${colors.glow}
+    <div className={`relative overflow-hidden p-6 h-full border-2 ${colors.border} ${colors.glow}
       before:absolute before:top-0 before:right-0 before:w-8 before:h-8 before:border-t-2 before:border-r-2 ${colors.border}
       after:absolute after:bottom-0 after:left-0 after:w-8 after:h-8 after:border-b-2 after:border-l-2 ${colors.border}
       transition-all duration-300 ease-[cubic-bezier(0.68,-0.6,0.32,1.6)] hover:-translate-y-2 hover:scale-[1.02] group`}>
@@ -45,11 +45,11 @@ export function ProductCard({ product }: { product: Product }) {
       
       <div className="flex flex-col h-full relative z-10">
         <h3 className={`text-2xl md:text-3xl font-bold mb-2 ${colors.text} transition-colors duration-300 
-          group-hover:text-black`}>
+          group-hover:text-white`}>
           {product.name}
         </h3>
         
-        <p className="text-gray-700 mb-4 flex-grow group-hover:text-gray-900 transition-colors duration-300">
+        <p className="text-gray-500 mb-4 flex-grow group-hover:text-gray-200 transition-colors duration-300">
           {product.description}
         </p>
         

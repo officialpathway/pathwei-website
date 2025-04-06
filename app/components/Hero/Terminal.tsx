@@ -2,9 +2,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useScreenContext } from '@/app/context/ScreenContext';
-import { ANIMATION_PRESETS } from '@/lib/animationPresets';
+import { motion } from 'framer-motion';
 
 const COMMANDS = {
   // Core commands
@@ -57,6 +55,11 @@ const COMMANDS = {
   CPU: Quantum Q-9000
   Memory: 128TB/256TB`,
 
+  roadmap: `Future plans:
+  - Q4 2025: Launch NEXUS-8
+  - Q1 2026: Expand neural interface capabilities
+  - Q2 2026: Collaborate with global AI networks`,
+
   // Interactive commands
   echo: (args: string[]) => args.join(' ') || 'Error: No input detected',
 
@@ -86,25 +89,13 @@ interface TerminalProps {
 }
 
 export default function Terminal({ compactMode = false }: TerminalProps) {
-
   const [input, setInput] = useState('');
   const [output, setOutput] = useState<string[]>([]);
-  const [showPrompt, setShowPrompt] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { startTransition } = useScreenContext();
 
   // Focus input on mount
   useEffect(() => {
     inputRef.current?.focus();
-  }, []);
-
-  // Typewriter effect for initial prompt
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowPrompt(false);
-    }, 3000);
-
-    return () => clearTimeout(timer);
   }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -114,15 +105,7 @@ export default function Terminal({ compactMode = false }: TerminalProps) {
     if (cmd === 'clear') {
       setOutput([]);
     } 
-    else if (cmd === 'about') {
-      startTransition('about', { 
-        ...ANIMATION_PRESETS.CYBERPUNK,
-        duration: 800 // Shorter duration for faster transition
-      }, { particles: true });
-      setOutput(prev => [...prev, `> ${input}`, COMMANDS.about]);
-    }
     else {
-      // Handle other commands normally
       const commandOutput = typeof COMMANDS[cmd as keyof typeof COMMANDS] === 'function'
         ? (COMMANDS[cmd as keyof typeof COMMANDS] as (args: string[]) => string)(args)
         : COMMANDS[cmd as keyof typeof COMMANDS] || 'Command not found';
@@ -133,36 +116,23 @@ export default function Terminal({ compactMode = false }: TerminalProps) {
   };
 
   return (
-    <div className={`h-full font-mono ${compactMode ? 'text-xs' : 'text-sm'} w-full max-w-3xl mx-auto bg-black/80 border border-neon-cyan p-6 shadow-lg shadow-neon-cyan/30`}>
+    <div className={`h-full font-mono ${compactMode ? 'text-xs' : 'text-sm'} 
+      w-full max-w-3xl mx-auto border-2 border-[var(--neon-electric)] 
+      rounded-lg p-6 bg-white bg-opacity-90 backdrop-blur-sm shadow-lg`}
+    >
 
-      {/* Terminal header */}
+      {/* Terminal header - white with electric colors */}
       <div className="flex items-center gap-2 mb-4">
-        <div className="w-3 h-3 rounded-full bg-neon-red" />
-        <div className="w-3 h-3 rounded-full bg-neon-yellow" />
-        <div className="w-3 h-3 rounded-full bg-neon-green" />
-        <div className="text-neon-purple font-mono text-sm ml-2">
+        <div className="w-3 h-3 rounded-full bg-[var(--neon-electric)]" />
+        <div className="w-3 h-3 rounded-full bg-[var(--neon-fuchsia)]" />
+        <div className="w-3 h-3 rounded-full bg-[var(--neon-aqua)]" />
+        <div className="text-[var(--neon-violet)] font-mono text-sm ml-2">
           AI_HAVEN_TERMINAL
         </div>
       </div>
 
       {/* Terminal content */}
-      <div className="font-mono text-neon-green h-96 overflow-y-auto mb-4 terminal-scroll">
-        <AnimatePresence>
-          {showPrompt && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="mb-4"
-            >
-              <TypewriterText 
-                text="Welcome to AI Haven Labs. Type 'help' for available commands."
-                speed={30}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
-
+      <div className="font-mono text-gray-800 h-96 overflow-y-auto mb-4 terminal-scroll">
         {output.map((line, i) => (
           <div key={i} className="whitespace-pre-wrap mb-2">
             {line}
@@ -170,26 +140,26 @@ export default function Terminal({ compactMode = false }: TerminalProps) {
         ))}
 
         <form onSubmit={handleSubmit} className="flex items-center">
-          <span className="text-neon-pink mr-2">{'>'}</span>
+          <span className="text-[var(--neon-fuchsia)] mr-2">{'>'}</span>
           <input
             title='Terminal Input'
             ref={inputRef}
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="bg-transparent border-none outline-none text-neon-green font-mono w-full caret-neon-cyan"
+            className="bg-transparent border-none outline-none text-gray-800 font-mono w-full caret-[var(--neon-electric)]"
             spellCheck={false}
           />
-          <span className="text-neon-cyan animate-pulse">|</span>
+          <span className="text-[var(--neon-electric)] animate-pulse">|</span>
         </form>
 
         {/* Guiding message */}
-        <div className="text-neon-yellow mt-4">
-          Try typing <span className="text-neon-pink">&apos;help&apos;</span> and then try any other command.
+        <div className="text-[var(--neon-violet)] mt-4">
+          Try typing <span className="text-[var(--neon-fuchsia)]">&apos;help&apos;</span> and then try any other command.
         </div>
       </div>
 
-      {/* Module display when 'ls' is entered */}
+      {/* Module display */}
       {output.some(o => o.includes('ls')) && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -199,17 +169,17 @@ export default function Terminal({ compactMode = false }: TerminalProps) {
           <TerminalModule 
             name="PATHWAY"
             description="AI conversational agent"
-            color="border-neon-purple"
+            color="border-[var(--neon-violet)]"
           />
           <TerminalModule 
             name="IMAGE ENGINE"
             description="Generative art system"
-            color="border-neon-green"
+            color="border-[var(--neon-aqua)]"
           />
           <TerminalModule 
             name="CODE AI"
             description="ML-powered refactoring"
-            color="border-neon-pink"
+            color="border-[var(--neon-fuchsia)]"
           />
         </motion.div>
       )}
@@ -217,36 +187,15 @@ export default function Terminal({ compactMode = false }: TerminalProps) {
   );
 }
 
-// Helper components
-function TypewriterText({ text, speed = 30 }: { text: string; speed?: number }) {
-  const [displayed, setDisplayed] = useState('');
-
-  useEffect(() => {
-    let i = 0;
-    const typing = setInterval(() => {
-      if (i < text.length) {
-        setDisplayed(prev => prev + text.charAt(i));
-        i++;
-      } else {
-        clearInterval(typing);
-      }
-    }, speed);
-
-    return () => clearInterval(typing);
-  }, [text, speed]);
-
-  return <>{displayed}</>;
-}
-
 function TerminalModule({ name, description, color }: { name: string; description: string; color: string }) {
   return (
     <motion.div 
-      className={`p-4 border-2 ${color} bg-black/50 hover:bg-black/70 cursor-pointer transition-colors`}
+      className={`p-4 border-2 ${color} cursor-pointer transition-colors bg-white bg-opacity-70 rounded-lg`}
       whileHover={{ y: -5 }}
     >
-      <h3 className="text-xl font-bold mb-2">{name}</h3>
-      <p className="text-sm text-gray-400">{description}</p>
-      <div className="mt-3 text-xs text-neon-yellow">[CLICK TO LAUNCH]</div>
+      <h3 className="text-xl font-bold mb-2 text-gray-800">{name}</h3>
+      <p className="text-sm text-gray-600">{description}</p>
+      <div className="mt-3 text-xs text-[var(--neon-electric)]">[CLICK TO LAUNCH]</div>
     </motion.div>
   );
 }

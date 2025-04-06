@@ -23,7 +23,7 @@ export const InfoMessage = ({
 
   return (
     <motion.div
-      className={`mb-4 p-3 bg-black/40 border ${borderColors[borderColor]} rounded-lg`}
+      className={`mb-4 p-3 bg-black/40 border ${borderColors[borderColor]} max-w-[400px] rounded-lg`}
       animate={{ 
         borderColor: [
           `rgba(34, 211, 238, ${borderColor === 'cyan' ? 0.2 : 0.1})`,
