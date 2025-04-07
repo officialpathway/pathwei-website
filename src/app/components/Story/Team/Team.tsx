@@ -1,5 +1,5 @@
 'use client';
-import { CyberpunkCard } from "@/app/components/common/Card";
+import { CyberpunkCard } from "@/src/app/components/common/Card";
 import Particles from "../../common/Particles";
 import { motion } from 'framer-motion';
 
