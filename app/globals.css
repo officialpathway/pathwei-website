@@ -96,6 +96,7 @@
 .bg-neon-blue { background-color: var(--neon-blue); }
 .border-neon-blue { border-color: var(--neon-blue); }
 .border-neon-purple { border-color: var(--neon-purple); }
+.border-neon-yellow { border-color: var(--neon-yellow); }
 
 /* ====== ANIMATIONS ====== */
 @keyframes flicker {
@@ -302,6 +303,7 @@ body.transitioning {
 
 /* Firefox scrollbar */
 html {
-  scrollbar-width: thin;
+  scrollbar-width: thin; /* For Firefox */
+  /* Fallback for unsupported browsers */
   scrollbar-color: var(--neon-cyan) rgba(0, 0, 0, 0.8);
 }

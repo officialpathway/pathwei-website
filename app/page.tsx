@@ -25,7 +25,7 @@ function Main() {
   );
 }
 
-export default function CyberpunkCity() {
+export default function Home() {
   return (
     <>
       <Head>

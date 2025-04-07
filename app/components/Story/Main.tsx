@@ -207,7 +207,9 @@ export default function MainSection() {
       </div>
 
       {/* Footer */}
-      <CyberpunkFooter />
+      <div className='z-30'>
+        <CyberpunkFooter />
+      </div>
     </main>
   );
 }
