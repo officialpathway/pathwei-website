@@ -215,8 +215,8 @@ body.transitioning {
   position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-mask-image: url('/shape.svg');
-  mask-image: url('/shape.svg');
+  -webkit-mask-image: url('/rectangle.svg');
+  mask-image: url('/rectangle.svg');
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: center;

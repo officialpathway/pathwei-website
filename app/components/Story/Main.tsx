@@ -12,17 +12,17 @@ import { FeatureComments } from "./FeatureComments";
 import VisionSection from './Vision/VisionSection';
 import { useWindowSize } from '@/app/hooks/useWindowSize';
 import Terminal from '../Hero/Terminal';
-import { TeamSection } from './Team/Team';
 import { CyberpunkFooter } from "../Footer/Footer";
+import "@/app/styles/divider.css";
 
 export default function MainSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const visionTriggerRef = useRef<HTMLDivElement>(null);
+  const videoTriggerRef = useRef<HTMLDivElement>(null);
   const { height: windowHeight, width: windowWidth } = useWindowSize();
 
   // Scroll animation for the mask transition
   const { scrollYProgress } = useScroll({
-    target: visionTriggerRef,
+    target: videoTriggerRef,
     offset: ["start start", "250vh start"] // Changed to match working example
   });
 
@@ -108,9 +108,10 @@ export default function MainSection() {
         <ProductGridSection />
       </div>
 
+      {/* Video Section - Mask scroll animation */}
       <div 
         className="relative w-full h-[250vh]" 
-        ref={visionTriggerRef} 
+        ref={videoTriggerRef} 
         data-scroll-section
       >
         <div className="sticky top-0 h-screen overflow-hidden">
@@ -143,14 +144,16 @@ export default function MainSection() {
         </div>
       </div>
       
-      {/* Vision section */}
-      <VisionSection />
-
-      {/* Team members */}
-      <TeamSection />
+      {/* Vision section - Scale animation */}
+      <div 
+        id='vision-section' 
+        className='vision-section'
+      >
+        <VisionSection />
+      </div>
 
       {/* Terminal */}
-      <div className="z-30 bg-white pb-20">
+      <div className="z-30 pb-20">
         <Terminal />
       </div>
 

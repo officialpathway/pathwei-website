@@ -2,22 +2,43 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useState } from 'react';
 import Image from 'next/image';
+import { TextScramble } from '../common/TextScramble';
 
 export const CyberpunkHeader = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const { scrollY } = useScroll();
 
   const navItems = [
     { name: 'Home', href: '/' },
     { name: 'Projects', href: '/projects' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Sing in', href: '/sign-in' },
   ];
 
+  // Scroll direction detection
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > lastScrollY && latest > 100) {
+      // Scrolling down
+      setHidden(true);
+    } else {
+      // Scrolling up
+      setHidden(false);
+    }
+    setLastScrollY(latest);
+  });
+
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-sm border-b border-neon-blue">
+    <motion.header className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-sm border-b border-neon-blue"
+      animate={{
+        y: hidden ? -100 : 0,
+        opacity: hidden ? 0 : 1
+      }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+    >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo section on the left */}
         <motion.div 
@@ -44,7 +65,7 @@ export const CyberpunkHeader = () => {
               href={item.href}
               className="text-white text-lg font-bold underline"
             >
-              {item.name}
+              <TextScramble text={item.name} className="text-white" scrambleOnHover={true} />
             </Link>
           ))}
         </nav>
@@ -85,6 +106,6 @@ export const CyberpunkHeader = () => {
           </div>
         </motion.div>
       )}
-    </header>
+    </motion.header>
   );
 };

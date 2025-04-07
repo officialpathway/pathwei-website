@@ -1,11 +1,12 @@
 "use client";
 import { motion } from 'framer-motion';
+import { TextScramble } from '../common/TextScramble';
 
 export default function Hero() {
   return (
     <section>
       <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-5xl font-bold text-white">AI HAVEN LABS</h1>
+        <TextScramble text="The Future of AI" className='text-5xl font-bold text-white' scrambleOnHover={true} />
         <p className="mt-4 text-lg text-gray-400">Experience the fusion of technology and humanity.</p>
         
         <motion.button

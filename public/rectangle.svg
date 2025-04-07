@@ -1,26 +1,18 @@
 <svg width="200" height="300" xmlns="http://www.w3.org/2000/svg">
   <!-- 
-    Centered rectangle that's taller than wide:
-    - Width: 100 units (narrow)
-    - Height: 200 units (tall)
+    Centered black rectangle:
+    - Width: 100 units
+    - Height: 200 units  
     - Positioned at (50, 50) to center in 200x300 viewport
-    - Rounded corners (rx/ry = 10)
-    - Neon blue fill with subtle glow
+    - Solid black fill with no effects
   -->
   <rect 
     x="50" 
     y="50" 
     width="100" 
-    height="200" 
-    rx="10" 
-    ry="10" 
-    fill="#00f2ff"
-    filter="url(#neon-glow)"
+    height="150" 
+    fill="#000000"
+    stroke="#000000"
+    stroke-width="2"
   />
-  
-  <!-- Glow effect filter definition -->
-  <filter id="neon-glow" x="-30%" y="-30%" width="160%" height="160%">
-    <feGaussianBlur stdDeviation="4" result="blur" />
-    <feComposite in="SourceGraphic" in2="blur" operator="over" />
-  </filter>
 </svg>

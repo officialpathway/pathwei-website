@@ -8,8 +8,8 @@ import { useRef } from 'react';
 const features = [
   {
     id: 1,
-    message: "NEURAL SECURITY SYSTEM ACTIVATED",
-    subMessage: "Our quantum-encrypted AI firewall now protects over 5 million daily transactions across global networks with zero breach history. Multi-layered biometric authentication ensures absolute data sovereignty.",
+    message: "YOUR GOALS, POWERED BY AI",
+    subMessage: "We built this because we watched dreams get buried under busywork. Our AI maps personalized paths to success—helping 530K+ users stay focused on what matters.",
     borderColor: "cyan" as const,
     position: "left",
     top: "10%",
@@ -18,8 +18,8 @@ const features = [
   },
   {
     id: 2,
-    message: "REAL-TIME COGNITIVE PROCESSING ONLINE",
-    subMessage: "Omnidata analytics engine currently processing 2.3 petabytes of live information streams, delivering predictive insights with 99.97% accuracy across financial, healthcare and IoT ecosystems.",
+    message: "HUMANS FIRST, ALWAYS",
+    subMessage: "Unlike tools that replace you, ours amplify you. 84% of users report achieving goals faster while feeling *more* creative and in control.",
     borderColor: "purple" as const,
     position: "right",
     top: "20%",
@@ -28,8 +28,8 @@ const features = [
   },
   {
     id: 3,
-    message: "AUTONOMOUS WORKFLOW OPTIMIZATION ACTIVE",
-    subMessage: "Enterprise-grade task automation now handles 78% of repetitive operations across client organizations, freeing human teams for creative problem-solving and strategic innovation.",
+    message: "THE FUTURE OF WORK IS HERE",
+    subMessage: "We saw the demand for AI that adapts to *you*—not the other way around. Our tech learns your habits, predicts blockers, and course-corrects in real time.",
     borderColor: "pink" as const,
     position: "left",
     top: "35%",
@@ -38,8 +38,8 @@ const features = [
   },
   {
     id: 4,
-    message: "GLOBAL NEURAL NETWORK SYNCHRONIZED",
-    subMessage: "Decentralized AI nodes operational in 127 countries, enabling real-time multilingual communication, cultural adaptation, and localized decision-making at planetary scale.",
+    message: "PROVEN TO WORK",
+    subMessage: "Users complete 3.2x more weekly priorities. Founders credit us for hitting milestones 6 months early. Therapists use it to help clients build life-changing habits.",
     borderColor: "green" as const,
     position: "right",
     top: "50%",
@@ -48,8 +48,8 @@ const features = [
   },
   {
     id: 5,
-    message: "ETHICAL AI GOVERNANCE PROTOCOLS ENGAGED",
-    subMessage: "Continuous bias monitoring and algorithmic transparency frameworks ensure all decisions meet UN sustainability goals while maintaining explainable AI standards across all applications.",
+    message: "ETHICS BUILT IN",
+    subMessage: "We reject surveillance-style productivity. Your data trains *your* AI—never sold or used to manipulate you. (Certified compliant with GDPR and CCPA.)",
     borderColor: "cyan" as const,
     position: "left",
     top: "65%",
@@ -58,8 +58,8 @@ const features = [
   },
   {
     id: 6,
-    message: "HUMAN-AI SYMBIOSIS NETWORK EXPANDING",
-    subMessage: "Neuro-adaptive interfaces now deployed to 1,200+ partner organizations, enhancing cognitive capabilities while preserving human agency in all mission-critical systems.",
+    message: "JOIN THE MOVEMENT",
+    subMessage: "Over 2,000 teams now use our tools to align work with purpose. From indie creators to Fortune 500s, we’re rewriting how humans and AI collaborate.",
     borderColor: "purple" as const,
     position: "right",
     top: "80%",
@@ -68,8 +68,8 @@ const features = [
   },
   {
     id: 7,
-    message: "FUTURE FORECASTING ENGINES ONLINE",
-    subMessage: "Temporal analysis models successfully predicted 83% of market shifts and emerging trends with 6-month accuracy, enabling proactive strategy development for all enterprise clients.",
+    message: "WHAT'S NEXT?",
+    subMessage: "We're prototyping AI co-pilots that sense burnout before you do, and tools that turn procrastination patterns into productivity breakthroughs.",
     borderColor: "pink" as const,
     position: "left",
     top: "95%",

@@ -30,8 +30,8 @@ export const TextScramble = ({
     for (let i = 0; i < length; i++) {
       const from = oldText[i] || '';
       const to = newText[i] || '';
-      const start = Math.floor(Math.random() * 40);
-      const end = start + Math.floor(Math.random() * 40);
+      const start = Math.floor(Math.random() * 10);
+      const end = start + Math.floor(Math.random() * 10);
       queueRef.current.push({ from, to, start, end });
     }
 
