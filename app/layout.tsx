@@ -1,7 +1,6 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import { Orbitron } from "next/font/google";
-import { ScreenProvider } from "./context/ScreenContext";
 import "./globals.css";
 
 const orbitron = Orbitron({
@@ -22,9 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${orbitron.variable} antialiased`}>
-        <ScreenProvider>
-          {children}
-        </ScreenProvider>
+        {children}
       </body>
     </html>
   );

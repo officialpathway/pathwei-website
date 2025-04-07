@@ -68,9 +68,9 @@ export default function SplineScene() {
     // PART 2 Animation
     gsap.timeline({
       scrollTrigger: {
-        trigger: "#empty-div",
+        trigger: "#features-comments",
         start: "top bottom",
-        end: "bottom bottom",
+        end: "top 20%",
         scrub: true
       }
     })
@@ -85,7 +85,7 @@ export default function SplineScene() {
         scrub: true,
       }
     })
-    .to(bubble.position, { y: 900 }, 0)
+    .to(bubble.position, { y: 1100 }, 0)
   };
 
   return (
