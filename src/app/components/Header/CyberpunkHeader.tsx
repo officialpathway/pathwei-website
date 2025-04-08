@@ -14,8 +14,8 @@ export const CyberpunkHeader = () => {
   const { scrollY } = useScroll();
 
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'Projects', href: '/projects' },
+    { name: 'Suite', href: '/suite' },
+    { name: 'Team', href: '/team' },
     { name: 'Sing in', href: '/sign-in' },
   ];
 
@@ -32,7 +32,8 @@ export const CyberpunkHeader = () => {
   });
 
   return (
-    <motion.header className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-sm border-b border-neon-blue"
+    <motion.header 
+      className="fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-10xl z-50 bg-black/80 backdrop-blur-sm border border-neon-blue rounded-lg"
       animate={{
         y: hidden ? -100 : 0,
         opacity: hidden ? 0 : 1

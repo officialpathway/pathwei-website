@@ -1,0 +1,88 @@
+/* styles/globals.css */
+@tailwind utilities;
+
+/* Define root colors */
+:root {
+  --color-pulse-base: #ff6b6b; /* Base red */
+  --color-pulse-bright: #ff9494; /* Bright red */
+}
+
+html, body {
+  background-color: black;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+/* Flicker Animation */
+@keyframes flicker {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.animate-flicker {
+  animation: flicker 1s infinite; /* Applies the flicker animation */
+}
+
+/* Custom Scrollbar Hiding for No-Scrollbar Class */
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar for WebKit browsers */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* For Internet Explorer 10+ */
+  scrollbar-width: none; /* For Firefox */
+}
+
+/* Crazy Color Keyframes */
+@keyframes crazy-colors {
+  0% {
+    color: #ff6b6b; /* Vivid red */
+  }
+  20% {
+    color: #feca57; /* Bright orange */
+  }
+  40% {
+    color: #1dd1a1; /* Vibrant green */
+  }
+  60% {
+    color: #54a0ff; /* Electric blue */
+  }
+  80% {
+    color: #7d5fff; /* Radiant purple */
+  }
+  100% {
+    color: #ff6b6b; /* Back to red */
+  }
+}
+
+/* Tailwind Animation for Crazy Colors */
+.animate-crazy-colors {
+  animation: crazy-colors 2s infinite linear; /* 2s cycle, runs infinitely */
+}
+
+/* Pulse Glow Animation */
+@keyframes pulse-glow {
+  0% {
+    text-shadow: 0 0 5px var(--color-pulse-base), 0 0 10px var(--color-pulse-base), 0 0 15px var(--color-pulse-base);
+    color: var(--color-pulse-base);
+  }
+  50% {
+    text-shadow: 0 0 15px var(--color-pulse-base), 0 0 25px var(--color-pulse-base), 0 0 30px var(--color-pulse-base);
+    color: var(--color-pulse-bright);
+  }
+  100% {
+    text-shadow: 0 0 5px var(--color-pulse-base), 0 0 10px var(--color-pulse-base), 0 0 15px var(--color-pulse-base);
+    color: var(--color-pulse-base);
+  }
+}
+
+/* Tailwind Utility for Animation */
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite; /* Glows up and down every 2 seconds */
+}

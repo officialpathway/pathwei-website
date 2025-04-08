@@ -5,7 +5,7 @@
 import Head from 'next/head';
 //import { CyberpunkLoader } from './components/Loader/Loader';
 
-import MainSection from './components/Story/Main';
+import MainSection from './landing/Main';
 
 function Main() {
   //const [isLoading, setIsLoading] = useState(true);
