@@ -119,7 +119,7 @@ export default function MainSection() {
 
   /* ========== RENDER ========== */
   return (
-    <main ref={containerRef} className="relative z-50 w-full">
+    <main ref={containerRef} className="relative z-50 w-full bg-black/90">
       {/* Spline model */}
       <div className="absolute inset-0 z-10 pointer-events-none">
         <SplineScene />

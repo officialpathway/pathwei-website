@@ -4,6 +4,8 @@
 import Link from 'next/link';
 import { CyberpunkHeader } from '../components/Header/CyberpunkHeader';
 import { motion } from 'framer-motion';
+import { BigTitle } from '../components/common/BigTitle';
+import { CyberpunkFooter } from '../components/Footer/Footer';
 
 const apps = [
   {
@@ -74,8 +76,15 @@ const apps = [
 
 export default function SuitePage() {
   return (
-    <div className="main-container bg-black text-white min-h-screen pt-20">
+    <div className="main-container bg-black text-white min-h-screen">
       <CyberpunkHeader />
+
+      <BigTitle 
+        text="AI HAVEN SUITE" 
+        highlightWords={["SUITE"]} 
+        highlightColor='neon-yellow'
+        className='bg-purple-600 py-50' 
+      />
       
       <motion.main
         initial={{ opacity: 0 }}
@@ -90,9 +99,6 @@ export default function SuitePage() {
           transition={{ delay: 0.2 }}
           className="mb-20 text-center"
         >
-          <h1 className="text-neon-cyan text-5xl md:text-7xl font-bold mb-4 tracking-tighter">
-            AI HAVEN <span className="text-neon-pink">LABS</span>
-          </h1>
           <p className="text-neon-blue text-xl md:text-2xl">
             NEXT-GEN <span className="text-neon-yellow">CYBERNETIC</span> SOLUTIONS
           </p>
@@ -201,6 +207,8 @@ export default function SuitePage() {
           v2.3.7 | [Network Status: <span className="text-neon-green">SECURE</span>]
         </p>
       </footer>
+
+      <CyberpunkFooter />
     </div>
   );
 }

@@ -1,13 +1,22 @@
 'use client';
 
+import { BigTitle } from '../components/common/BigTitle';
+import { CyberpunkFooter } from '../components/Footer/Footer';
 import { CyberpunkHeader } from '../components/Header/CyberpunkHeader';
 import { motion } from 'framer-motion';
 
 export default function PrivacyPolicy() {
   return (
-    <div className="main-container bg-black text-white min-h-screen pt-20">
+    <div className="main-container bg-black text-white min-h-screen">
       <CyberpunkHeader />
       
+      <BigTitle 
+        text="PRIVACY PROTOCOL" 
+        highlightWords={["PROTOCOL"]} 
+        highlightColor='neon-blue'
+        className='bg-yellow-500 py-50' 
+      />
+        
       <motion.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -21,12 +30,9 @@ export default function PrivacyPolicy() {
           transition={{ delay: 0.2 }}
           className="mb-16 text-center"
         >
-          <h1 className="text-neon-cyan text-5xl md:text-6xl font-bold mb-4 tracking-tighter">
-            PRIVACY <span className="text-neon-pink">PROTOCOL</span>
-          </h1>
           <div className="text-neon-blue text-lg flex justify-center gap-8">
-            <p>Effective: <span className="text-neon-green">01.01.2024</span></p>
-            <p>Last Update: <span className="text-neon-green">01.01.2024</span></p>
+            <p>Effective: <span className="text-neon-green">08.04.2025</span></p>
+            <p>Last Update: <span className="text-neon-green">08.04.2025</span></p>
           </div>
         </motion.div>
 
@@ -42,7 +48,7 @@ export default function PrivacyPolicy() {
           </h2>
           <div className="space-y-4 text-gray-300 leading-relaxed">
             <p>
-              Welcome to <span className="text-neon-green font-bold">AI HAVEN LABS</span> ("we," "us," or "our"). 
+              Welcome to <span className="text-neon-green font-bold">AI HAVEN LABS</span> (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;). 
               We operate under <span className="text-neon-blue">Data Protection Protocol v2.3.7</span> to secure your digital footprint.
             </p>
             <p>
@@ -381,6 +387,8 @@ export default function PrivacyPolicy() {
           All neural networks secured | [System Operational]
         </p>
       </footer>
+
+      <CyberpunkFooter />
     </div>
   );
 }

@@ -3,6 +3,7 @@
 
 import { motion } from 'framer-motion';
 import { TextScramble } from '../common/TextScramble';
+import Link from 'next/link';
 
 const FooterContent = () => {
   return (
@@ -91,11 +92,13 @@ const FooterContent = () => {
           className="border-t-2 border-neon-yellow px-8"
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-white/70 font-mono md:mb-0">
-              AIHL 2025&#9426;
-            </div>
+            <p className='text-white'>
+              <span className="text-neon-yellow">AI HAVEN LABS</span> © 2024 | ALL SYSTEMS OPERATIONAL
+            </p>
             <div className="text-neon-pink font-mono mt-4 md:mt-0 cursor-pointer">
-              <TextScramble text=">_ PRIVACY POLICY" />
+              <Link href={"/policy"}>
+                <TextScramble text=">_ PRIVACY POLICY" />
+              </Link>
             </div>
           </div>
         </motion.div>

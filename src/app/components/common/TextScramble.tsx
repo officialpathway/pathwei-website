@@ -20,7 +20,11 @@ export const TextScramble = ({
   const frameRef = useRef(0);
   const queueRef = useRef<{ from: string; to: string; start: number; end: number; char?: string }[]>([]);
 
-  const randomChar = () => chars[Math.floor(Math.random() * chars.length)];
+  // Use a fixed-width random character
+  const randomChar = () => {
+    const char = chars[Math.floor(Math.random() * chars.length)];
+    return char === '_' ? '\u00A0' : char; // Replace _ with non-breaking space for better alignment
+  };
 
   const scramble = (newText: string) => {
     const oldText = displayText;
@@ -80,11 +84,24 @@ export const TextScramble = ({
 
   return (
     <span 
-      className={`inline-block ${className}`}
+      className={`inline-block font-mono ${className}`}
+      style={{ whiteSpace: 'pre' }} // Preserve spacing
       onMouseEnter={() => scrambleOnHover && scramble(text)}
       onMouseLeave={() => scrambleOnHover && scramble(text)}
     >
-      {displayText}
+      {displayText.split('').map((char, i) => (
+        <span 
+          key={i} 
+          className="scramble-character"
+          style={{ 
+            display: 'inline-block',
+            minWidth: '0.6em',
+            textAlign: 'center'
+          }}
+        >
+          {char}
+        </span>
+      ))}
     </span>
   );
 };

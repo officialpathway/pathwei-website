@@ -5,6 +5,7 @@
 /* ====== ROOT VARIABLES ====== */
 @layer base {
   :root {
+    /* NEON COLORS */
     --neon-pink: #ff2a6d;
     --neon-blue: #05d9e8;
     --neon-purple: #d300c5;
@@ -12,11 +13,12 @@
     --neon-green: #00ff85;
     --neon-yellow: #f9f002;
     --neon-red: #ff1a1a;
-    --font-orbitron: 'Orbitron', sans-serif
     --neon-electric: #00f2ff;
     --neon-fuchsia: #ff00ff;
     --neon-aqua: #00ffcc;
     --neon-violet: #aa00ff;
+
+    --font-orbitron: 'Orbitron', sans-serif
   }
 
   body, html {

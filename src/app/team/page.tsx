@@ -5,6 +5,7 @@ import { TeamSection } from './Team';
 import { CyberpunkHeader } from '../components/Header/CyberpunkHeader';
 import { motion } from 'framer-motion';
 import { CyberpunkFooter } from '../components/Footer/Footer';
+import { BigTitle } from '../components/common/BigTitle';
 
 const teamMembers = [
   {
@@ -86,30 +87,23 @@ const supporters = [
 
 export default function TeamPage() {
   return (
-    <div className="main-container bg-black text-white min-h-screen pt-20">
+    <div className="main-container bg-black text-white min-h-screen">
       <CyberpunkHeader />
       
+      <BigTitle 
+        text="NEURAL NETWORK"
+        subtitle='THE MINDS POWERING AI HAVEN LABS' 
+        highlightWords={["NETWORK"]} 
+        highlightColor='neon-pink'
+        className='bg-green-500 py-50' 
+      />
+
       <motion.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         className="max-w-7xl mx-auto px-6 py-12"
       >
-        {/* Hero Section */}
-        <motion.div 
-          initial={{ y: -20 }}
-          animate={{ y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="mb-20 text-center"
-        >
-          <h1 className="text-neon-cyan text-5xl md:text-7xl font-bold mb-4 tracking-tighter">
-            NEURAL <span className="text-neon-pink">NETWORK</span>
-          </h1>
-          <p className="text-neon-blue text-xl md:text-2xl">
-            THE MINDS POWERING <span className="text-neon-yellow">AI HAVEN LABS</span>
-          </p>
-        </motion.div>
-
         <TeamSection />
 
         {/* Core Team */}
