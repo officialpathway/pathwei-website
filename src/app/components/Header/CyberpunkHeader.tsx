@@ -99,11 +99,28 @@ export const CyberpunkHeader = () => {
       </div>
 
       {/* Mobile Navigation */}
-      {!isDesktop && menuOpen && (
+      {!isDesktop && (
         <motion.div 
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
+          initial={false}
+          animate={menuOpen ? "open" : "closed"}
+          variants={{
+            open: { 
+              opacity: 1, 
+              height: "auto",
+              transition: {
+                duration: 0.3,
+                ease: "easeInOut"
+              }
+            },
+            closed: { 
+              opacity: 0, 
+              height: 0,
+              transition: {
+                duration: 0.3,
+                ease: "easeInOut"
+              }
+            }
+          }}
           className="overflow-hidden"
         >
           <div className="container mx-auto px-6 pb-4 flex flex-col space-y-4">
