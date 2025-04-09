@@ -1,22 +1,30 @@
 /* ====== IMPORTS ====== */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 @import "tailwindcss";
 
 /* ====== ROOT VARIABLES ====== */
 @layer base {
   :root {
-    /* NEON COLORS */
+    /* NEON COLORS FOR DARK BG */
     --neon-pink: #ff2a6d;
     --neon-blue: #05d9e8;
     --neon-purple: #d300c5;
     --neon-cyan: #00f1ff;
     --neon-green: #00ff85;
-    --neon-yellow: #f9f002;
+    --neon-yellow: #f9e402;
     --neon-red: #ff1a1a;
     --neon-electric: #00f2ff;
     --neon-fuchsia: #ff00ff;
     --neon-aqua: #00ffcc;
     --neon-violet: #aa00ff;
+
+    /* NEON COLORS FOR WHITE BG */
+    --neon-pink-dark: #ff1493;
+    --neon-blue-dark: #1e90ff;
+    --neon-purple-dark: #9400d3;
+    --neon-cyan-dark: #00ced1;
+    --neon-green-dark: #32cd32;
+    --neon-yellow-dark: #ffcc00;
+    --neon-red-dark: #ff4500;
 
     --font-orbitron: 'Orbitron', sans-serif
   }
@@ -24,11 +32,17 @@
   body, html {
     margin: 0;
     padding: 0;
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-my-custom), -apple-system, BlinkMacSystemFont, sans-serif;
   }
   
   h1, h2, h3, h4, h5, h6, p, a {
-    font-family: 'Orbitron', sans-serif;
+    font-family: inherit;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 }
 
@@ -40,40 +54,55 @@
 }
 
 /* ====== NEON TEXT COLORS ====== */
-.text-neon-pink { 
-  color: var(--neon-pink); 
-  text-shadow: 0 0 5px var(--neon-pink);
+/* ====== IMPROVED NEON TEXT COLORS (WHITE BG READABLE) ====== */
+.text-neon-pink {
+  color: var(--neon-pink-dark);
+  text-shadow: 
+    0 0 5px var(--neon-pink),
+    0 0 10px var(--neon-pink-dark);
   animation: flicker 3s infinite alternate;
 }
 
-.text-neon-blue { 
-  color: var(--neon-blue); 
-  text-shadow: 0 0 5px var(--neon-blue); 
+.text-neon-blue {
+  color: var(--neon-blue-dark);
+  text-shadow: 
+    0 0 5px var(--neon-blue),
+    0 0 10px var(--neon-blue-dark);
 }
 
-.text-neon-purple { 
-  color: var(--neon-purple); 
-  text-shadow: 0 0 5px var(--neon-purple); 
+.text-neon-purple {
+  color: var(--neon-purple-dark);
+  text-shadow: 
+    0 0 5px var(--neon-purple),
+    0 0 10px var(--neon-purple-dark);
 }
 
-.text-neon-cyan { 
-  color: var(--neon-cyan); 
-  text-shadow: 0 0 10px var(--neon-cyan); 
+.text-neon-cyan {
+  color: var(--neon-cyan-dark);
+  text-shadow: 
+    0 0 5px var(--neon-cyan),
+    0 0 10px var(--neon-cyan-dark);
 }
 
-.text-neon-green { 
-  color: var(--neon-green); 
-  text-shadow: 0 0 5px var(--neon-green); 
+.text-neon-green {
+  color: var(--neon-green-dark);
+  text-shadow: 
+    0 0 5px var(--neon-green),
+    0 0 10px var(--neon-green-dark);
 }
 
-.text-neon-yellow { 
-  color: var(--neon-yellow); 
-  text-shadow: 0 0 5px var(--neon-yellow); 
+.text-neon-yellow {
+  color: var(--neon-yellow-dark);
+  text-shadow: 
+    0 0 5px var(--neon-yellow),
+    0 0 10px var(--neon-yellow-dark);
 }
 
 .text-neon-red {
-  color: var(--neon-red);
-  text-shadow: 0 0 5px var(--neon-red); 
+  color: var(--neon-red-dark);
+  text-shadow: 
+    0 0 5px var(--neon-red),
+    0 0 10px var(--neon-red-dark);
 }
 
 /* Add to your globals.css */
@@ -145,16 +174,6 @@
   white-space: nowrap;
   overflow: hidden;
   animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-}
-
-/* Glitch effects */
-.glitch-text {
-  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-  animation: glitch 2s infinite alternate;
-}
-
-.glow-cyan {
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
 }
 
 /* CRT effects */
@@ -270,42 +289,53 @@ body.transitioning {
   animation: pulse 2s infinite;
 }
 
-/* Cyberpunk Scrollbar Styling */
+/* ====== CYBERPUNK SCROLLBAR WITH BLUE HOVER EFFECT ====== */
 ::-webkit-scrollbar {
   width: 10px;
-  height: 10px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.8);
-  border-left: 1px solid rgba(5, 217, 232, 0.2); /* Neon blue border */
+  background: rgba(0, 0, 0, 0.9);
+  border-left: 1px solid var(--neon-cyan);
+  box-shadow: inset 0 0 8px rgba(5, 217, 232, 0.3);
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(
-    45deg,
+    135deg,
     var(--neon-cyan),
     var(--neon-purple),
     var(--neon-pink)
   );
-  border-radius: 5px;
-  border: 1px solid rgba(5, 217, 232, 0.5);
-  box-shadow: 0 0 5px rgba(0, 241, 255, 0.5);
+  border-radius: 6px;
+  border: 1px solid rgba(5, 217, 232, 0.7);
+  box-shadow: 
+    0 0 5px rgba(0, 241, 255, 0.7),
+    inset 0 0 3px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(
-    45deg,
-    var(--neon-pink),
-    var(--neon-cyan),
-    var(--neon-purple)
-  );
-  box-shadow: 0 0 10px rgba(255, 42, 109, 0.8);
+  background: var(--neon-blue);
+  box-shadow: 
+    0 0 10px var(--neon-blue),
+    0 0 20px var(--neon-blue),
+    inset 0 0 5px rgba(0, 0, 0, 0.7);
+  animation: blue-pulse 1.5s infinite alternate;
 }
 
-/* Firefox scrollbar */
-html {
-  scrollbar-width: thin; /* For Firefox */
-  /* Fallback for unsupported browsers */
-  scrollbar-color: var(--neon-cyan) rgba(0, 0, 0, 0.8);
+@keyframes blue-pulse {
+  0% {
+    opacity: 0.9;
+    box-shadow: 
+      0 0 10px var(--neon-blue),
+      0 0 20px var(--neon-blue);
+  }
+  100% {
+    opacity: 1;
+    box-shadow: 
+      0 0 15px var(--neon-blue),
+      0 0 30px var(--neon-blue);
+  }
 }

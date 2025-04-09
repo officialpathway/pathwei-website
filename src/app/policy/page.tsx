@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 export default function PrivacyPolicy() {
   return (
-    <div className="main-container bg-black text-white min-h-screen">
+    <div className="main-container bg-gray-200 text-black/80 min-h-screen">
       <CyberpunkHeader />
       
       <BigTitle 
@@ -46,13 +46,12 @@ export default function PrivacyPolicy() {
           <h2 className="text-neon-yellow text-3xl mb-6 font-bold tracking-wider">
             [1.0] SYSTEM INTRODUCTION
           </h2>
-          <div className="space-y-4 text-gray-300 leading-relaxed">
+          <div className="space-y-4 leading-relaxed">
             <p>
-              Welcome to <span className="text-neon-green font-bold">AI HAVEN LABS</span> (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;). 
-              We operate under <span className="text-neon-blue">Data Protection Protocol v2.3.7</span> to secure your digital footprint.
-            </p>
-            <p>
-              This document outlines our neural data collection and encryption standards for all cybernetic interactions.
+              <span className="text-neon-green font-bold">AI HAVEN LABS</span> (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) 
+              is committed to protecting the privacy of our users. This Privacy Policy outlines how we collect, use, disclose, 
+              and safeguard your information when you interact with our suite of AI-powered applications (&quot;Services&quot;), 
+              including both free and paid subscription features.
             </p>
             <p className="border-l-4 border-neon-red pl-4 py-2 mt-6">
               <span className="text-neon-pink font-bold">WARNING:</span> By accessing our systems, you consent to these protocols. 
@@ -68,13 +67,13 @@ export default function PrivacyPolicy() {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <h2 className="text-neon-aqua text-3xl mb-6 font-bold tracking-wider">
+          <h2 className="text-neon-aqua text-3xl mb-6 font-bold tracking-wider typewriter">
             [2.0] DATA HARVEST MATRIX
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-8 text-gray-300">
+          <div className="grid md:grid-cols-3 gap-8 text-gray-200">
             {/* Personal Data */}
-            <div className="bg-gray-900/50 p-6 border border-neon-blue rounded-lg">
+            <div className="bg-gray-900 p-6 border border-neon-blue rounded-lg">
               <h3 className="text-neon-pink text-xl mb-4 font-bold flex items-center">
                 <span className="inline-block w-3 h-3 bg-neon-pink rounded-full mr-2"></span>
                 PERSONAL IDENTIFIERS
@@ -84,13 +83,13 @@ export default function PrivacyPolicy() {
                 <li>Quantum Mail Address</li>
                 <li>Bio-Comms Frequency (Phone)</li>
                 <li>Physical Coordinates</li>
-                <li>Crypto-Transaction Data</li>
+                <li>Payment Details</li>
                 <li>Access Credentials</li>
               </ul>
             </div>
 
             {/* Non-Personal */}
-            <div className="bg-gray-900/50 p-6 border border-neon-green rounded-lg">
+            <div className="bg-gray-900 p-6 border border-neon-green rounded-lg">
               <h3 className="text-neon-green text-xl mb-4 font-bold flex items-center">
                 <span className="inline-block w-3 h-3 bg-neon-green rounded-full mr-2"></span>
                 SYSTEM TELEMETRY
@@ -105,16 +104,16 @@ export default function PrivacyPolicy() {
             </div>
 
             {/* AI Data */}
-            <div className="bg-gray-900/50 p-6 border border-neon-purple rounded-lg">
+            <div className="bg-gray-900 p-6 border border-neon-purple rounded-lg">
               <h3 className="text-neon-purple text-xl mb-4 font-bold flex items-center">
                 <span className="inline-block w-3 h-3 bg-neon-purple rounded-full mr-2"></span>
                 NEURAL NETWORK INPUTS
               </h3>
               <ul className="space-y-3 list-disc list-inside marker:text-neon-purple">
                 <li>User Query Data</li>
-                <li>Anonymized Thought Patterns</li>
+                <li>Conversation History</li>
                 <li>Model Training Signals</li>
-                <li>Behavioral Vectors</li>
+                <li>Behavioral Data</li>
               </ul>
             </div>
           </div>
@@ -125,19 +124,19 @@ export default function PrivacyPolicy() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="mb-16 bg-gray-900/30 p-8 border border-neon-yellow rounded-lg"
+          className="mb-16 bg-gray-900 p-8 border border-neon-yellow rounded-lg"
         >
           <h2 className="text-neon-yellow text-3xl mb-6 font-bold tracking-wider">
             [3.0] DATA PROCESSING OBJECTIVES
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-300">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-100">
             {[
-              "Service Optimization & Cybernetic Enhancements",
+              "Service Optimization & Enhancements",
               "Neural Support Interfaces",
-              "Firewall & Anti-Hacking Protocols",
+              "Personalized experience",
               "Corporate Compliance Directives",
-              "Machine Learning Evolution (Anonymized)"
+              "Legal & Security compliance"
             ].map((item, index) => (
               <div key={index} className="flex items-start">
                 <span className="text-neon-cyan mr-3 mt-1">✔</span>
@@ -158,9 +157,9 @@ export default function PrivacyPolicy() {
             [4.0] DATA TRANSMISSION PROTOCOLS
           </h2>
           
-          <div className="space-y-6 text-gray-300">
+          <div className="space-y-6">
             <p className="text-neon-green border-l-4 border-neon-green pl-4 py-2">
-              WE DO NOT TRADE OR SELL NEURAL PROFILES
+              WE DO NOT TRADE OR SELL YOUR PERSONAL DATA
             </p>
             
             <div className="grid md:grid-cols-3 gap-6">
@@ -182,7 +181,7 @@ export default function PrivacyPolicy() {
                 }
               ].map((item, index) => (
                 <div key={index} className={`border-l-4 ${item.color} pl-4 py-2`}>
-                  <h3 className="text-white font-bold mb-1">{item.title}</h3>
+                  <h3 className="font-bold mb-1">{item.title}</h3>
                   <p>{item.description}</p>
                 </div>
               ))}
@@ -195,9 +194,9 @@ export default function PrivacyPolicy() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-16 bg-black p-8 border border-neon-electric rounded-lg"
+          className="mb-16 bg-gray-900 p-8 border border-neon-electric rounded-lg"
         >
-          <h2 className="text-neon-electric text-3xl mb-6 font-bold tracking-wider">
+          <h2 className="text-neon-cyan text-3xl mb-6 font-bold tracking-wider">
             [5.0] QUANTUM ENCRYPTION STANDARDS
           </h2>
           
@@ -228,7 +227,7 @@ export default function PrivacyPolicy() {
         {[
           {
             title: "[6.0] USER RIGHTS MANIFESTO",
-            color: "text-neon-fuchsia",
+            color: "text-neon-pink",
             content: (
               <div className="space-y-4">
                 <p>Under Digital Rights Act v5.3, you may:</p>
@@ -248,9 +247,9 @@ export default function PrivacyPolicy() {
           },
           {
             title: "[7.0] COOKIE PROTOCOLS",
-            color: "text-neon-violet",
+            color: "text-neon-purple",
             content: (
-              <div className="space-y-4">
+              <div className="space-y-4 text-black/80">
                 <p>Neural cookies enable:</p>
                 <ul className="list-disc list-inside marker:text-neon-violet space-y-2">
                   <li>Identity verification sequences</li>
@@ -267,7 +266,7 @@ export default function PrivacyPolicy() {
             title: "[8.0] EXTERNAL NODE WARNING",
             color: "text-neon-red",
             content: (
-              <p>
+              <p className='text-black/80'>
                 Our neural network may link to external data nodes. 
                 We assume no responsibility for third-party security protocols.
               </p>
@@ -286,7 +285,7 @@ export default function PrivacyPolicy() {
             title: "[10.0] PROTOCOL EVOLUTION",
             color: "text-neon-cyan",
             content: (
-              <p>
+              <p className='text-black/80'>
                 This document may undergo cybernetic updates. Continued interface usage constitutes acceptance of new parameters.
               </p>
             )
@@ -302,7 +301,7 @@ export default function PrivacyPolicy() {
             <h2 className={`${section.color} text-3xl mb-4 font-bold tracking-wider`}>
               {section.title}
             </h2>
-            <div className="text-gray-300">
+            <div className="text-black/80">
               {section.content}
             </div>
           </motion.section>
@@ -323,23 +322,23 @@ export default function PrivacyPolicy() {
             {[
               { 
                 title: "Quantum Transmission", 
-                detail: "privacy@aihavenlabs.com",
+                detail: "privacy@aihavenlabs.com (soon)",
                 color: "border-neon-blue"
               },
               { 
                 title: "Holo-Address", 
-                detail: "Neon District, Cyberspace Grid 7X-9T",
-                color: "border-neon-pink"
+                detail: "Not yet available",
+                color: "border-neon-purple"
               },
               { 
                 title: "Bio-Comms", 
-                detail: "+1 (555) 010-2030",
-                color: "border-neon-green"
+                detail: "Not yet available",
+                color: "border-neon-yellow"
               }
             ].map((item, index) => (
               <div key={index} className={`border-t-4 ${item.color} pt-6`}>
                 <h3 className="text-xl mb-2">{item.title}</h3>
-                <p className="text-gray-300">{item.detail}</p>
+                <p className="text-black/80">{item.detail}</p>
               </div>
             ))}
           </div>

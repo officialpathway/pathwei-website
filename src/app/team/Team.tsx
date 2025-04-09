@@ -39,7 +39,7 @@ export function TeamSection() {
 
         {/* Section header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white glitch-text" data-text="NEURAL_CORE">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white" data-text="NEURAL_CORE">
             AI HAVEN LABS
           </h2>
           <p className="text-neon-cyan text-lg">
