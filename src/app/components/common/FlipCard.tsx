@@ -45,7 +45,7 @@ export const FlipCard = ({ app, index }: FlipCardProps) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="flip-card h-[600px] perspective-1000"
+      className="flip-card h-[800px] perspective-1000"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -57,7 +57,7 @@ export const FlipCard = ({ app, index }: FlipCardProps) => {
         }}
       >
         {/* Front of the card */}
-        <div className="flip-card-front absolute w-full h-full backface-hidden bg-black/50 border-2 rounded-lg overflow-hidden">
+        <div className="flip-card-front absolute w-full h-full backface-hidden bg-black/50 border-2 rounded-lg overflow-hidden flex flex-col">
           <div className={`p-6 bg-gradient-to-r from-black to-${app.color}/10 border-b-2 border-${app.color}`}>
             <div className="flex justify-between items-start">
               <div>
@@ -70,7 +70,7 @@ export const FlipCard = ({ app, index }: FlipCardProps) => {
             </div>
           </div>
 
-          <div className="p-6">
+          <div className="p-6 flex-grow">
             <p className="text-gray-300 mb-6">{app.description}</p>
             
             <div className="mb-6">
@@ -97,7 +97,7 @@ export const FlipCard = ({ app, index }: FlipCardProps) => {
             </div>
           </div>
 
-          <div className={`px-6 py-3 bg-${app.color}/10 border-t-2 border-${app.color}`}>
+          <div className={`px-6 py-3 bg-${app.color}/10 border-t-2 border-${app.color} mt-auto`}>
             <Link
               href={app.status === 'ONLINE' ? `/suite/${app.id}` : '/contact'} 
               className={`w-full py-2 text-${app.color} border border-${app.color} rounded hover:bg-${app.color} hover:text-black transition-colors font-mono text-sm flex items-center justify-center`}
