@@ -118,8 +118,8 @@ export const FlipCard = ({ app, index }: FlipCardProps) => {
         </div>
 
         {/* Back of the card */}
-        <div className="flip-card-back absolute w-full h-full backface-hidden bg-black/50 border-2 rounded-lg overflow-hidden">
-          <div className="relative w-full h-full overflow-hidden">
+        <div className="flip-card-back absolute w-full h-full backface-hidden bg-black/50 border-2 rounded-lg overflow-hidden flex flex-col">
+          <div className="relative w-full h-full overflow-hidden flex-grow">
             <motion.div 
               className="absolute inset-0"
               animate={{
@@ -146,6 +146,25 @@ export const FlipCard = ({ app, index }: FlipCardProps) => {
                 {app.title}
               </h2>
             </div>
+          </div>
+
+          <div className={`px-6 py-3 bg-${app.color}/10 border-t-2 border-${app.color} mt-auto`}>
+            <Link
+              href={app.status === 'ONLINE' ? `/suite/${app.id}` : '/contact'} 
+              className={`w-full py-2 text-${app.color} border border-${app.color} rounded hover:bg-${app.color} hover:text-black transition-colors font-mono text-sm flex items-center justify-center`}
+            >
+              {app.status === 'ONLINE' ? (
+                <>
+                  ACCESS NETWORK
+                  <span className="ml-2 text-xs">↗</span>
+                </>
+              ) : (
+                <>
+                  REQUEST INVITE
+                  <span className="ml-2 text-xs animate-pulse">⌛</span>
+                </>
+              )}
+            </Link>
           </div>
         </div>
       </div>
