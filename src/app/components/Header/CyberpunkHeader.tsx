@@ -1,12 +1,12 @@
 // components/Header/CyberpunkHeader.tsx
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
-import { useState, useEffect } from 'react'; // Add useEffect
-import Image from 'next/image';
+import { useState, useEffect } from 'react';
 import { TextScramble } from '../common/TextScramble';
-import { useMediaQuery } from 'react-responsive'; // Add this import
+import { useMediaQuery } from 'react-responsive';
 
 export const CyberpunkHeader = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,7 +15,12 @@ export const CyberpunkHeader = () => {
   const { scrollY } = useScroll();
   
   // Add viewport detection
+  const [isReady, setIsReady] = useState(false);
   const isDesktop = useMediaQuery({ minWidth: 1024 });
+
+  useEffect(() => {
+    setIsReady(true);
+  }, []);
 
   // Scroll direction detection
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -67,23 +72,19 @@ export const CyberpunkHeader = () => {
           </Link>
         </motion.div>
 
-        {/* Desktop Navigation - Now properly responsive */}
-        {isDesktop && (
-          <nav className="flex items-center space-x-8">
+        {/* Desktop Navigation */}
+        {isReady && isDesktop && (
+          <nav className="flex items-center space-x-8 text-white">
             {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-white text-lg font-bold underline"
-              >
-                <TextScramble text={item.name} className="text-white" scrambleOnHover={true} />
+              <Link key={item.name} href={item.href}>
+                <TextScramble text={item.name} />
               </Link>
             ))}
           </nav>
         )}
 
         {/* Mobile menu button - Only shown when not desktop */}
-        {!isDesktop && (
+        {isReady && !isDesktop && (
           <motion.button
             className="focus:outline-none"
             onClick={() => setMenuOpen(!menuOpen)}
@@ -99,7 +100,7 @@ export const CyberpunkHeader = () => {
       </div>
 
       {/* Mobile Navigation */}
-      {!isDesktop && (
+      {isReady && !isDesktop && (
         <motion.div 
           initial={false}
           animate={menuOpen ? "open" : "closed"}

@@ -125,7 +125,11 @@
 /* ====== NEON BACKGROUNDS & BORDERS ====== */
 .bg-neon-pink { background-color: var(--neon-pink); }
 .bg-neon-blue { background-color: var(--neon-blue); }
+.border-neon-pink { border-color: var(--neon-pink); }
 .border-neon-blue { border-color: var(--neon-blue); }
+.border-neon-green { border-color: var(--neon-green); }
+.border-neon-cyan { border-color: var(--neon-cyan); }
+.border-neon-red { border-color: var(--neon-red); }
 .border-neon-purple { border-color: var(--neon-purple); }
 .border-neon-yellow { border-color: var(--neon-yellow); }
 

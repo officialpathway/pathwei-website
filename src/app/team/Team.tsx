@@ -3,31 +3,9 @@
 import { CyberpunkCard } from "@/src/app/components/common/Card";
 import Particles from "../components/common/Particles";
 import { motion } from 'framer-motion';
+import { teamMembersWithImages } from "@/src/lib/constants";
 
 export function TeamSection() {
-  const teamMembers = [
-    {
-      name: "Alvaro Rios",
-      role: "Chief Executive Officer",
-      color: "cyan",
-      specialty: "STRATEGIC SYNTHESIS",
-      imgSrc: "/images/team/ceo.jpg"
-    },
-    {
-      name: "Rayan Chairi",
-      role: "Chief Technology Officer",
-      color: "pink",
-      specialty: "NEURAL OPTIMIZATION",
-      imgSrc: "/images/team/cto.jpg"
-    },
-    {
-      name: "Maria Victoria Sanchez",
-      role: "Chief Marketing Officer",
-      color: "purple",
-      specialty: "COGNITIVE ADOPTION",
-      imgSrc: "/images/team/duda.jpg"
-    }
-  ];
 
   return (
     <section className="relative py-20 overflow-hidden">
@@ -50,7 +28,7 @@ export function TeamSection() {
         {/* Team cards with enhanced blue holographic effect */}
         <div className="flex justify-center">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl">
-            {teamMembers.map((member, index) => (
+            {teamMembersWithImages.map((member, index) => (
               <motion.div 
                 key={index}
                 className="flex justify-center"

@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { TextScramble } from '../common/TextScramble';
+import { TextScramble } from '@/src/app/components/common/TextScramble';
 
 export default function Hero() {
   return (
     <section>
       <div className="flex flex-col items-center justify-center h-screen">
-        <TextScramble text="The Future of AI" className='text-5xl font-bold text-white' scrambleOnHover={true} />
+        <TextScramble text="The Future of AI" className='text-5xl font-bold text-white' scrambleOnHover />
         <p className="mt-4 text-lg text-gray-400">Experience the fusion of technology and humanity.</p>
         
         <motion.button
@@ -23,7 +23,7 @@ export default function Hero() {
           }}
         >
           {/* Button text */}
-          <span className="relative z-10 font-mono text-xl tracking-wider">
+          <span className="relative z-10 text-xl tracking-wider">
             EXPLORE NOW
           </span>
           

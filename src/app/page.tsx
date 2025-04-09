@@ -32,6 +32,7 @@ export default function Home() {
         <title>AI Haven Labs | Cyberpunk Future</title>
         <meta name="description" content="Welcome to AI Haven Labs - Pioneering the cyberpunk future" />
       </Head>
+      
       <Main />
     </>
   );

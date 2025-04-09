@@ -3,35 +3,7 @@
 
 import { motion } from 'framer-motion';
 import { ProductCard } from './ProductCard';
-
-import type { Product } from './ProductCard';
-
-const products: Product[] = [
-  {
-    name: 'Pathway',
-    description: 'Productivity companion that enhances focus while protecting digital wellbeing',
-    stats: '↑ 89% task completion | ↓ 62% screen fatigue',
-    color: 'neon-cyan'
-  },
-  {
-    name: 'ContentForge',
-    description: 'AI-powered creative suite that organizes and generates content ideas',
-    stats: '3.1x output speed | 40% better engagement',
-    color: 'neon-pink'
-  },
-  {
-    name: 'NeuroLink',
-    description: 'Coming soon: Neural interface for thought-to-text workflows',
-    stats: 'Patent pending',
-    color: 'neon-purple'
-  },
-  {
-    name: 'Chronos',
-    description: 'Coming soon: Time optimization engine for creative professionals',
-    stats: 'Beta testing Q3 2024',
-    color: 'neon-green'
-  }
-];
+import { products } from '@/src/lib/constants';
 
 export default function ProductGridSection() {
   return (

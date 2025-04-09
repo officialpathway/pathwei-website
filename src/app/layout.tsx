@@ -1,6 +1,7 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { myCustomFont } from "@/lib/fonts";
+import { myCustomFont } from "@/src/lib/styles/fonts";
+import { AnimatePresence } from "framer-motion";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${myCustomFont.variable} antialiased`}>
-        {children}
+        <AnimatePresence mode="wait">
+          {children}
+        </AnimatePresence>
       </body>
     </html>
   );

@@ -9,7 +9,7 @@ import { useWindowSize } from '@/src/hooks/useWindowSize';
 // Components
 import SplineScene from "../components/common/SplineModel";
 import { CyberpunkHeader } from "../components/Header/CyberpunkHeader";
-import Hero from "../components/Hero/Hero";
+import Hero from "./Hero/Hero";
 import ProductGridSection from "./Grid/ProductGridSection";
 import { FeatureComments } from "./FeatureComments";
 import VisionSection from './Vision/VisionSection';
@@ -84,11 +84,11 @@ export default function MainSection() {
   // Combined rotations (initial + cursor) that respect shouldTilt
   const rotateY = useTransform(
     [baseRotateY, shouldTilt],
-    ([rot, tilt]) => (INITIAL_Y_ROTATION * tilt) + (rot * tilt)
+    (latest: number[]) => (INITIAL_Y_ROTATION * latest[1]) + (latest[0] * latest[1])
   );
   const rotateX = useTransform(
     [baseRotateX, shouldTilt],
-    ([rot, tilt]) => (INITIAL_X_ROTATION * tilt) + (rot * tilt)
+    (latest: number[]) => (INITIAL_X_ROTATION * latest[1]) + (latest[0] * latest[1])
   );
 
   // Background overlay opacity

@@ -1,0 +1,271 @@
+// lib/constants.ts
+import { Product } from "@/src/app/landing/Grid/ProductCard";
+
+export const teamMembers = [
+  {
+    id: 'ceo',
+    name: 'ALEX RYDER',
+    title: 'FOUNDER & CEO',
+    role: 'VISIONARY ARCHITECT',
+    bio: 'Former neural interface researcher turned tech entrepreneur. Spearheads our quantum leap into human-AI symbiosis.',
+    color: 'neon-pink',
+    status: 'ONLINE',
+    connections: ['NeuroTech Inc', 'Quantum Leap Ventures', 'Future Humanity Fund']
+  },
+  {
+    id: 'cto',
+    name: 'DR. KIRA ZHANG',
+    title: 'CHIEF TECHNOLOGY OFFICER',
+    role: 'SYSTEMS OVERLORD',
+    bio: 'Ex-Google DeepMind lead engineer. Built the first self-evolving AI architecture at age 23.',
+    color: 'neon-blue',
+    status: 'IN LAB',
+    connections: ['MIT Synthetic Intelligence', 'OpenNeuro Collective', 'The Turing Guild']
+  },
+  {
+    id: 'cmo',
+    name: 'JORDAN VEX',
+    title: 'CHIEF MARKETING OFFICER',
+    role: 'NEURAL BRAND SHAPER',
+    bio: 'Digital consciousness marketing pioneer. Formerly grew NeuroLink to 50M users in 12 months.',
+    color: 'neon-purple',
+    status: 'IN FIELD',
+    connections: ['Hologram Advertising', 'MindShare Collective', 'The Viral Cortex']
+  }
+];
+
+export const investors = [
+  {
+    name: 'NEURAL CAPITAL',
+    type: 'LEAD INVESTOR',
+    investment: 'Series A - $42M',
+    focus: 'Human-AI convergence technologies',
+    color: 'neon-green'
+  },
+  {
+    name: 'QUANTUM VENTURES',
+    type: 'STRATEGIC PARTNER',
+    investment: 'Seed - $15M',
+    focus: 'Disruptive neurotech',
+    color: 'neon-cyan'
+  },
+  {
+    name: 'FUTURE HORIZON FUND',
+    type: 'GROWTH INVESTOR',
+    investment: 'Series B - $75M',
+    focus: 'Consciousness expansion platforms',
+    color: 'neon-yellow'
+  }
+];
+
+export const supporters = [
+  {
+    name: 'THE TURING INSTITUTE',
+    role: 'RESEARCH PARTNER',
+    contribution: 'AI ethics framework development',
+    color: 'neon-aqua'
+  },
+  {
+    name: 'NEUROTECH FOUNDATION',
+    role: 'OPEN SOURCE SUPPORTER',
+    contribution: 'Core algorithm contributions',
+    color: 'neon-violet'
+  },
+  {
+    name: 'DIGITAL HUMANITY COUNCIL',
+    role: 'ADVISORY BOARD',
+    contribution: 'Policy guidance',
+    color: 'neon-red'
+  }
+];
+
+export const teamMembersWithImages = [
+  {
+    name: "Alvaro Rios",
+    role: "Chief Executive Officer",
+    color: "cyan",
+    specialty: "STRATEGIC SYNTHESIS",
+    imgSrc: "/images/Team/ceo.jpg"
+  },
+  {
+    name: "Rayan Chairi",
+    role: "Chief Technology Officer",
+    color: "pink",
+    specialty: "NEURAL OPTIMIZATION",
+    imgSrc: "/images/Team/cto.jpg"
+  },
+  {
+    name: "Maria Victoria Sanchez",
+    role: "Chief Marketing Officer",
+    color: "purple",
+    specialty: "COGNITIVE ADOPTION",
+    imgSrc: "/images/Team/duda.jpg"
+  }
+];
+
+export const apps = [
+  {
+    id: 'pathway',
+    title: 'PATHWAY',
+    subtitle: 'Your Progress Partner',
+    description: 'Track and achieve your goals with Pathway, the productivity neural-net designed to optimize your human potential.',
+    keywords: ['productivity', 'goals', 'progress', 'social web', 'self-improvement'],
+    color: 'neon-green',
+    features: [
+      'Neural goal tracking',
+      'Social accountability networks',
+      'AI-powered progress predictions',
+      'Biometric integration',
+      'Blockchain achievement tokens'
+    ],
+    status: 'ONLINE'
+  },
+  {
+    id: 'neuroforge',
+    title: 'NEUROFORGE',
+    subtitle: 'Cognitive Enhancement Suite',
+    description: 'Augment your mental capabilities with our AI-driven neuro-enhancement platform.',
+    keywords: ['brain training', 'focus', 'memory', 'cognitive'],
+    color: 'neon-blue',
+    features: [
+      'Real-time neural optimization',
+      'Adaptive learning algorithms',
+      'EEG integration',
+      'Neurochemical balancing',
+      'Dreamstate programming'
+    ],
+    status: 'BETA'
+  },
+  {
+    id: 'quantumlink',
+    title: 'QUANTUMLINK',
+    subtitle: 'Decentralized Thought Network',
+    description: 'The first truly decentralized AI-human consciousness sharing platform.',
+    keywords: ['blockchain', 'AI', 'neural', 'decentralized'],
+    color: 'neon-purple',
+    features: [
+      'Quantum encrypted messaging',
+      'Hive-mind knowledge pools',
+      'Neural NFT marketplace',
+      'Consensus reality builder',
+      'Temporal communication channels'
+    ],
+    status: 'ALPHA'
+  },
+  {
+    id: 'biocore',
+    title: 'BIOCORE',
+    subtitle: 'Organic-Digital Interface',
+    description: 'Bridging the gap between biological and artificial intelligence systems.',
+    keywords: ['biotech', 'implants', 'augmentation', 'cybernetics'],
+    color: 'neon-pink',
+    features: [
+      'DNA-based authentication',
+      'Nanite health monitoring',
+      'Synaptic cloud backup',
+      'Biological API endpoints',
+      'Regenerative firmware'
+    ],
+    status: 'PROTOTYPE'
+  }
+];
+
+export const products: Product[] = [
+  {
+    name: 'Pathway',
+    description: 'Productivity companion that enhances focus while protecting digital wellbeing',
+    stats: '↑ 89% task completion | ↓ 62% screen fatigue',
+    color: 'neon-cyan'
+  },
+  {
+    name: 'ContentForge',
+    description: 'AI-powered creative suite that organizes and generates content ideas',
+    stats: '3.1x output speed | 40% better engagement',
+    color: 'neon-pink'
+  },
+  {
+    name: 'NeuroLink',
+    description: 'Coming soon: Neural interface for thought-to-text workflows',
+    stats: 'Patent pending',
+    color: 'neon-purple'
+  },
+  {
+    name: 'Chronos',
+    description: 'Coming soon: Time optimization engine for creative professionals',
+    stats: 'Beta testing Q3 2024',
+    color: 'neon-green'
+  }
+];
+
+export const features = [
+  {
+    id: 1,
+    message: "YOUR GOALS, POWERED BY AI",
+    subMessage: "We built this because we watched dreams get buried under busywork. Our AI maps personalized paths to success—helping 530K+ users stay focused on what matters.",
+    borderColor: "cyan" as const,
+    position: "left",
+    top: "10%",
+    left: "15%",
+    delay: 0.2
+  },
+  {
+    id: 2,
+    message: "HUMANS FIRST, ALWAYS",
+    subMessage: "Unlike tools that replace you, ours amplify you. 84% of users report achieving goals faster while feeling *more* creative and in control.",
+    borderColor: "purple" as const,
+    position: "right",
+    top: "20%",
+    right: "15%",
+    delay: 0.4
+  },
+  {
+    id: 3,
+    message: "THE FUTURE OF WORK IS HERE",
+    subMessage: "We saw the demand for AI that adapts to *you*—not the other way around. Our tech learns your habits, predicts blockers, and course-corrects in real time.",
+    borderColor: "pink" as const,
+    position: "left",
+    top: "35%",
+    left: "15%",
+    delay: 0.6
+  },
+  {
+    id: 4,
+    message: "PROVEN TO WORK",
+    subMessage: "Users complete 3.2x more weekly priorities. Founders credit us for hitting milestones 6 months early. Therapists use it to help clients build life-changing habits.",
+    borderColor: "green" as const,
+    position: "right",
+    top: "50%",
+    right: "15%",
+    delay: 0.8
+  },
+  {
+    id: 5,
+    message: "ETHICS BUILT IN",
+    subMessage: "We reject surveillance-style productivity. Your data trains *your* AI—never sold or used to manipulate you. (Certified compliant with GDPR and CCPA.)",
+    borderColor: "cyan" as const,
+    position: "left",
+    top: "65%",
+    left: "15%",
+    delay: 1.0
+  },
+  {
+    id: 6,
+    message: "JOIN THE MOVEMENT",
+    subMessage: "Over 2,000 teams now use our tools to align work with purpose. From indie creators to Fortune 500s, we’re rewriting how humans and AI collaborate.",
+    borderColor: "purple" as const,
+    position: "right",
+    top: "80%",
+    right: "15%",
+    delay: 1.2
+  },
+  {
+    id: 7,
+    message: "WHAT'S NEXT?",
+    subMessage: "We're prototyping AI co-pilots that sense burnout before you do, and tools that turn procrastination patterns into productivity breakthroughs.",
+    borderColor: "pink" as const,
+    position: "left",
+    top: "95%",
+    left: "15%",
+    delay: 1.4
+  }
+];
