@@ -269,3 +269,83 @@ export const features = [
     delay: 1.4
   }
 ];
+
+export const COMMANDS = {
+  // Core commands
+  help: `Available commands: 
+  [CORE] help, clear, exit
+  [INFO] ls, about, team, roadmap, social, date, uptime, whoami
+  [INTERACT] echo, neofetch, hack, scan, encrypt, bio`,
+
+  ls: `System modules:
+  - pathway (v2.3.1)
+  - image-engine (v1.8.4)
+  - code-ai (beta)
+  /secret/classified`,
+
+  about: `AI Haven Labs [v3.1.4]
+  >> Specializing in neural interfaces
+  >> Est. 2023 | Security Level: 5`,
+
+  contact: `Encrypted channels only:
+  Email: officialpathwayapp@gmail.com
+  PGP Key: *********AF3B`,
+
+  clear: '',
+  exit: 'Terminating session...',
+
+  // Team info
+  team: `Core Team:
+  - Álvaro Ríos Rodríguez [CEO] | ID: AR-724
+  - Rayan Chairi Ben Yamna Boulaich [CTO] | ID: RC-881
+  - Maria Victoria Sánchez Serrano [CMO] | ID: MV-309
+  
+  AI Systems:
+  - NEXUS-7 (Primary Neural Network)`,
+
+  // System commands
+  date: `System time: ${new Date().toLocaleString()}
+  Network time sync: ACTIVE`,
+
+  uptime: `System status:
+  Uptime: ${Math.floor(Math.random() * 100)} days, ${Math.floor(Math.random() * 24)} hours
+  Load: ${(Math.random() * 100).toFixed(1)}%`,
+
+  whoami: `User: guest
+  Access: LEVEL 1
+  Last login: ${new Date().toLocaleString()}`,
+
+  neofetch: `AI Haven Labs Terminal
+  OS: NeuroLink v3.1
+  Shell: zsh 5.9
+  CPU: Quantum Q-9000
+  Memory: 128TB/256TB`,
+
+  roadmap: `Future plans:
+  - Q4 2025: Launch NEXUS-8
+  - Q1 2026: Expand neural interface capabilities
+  - Q2 2026: Collaborate with global AI networks`,
+
+  // Interactive commands
+  echo: (args: string[]) => args.join(' ') || 'Error: No input detected',
+
+  hack: `Initiating penetration test...
+  Firewall detected: ICE v4.2
+  Bypassing security... [23%]
+  [SIMULATION TERMINATED]`,
+
+  scan: `Network scan results:
+  █ 192.168.7.1 - ROUTER
+  █ 192.168.7.15 - NEXUS-7
+  █ 192.168.7.42 - UNKNOWN DEVICE`,
+
+  encrypt: (args: string[]) => 
+    args.length 
+      ? `Ciphertext: ${btoa(args.join(' '))}`
+      : 'Usage: encrypt [message]',
+
+  bio: `User biometrics:
+  Neural activity: ${Math.floor(Math.random() * 100)}%
+  Stress levels: ${Math.floor(Math.random() * 30)}%
+  Focus: ${Math.floor(70 + Math.random() * 30)}%`,
+};

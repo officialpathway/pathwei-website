@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-three/fiber": "^9.1.2",
     "@splinetool/runtime": "^1.9.82",
     "@studio-freight/lenis": "^1.0.42",
     "@types/gsap": "^3.0.0",

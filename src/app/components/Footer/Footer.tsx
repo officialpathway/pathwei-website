@@ -4,124 +4,132 @@
 import { motion } from 'framer-motion';
 import { TextScramble } from '../common/TextScramble';
 import Link from 'next/link';
+import Terminal from '../common/Terminal';
 
 const FooterContent = () => {
   return (
-    <>
-      {/* Main content */}
-      <div className="relative z-10 h-full flex flex-col justify-between pt-20 pb-8">
-        {/* Top section */}
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="w-full m-0 p-0"
-        >
-          <h3 className="text-white text-start text-[20rem] font-mono mb-4">
-            Symbiosys
-          </h3>
-        </motion.div>
+    <div className="relative z-10 w-full bg-black/90 backdrop-blur-sm border-t-2 border-neon-cyan">
+      {/* Big Title Section */}
+      <motion.div
+        initial={{ y: 50, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+        className="w-full px-4 md:px-8 pt-20"
+      >
+        <h3 className="text-white text-start text-7xl sm:text-8xl md:text-[8rem] lg:text-[10rem] xl:text-[15rem] mb-16 leading-none">
+          Symbiosys
+        </h3>
 
-        {/* Middle section */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-40 px-8 py-12 my-8 w-full max-w-6xl mx-auto"
-        >
-          {/* Explore Column */}
-          <div className="group flex flex-col items-center text-start">
-            <h4 className="text-neon-green font-mono text-4xl mb-4">
-              <TextScramble text="EXPLORE" />
-            </h4>
-            <ul className="space-y-4 text-xl">
-              <li className="text-white/80 hover:text-neon-green transition-colors cursor-pointer">
-                <TextScramble text="> Showcase" />
-              </li>
-              <li className="text-white/80 hover:text-neon-green transition-colors cursor-pointer">
-                <TextScramble text="> Research" />
-              </li>
-              <li className="text-white/80 hover:text-neon-green transition-colors cursor-pointer">
-                <TextScramble text="> Roadmap" />
-              </li>
-            </ul>
-          </div>
+      </motion.div>
 
-          {/* Products Column */}
-          <div className="group flex flex-col items-center text-start">
-            <h4 className="text-neon-blue font-mono text-4xl mb-4">
-              <TextScramble text="PRODUCTS" />
-            </h4>
-            <ul className="space-y-4 text-xl">
-              <li className="text-white/80 hover:text-neon-blue transition-colors cursor-pointer">
-                <TextScramble text="> NeuroLink" />
-              </li>
-              <li className="text-white/80 hover:text-neon-blue transition-colors cursor-pointer">
-                <TextScramble text="> BioChip" />
-              </li>
-              <li className="text-white/80 hover:text-neon-blue transition-colors cursor-pointer">
-                <TextScramble text="> NanoMesh" />
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Column */}
-          <div className="group flex flex-col items-center text-start">
-            <h4 className="text-neon-pink font-mono text-4xl mb-4">
-              <TextScramble text="CONTACT" />
-            </h4>
-            <ul className="space-y-4 text-xl">
-              <li className="text-white/80 hover:text-neon-pink transition-colors cursor-pointer">
-                <TextScramble text="> Support" />
-              </li>
-              <li className="text-white/80 hover:text-neon-pink transition-colors cursor-pointer">
-                <TextScramble text="> Careers" />
-              </li>
-              <li className="text-white/80 hover:text-neon-pink transition-colors cursor-pointer">
-                <TextScramble text="> Network" />
-              </li>
-            </ul>
-          </div>
-        </motion.div>
-
-        {/* Bottom section */}
+      {/* Main Content Grid */}
+      <div className="w-full px-4 md:px-8 overflow-hidden">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="border-t-2 border-neon-yellow px-8"
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full min-h-[40vh] max-w-7xl mx-auto"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className='text-white'>
-              <span className="text-neon-yellow">AI HAVEN LABS</span> © 2024 | ALL SYSTEMS OPERATIONAL
-            </p>
-            <div className="text-neon-pink font-mono mt-4 md:mt-0 cursor-pointer">
-              <Link href={"/policy"}>
-                <TextScramble text=">_ PRIVACY POLICY" />
-              </Link>
+          {/* Left Group - 3 Columns (Centered) */}
+          <div className="grid grid-cols-3  gap-8 w-full h-full place-items-center">
+            {/* Explore Column */}
+            <div className="group flex flex-col items-center md:items-start text-center md:text-start justify-center h-full">
+              <h4 className="text-neon-green text-2xl md:text-3xl mb-4">
+                <TextScramble text="EXPLORE" />
+              </h4>
+              <ul className="space-y-2 md:space-y-3 text-lg">
+                <li className="text-white/80 hover:text-neon-green transition-colors cursor-pointer">
+                  <TextScramble text="> Showcase" />
+                </li>
+                <li className="text-white/80 hover:text-neon-green transition-colors cursor-pointer">
+                  <TextScramble text="> Research" />
+                </li>
+                <li className="text-white/80 hover:text-neon-green transition-colors cursor-pointer">
+                  <TextScramble text="> Roadmap" />
+                </li>
+              </ul>
             </div>
+
+            {/* Products Column */}
+            <div className="group flex flex-col items-center md:items-start text-center md:text-start justify-center h-full">
+              <h4 className="text-neon-blue text-2xl md:text-3xl mb-4">
+                <TextScramble text="PRODUCTS" />
+              </h4>
+              <ul className="space-y-2 md:space-y-3 text-lg">
+                <li className="text-white/80 hover:text-neon-blue transition-colors cursor-pointer">
+                  <TextScramble text="> NeuroLink" />
+                </li>
+                <li className="text-white/80 hover:text-neon-blue transition-colors cursor-pointer">
+                  <TextScramble text="> BioChip" />
+                </li>
+                <li className="text-white/80 hover:text-neon-blue transition-colors cursor-pointer">
+                  <TextScramble text="> NanoMesh" />
+                </li>
+              </ul>
+            </div>
+
+            {/* Contact Column */}
+            <div className="group flex flex-col items-center md:items-start text-center md:text-start justify-center h-full">
+              <h4 className="text-neon-pink text-2xl md:text-3xl mb-4">
+                <TextScramble text="CONTACT" />
+              </h4>
+              <ul className="space-y-2 md:space-y-3 text-lg">
+                <li className="text-white/80 hover:text-neon-pink transition-colors cursor-pointer">
+                  <TextScramble text="> Support" />
+                </li>
+                <li className="text-white/80 hover:text-neon-pink transition-colors cursor-pointer">
+                  <TextScramble text="> Careers" />
+                </li>
+                <li className="text-white/80 hover:text-neon-pink transition-colors cursor-pointer">
+                  <TextScramble text="> Network" />
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Right Group - Terminal (Centered vertically) */}
+          <div className="w-full h-full flex items-center justify-center">
+            <Terminal
+              width="100%"
+              height="300px"
+              borderColor="var(--neon-cyan)"
+              accentColor="var(--neon-green)"
+              secondaryColor="var(--neon-pink)"
+              tertiaryColor="var(--neon-blue)"
+            />
           </div>
         </motion.div>
       </div>
-    </>
+
+      {/* Bottom Copyright Section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, delay: 0.2 }}
+        className="min-w-full px-4 py-8 border-t border-white/20"
+      >
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <p className="text-white text-sm md:text-base">
+            <span className="text-neon-yellow">AI HAVEN LABS</span> © 2024 | ALL SYSTEMS OPERATIONAL
+          </p>
+          <div className="text-neon-pink mt-4 md:mt-0 cursor-pointer">
+            <Link href="/policy">
+              <TextScramble text=">_ PRIVACY POLICY" />
+            </Link>
+          </div>
+        </div>
+      </motion.div>
+    </div>
   );
 };
 
 export const CyberpunkFooter = () => {
   return (
-    // Divs for sticky footer
-    <footer 
-      className="relative h-[800px] bg-blue-800"
-      style={{clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)"}}
-    >
-      <div className="relative bottom-0 h-[calc(100vh+800px)] -top-[100vh]">
-        <div className='sticky h-[800px] top-[calc(100vh-800px)]'>
-
-          {/* Content */}
-          <FooterContent />
-
-        </div>
-      </div>
+    <footer className="w-full">
+      <FooterContent />
     </footer>
   );
 };

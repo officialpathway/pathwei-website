@@ -18,8 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${myCustomFont.variable} antialiased`}>
+        <BackgroundShader key="backgroundShader"/>
         <AnimatePresence mode="wait">
-          <BackgroundShader />
           {children}
         </AnimatePresence>
       </body>

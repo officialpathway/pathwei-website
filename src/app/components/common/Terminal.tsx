@@ -3,100 +3,44 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-
-const COMMANDS = {
-  // Core commands
-  help: `Available commands: 
-  [CORE] help, clear, exit
-  [INFO] ls, about, team, roadmap, social, date, uptime, whoami
-  [INTERACT] echo, neofetch, hack, scan, encrypt, bio`,
-
-  ls: `System modules:
-  - pathway (v2.3.1)
-  - image-engine (v1.8.4)
-  - code-ai (beta)
-  /secret/classified`,
-
-  about: `AI Haven Labs [v3.1.4]
-  >> Specializing in neural interfaces
-  >> Est. 2023 | Security Level: 5`,
-
-  contact: `Encrypted channels only:
-  Email: officialpathwayapp@gmail.com
-  PGP Key: *********AF3B`,
-
-  clear: '',
-  exit: 'Terminating session...',
-
-  // Team info
-  team: `Core Team:
-  - Álvaro Ríos Rodríguez [CEO] | ID: AR-724
-  - Rayan Chairi Ben Yamna Boulaich [CTO] | ID: RC-881
-  - Maria Victoria Sánchez Serrano [CMO] | ID: MV-309
-  
-  AI Systems:
-  - NEXUS-7 (Primary Neural Network)`,
-
-  // System commands
-  date: `System time: ${new Date().toLocaleString()}
-  Network time sync: ACTIVE`,
-
-  uptime: `System status:
-  Uptime: ${Math.floor(Math.random() * 100)} days, ${Math.floor(Math.random() * 24)} hours
-  Load: ${(Math.random() * 100).toFixed(1)}%`,
-
-  whoami: `User: guest
-  Access: LEVEL 1
-  Last login: ${new Date().toLocaleString()}`,
-
-  neofetch: `AI Haven Labs Terminal
-  OS: NeuroLink v3.1
-  Shell: zsh 5.9
-  CPU: Quantum Q-9000
-  Memory: 128TB/256TB`,
-
-  roadmap: `Future plans:
-  - Q4 2025: Launch NEXUS-8
-  - Q1 2026: Expand neural interface capabilities
-  - Q2 2026: Collaborate with global AI networks`,
-
-  // Interactive commands
-  echo: (args: string[]) => args.join(' ') || 'Error: No input detected',
-
-  hack: `Initiating penetration test...
-  Firewall detected: ICE v4.2
-  Bypassing security... [23%]
-  [SIMULATION TERMINATED]`,
-
-  scan: `Network scan results:
-  █ 192.168.7.1 - ROUTER
-  █ 192.168.7.15 - NEXUS-7
-  █ 192.168.7.42 - UNKNOWN DEVICE`,
-
-  encrypt: (args: string[]) => 
-    args.length 
-      ? `Ciphertext: ${btoa(args.join(' '))}`
-      : 'Usage: encrypt [message]',
-
-  bio: `User biometrics:
-  Neural activity: ${Math.floor(Math.random() * 100)}%
-  Stress levels: ${Math.floor(Math.random() * 30)}%
-  Focus: ${Math.floor(70 + Math.random() * 30)}%`,
-};
+import { COMMANDS } from '@/src/lib/constants/constants'
 
 interface TerminalProps {
   compactMode?: boolean;
+  width?: string;
+  height?: string;
+  borderColor?: string;
+  accentColor?: string;
+  secondaryColor?: string;
+  tertiaryColor?: string;
 }
 
-export default function Terminal({ compactMode = false }: TerminalProps) {
+export default function Terminal({ 
+  compactMode = false,
+  width = "100%",
+  height = "100%",
+  borderColor = "var(--neon-electric)",
+  accentColor = "var(--neon-electric)",
+  secondaryColor = "var(--neon-fuchsia)",
+  tertiaryColor = "var(--neon-aqua)",
+}: TerminalProps) {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState<string[]>([]);
+  const [showModules, setShowModules] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const terminalContentRef = useRef<HTMLDivElement>(null);
 
   // Focus input on mount
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
+
+  // Scroll to bottom when output changes
+  useEffect(() => {
+    if (terminalContentRef.current) {
+      terminalContentRef.current.scrollTop = terminalContentRef.current.scrollHeight;
+    }
+  }, [output]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -104,35 +48,54 @@ export default function Terminal({ compactMode = false }: TerminalProps) {
     
     if (cmd === 'clear') {
       setOutput([]);
+      setShowModules(false);
     } 
     else {
       const commandOutput = typeof COMMANDS[cmd as keyof typeof COMMANDS] === 'function'
         ? (COMMANDS[cmd as keyof typeof COMMANDS] as (args: string[]) => string)(args)
         : COMMANDS[cmd as keyof typeof COMMANDS] || 'Command not found';
       setOutput(prev => [...prev, `> ${input}`, commandOutput as string]);
+      
+      // Set showModules flag separately based on command
+      if (cmd === 'ls') {
+        setShowModules(true);
+      }
     }
     
     setInput('');
   };
 
-  return (
-    <div className={`h-full font-mono ${compactMode ? 'text-xs' : 'text-sm'} 
-      w-full max-w-3xl mx-auto border-2 border-[var(--neon-electric)] 
-      rounded-lg p-6 bg-white bg-opacity-90 backdrop-blur-sm shadow-lg`}
-    >
+  // Calculate terminal content height based on whether modules are shown
+  const terminalContentHeight = showModules 
+    ? 'calc(60% - 40px)' 
+    : 'calc(100% - 80px)';
 
+  return (
+    <div 
+      className={`font-mono ${compactMode ? 'text-xs' : 'text-sm'} 
+        border-2 rounded-lg p-6 bg-white bg-opacity-90 backdrop-blur-sm shadow-lg flex flex-col`}
+      style={{ 
+        width, 
+        height,
+        borderColor 
+      }}
+    >
       {/* Terminal header - white with electric colors */}
       <div className="flex items-center gap-2 mb-4">
-        <div className="w-3 h-3 rounded-full bg-[var(--neon-electric)]" />
-        <div className="w-3 h-3 rounded-full bg-[var(--neon-fuchsia)]" />
-        <div className="w-3 h-3 rounded-full bg-[var(--neon-aqua)]" />
-        <div className="text-[var(--neon-violet)] font-mono text-sm ml-2">
+        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: accentColor }} />
+        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: secondaryColor }} />
+        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: tertiaryColor }} />
+        <div className="font-mono text-sm ml-2" style={{ color: accentColor }}>
           AI_HAVEN_TERMINAL
         </div>
       </div>
 
-      {/* Terminal content */}
-      <div className="font-mono text-gray-800 h-96 overflow-y-auto mb-4 terminal-scroll">
+      {/* Terminal content - with fixed height */}
+      <div 
+        ref={terminalContentRef}
+        className="font-mono text-gray-800 overflow-y-auto mb-4 terminal-scroll flex-grow" 
+        style={{ height: terminalContentHeight, maxHeight: terminalContentHeight }}
+      >
         {output.map((line, i) => (
           <div key={i} className="whitespace-pre-wrap mb-2">
             {line}
@@ -140,46 +103,51 @@ export default function Terminal({ compactMode = false }: TerminalProps) {
         ))}
 
         <form onSubmit={handleSubmit} className="flex items-center">
-          <span className="text-[var(--neon-fuchsia)] mr-2">{'>'}</span>
+          <span className="mr-2" style={{ color: secondaryColor }}>{'>'}</span>
           <input
             title='Terminal Input'
             ref={inputRef}
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="bg-transparent border-none outline-none text-gray-800 font-mono w-full caret-[var(--neon-electric)]"
+            className="bg-transparent border-none outline-none text-gray-800 font-mono w-full"
+            style={{ caretColor: accentColor }}
             spellCheck={false}
           />
-          <span className="text-[var(--neon-electric)] animate-pulse">|</span>
+          <span className="animate-pulse" style={{ color: accentColor }}>|</span>
         </form>
 
         {/* Guiding message */}
-        <div className="text-[var(--neon-violet)] mt-4">
-          Try typing <span className="text-[var(--neon-fuchsia)]">&apos;help&apos;</span> and then try any other command.
+        <div className="mt-4" style={{ color: accentColor }}>
+          Try typing <span style={{ color: secondaryColor }}>&apos;help&apos;</span> and then try any other command.
         </div>
       </div>
 
-      {/* Module display */}
-      {output.some(o => o.includes('ls')) && (
+      {/* Module display - in a fixed area */}
+      {showModules && (
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-2"
+          style={{ height: '35%', overflow: 'hidden' }}
         >
           <TerminalModule 
             name="PATHWAY"
             description="AI conversational agent"
-            color="border-[var(--neon-violet)]"
+            color={`border-2`}
+            borderColor={accentColor}
           />
           <TerminalModule 
             name="IMAGE ENGINE"
             description="Generative art system"
-            color="border-[var(--neon-aqua)]"
+            color={`border-2`}
+            borderColor={tertiaryColor}
           />
           <TerminalModule 
             name="CODE AI"
             description="ML-powered refactoring"
-            color="border-[var(--neon-fuchsia)]"
+            color={`border-2`}
+            borderColor={secondaryColor}
           />
         </motion.div>
       )}
@@ -187,15 +155,28 @@ export default function Terminal({ compactMode = false }: TerminalProps) {
   );
 }
 
-function TerminalModule({ name, description, color }: { name: string; description: string; color: string }) {
+function TerminalModule({ 
+  name, 
+  description, 
+  color, 
+  borderColor 
+}: { 
+  name: string; 
+  description: string; 
+  color: string;
+  borderColor: string;
+}) {
   return (
     <motion.div 
-      className={`p-4 border-2 ${color} cursor-pointer transition-colors bg-white bg-opacity-70 rounded-lg`}
+      className={`p-3 ${color} cursor-pointer transition-colors bg-white bg-opacity-70 rounded-lg flex flex-col justify-between`}
+      style={{ borderColor, height: '100%' }}
       whileHover={{ y: -5 }}
     >
-      <h3 className="text-xl font-bold mb-2 text-gray-800">{name}</h3>
-      <p className="text-sm text-gray-600">{description}</p>
-      <div className="mt-3 text-xs text-[var(--neon-electric)]">[CLICK TO LAUNCH]</div>
+      <div>
+        <h3 className="text-lg font-bold mb-1 text-gray-800">{name}</h3>
+        <p className="text-xs text-gray-600">{description}</p>
+      </div>
+      <div className="text-xs" style={{ color: borderColor }}>[CLICK TO LAUNCH]</div>
     </motion.div>
   );
 }
