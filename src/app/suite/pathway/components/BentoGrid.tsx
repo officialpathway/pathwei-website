@@ -40,7 +40,7 @@ const BentoGrid = () => {
         )}
       >
         <Image
-          src="/images/health.jpg"
+          src="/images/pathway/health.jpg"
           alt="Meta de Salud"
           fill
           className="object-cover rounded-md"
@@ -65,7 +65,7 @@ const BentoGrid = () => {
         )}
       >
         <Image
-          src="/images/language.jpg"
+          src="/images/pathway/language.jpg"
           alt="Meta de Aprender un Idioma"
           fill
           className="object-cover rounded-md"
@@ -90,7 +90,7 @@ const BentoGrid = () => {
         )}
       >
         <Image
-          src="/images/work.jpg"
+          src="/images/pathway/work.jpg"
           alt="Meta de Trabajo"
           fill
           className="object-cover rounded-md"
@@ -115,7 +115,7 @@ const BentoGrid = () => {
         )}
       >
         <Image
-          src="/images/tech.jpg"
+          src="/images/pathway/tech.jpg"
           alt="Meta de Tecnología"
           fill
           className="object-cover rounded-md"

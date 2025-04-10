@@ -1,0 +1,24 @@
+{
+  "name": "Pathway /By AI Haven Labs",
+  "short_name": "Pathway",
+  "description": "Track and achieve your goals with Pathway, the productivity app and social web designed to empower your journey.",
+  "start_url": "/suite/pathway",
+  "scope": "/suite/pathway",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#4CAF50",
+  "icons": [
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/pathway/1.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    },
+    {
+      "src": "/screenshots/pathway/2.png",
+      "sizes": "1920x1080",
+      "type": "image/png"
+    }
+  ]
+}

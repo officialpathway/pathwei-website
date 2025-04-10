@@ -26,7 +26,7 @@ const Features = () => {
     {
       title: "IA Avanzada",
       description: "Utiliza IA para optimizar tus tareas y alcanzar tus metas más rápido.",
-      image: "/images/ia.png",
+      image: "/images/pathway/ia.png",
       alt: "IA Avanzada",
       animationFrom: "left",
       imageFirst: true, // Always image first
@@ -34,7 +34,7 @@ const Features = () => {
     {
       title: "Gamificación",
       description: "Compite con amigos y alcanza nuevos niveles de productividad.",
-      image: "/images/game.png",
+      image: "/images/pathway/game.png",
       alt: "Gamificación",
       animationFrom: "right",
       imageFirst: isMobile, // Dynamically decide based on screen size
@@ -42,7 +42,7 @@ const Features = () => {
     {
       title: "Red Social",
       description: "Comparte tus logros y sigue el progreso de otros usuarios.",
-      image: "/images/web.png",
+      image: "/images/pathway/web.png",
       alt: "Red Social",
       animationFrom: "left",
       imageFirst: true, // Always image first
