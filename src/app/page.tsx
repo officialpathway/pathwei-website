@@ -18,7 +18,7 @@ function Main() {
     <>
       {/*isLoading && <CyberpunkLoader onLoadingComplete={handleLoadingComplete} />*/}
 
-      <main className="relative w-full bg-black">
+      <main className="relative w-full">
         <MainSection />
       </main>
     </>

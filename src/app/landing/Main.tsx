@@ -119,96 +119,97 @@ export default function MainSection() {
 
   /* ========== RENDER ========== */
   return (
-    <main ref={containerRef} className="relative z-50 w-full bg-black/90">
-      {/* Spline model */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
+    <main ref={containerRef} className="relative w-full">
+      {/* Spline model - now properly behind everything */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <SplineScene />
       </div>
 
-      {/* Header */}
-      <CyberpunkHeader />
+      {/* Content with proper z-index hierarchy */}
+      <div className="relative z-10">
+        {/* Header */}
+        <CyberpunkHeader />
 
-      {/* Hero Section */}
-      <div 
-        id="hero-section" 
-        data-scroll-section
-        className="relative z-20 w-full h-[140vh] flex flex-col items-center justify-center overflow-hidden"
-      >
-        <Hero />
-        <div className="relative z-10 w-full h-[40vh]"></div>
-      </div>
-
-      {/* Business Features */}
-      <div id="features-comments" data-scroll-section className="z-0">
-        <FeatureComments />
-      </div>
-      <div id="empty-div-2" className="relative z-10 w-full h-[40vh]"></div>
-
-      {/* Products Section */}
-      <div id="apps-section" data-scroll-section className="z-20">
-        <ProductGridSection />
-      </div>
-
-      {/* Video Section with Mask Animation */}
-      <div className="relative z-30 w-full h-[250vh]" ref={videoTriggerRef} data-scroll-section>
-        <h2 className='text-white text-6xl text-center mt-40'>
-          The assistant that <span className='text-neon-cyan'>never sleeps</span>.
-          <br />
-          <span className='text-neon-pink'>Always ready to assist you.</span>
-        </h2>
-
-        
-
-        <div className="sticky top-0 h-screen overflow-hidden m-0 p-0">
-          <div  style={{ perspective: "1000px" }}>
-            <h3 className='text-white text-6xl text-center absolute top-220 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-              The future we envision.
-            </h3>
-            <motion.div
-            style={{
-              WebkitMaskSize: maskSizeTemplate,
-              maskSize: maskSizeTemplate,
-              WebkitMaskPosition: 'center',
-              maskPosition: 'center',
-              WebkitMaskRepeat: 'no-repeat',
-              maskRepeat: 'no-repeat',
-              transform: "translateZ(0)",
-              rotateX,
-              rotateY,
-              transformOrigin: "center center",
-              position: 'relative',
-            }}
-            className="mask w-full h-full"
-          >
-            <motion.video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-              className="w-full h-full object-cover border-2"
-              style={{
-                scale: useTransform(scrollYProgress, [0, 0.6], [1.3, 1]),
-              }}
-            >
-              <source src="/videos/aivid.mp4" type="video/mp4" />
-            </motion.video>
-          </motion.div>
-          </div>
-          <motion.div 
-            style={{ opacity }} 
-            className="background absolute inset-0 bg-black z-10" 
-          />
+        {/* Hero Section */}
+        <div 
+          id="hero-section" 
+          data-scroll-section
+          className="relative w-full h-[140vh] flex flex-col items-center justify-center overflow-hidden"
+        >
+          <Hero />
+          <div className="relative w-full h-[40vh]"></div>
         </div>
-      </div>
-      
-      {/* Vision Section */}
-      <div id='vision-section' className='z-30 vision-section'>
-        <VisionSection />
-      </div>
 
-      {/* Footer */}
-      <div className='z-30'>
-        <CyberpunkFooter />
+        {/* Business Features */}
+        <div id="features-comments" data-scroll-section>
+          <FeatureComments />
+        </div>
+        <div id="empty-div-2" className="relative w-full h-[40vh]"></div>
+
+        {/* Products Section */}
+        <div id="apps-section" data-scroll-section>
+          <ProductGridSection />
+        </div>
+
+        {/* Video Section with Mask Animation */}
+        <div className="relative w-full h-[250vh]" ref={videoTriggerRef} data-scroll-section>
+          <h2 className='text-white text-6xl text-center mt-40'>
+            The assistant that <span className='text-neon-cyan'>never sleeps</span>.
+            <br />
+            <span className='text-neon-pink'>Always ready to assist you.</span>
+          </h2>
+
+          <div className="sticky top-0 h-screen overflow-hidden m-0 p-0">
+            <div style={{ perspective: "1000px" }}>
+              <h3 className='text-white text-6xl text-center absolute top-220 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+                The future we envision.
+              </h3>
+              <motion.div
+                style={{
+                  WebkitMaskSize: maskSizeTemplate,
+                  maskSize: maskSizeTemplate,
+                  WebkitMaskPosition: 'center',
+                  maskPosition: 'center',
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskRepeat: 'no-repeat',
+                  transform: "translateZ(0)",
+                  rotateX,
+                  rotateY,
+                  transformOrigin: "center center",
+                  position: 'relative',
+                }}
+                className="mask w-full h-full"
+              >
+                <motion.video 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  className="w-full h-full object-cover border-2"
+                  style={{
+                    scale: useTransform(scrollYProgress, [0, 0.6], [1.3, 1]),
+                  }}
+                >
+                  <source src="/videos/aivid.mp4" type="video/mp4" />
+                </motion.video>
+              </motion.div>
+            </div>
+            <motion.div 
+              style={{ opacity }} 
+              className="background absolute inset-0 bg-black" 
+            />
+          </div>
+        </div>
+        
+        {/* Vision Section */}
+        <div id='vision-section' className='vision-section'>
+          <VisionSection />
+        </div>
+
+        {/* Footer */}
+        <div>
+          <CyberpunkFooter />
+        </div>
       </div>
     </main>
   );
