@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from 'react';
 import { Application } from '@splinetool/runtime';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import OrbitalLines from './OrbitalLines';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -140,7 +139,6 @@ export default function SplineScene() {
           id="robot"
           className='w-full h-full fixed top-0 left-0 z-10 pointer-events-none'
         />
-        <OrbitalLines />
       </>
   );
 }

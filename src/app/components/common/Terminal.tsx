@@ -33,7 +33,7 @@ export default function Terminal({
 
   // Focus input on mount
   useEffect(() => {
-    inputRef.current?.focus();
+    inputRef.current?.focus({ preventScroll: true });
   }, []);
 
   // Scroll to bottom when output changes
