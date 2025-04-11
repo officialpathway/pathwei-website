@@ -5,25 +5,32 @@ import { TextScramble } from '@/src/app/components/common/TextScramble';
 
 export default function Hero() {
   return (
-    <section>
-      <div className="flex flex-col items-center justify-center h-screen">
-        <TextScramble text="The Future of AI" className='text-5xl font-bold text-white' scrambleOnHover />
-        <p className="mt-4 text-lg text-gray-400">Experience the fusion of technology and humanity.</p>
+    <section className="px-4 md:px-0"> {/* Added horizontal padding for mobile */}
+      <div className="flex flex-col items-center justify-center h-[90vh] md:h-screen px-4"> {/* Adjusted height and padding */}
+        <TextScramble 
+          text="The Future of AI" 
+          className='text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center' 
+          scrambleOnHover 
+        />
+        <p className="mt-3 md:mt-4 text-base md:text-lg text-gray-400 text-center max-w-md md:max-w-lg px-4">
+          Experience the fusion of technology and humanity.
+        </p>
         
         <motion.button
           type="button"
-          className="relative mt-8 px-8 py-4 bg-black border-2 border-neon-cyan text-neon-cyan rounded-full overflow-hidden group cursor-pointer"
+          className="relative mt-6 md:mt-8 px-6 py-3 md:px-8 md:py-4 bg-black border-2 border-neon-cyan text-neon-cyan rounded-full overflow-hidden group cursor-pointer"
           whileHover={{
             scale: 1.05,
             boxShadow: "0 0 15px rgba(0, 242, 255, 0.7)"
           }}
+          whileTap={{ scale: 0.98 }} // Added tap feedback for mobile
           transition={{ 
             duration: 0.3,
             ease: "easeOut"
           }}
         >
           {/* Button text */}
-          <span className="relative z-10 text-xl tracking-wider">
+          <span className="relative z-10 text-lg md:text-xl tracking-wider">
             EXPLORE NOW
           </span>
           
@@ -42,20 +49,6 @@ export default function Hero() {
               opacity: [0, 1, 0],
               transition: { 
                 duration: 2,
-                repeat: Infinity,
-                ease: "linear"
-              }
-            }}
-          />
-          
-          {/* Scanning line effect */}
-          <motion.div
-            className="absolute bottom-0 left-0 w-full h-0.5 bg-neon-cyan"
-            initial={{ x: "-100%" }}
-            animate={{
-              x: ["-100%", "100%"],
-              transition: {
-                duration: 1.5,
                 repeat: Infinity,
                 ease: "linear"
               }

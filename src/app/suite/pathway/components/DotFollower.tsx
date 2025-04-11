@@ -1,26 +1,29 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { useWindowSize } from "@/src/hooks/useWindowSize"; // Adjust import path as needed
 
 const DotFollower = () => {
   const dotRef = useRef<HTMLDivElement>(null);
+  const { width } = useWindowSize();
+  const isDesktop = width >= 768; // Tailwind's 'md' breakpoint
 
   useEffect(() => {
+    if (!isDesktop) return;
+
     const handleMouseMove = (event: MouseEvent) => {
       if (dotRef.current) {
-        // Position the dot slightly offset to the top-left of the cursor
-        const offsetX = -8; // Adjust this value for precise alignment (negative for left)
-        const offsetY = -8; // Adjust this value for precise alignment (negative for top)
-
-        // Apply the new position with a smooth transition
+        const offsetX = -8;
+        const offsetY = -8;
         dotRef.current.style.transform = `translate3d(${event.clientX + offsetX}px, ${event.clientY + offsetY}px, 0)`;
       }
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [isDesktop]);
+
+  if (!isDesktop) return null;
 
   return (
     <div

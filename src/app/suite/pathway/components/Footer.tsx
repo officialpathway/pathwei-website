@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
+import Image from "next/image";
 import Newsletter from "./Newsletter";
 
 const Footer = () => {
@@ -32,11 +33,24 @@ const Footer = () => {
       className="bg-secondary text-white py-20 relative overflow-hidden"
     >
       <Newsletter />
-      <div className="container mx-auto px-6 flex justify-between absolute bottom-2 right-0 left-0">
-        <p className="text-sm mb-2">&copy; 2025 Pathway. Todos los derechos reservados.</p>
-        <p className="text-xs">Gracias por acompañarnos en el viaje.</p>
-      </div>
+  
+      <div className="flex flex-col w-full min-h-120px px-6">
+        <div className="flex relative justify-start">
+          <Image
+            className="block"
+            src="/images/pathway/COF.png"
+            alt="Footer image"
+            width={500}
+            height={120}
+          />
+        </div>
 
+        <div className="flex justify-between px-8">
+          <p className="text-sm mb-2">&copy; 2025 Pathway. Todos los derechos reservados.</p>
+          <p className="text-sm">Gracias por acompañarnos en el viaje.</p>
+        </div>
+      </div>
+  
       {/* Glowing Flame */}
       <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-48 h-48 bg-red-500 rounded-full filter blur-3xl opacity-75 animate-pulse"></div>
       <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-32 bg-yellow-300 rounded-full filter blur-xl opacity-90 animate-flicker"></div>

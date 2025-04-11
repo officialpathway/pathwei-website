@@ -179,20 +179,8 @@ export default function TeamPage() {
             </button>
           </motion.div>
         </motion.main>
-
-        {/* Footer */}
-        <footer className="border-t border-neon-purple/30 py-8 text-center text-gray-400 text-sm">
-          <p>
-            <span className="text-neon-pink">AI HAVEN LABS</span> © 2024 | NETWORK STATUS: <span className="text-neon-green">SECURE</span>
-          </p>
-          <p className="mt-1">
-            v2.3.7 | [AUTHENTICATED ACCESS ONLY]
-          </p>
-        </footer>
         
-        <div className='z-30'>
-          <CyberpunkFooter />
-        </div>
+        <CyberpunkFooter />
       </div>
     </Stairs>
   );

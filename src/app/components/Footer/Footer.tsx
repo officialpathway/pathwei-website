@@ -8,7 +8,7 @@ import Terminal from '../common/Terminal';
 
 const FooterContent = () => {
   return (
-    <div className="relative z-10 w-full bg-black/90 backdrop-blur-sm border-t-2 border-neon-cyan">
+    <div className="relative z-10 w-full bg-black backdrop-blur-sm border-t-2 border-neon-cyan">
       {/* Big Title Section */}
       <motion.div
         initial={{ y: 50, opacity: 0 }}
@@ -17,7 +17,7 @@ const FooterContent = () => {
         transition={{ duration: 0.8 }}
         className="w-full px-4 md:px-8 pt-20"
       >
-        <h3 className="text-white text-start text-7xl sm:text-8xl md:text-[8rem] lg:text-[10rem] xl:text-[15rem] mb-16 leading-none">
+        <h3 className="text-white text-start text-6xl sm:text-8xl md:text-[8rem] lg:text-[10rem] xl:text-[15rem] mb-16 leading-none">
           Symbiosys
         </h3>
 

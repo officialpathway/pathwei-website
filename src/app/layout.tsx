@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { myCustomFont } from "@/src/lib/styles/fonts";
 import { AnimatePresence } from "framer-motion";
 import "./globals.css";
-import BackgroundShader from "./components/common/Shader";
+//import BackgroundShader from "./components/common/Shader";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${myCustomFont.variable} antialiased`}>
-        <BackgroundShader key="backgroundShader"/>
+        {/*<BackgroundShader key="backgroundShader"/>*/}
         <AnimatePresence mode="wait">
           {children}
         </AnimatePresence>

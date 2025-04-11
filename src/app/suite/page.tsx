@@ -69,16 +69,6 @@ export default function SuitePage() {
           </motion.div>
         </motion.main>
 
-        {/* Footer */}
-        <footer className="border-t border-neon-purple/30 py-8 text-center text-gray-400 text-sm">
-          <p>
-            <span className="text-neon-pink">AI HAVEN LABS</span> © 2024 | ALL SYSTEMS OPERATIONAL
-          </p>
-          <p className="mt-1">
-            v2.3.7 | [Network Status: <span className="text-neon-green">SECURE</span>]
-          </p>
-        </footer>
-
         <CyberpunkFooter />
       </div>
     </Stairs>

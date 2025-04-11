@@ -45,6 +45,9 @@ export const CyberpunkHeader = () => {
     { name: 'Sing in', href: '/sign-in' },
   ];
 
+  // Calculate logo size based on screen size
+  const logoSize = isDesktop ? 40 : 30;
+
   return (
     <motion.header 
       className="fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-10xl z-50 bg-black/80 backdrop-blur-sm border border-neon-blue rounded-lg"
@@ -64,10 +67,10 @@ export const CyberpunkHeader = () => {
           <Link href="/" className="flex items-center">
             <Image 
               src="/images/logo.png" 
-              alt="Cyberpunk Logo" 
-              width={40}
-              height={40}
-              className="h-10 w-10 hover:drop-shadow-neon transition-all duration-300"
+              alt="AI Haven Labs Logo" 
+              width={logoSize}
+              height={logoSize}
+              className={`hover:drop-shadow-neon transition-all duration-300`}
             />
           </Link>
         </motion.div>

@@ -4,6 +4,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { COMMANDS } from '@/src/lib/constants/constants'
+import Link from 'next/link';
 
 interface TerminalProps {
   compactMode?: boolean;
@@ -56,7 +57,6 @@ export default function Terminal({
         : COMMANDS[cmd as keyof typeof COMMANDS] || 'Command not found';
       setOutput(prev => [...prev, `> ${input}`, commandOutput as string]);
       
-      // Set showModules flag separately based on command
       if (cmd === 'ls') {
         setShowModules(true);
       }
@@ -65,7 +65,6 @@ export default function Terminal({
     setInput('');
   };
 
-  // Calculate terminal content height based on whether modules are shown
   const terminalContentHeight = showModules 
     ? 'calc(60% - 40px)' 
     : 'calc(100% - 80px)';
@@ -73,32 +72,45 @@ export default function Terminal({
   return (
     <div 
       className={`font-mono ${compactMode ? 'text-xs' : 'text-sm'} 
-        border-2 rounded-lg p-6 bg-white bg-opacity-90 backdrop-blur-sm shadow-lg flex flex-col`}
+        border-2 rounded-lg p-6 bg-black bg-opacity-90 backdrop-blur-sm shadow-lg flex flex-col
+        border-opacity-50`}
       style={{ 
         width, 
         height,
-        borderColor 
+        borderColor,
+        boxShadow: `0 0 15px ${borderColor}33`
       }}
     >
-      {/* Terminal header - white with electric colors */}
+      {/* Terminal header - dark with neon accents */}
       <div className="flex items-center gap-2 mb-4">
         <div className="w-3 h-3 rounded-full" style={{ backgroundColor: accentColor }} />
         <div className="w-3 h-3 rounded-full" style={{ backgroundColor: secondaryColor }} />
         <div className="w-3 h-3 rounded-full" style={{ backgroundColor: tertiaryColor }} />
-        <div className="font-mono text-sm ml-2" style={{ color: accentColor }}>
+        <div className="font-mono text-sm ml-2 text-gray-300">
           AI_HAVEN_TERMINAL
         </div>
       </div>
 
-      {/* Terminal content - with fixed height */}
+      {/* Terminal content - dark theme */}
       <div 
         ref={terminalContentRef}
-        className="font-mono text-gray-800 overflow-y-auto mb-4 terminal-scroll flex-grow" 
-        style={{ height: terminalContentHeight, maxHeight: terminalContentHeight }}
+        className="font-mono text-gray-300 overflow-y-auto mb-4 terminal-scroll flex-grow
+                  scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent" 
+        style={{ 
+          height: terminalContentHeight, 
+          maxHeight: terminalContentHeight,
+          textShadow: '0 0 5px rgba(0, 242, 255, 0.3)'
+        }}
       >
         {output.map((line, i) => (
           <div key={i} className="whitespace-pre-wrap mb-2">
-            {line}
+            {line.includes('>') ? (
+              <span style={{ color: secondaryColor }}>{line}</span>
+            ) : line.includes('ERROR') ? (
+              <span style={{ color: '#ff5555' }}>{line}</span>
+            ) : (
+              <span style={{ color: tertiaryColor }}>{line}</span>
+            )}
           </div>
         ))}
 
@@ -110,20 +122,25 @@ export default function Terminal({
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="bg-transparent border-none outline-none text-gray-800 font-mono w-full"
-            style={{ caretColor: accentColor }}
+            className="bg-transparent border-none outline-none text-gray-300 font-mono w-full
+                      placeholder-gray-500"
+            style={{ 
+              caretColor: accentColor,
+              textShadow: '0 0 5px rgba(0, 242, 255, 0.3)'
+            }}
             spellCheck={false}
+            placeholder="type command..."
           />
           <span className="animate-pulse" style={{ color: accentColor }}>|</span>
         </form>
 
         {/* Guiding message */}
-        <div className="mt-4" style={{ color: accentColor }}>
+        <div className="mt-4 text-gray-400 text-xs">
           Try typing <span style={{ color: secondaryColor }}>&apos;help&apos;</span> and then try any other command.
         </div>
       </div>
 
-      {/* Module display - in a fixed area */}
+      {/* Module display - dark version */}
       {showModules && (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -136,18 +153,21 @@ export default function Terminal({
             description="AI conversational agent"
             color={`border-2`}
             borderColor={accentColor}
+            link='/suite/pathway'
           />
           <TerminalModule 
             name="IMAGE ENGINE"
             description="Generative art system"
             color={`border-2`}
             borderColor={tertiaryColor}
+            link='#'
           />
           <TerminalModule 
             name="CODE AI"
             description="ML-powered refactoring"
             color={`border-2`}
             borderColor={secondaryColor}
+            link='#'
           />
         </motion.div>
       )}
@@ -159,24 +179,45 @@ function TerminalModule({
   name, 
   description, 
   color, 
-  borderColor 
+  borderColor,
+  link
 }: { 
   name: string; 
   description: string; 
   color: string;
   borderColor: string;
+  link: string;
 }) {
   return (
     <motion.div 
-      className={`p-3 ${color} cursor-pointer transition-colors bg-white bg-opacity-70 rounded-lg flex flex-col justify-between`}
-      style={{ borderColor, height: '100%' }}
-      whileHover={{ y: -5 }}
+      className={`p-3 ${color} cursor-pointer transition-all bg-gray-900 bg-opacity-70 rounded-lg flex flex-col justify-between
+                hover:bg-opacity-90`}
+      style={{ 
+        borderColor, 
+        height: '100%',
+        boxShadow: `0 0 10px ${borderColor}33`
+      }}
+      whileHover={{ 
+        y: -5,
+        boxShadow: `0 0 15px ${borderColor}`
+      }}
     >
       <div>
-        <h3 className="text-lg font-bold mb-1 text-gray-800">{name}</h3>
-        <p className="text-xs text-gray-600">{description}</p>
+        <h3 className="text-lg font-bold mb-1" style={{ color: borderColor }}>{name}</h3>
+        <p className="text-xs text-gray-400">{description}</p>
       </div>
-      <div className="text-xs" style={{ color: borderColor }}>[CLICK TO LAUNCH]</div>
+      <Link 
+        href={link} 
+        className="text-xs text-gray-500 hover:text-gray-300 transition-colors block"
+        onClick={(e) => {
+          if (link === '#') {
+            e.preventDefault();
+            alert('Module coming soon!');
+          }
+        }}
+      >
+        [CLICK TO LAUNCH]
+      </Link>
     </motion.div>
   );
 }

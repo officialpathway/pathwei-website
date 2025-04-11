@@ -16,7 +16,7 @@ export default function PrivacyPolicy() {
           text="PRIVACY PROTOCOL" 
           highlightWords={["PROTOCOL"]} 
           highlightColor='neon-blue'
-          className='bg-yellow-500 py-50' 
+          className='py-50 bg-yellow-500' 
         />
           
         <motion.main
@@ -55,7 +55,7 @@ export default function PrivacyPolicy() {
                 and safeguard your information when you interact with our suite of AI-powered applications (&quot;Services&quot;), 
                 including both free and paid subscription features.
               </p>
-              <p className="border-l-4 border-neon-red pl-4 py-2 mt-6">
+              <p className="border-l-4 border-neon-red pl-4 py-2 mt-6 bg-gray-300/50">
                 <span className="text-neon-pink font-bold">WARNING:</span> By accessing our systems, you consent to these protocols. 
                 Terminate connection now if non-compliant.
               </p>
@@ -69,13 +69,13 @@ export default function PrivacyPolicy() {
             transition={{ duration: 0.5 }}
             className="mb-16"
           >
-            <h2 className="text-neon-aqua text-3xl mb-6 font-bold tracking-wider typewriter">
+            <h2 className="text-neon-aqua text-3xl mb-6 font-bold tracking-wider">
               [2.0] DATA HARVEST MATRIX
             </h2>
             
-            <div className="grid md:grid-cols-3 gap-8 text-gray-200">
+            <div className="grid md:grid-cols-3 gap-8">
               {/* Personal Data */}
-              <div className="bg-gray-900 p-6 border border-neon-blue rounded-lg">
+              <div className="bg-gray-300/80 p-6 border-l-4 border-neon-blue rounded-lg">
                 <h3 className="text-neon-pink text-xl mb-4 font-bold flex items-center">
                   <span className="inline-block w-3 h-3 bg-neon-pink rounded-full mr-2"></span>
                   PERSONAL IDENTIFIERS
@@ -91,7 +91,7 @@ export default function PrivacyPolicy() {
               </div>
 
               {/* Non-Personal */}
-              <div className="bg-gray-900 p-6 border border-neon-green rounded-lg">
+              <div className="bg-gray-300/80 p-6 border-l-4 border-neon-green rounded-lg">
                 <h3 className="text-neon-green text-xl mb-4 font-bold flex items-center">
                   <span className="inline-block w-3 h-3 bg-neon-green rounded-full mr-2"></span>
                   SYSTEM TELEMETRY
@@ -106,7 +106,7 @@ export default function PrivacyPolicy() {
               </div>
 
               {/* AI Data */}
-              <div className="bg-gray-900 p-6 border border-neon-purple rounded-lg">
+              <div className="bg-gray-300/80 p-6 border-l-4 border-neon-purple rounded-lg">
                 <h3 className="text-neon-purple text-xl mb-4 font-bold flex items-center">
                   <span className="inline-block w-3 h-3 bg-neon-purple rounded-full mr-2"></span>
                   NEURAL NETWORK INPUTS
@@ -126,13 +126,13 @@ export default function PrivacyPolicy() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="mb-16 bg-gray-900 p-8 border border-neon-yellow rounded-lg"
+            className="mb-16 bg-gray-300/80 p-8 border-l-4 border-neon-yellow rounded-lg"
           >
             <h2 className="text-neon-yellow text-3xl mb-6 font-bold tracking-wider">
               [3.0] DATA PROCESSING OBJECTIVES
             </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-100">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
                 "Service Optimization & Enhancements",
                 "Neural Support Interfaces",
@@ -160,7 +160,7 @@ export default function PrivacyPolicy() {
             </h2>
             
             <div className="space-y-6">
-              <p className="text-neon-green border-l-4 border-neon-green pl-4 py-2">
+              <p className="text-neon-green border-l-4 border-neon-green pl-4 py-2 bg-gray-300/50">
                 WE DO NOT TRADE OR SELL YOUR PERSONAL DATA
               </p>
               
@@ -182,7 +182,7 @@ export default function PrivacyPolicy() {
                     color: "border-neon-aqua"
                   }
                 ].map((item, index) => (
-                  <div key={index} className={`border-l-4 ${item.color} pl-4 py-2`}>
+                  <div key={index} className={`border-l-4 ${item.color} pl-4 py-2 bg-gray-300/50 rounded`}>
                     <h3 className="font-bold mb-1">{item.title}</h3>
                     <p>{item.description}</p>
                   </div>
@@ -196,13 +196,13 @@ export default function PrivacyPolicy() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-16 bg-gray-900 p-8 border border-neon-electric rounded-lg"
+            className="mb-16 bg-gray-300/80 p-8 border-l-4 border-neon-electric rounded-lg"
           >
             <h2 className="text-neon-cyan text-3xl mb-6 font-bold tracking-wider">
               [5.0] QUANTUM ENCRYPTION STANDARDS
             </h2>
             
-            <div className="grid md:grid-cols-3 gap-8 text-gray-300">
+            <div className="grid md:grid-cols-3 gap-8">
               {[
                 { title: "SSL/TLS Encryption", icon: "🔐", desc: "256-bit neural scrambling" },
                 { title: "Bio-Access Controls", icon: "🧬", desc: "Multi-factor authentication" },
@@ -225,91 +225,114 @@ export default function PrivacyPolicy() {
             </p>
           </motion.section>
 
-          {/* 6-11. Remaining Sections */}
-          {[
-            {
-              title: "[6.0] USER RIGHTS MANIFESTO",
-              color: "text-neon-pink",
-              content: (
-                <div className="space-y-4">
-                  <p>Under Digital Rights Act v5.3, you may:</p>
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 list-disc list-inside marker:text-neon-pink">
-                    <li>Access your neural imprint</li>
-                    <li>Rectify corrupted data</li>
-                    <li>Request digital oblivion</li>
-                    <li>Opt-out of neuro-marketing</li>
-                    <li>Transfer consciousness data</li>
-                    <li>Revoke prior authorizations</li>
-                  </ul>
-                  <p className="mt-4">
-                    Execute these rights via: <span className="text-neon-blue">privacy@aihavenlabs.com</span>
-                  </p>
-                </div>
-              )
-            },
-            {
-              title: "[7.0] COOKIE PROTOCOLS",
-              color: "text-neon-purple",
-              content: (
-                <div className="space-y-4 text-black/80">
-                  <p>Neural cookies enable:</p>
-                  <ul className="list-disc list-inside marker:text-neon-violet space-y-2">
-                    <li>Identity verification sequences</li>
-                    <li>Analytics tracking (Google Quantum Analytics)</li>
-                    <li>Interface personalization</li>
-                  </ul>
-                  <p className="mt-4 border-l-4 border-neon-purple pl-4 py-2">
-                    Disabling cookies may impair system functionality
-                  </p>
-                </div>
-              )
-            },
-            {
-              title: "[8.0] EXTERNAL NODE WARNING",
-              color: "text-neon-red",
-              content: (
-                <p className='text-black/80'>
-                  Our neural network may link to external data nodes. 
-                  We assume no responsibility for third-party security protocols.
-                </p>
-              )
-            },
-            {
-              title: "[9.0] MINOR RESTRICTIONS",
-              color: "text-neon-green",
-              content: (
+          {/* 6. User Rights */}
+          <motion.section
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="mb-12"
+          >
+            <h2 className="text-neon-pink text-3xl mb-6 font-bold tracking-wider">
+              [6.0] USER RIGHTS MANIFESTO
+            </h2>
+            <div className="space-y-4">
+              <p>Under Digital Rights Act v5.3, you may:</p>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 list-disc list-inside marker:text-neon-pink">
+                <li>Access your neural imprint</li>
+                <li>Rectify corrupted data</li>
+                <li>Request digital oblivion</li>
+                <li>Opt-out of neuro-marketing</li>
+                <li>Transfer consciousness data</li>
+                <li>Revoke prior authorizations</li>
+              </ul>
+              <div className="mt-4 p-4 bg-gray-300/50 rounded border-l-4 border-neon-blue">
                 <p>
-                  Our systems reject neural patterns from unregistered users below consciousness level 13.
+                  Execute these rights via: <span className="text-neon-blue font-mono">privacy@aihavenlabs.com</span>
                 </p>
-              )
-            },
-            {
-              title: "[10.0] PROTOCOL EVOLUTION",
-              color: "text-neon-cyan",
-              content: (
-                <p className='text-black/80'>
-                  This document may undergo cybernetic updates. Continued interface usage constitutes acceptance of new parameters.
-                </p>
-              )
-            }
-          ].map((section, index) => (
-            <motion.section
-              key={index}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="mb-12"
-            >
-              <h2 className={`${section.color} text-3xl mb-4 font-bold tracking-wider`}>
-                {section.title}
-              </h2>
-              <div className="text-black/80">
-                {section.content}
               </div>
-            </motion.section>
-          ))}
+            </div>
+          </motion.section>
 
-          {/* Contact Section */}
+          {/* 7. Cookie Protocols */}
+          <motion.section
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mb-12"
+          >
+            <h2 className="text-neon-purple text-3xl mb-6 font-bold tracking-wider">
+              [7.0] COOKIE PROTOCOLS
+            </h2>
+            <div className="space-y-4">
+              <p>Neural cookies enable:</p>
+              <ul className="list-disc list-inside marker:text-neon-purple space-y-2">
+                <li>Identity verification sequences</li>
+                <li>Analytics tracking (Google Quantum Analytics)</li>
+                <li>Interface personalization matrices</li>
+              </ul>
+              <div className="mt-4 p-4 bg-gray-300/50 rounded border-l-4 border-neon-purple">
+                <p className="font-bold">⚠️ WARNING:</p>
+                <p>Disabling cookies may impair system functionality</p>
+              </div>
+            </div>
+          </motion.section>
+
+          {/* 8. External Node Warning */}
+          <motion.section
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mb-12"
+          >
+            <h2 className="text-neon-red text-3xl mb-6 font-bold tracking-wider">
+              [8.0] EXTERNAL NODE WARNING
+            </h2>
+            <div className="space-y-4">
+              <p>Our neural network may link to external data nodes beyond our security perimeter.</p>
+              <div className="p-4 bg-gray-300/50 rounded border-l-4 border-neon-red">
+                <p className="font-mono text-sm">
+                  <span className="text-neon-red font-bold">DISCLAIMER:</span> We assume no responsibility for third-party security protocols.
+                </p>
+              </div>
+            </div>
+          </motion.section>
+
+          {/* 9. Minor Restrictions */}
+          <motion.section
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mb-12"
+          >
+            <h2 className="text-neon-green text-3xl mb-6 font-bold tracking-wider">
+              [9.0] MINOR RESTRICTIONS
+            </h2>
+            <div className="flex items-start gap-4 bg-gray-300/50 p-4 rounded border-l-4 border-neon-green">
+              <div className="text-2xl">🧒</div>
+              <p>Our systems reject neural patterns from unregistered users below consciousness level 13.</p>
+            </div>
+          </motion.section>
+
+          {/* 10. Protocol Evolution */}
+          <motion.section
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mb-12"
+          >
+            <h2 className="text-neon-cyan text-3xl mb-6 font-bold tracking-wider">
+              [10.0] PROTOCOL EVOLUTION
+            </h2>
+            <div className="space-y-4">
+              <p>This document may undergo cybernetic updates to adapt to new regulatory frameworks.</p>
+              <div className="p-4 bg-gray-300/50 rounded border-l-4 border-neon-cyan">
+                <p className="font-bold">CONTINUED USAGE CLAUSE:</p>
+                <p>Persistent interface usage after updates constitutes automatic acceptance of new parameters.</p>
+              </div>
+            </div>
+          </motion.section>
+
+          {/* 11. Neural Communications */}
           <motion.section
             initial={{ scale: 0.95 }}
             whileInView={{ scale: 1 }}
@@ -324,7 +347,7 @@ export default function PrivacyPolicy() {
               {[
                 { 
                   title: "Quantum Transmission", 
-                  detail: "privacy@aihavenlabs.com (soon)",
+                  detail: "privacy@aihavenlabs.com",
                   color: "border-neon-blue"
                 },
                 { 
@@ -340,7 +363,7 @@ export default function PrivacyPolicy() {
               ].map((item, index) => (
                 <div key={index} className={`border-t-4 ${item.color} pt-6`}>
                   <h3 className="text-xl mb-2">{item.title}</h3>
-                  <p className="text-black/80">{item.detail}</p>
+                  <p>{item.detail}</p>
                 </div>
               ))}
             </div>
@@ -378,16 +401,6 @@ export default function PrivacyPolicy() {
             </p>
           </motion.div>
         </motion.main>
-
-        {/* Footer */}
-        <footer className="border-t border-neon-purple/30 py-8 text-center text-gray-400 text-sm">
-          <p>
-            <span className="text-neon-pink">AI HAVEN LABS</span> © 2024 | PRIVACY PROTOCOL v2.3.7
-          </p>
-          <p className="mt-1">
-            All neural networks secured | [System Operational]
-          </p>
-        </footer>
 
         <CyberpunkFooter />
       </div>
