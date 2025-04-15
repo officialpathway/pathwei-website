@@ -30,12 +30,12 @@ const Footer = () => {
   return (
     <footer
       id="footer"
-      className="bg-secondary text-white py-20 relative overflow-hidden"
+      className="bg-secondary text-white py-10 relative overflow-hidden"
     >
       <Newsletter />
   
       <div className="flex flex-col w-full min-h-120px px-6">
-        <div className="flex relative justify-start">
+        <div className="flex relative justify-start bg-black">
           <Image
             className="block"
             src="/images/pathway/COF.png"
@@ -45,7 +45,7 @@ const Footer = () => {
           />
         </div>
 
-        <div className="flex justify-between px-8">
+        <div className="flex flex-col md:flex-row justify-between px-8">
           <p className="text-sm mb-2">&copy; 2025 Pathway. Todos los derechos reservados.</p>
           <p className="text-sm">Gracias por acompañarnos en el viaje.</p>
         </div>

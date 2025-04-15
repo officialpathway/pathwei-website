@@ -1,4 +1,4 @@
-"use client"; // Mark as a Client Component
+"use client";
 
 import React, { useState } from "react";
 
@@ -72,7 +72,8 @@ const Newsletter = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="px-6 py-3 sm:py-4 bg-white text-black font-medium rounded-lg sm:rounded-l-none border-2 border-white hover:bg-black hover:text-white transition-colors duration-300 disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap"
+            className="px-6 py-3 sm:py-4 bg-white text-black font-medium rounded-lg sm:rounded-l-none border-2 border-white
+            hover:bg-black hover:text-white transition-colors duration-300 disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap"
           >
             {isSubmitting ? (
               <span className="flex items-center justify-center gap-2">

@@ -85,21 +85,21 @@ export const teamMembersWithImages = [
     role: "Chief Executive Officer",
     color: "cyan",
     specialty: "STRATEGIC SYNTHESIS",
-    imgSrc: "/images/Team/ceo.jpg"
+    imgSrc: "/images/Team/ceo.png"
   },
   {
     name: "Rayan Chairi",
     role: "Chief Technology Officer",
     color: "pink",
     specialty: "NEURAL OPTIMIZATION",
-    imgSrc: "/images/Team/cto.jpg"
+    imgSrc: "/images/Team/cto.jpeg"
   },
   {
     name: "Maria Victoria Sanchez",
     role: "Chief Marketing Officer",
     color: "purple",
     specialty: "COGNITIVE ADOPTION",
-    imgSrc: "/images/Team/duda.jpg"
+    imgSrc: "/images/Team/cmo.jpeg"
   }
 ];
 

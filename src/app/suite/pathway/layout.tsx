@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./styles/globals.css";
 import { ReactNode } from "react";
 import { myCustomFont } from "@/src/lib/styles";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export const metadata: Metadata = {
   title: "Pathway - Your Progress Partner",
@@ -46,8 +48,8 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <div className={`${myCustomFont.variable} antialiased`}>
+    <section className={`${myCustomFont.variable} antialiased`}>
       {children}
-    </div>
+    </section>
   );
 }

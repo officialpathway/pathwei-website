@@ -1,142 +1,107 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const SloganSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const sectionTop = sectionRef.current.getBoundingClientRect().top;
-        const sectionHeight = sectionRef.current.offsetHeight;
-        const windowHeight = window.innerHeight;
+  // Smooth scroll-driven animations
+  const y1 = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const opacity = useTransform(scrollYProgress, [0.2, 0.8], [0, 1]);
 
-        // Calculate progress: 0 when the section starts entering, 1 when fully in view
-        const progress = Math.min(
-          Math.max((windowHeight - sectionTop) / sectionHeight, 0),
-          1
-        );
-        setScrollProgress(progress);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // Floating particles
+  const particles = Array.from({ length: 15 }).map((_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 0.5 + 0.3,
+    delay: Math.random() * 2,
+  }));
 
   return (
     <section
-      ref={sectionRef}
-      className="flex h-[75vh]"
-      style={{
-        overflow: "hidden",
-      }}
+      ref={ref}
+      className="relative h-[100vh] w-full overflow-hidden bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900"
     >
-      {/* Left Transparent Space */}
-      <div className="flex-1"></div>
+      {/* Floating Particles */}
+      {particles.map((particle) => (
+        <motion.div
+          key={particle.id}
+          className="absolute rounded-full bg-white/10"
+          initial={{ opacity: 0 }}
+          animate={{
+            x: [particle.x, particle.x + 10],
+            y: [particle.y, particle.y + 10],
+            opacity: [0, 0.5, 0],
+          }}
+          transition={{
+            duration: 3 + particle.delay,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "easeInOut",
+          }}
+          style={{
+            width: `${particle.size}rem`,
+            height: `${particle.size}rem`,
+            left: `${particle.x}%`,
+            top: `${particle.y}%`,
+          }}
+        />
+      ))}
 
-      {/* Right Transparent Space with Animated Slogan */}
-      <div className="flex-1 flex flex-col justify-center items-start p-6 sm:p-10 space-y-4">
-        <h3
-          style={{
-            transform: `translateY(${100 - scrollProgress * 100}px)`,
-            opacity: scrollProgress,
-            transition: "transform 0.2s, opacity 0.2s",
-          }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold text-white leading-none"
-        >
-          ¡La{" "}
-          <span
-            style={{
-              transform: `translateX(-${50 - scrollProgress * 50}px)`,
-              opacity: scrollProgress,
-              transition: "transform 0.2s, opacity 0.2s",
-            }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl text-white/70 animate-pulse-glow"
-          >
-            revolución
-          </span>{" "}
-          <span
-            style={{
-              transform: `translateX(${50 - scrollProgress * 50}px)`,
-              opacity: scrollProgress,
-              transition: "transform 0.2s, opacity 0.2s",
-            }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl text-white/90"
-          >
-            comienza
-          </span>{" "}
-          <span className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold animate-crazy-colors">
-            contigo
-          </span>
-          !
-        </h3>
-        <p
-          style={{
-            transform: `translateY(${100 - scrollProgress * 100}px)`,
-            opacity: scrollProgress,
-            transition: "transform 0.2s, opacity 0.2s",
-          }}
-          className="text-lg sm:text-xl md:text-2xl lg:text-[1.8rem] text-white/90 leading-snug"
-        >
-          <span className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/70">Toma el </span>
-          <span
-            style={{
-              transform: `translateX(-${50 - scrollProgress * 50}px)`,
-              opacity: scrollProgress,
-              transition: "transform 0.2s, opacity 0.2s",
-            }}
-            className="text-xl sm:text-2xl md:text-3xl lg:text-3xl text-white"
-          >
-            control
-          </span>
-          <span className="text-sm sm:text-base md:text-lg lg:text-xl text-white/60"> de tus </span>
-          <span
-            style={{
-              transform: `translateX(${50 - scrollProgress * 50}px)`,
-              opacity: scrollProgress,
-              transition: "transform 0.2s, opacity 0.2s",
-            }}
-            className="text-xl sm:text-2xl md:text-4xl lg:text-4xl font-semibold text-white"
-          >
-            metas
-          </span>{" "}
-          y potencia tu <span className="text-lg sm:text-xl md:text-2xl lg:text-2xl text-white/80">productividad</span>.
-        </p>
-        <p
-          style={{
-            transform: `translateY(${100 - scrollProgress * 100}px)`,
-            opacity: scrollProgress,
-            transition: "transform 0.2s, opacity 0.2s",
-          }}
-          className="text-sm sm:text-base md:text-lg lg:text-lg text-white/60"
-        >
-          Conecta,{" "}
-          <span
-            style={{
-              transform: `translateX(-${50 - scrollProgress * 50}px)`,
-              opacity: scrollProgress,
-              transition: "transform 0.2s, opacity 0.2s",
-            }}
-            className="text-base sm:text-lg md:text-xl lg:text-[1.4rem] text-white italic"
-          >
-            aprende
-          </span>{" "}
-          y{" "}
-          <span
-            style={{
-              transform: `translateX(${50 - scrollProgress * 50}px)`,
-              opacity: scrollProgress,
-              transition: "transform 0.2s, opacity 0.2s",
-            }}
-            className="text-base sm:text-lg md:text-xl lg:text-[1.2rem] text-white/70"
-          >
-            mejora.
-          </span>
-        </p>
+      {/* Glowing Grid Overlay */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 bg-[length:100px_100px]"></div>
       </div>
+
+      {/* Animated Content */}
+      <motion.div
+        className="h-full flex flex-col justify-center px-8 sm:px-16 lg:px-32"
+        style={{ opacity }}
+      >
+        <motion.div style={{ y: y1 }} className="space-y-6">
+          {/* Main Headline */}
+          <motion.h3
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight"
+          >
+            <span className="block mb-2">¡LA</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-orange-500">
+              REVOLUCIÓN
+            </span>
+            <span className="block">COMIENZA CONTIGO!</span>
+          </motion.h3>
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-xl sm:text-2xl md:text-3xl text-white/80 max-w-2xl"
+          >
+            <span className="text-white/60">Toma el</span>{" "}
+            <span className="font-semibold text-white">control</span>{" "}
+            <span className="text-white/60">de tus</span>{" "}
+            <span className="font-bold text-amber-300">metas</span>{" "}
+            <span className="text-white/60">y potencia tu</span>{" "}
+            <span className="italic text-purple-300">productividad.</span>
+          </motion.p>
+        </motion.div>
+      </motion.div>
+
+      {/* Floating Decorative Elements */}
+      <motion.div
+        style={{ y: y2 }}
+        className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-purple-900/80 to-transparent pointer-events-none"
+      />
     </section>
   );
 };
