@@ -15,45 +15,11 @@ const SloganSection = () => {
   const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const opacity = useTransform(scrollYProgress, [0.2, 0.8], [0, 1]);
 
-  // Floating particles
-  const particles = Array.from({ length: 15 }).map((_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 0.5 + 0.3,
-    delay: Math.random() * 2,
-  }));
-
   return (
     <section
       ref={ref}
-      className="relative h-[100vh] w-full overflow-hidden bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900"
+      className="relative h-[100vh] w-full overflow-hidden bg-transparent"
     >
-      {/* Floating Particles */}
-      {particles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          className="absolute rounded-full bg-white/10"
-          initial={{ opacity: 0 }}
-          animate={{
-            x: [particle.x, particle.x + 10],
-            y: [particle.y, particle.y + 10],
-            opacity: [0, 0.5, 0],
-          }}
-          transition={{
-            duration: 3 + particle.delay,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut",
-          }}
-          style={{
-            width: `${particle.size}rem`,
-            height: `${particle.size}rem`,
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-          }}
-        />
-      ))}
 
       {/* Glowing Grid Overlay */}
       <div className="absolute inset-0 opacity-20">

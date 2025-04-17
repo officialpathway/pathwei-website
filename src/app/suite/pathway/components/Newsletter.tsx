@@ -72,7 +72,7 @@ const Newsletter = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="px-6 py-3 sm:py-4 bg-white text-black font-medium rounded-lg sm:rounded-l-none border-2 border-white
+            className="px-6 py-3 sm:py-4 bg-white text-black font-medium rounded-lg sm:rounded-l-none border-2 border-white cursor-pointer
             hover:bg-black hover:text-white transition-colors duration-300 disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap"
           >
             {isSubmitting ? (

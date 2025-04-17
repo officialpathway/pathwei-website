@@ -9,6 +9,7 @@ import TestCompletionDemoAnimation from './components/micro-animations/TestCompl
 import InfiniteGoalAnimation from './components/micro-animations/InfiniteGoalAnimation';
 import EnhancedAIEmpowerment from './components/micro-animations/HumanAI';
 import { Header } from './components/Header';
+import { NeonFuturismBackground } from './components/NeonBackground';
 
 export default function Home() {
   
@@ -20,11 +21,14 @@ export default function Home() {
       <Header />
       <DotFollower />
       <main className="flex-grow w-full overflow-x-hidden">
-        <Hero />
-        <SloganSection />
+        
+        <NeonFuturismBackground>
+          <Hero />
+          <SloganSection />
+        </NeonFuturismBackground>
 
         {/* Functionality Section - Centered */}
-        <section id='demo-section' className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black px-4 py-20 overflow-hidden">
+        <section id='demo-section' className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black px-4 pt-20 overflow-hidden">
           <div className="max-w-6xl mx-auto text-center space-y-16 z-10">
             {/* First Section */}
             <div className="space-y-8">

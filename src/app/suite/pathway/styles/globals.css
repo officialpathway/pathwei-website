@@ -1,5 +1,5 @@
 /* styles/globals.css */
-@tailwind utilities;
+@import "tailwindcss";
 
 /* Define root colors */
 :root {
@@ -36,6 +36,8 @@ html, body {
 
 .no-scrollbar {
   -ms-overflow-style: none; /* For Internet Explorer 10+ */
+  -webkit-overflow-scrolling: touch; /* For iOS */
+  overflow: -moz-scrollbars-none; /* For Firefox */
   scrollbar-width: none; /* For Firefox */
 }
 

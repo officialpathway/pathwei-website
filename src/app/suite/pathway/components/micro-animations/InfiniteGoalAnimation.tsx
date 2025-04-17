@@ -208,55 +208,57 @@ export default function InfiniteGoalAnimation() {
             className="mt-6 max-w-md mx-auto relative z-10"
           >
             <div className="bg-white rounded-lg shadow-md p-4">
-              <h3 className={`font-medium mb-3 ${activeCategory.textColor}`}>Your Path to Success:</h3>
+              <h3 className={`font-medium mb-3 ${activeCategory.textColor}`}>Tu camino al éxito:</h3>
               
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {pathSteps.map((step, index) => (
                   <motion.div 
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="flex items-center"
+                    className="flex"
                   >
-                    {completedSteps > index ? (
-                      <motion.div 
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        className={`w-6 h-6 rounded-full flex items-center justify-center bg-gradient-to-r ${activeCategory.color} text-white`}
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                      </motion.div>
-                    ) : (
-                      <div className="w-6 h-6 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-400 text-xs">
-                        {index + 1}
-                      </div>
-                    )}
-                    
-                    <div className="ml-3 flex-1">
-                      <div className="h-6 flex items-center">
-                        {completedSteps > index ? (
-                          <motion.span 
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 0.5 }}
-                            className="text-gray-400 line-through"
-                          >
-                            {getStepText(activeCategory.category, activeGoal, index)}
-                          </motion.span>
-                        ) : (
-                          <span>{getStepText(activeCategory.category, activeGoal, index)}</span>
-                        )}
-                      </div>
-                      
-                      {completedSteps > index && (
+                    {/* Step number or checkmark - using flex-shrink-0 to prevent shrinking */}
+                    <div className="flex-shrink-0 mt-0.5">
+                      {completedSteps > index ? (
                         <motion.div 
-                          initial={{ width: 0 }}
-                          animate={{ width: '100%' }}
-                          className="h-0.5 bg-gray-200"
-                        />
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          className={`w-6 h-6 rounded-full flex items-center justify-center bg-gradient-to-r ${activeCategory.color} text-white`}
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                          </svg>
+                        </motion.div>
+                      ) : (
+                        <div className="w-6 h-6 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-400 text-xs">
+                          {index + 1}
+                        </div>
                       )}
+                    </div>
+                    
+                    {/* Step text content with flexible layout */}
+                    <div className="ml-3 flex-1">
+                      <div className="relative">
+                        {/* Text content */}
+                        <div className={`${completedSteps > index ? "text-gray-400" : "text-gray-700"}`}>
+                          {completedSteps > index ? (
+                            <span className="relative">
+                              {getStepText(activeCategory.category, activeGoal, index)}
+                              {/* Line through that works with multiple lines */}
+                              <motion.div 
+                                initial={{ width: 0 }}
+                                animate={{ width: '100%' }}
+                                className="absolute top-1/2 left-0 h-0.5 bg-gray-300 transform -translate-y-1/2"
+                                style={{ pointerEvents: 'none' }}
+                              />
+                            </span>
+                          ) : (
+                            <span>{getStepText(activeCategory.category, activeGoal, index)}</span>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
                 ))}
@@ -265,7 +267,7 @@ export default function InfiniteGoalAnimation() {
               {/* Progress indicator */}
               {pathSteps.length > 0 && (
                 <motion.div 
-                  className="mt-4 bg-gray-100 h-2 rounded-full overflow-hidden"
+                  className="mt-6 bg-gray-100 h-2 rounded-full overflow-hidden"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5 }}
@@ -302,7 +304,6 @@ export default function InfiniteGoalAnimation() {
 
 // Helper function to generate sensible step text based on the category and goal
 function getStepText(category: string, goal: string, stepIndex: number) {
-
   // Return the step text if it exists, otherwise a generic step
   return stepTexts[category] && 
          stepTexts[category][goal] && 

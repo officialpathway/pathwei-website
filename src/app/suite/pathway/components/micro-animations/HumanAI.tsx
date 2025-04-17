@@ -170,7 +170,7 @@ export default function EnhancedAIEmpowerment() {
   // Effects
   useEffect(() => {
     // Initialize with fewer particles
-    setParticles(initParticles(25));
+    setParticles(initParticles(5));
 
     // Start animation
     requestRef.current = requestAnimationFrame(animate);
@@ -241,7 +241,7 @@ export default function EnhancedAIEmpowerment() {
   );
 
   return (
-    <div className="relative w-full h-screen flex items-center justify-center">
+    <div className="relative w-full flex items-center justify-center">
       <svg viewBox="0 0 600 800" className="w-full max-w-xl h-full">
         <defs>
           <radialGradient id="aiGlow" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
