@@ -69,13 +69,17 @@ export const Header = () => {
           {/* Desktop Nav */}
           {!isMobile && (
             <nav className="flex space-x-6">
-              {['Suite (apps)', 'Equipo', 'Iniciar sesión'].map((item) => (
+              {[
+                { label: 'Suite (apps)', href: '/suite' },
+                { label: 'Equipo', href: '/team' },
+                { label: 'Iniciar sesión', href: '#signin' }
+              ].map((item) => (
                 <a 
-                  key={item} 
-                  href={`#${item.toLowerCase().replace(/[()\s]/g, '')}`}
+                  key={item.label} 
+                  href={item.href}
                   className="text-white/80 hover:text-white text-sm transition-colors"
                 >
-                  {item}
+                  {item.label}
                 </a>
               ))}
             </nav>
