@@ -1,5 +1,5 @@
 // lib/constants.ts
-import { Product } from "@/src/app/landing/Grid/ProductCard";
+import { Product } from "@/src/app/[locale]/landing/Grid/ProductCard";
 
 export const teamMembers = [
   {

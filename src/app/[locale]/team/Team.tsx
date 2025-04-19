@@ -1,6 +1,6 @@
 'use client';
 
-import { CyberpunkCard } from "@/src/app/components/common/Card";
+import { CyberpunkCard } from "@/src/app/[locale]/components/common/Card";
 import Particles from "../components/common/Particles";
 import { motion } from 'framer-motion';
 import { teamMembersWithImages } from "@/src/lib/constants";
