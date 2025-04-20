@@ -5,7 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import { globalKeywords } from "../../lib/seo/keywords";
 import { ReactNode } from "react";
 import ClientProviders from "@/src/components/providers";
-import { CyberpunkFooter } from "./components/Footer/Footer";
+//import { CyberpunkFooter } from "./components/Footer/Footer";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import "./globals.css";
 
@@ -64,10 +64,9 @@ export default async function RootLayout({
   // Safely resolve params if it's a Promise
   const resolvedParams = await Promise.resolve(params);
   const locale = resolvedParams.locale;
-
-  setRequestLocale(locale);
   
-  const messages = await getMessages();
+  setRequestLocale(locale);
+  const messages = await getMessages({ locale });
 
   return (
     <html lang={locale}>
@@ -76,7 +75,7 @@ export default async function RootLayout({
           <AnimatePresence mode="wait">
             {children}
           </AnimatePresence>
-          <CyberpunkFooter />
+          {/*<CyberpunkFooter />*/}
         </ClientProviders>
       </body>
     </html>

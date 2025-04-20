@@ -10,13 +10,20 @@ type Props = {
   messages: any; // Using 'any' to avoid type issues
 };
 
+const timeZone = "Europe/Amsterdam";
+
 export default function ClientProviders({
   children,
   locale,
   messages
 }: PropsWithChildren<Props>) {
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider 
+      timeZone={timeZone}
+      now={new Date()}
+      locale={locale} 
+      messages={messages}
+    >
       {children}
     </NextIntlClientProvider>
   );

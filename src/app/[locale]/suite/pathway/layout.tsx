@@ -1,4 +1,4 @@
-// src/app/suite/pathway/layout.tsx
+// src/app/[locale]/suite/pathway/layout.tsx
 
 import type { Metadata } from "next";
 import "./styles/globals.css";
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     ]
   },
   twitter: {
-    card: "app",
+    card: "summary_large_image",
     title: "Pathway",
     description: "Gamified productivity with AI",
     images: {

@@ -3,6 +3,7 @@
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import LanguageSwitcher from '@/src/components/LanguageSwitcher';
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -68,7 +69,7 @@ export const Header = () => {
 
           {/* Desktop Nav */}
           {!isMobile && (
-            <nav className="flex space-x-6">
+            <nav className="flex space-x-6 items-center">
               {[
                 { label: 'Suite (apps)', href: '/suite' },
                 { label: 'Equipo', href: '/team' },
@@ -82,39 +83,44 @@ export const Header = () => {
                   {item.label}
                 </a>
               ))}
+              <LanguageSwitcher />
             </nav>
           )}
 
           {/* Mobile Menu Button */}
           {isMobile && (
-            <button
-              type='button'
-              onClick={toggleMenu}
-              className="w-8 h-8 flex flex-col justify-center items-center"
-              aria-label="Menú"
-            >
-              <motion.span
-                className="block w-6 h-0.5 bg-white mb-1.5"
-                animate={{
-                  rotate: menuOpen ? 45 : 0,
-                  y: menuOpen ? 6 : 0
-                }}
-                transition={{ duration: 0.2 }}
-              />
-              <motion.span
-                className="block w-6 h-0.5 bg-white"
-                animate={{ opacity: menuOpen ? 0 : 1 }}
-                transition={{ duration: 0.1 }}
-              />
-              <motion.span
-                className="block w-6 h-0.5 bg-white mt-1.5"
-                animate={{
-                  rotate: menuOpen ? -45 : 0,
-                  y: menuOpen ? -6 : 0
-                }}
-                transition={{ duration: 0.2 }}
-              />
-            </button>
+            <div className='flex gap-6 items-center'>
+              <LanguageSwitcher />
+
+              <button
+                type='button'
+                onClick={toggleMenu}
+                className="w-8 h-8 flex flex-col justify-center items-center"
+                aria-label="Menú"
+              >
+                <motion.span
+                  className="block w-6 h-0.5 bg-white mb-1.5"
+                  animate={{
+                    rotate: menuOpen ? 45 : 0,
+                    y: menuOpen ? 6 : 0
+                  }}
+                  transition={{ duration: 0.2 }}
+                />
+                <motion.span
+                  className="block w-6 h-0.5 bg-white"
+                  animate={{ opacity: menuOpen ? 0 : 1 }}
+                  transition={{ duration: 0.1 }}
+                />
+                <motion.span
+                  className="block w-6 h-0.5 bg-white mt-1.5"
+                  animate={{
+                    rotate: menuOpen ? -45 : 0,
+                    y: menuOpen ? -6 : 0
+                  }}
+                  transition={{ duration: 0.2 }}
+                />
+              </button>
+            </div>
           )}
         </div>
       </motion.header>

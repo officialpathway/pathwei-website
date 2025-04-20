@@ -7,7 +7,7 @@ const PRICE_OPTIONS = [4.99, 7.49, 9.99];
 const intlMiddleware = createMiddleware({
   locales: ['en-US', 'es-ES'],
   defaultLocale: 'en-US',
-  localePrefix: 'as-needed',
+  localePrefix: 'always',
 });
 
 export default async function middleware(request: NextRequest) {
@@ -37,6 +37,6 @@ export const config = {
      * - API routes (except track-price)
      * - Static files (_next/static, _next/image, favicon.ico, etc.)
      */
-    '/((?!api|_next|_vercel|.*\\.[^/]*$).*)',
+    '/((?!api|_next|.*\\..*).*)'
   ],
 };
