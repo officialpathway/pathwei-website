@@ -1,7 +1,326 @@
 {
   "Pathway": {
+    "app": {
+      "name": "Pathway",
+      "description": "Transforma tu productividad con IA, gamificación y redes sociales."
+    },
+    "feedback": {
+      "gamification": {
+        "title": "Opinión sobre Gamificación",
+        "content": "Los sistemas de gamificación han cambiado la forma en la que alcanzo mis metas. Pero a veces la competencia puede ser abrumadora.",
+        "user": "GameMaster92"
+      },
+      "productivity": {
+        "title": "Opinión sobre Aplicaciones de Productividad",
+        "content": "Las aplicaciones me han ayudado a mantenerme organizado, pero encuentro que algunas son difíciles de usar.",
+        "user": "TaskWizard88"
+      },
+      "social": {
+        "title": "Opinión sobre Redes Sociales",
+        "content": "Compartir mis logros en redes sociales me motiva, aunque no quiero que mi privacidad se vea comprometida.",
+        "user": "SocialStar07"
+      },
+      "general": {
+        "title": "Opinión General",
+        "content": "Una combinación de gamificación, productividad y redes sociales es ideal, pero debe ser equilibrada y fácil de usar.",
+        "user": "BalancedGuru"
+      }
+    },
+
+    "categories": {
+      "exercise": {
+        "name": "Ejercicio",
+        "goals": {
+          "marathon": "Correr un maratón",
+          "yoga": "Dominar el yoga",
+          "strength": "Desarrollar fuerza muscular",
+          "flexibility": "Mejorar la flexibilidad",
+          "kickboxing": "Aprender kickboxing"
+        }
+      },
+      "learning": {
+        "name": "Aprendizaje",
+        "goals": {
+          "piano": "Aprender piano",
+          "data_science": "Dominar ciencia de datos",
+          "japanese": "Hablar japonés",
+          "physics": "Comprender física cuántica",
+          "art_history": "Estudiar historia del arte"
+        }
+      },
+      "career": {
+        "name": "Carrera",
+        "goals": {
+          "business": "Empezar un negocio",
+          "promotion": "Obtener un ascenso",
+          "change": "Cambiar de carrera",
+          "public_speaking": "Mejorar habilidades de oratoria",
+          "networking": "Construir una red profesional"
+        }
+      },
+      "creativity": {
+        "name": "Creatividad",
+        "goals": {
+          "novel": "Escribir una novela",
+          "digital_art": "Aprender pintura digital",
+          "short_film": "Crear un cortometraje",
+          "web_design": "Diseñar un sitio web",
+          "photography": "Dominar la fotografía"
+        }
+      },
+      "wellness": {
+        "name": "Bienestar",
+        "goals": {
+          "meditation": "Practicar meditación",
+          "sleep": "Mejorar la calidad del sueño",
+          "stress": "Reducir el estrés",
+          "habits": "Desarrollar hábitos saludables",
+          "balance": "Encontrar equilibrio entre trabajo y vida"
+        }
+      }
+    },
+
+    "steps": {
+      "exercise": {
+        "marathon": [
+          "Comienza con un plan de entrenamiento para 5K",
+          "Construye resistencia con carreras largas semanales",
+          "Practica nutrición e hidratación adecuadas",
+          "Completa un medio maratón",
+          "Corre tu primer maratón completo"
+        ],
+        "yoga": [
+          "Aprende posturas y respiración básicas",
+          "Practica diariamente 30 minutos",
+          "Estudia diferentes estilos de yoga",
+          "Domina posturas intermedias",
+          "Participa en un retiro avanzado de yoga"
+        ]
+      },
+      "learning": {
+        "data_science": [
+          "Aprende conceptos básicos de Python",
+          "Estudia estadística y probabilidad",
+          "Practica visualización de datos",
+          "Trabaja con bibliotecas de machine learning",
+          "Completa un proyecto final"
+        ],
+        "japanese": [
+          "Domina hiragana y katakana",
+          "Aprende saludos y frases básicas",
+          "Estudia radicales kanji",
+          "Practica conversación en japonés",
+          "Aprueba certificación JLPT N5"
+        ]
+      },
+      "career": {
+        "business": [
+          "Valida tu idea de negocio",
+          "Crea un plan de negocios detallado",
+          "Consigue financiación inicial",
+          "Lanza producto mínimo viable",
+          "Expande tus operaciones"
+        ],
+        "public_speaking": [
+          "Únete a Toastmasters o grupo similar",
+          "Practica discursos improvisados",
+          "Domina comunicación no verbal",
+          "Graba y analiza tus discursos",
+          "Habla en eventos importantes"
+        ]
+      },
+      "creativity": {
+        "novel": [
+          "Desarrolla personajes y esquema de trama",
+          "Escribe primer borrador (1,000 palabras/día)",
+          "Completa manuscrito",
+          "Edita y revisa",
+          "Envía a editoriales"
+        ],
+        "digital_art": [
+          "Aprende herramientas y pinceles básicos",
+          "Estudia teoría del color",
+          "Practica bocetos diarios",
+          "Crea ilustraciones completas",
+          "Desarrolla estilo personal"
+        ],
+        "web_design": [
+          "Aprende conceptos básicos de HTML/CSS",
+          "Estudia principios de UI/UX",
+          "Crea wireframes",
+          "Construye prototipos responsivos",
+          "Lanza sitio web en vivo"
+        ]
+      },
+      "wellness": {
+        "meditation": [
+          "Empieza con sesiones diarias de 5 minutos",
+          "Prueba diferentes técnicas",
+          "Progresa a sesiones de 20 minutos",
+          "Incorpora atención plena",
+          "Mantén práctica consistente"
+        ],
+        "stress": [
+          "Identifica desencadenantes de estrés",
+          "Practica técnicas de relajación",
+          "Implementa gestión de tiempo",
+          "Establece límites",
+          "Mantén diario de estrés"
+        ],
+        "habits": [
+          "Registra hábitos actuales",
+          "Establece metas de hábitos específicas",
+          "Crea disparadores ambientales",
+          "Mantén consistencia por 30 días",
+          "Automatiza hábitos positivos"
+        ]
+      }
+    },
+
+    "TestExplanation": {
+      "tracking-progress": "Seguimiento del progreso con pruebas",
+      "how-tests-work-title": "Cómo nuestras pruebas te ayudan a aprender",
+      "how-tests-work-description": "Nuestro sistema de pruebas inteligente se adapta a tu trayectoria de aprendizaje, proporcionando retroalimentación personalizada y haciendo un seguimiento de tu progreso a lo largo del tiempo.",
+      
+      "section1-title": "Responde preguntas a tu propio ritmo",
+      "section1-description1": "Nuestras pruebas están diseñadas para que las realices a tu conveniencia. Cada prueba está adaptada para medir tu comprensión de objetivos específicos.",
+      "section1-description2": "Responderás una serie de preguntas relacionadas con tus objetivos de aprendizaje, ayudándote a identificar áreas en las que destacas y donde podrías necesitar práctica adicional.",
+      "section1-benefit1": "Retroalimentación inmediata sobre tus respuestas",
+      "section1-benefit2": "Pruebas alineadas con tus objetivos de aprendizaje",
+      "section1-benefit3": "Responde a tu propio ritmo sin presión de tiempo",
+      "section1-question-title": "Tus preguntas de prueba",
+      "section1-question1": "¿Cuál es el primer paso en el proceso de aprendizaje?",
+      "section1-answer1": "Establecer objetivos claros",
+      "section1-question2": "¿Con qué frecuencia deberías revisar el material?",
+      "section1-answer2": "En intervalos regulares basados en estudios de retención",
+      "section1-question3": "¿Qué técnica mejora la retención a largo plazo?",
+      "section1-answer3": "Repetición espaciada con recuperación activa",
+      "section1-submit-button": "Enviar respuestas",
+      
+      "section2-title": "Proceso de evaluación inteligente",
+      "section2-description1": "Cuando envías tu prueba, nuestro sistema analiza tus respuestas en función de los objetivos de aprendizaje.",
+      "section2-description2": "No solo contamos respuestas correctas e incorrectas: buscamos patrones en tus respuestas para proporcionar conocimientos significativos sobre tu progreso de aprendizaje.",
+      "section2-processing-title": "Procesando tus respuestas",
+      "section2-step1-title": "Analizando respuestas",
+      "section2-step1-description": "Tus respuestas se evalúan en función de los objetivos de aprendizaje",
+      "section2-step2-title": "Identificando patrones",
+      "section2-step2-description": "Detectamos tus fortalezas y áreas de mejora",
+      "section2-step3-title": "Preparando retroalimentación",
+      "section2-step3-description": "Creando recomendaciones personalizadas para los siguientes pasos",
+      
+      "section3-title": "Haz seguimiento de tu progreso a lo largo del tiempo",
+      "section3-description1": "Después de la evaluación, recibirás un desglose claro de tus resultados con comentarios específicos sobre cada pregunta.",
+      "section3-description2": "Tu rendimiento se realiza un seguimiento a lo largo del tiempo, lo que te permite ver cómo avanzas hacia el dominio de tus objetivos de aprendizaje.",
+      "section3-insight-title": "Perspectivas de aprendizaje",
+      "section3-insight-content": "Las pruebas ayudan a identificar lagunas de conocimiento y refuerzan el aprendizaje mediante el efecto de prueba: el acto de recuperar información fortalece la memoria.",
+      "section3-review-title": "Resultados de la prueba",
+      "section3-passed": "Prueba aprobada",
+      "section3-correct": "preguntas correctas",
+      "section3-question1": "¿Qué técnica mejora la retención de la memoria?",
+      "section3-answer1": "Repetición espaciada",
+      "section3-question2": "¿Cuántas sesiones de repaso son óptimas?",
+      "section3-answer2": "Dos sesiones",
+      "section3-your-answer": "Tu respuesta",
+      "section3-continue-button": "Continuar aprendiendo",
+      "section3-tag1": "Seguimiento del progreso",
+      "section3-tag2": "Retroalimentación personalizada",
+      "section3-tag3": "Aprendizaje activo",
+      
+      "cta-title": "¿Listo para seguir tu progreso?",
+      "cta-description": "Comienza a probar tus conocimientos y ve cómo avanzas hacia tus objetivos de aprendizaje.",
+      "cta-button": "Comienza tu camino de aprendizaje"
+    },
+
+    "animation-objective": "Quiero:",
+    "animation-step": "Paso",
+    "animation-for": "para",
+    "animation-creating-route": "Creando un camino",
+    "animation-goal-achieved": "¡Meta alcanzada!",
+    "animation-path-success": "Tu camino al éxito:",
+
+    "test-use": "Usamos tests para medir el progreso",
+    "test-title": "Prueba de aprendizaje:",
+    "test-start-message": "Click en \"Comenzar\" para ver la animación de ejemplo",
+    "test-start": "Comenzar",
+    "test-reset": "Reiniciar",
+    "test-questions": "Preguntas",
+    "test-question": "Pregunta",
+    "test-complete": "Completar test",
+    "test-evaluation": "Evaluando respuestas...",
+    "test-results": "respuestas correctas",
+    "test-revision": "Revisión final",
+    "test-your-answer": "Tu respuesta:",
+    "test-answer": "Respuesta correcta:",
+    "test-answer-content": "Sostiene las notas (Pedal de resonancia)",
+    "test-passed": "¡Aprobado!",
+    "test-failed": "Suspenso",
+
+    "ai-1": "Inteligencia Artificial",
+    "ai-2": "Conocimiento",
+    "ai-3": "Usuario",
+    "ai-footer": "Potenciando los objetivos humanos",
+    
+    "header-suite": "Apps",
+    "header-team": "Equipo",
+    "header-signin": "Iniciar sesión",
+
     "cta": "Empieza por solo",
+    "demo-cta": "Ver Demo",
     "price": "4.99€/mes",
-    "first-section-t": "DE LA INSPIRACIÓN A LA MAESTRÍA"
+    "hero-heading-1": "Potencia Tu",
+    "hero-heading-2": "Aprendizaje Con IA",
+    "hero-subheading": "La primera plataforma que combina inteligencia artificial con gamificación y técnicas de aprendizaje probadas para resultados extraordinarios.",
+    
+    "under-hero-heading-1": "¡LA",
+    "under-hero-heading-2": "REVOLUCIÓN",
+    "under-hero-heading-3": "COMIENZA CONTIGO!",
+    "under-hero-subheading-1": "Take",
+    "under-hero-subheading-2": "control",
+    "under-hero-subheading-3": "of your",
+    "under-hero-subheading-4": "goals",
+    "under-hero-subheading-5": "and boost your",
+    "under-hero-subheading-6": "productivity.",
+
+    "first-section-heading": "DE LA INSPIRACIÓN A LA MAESTRÍA",
+    "first-section-subheading": "Transformamos tus ideas en habilidades concretas paso a paso",
+
+    "second-section-heading": "DOMINA TU PROGRESO",
+    "second-section-subheading": "Pon a prueba tu conocimiento y refuerza tu aprendizaje",
+
+    "third-section-heading": "POTENCIAL HUMANO CON INTELIGENCIA ARTIFICIAL",
+    "third-section-subheading": "Tecnología que se adapta a tu forma de aprender",
+
+    "feedback-heading": "Escuchamos a las personas",
+    "feedback-text": "Entendemos que las opiniones sobre gamificación, aplicaciones de productividad y el uso compartido en redes sociales son clave. Hemos tomado en cuenta lo que dijeron para diseñar una experiencia que combina lo mejor de todo.",
+
+    "newsletter-heading": "¡No te lo pierdas!",
+    "newsletter-subheading": "Suscríbete para recibir una notificación cuando la aplicación esté disponible.",
+    "email-placeholder": "Tu correo electronico",
+    "sending": "Enviando...",
+    "subscribe": "Suscribirse",
+    "provide-valid-email": "Por favor introduce una dirección de correo válido",
+    "subscription-success": "Gracias por suscribirte",
+    "subscription-failed": "Hubo un error al suscribirte. Por favor inténtalo de nuevo.",
+    "success-checker": "Gracias",
+
+    "footer-rights": "© 2025 Pathway. Todos los derechos reservados.",
+    "footer-message": "Gracias por acompañarnos en el viaje.",
+
+    "loading": "Cargando...",
+
+    "questions": {
+      "piano": {
+        "symbol": "¿Qué significa el símbolo 'p' en una partitura?",
+        "answer_soft": "Tocar suavemente (piano)",
+        "keys": "¿Cuántas teclas blancas tiene un piano estándar?",
+        "answer_keys": "52",
+        "chord": "¿Qué notas componen un acorde de Do mayor?",
+        "answer_chord": "Do, Mi, Sol",
+        "position": "¿Cuál es la posición correcta de los dedos para una escala de Do?",
+        "answer_position": "Pulgar en Do, índice en Re, medio en Mi",
+        "pedal": "¿Qué hace el pedal de la derecha?",
+        "answer_pedal": "Mantiene las notas (incorrecto: hace el sonido más fuerte)"
+      }
+    }
   }
 }

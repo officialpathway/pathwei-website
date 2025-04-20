@@ -3,11 +3,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import { FaStar, FaQuoteRight } from "react-icons/fa";
-import { feedbackData } from "../utils/constants";
+import { useTranslations } from 'next-intl';
+import { getPathwayConstants } from "../utils/constants";
 
 const FeedbackSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  const t = useTranslations("Pathway");
+  const constants = getPathwayConstants(t);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -31,9 +35,7 @@ const FeedbackSection = () => {
     });
 
     cardsContainer.style.animation = `scrollCards ${cards.length * 5}s linear infinite`;
-  }, [isMobile]);
-
-  
+  }, [isMobile]);  
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const renderCard = (feedback: any, index: number) => (
@@ -62,9 +64,9 @@ const FeedbackSection = () => {
   return (
     <section id="feedback" className="py-20 bg-background text-white">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-6">Escuchamos a las personas</h2>
+        <h2 className="text-3xl font-bold text-center mb-6">{t("feedback-heading")}</h2>
         <p className="text-lg text-center mb-12">
-          Entendemos que las opiniones sobre gamificación, aplicaciones de productividad y el uso compartido en redes sociales son clave. Hemos tomado en cuenta lo que dijeron para diseñar una experiencia que combina lo mejor de todo.
+          {t("feedback-text")}
         </p>
 
         {/* Móvil: Slider manual con flechas */}
@@ -78,13 +80,13 @@ const FeedbackSection = () => {
             slidesToScroll={1}
             className="max-w-100 mx-auto"
           >
-            {feedbackData.map(renderCard)}
+            {constants.FEEDBACK.map(renderCard)}
           </Slider>
         ) : (
           // Desktop/Tablet: Movimiento automático infinito
           <div className="overflow-hidden relative w-full" style={{ height: "280px" }}>
             <div ref={scrollRef} className="flex gap-4 w-max">
-              {feedbackData.map(renderCard)}
+              {constants.FEEDBACK.map(renderCard)}
             </div>
           </div>
         )}

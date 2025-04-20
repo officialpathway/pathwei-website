@@ -7,7 +7,7 @@ const PRICE_OPTIONS = [4.99, 7.49, 9.99];
 const intlMiddleware = createMiddleware({
   locales: ['en-US', 'es-ES'],
   defaultLocale: 'en-US',
-  localePrefix: 'always',
+  localePrefix: 'as-needed',
 });
 
 export default async function middleware(request: NextRequest) {

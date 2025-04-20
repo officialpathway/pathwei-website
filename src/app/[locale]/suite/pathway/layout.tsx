@@ -1,12 +1,12 @@
 // src/app/[locale]/suite/pathway/layout.tsx
 
 import type { Metadata } from "next";
-import "./styles/globals.css";
 import { ReactNode } from "react";
 import { myCustomFont } from "@/src/lib/styles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { pathwayKeywords } from "@/src/lib/seo/keywords";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Pathway | AI-Powered Productivity Tracker",

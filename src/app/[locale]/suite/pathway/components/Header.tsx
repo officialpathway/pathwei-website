@@ -3,6 +3,7 @@
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import LanguageSwitcher from '@/src/components/LanguageSwitcher';
 
 export const Header = () => {
@@ -11,6 +12,8 @@ export const Header = () => {
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
   const { scrollY } = useScroll();
+
+  const t = useTranslations("Pathway");
 
   // Mobile detection without resize listeners
   const [isMobile, setIsMobile] = useState(false);
@@ -71,9 +74,9 @@ export const Header = () => {
           {!isMobile && (
             <nav className="flex space-x-6 items-center">
               {[
-                { label: 'Suite (apps)', href: '/suite' },
-                { label: 'Equipo', href: '/team' },
-                { label: 'Iniciar sesión', href: '#signin' }
+                { label: `${t("header-suite")}`, href: '/suite' },
+                { label: `${t("header-team")}`, href: '/team' },
+                //{ label: `${t("header-signin")}`, href: '#signin' }
               ].map((item) => (
                 <a 
                   key={item.label} 
@@ -141,14 +144,18 @@ export const Header = () => {
           }}
         >
           <div className="container mx-auto px-4 py-2 flex flex-col">
-            {['Suite (apps)', 'Equipo', 'Iniciar sesión'].map((item) => (
+            {[
+              { label: t("header-suite"), href: '/suite' },
+              { label: t("header-team"), href: '/team' },
+              /* { label: t("header-signin"), href: '#signin' } */ // Commented out as per original
+            ].map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase().replace(/[()\s]/g, '')}`}
+                key={item.label}
+                href={item.href}
                 className="py-3 text-white/80 hover:text-white border-b border-white/10 text-sm"
                 onClick={() => setMenuOpen(false)}
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </div>

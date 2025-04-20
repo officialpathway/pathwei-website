@@ -1,8 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function EnhancedAIEmpowerment() {
+
+  const t = useTranslations("Pathway");
+
   // Constants
   const COLORS = {
     primary: "#6366F1",
@@ -287,10 +291,10 @@ export default function EnhancedAIEmpowerment() {
           ))}
         </g>
         
-        <text x="300" y="225" textAnchor="middle" fill={COLORS.primary} className="text-lg font-bold">Inteligencia Artificial</text>
-        <text x="300" y="425" textAnchor="middle" fill={COLORS.brain} className="text-lg font-bold">Conocimiento</text>
-        <text x="300" y="625" textAnchor="middle" fill={COLORS.tertiary} className="text-lg font-bold">Usuario</text>
-        <text x="300" y="750" textAnchor="middle" fill={COLORS.accent} className="text-2xl font-bold">Potenciando los objetivos humanos</text>
+        <text x="300" y="225" textAnchor="middle" fill={COLORS.primary} className="text-lg font-bold">{t("ai-1")}</text>
+        <text x="300" y="425" textAnchor="middle" fill={COLORS.brain} className="text-lg font-bold">{t("ai-2")}</text>
+        <text x="300" y="625" textAnchor="middle" fill={COLORS.tertiary} className="text-lg font-bold">{t("ai-3")}</text>
+        <text x="300" y="750" textAnchor="middle" fill={COLORS.accent} className="text-2xl font-bold">{t("ai-footer")}</text>
       </svg>
     </div>
   );

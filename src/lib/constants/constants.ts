@@ -3,34 +3,40 @@ import { Product } from "@/src/app/[locale]/landing/Grid/ProductCard";
 
 export const teamMembers = [
   {
-    id: 'ceo',
-    name: 'ALEX RYDER',
-    title: 'FOUNDER & CEO',
-    role: 'VISIONARY ARCHITECT',
-    bio: 'Former neural interface researcher turned tech entrepreneur. Spearheads our quantum leap into human-AI symbiosis.',
-    color: 'neon-pink',
-    status: 'ONLINE',
-    connections: ['NeuroTech Inc', 'Quantum Leap Ventures', 'Future Humanity Fund']
+    name: "Alvaro Rios",
+    role: "Chief Executive Officer",
+    color: "cyan",
+    specialty: "STRATEGIC SYNTHESIS",
+    imgSrc: "/images/Team/ceo.png",
+    id: "ceo",
+    title: "FOUNDER & CEO",
+    bio: "Former neural interface researcher turned tech entrepreneur. Spearheads our quantum leap into human-AI symbiosis.",
+    status: "ONLINE",
+    connections: ["NeuroTech Inc", "Quantum Leap Ventures", "Future Humanity Fund"]
   },
   {
-    id: 'cto',
-    name: 'DR. KIRA ZHANG',
-    title: 'CHIEF TECHNOLOGY OFFICER',
-    role: 'SYSTEMS OVERLORD',
-    bio: 'Ex-Google DeepMind lead engineer. Built the first self-evolving AI architecture at age 23.',
-    color: 'neon-blue',
-    status: 'IN LAB',
-    connections: ['MIT Synthetic Intelligence', 'OpenNeuro Collective', 'The Turing Guild']
+    name: "Rayan Chairi",
+    role: "Chief Technology Officer",
+    color: "pink",
+    specialty: "NEURAL OPTIMIZATION",
+    imgSrc: "/images/Team/cto.jpeg",
+    id: "cto",
+    title: "CHIEF TECHNOLOGY OFFICER",
+    bio: "Ex-Google DeepMind lead engineer. Built the first self-evolving AI architecture at age 23.",
+    status: "IN LAB",
+    connections: ["MIT Synthetic Intelligence", "OpenNeuro Collective", "The Turing Guild"]
   },
   {
-    id: 'cmo',
-    name: 'JORDAN VEX',
-    title: 'CHIEF MARKETING OFFICER',
-    role: 'NEURAL BRAND SHAPER',
-    bio: 'Digital consciousness marketing pioneer. Formerly grew NeuroLink to 50M users in 12 months.',
-    color: 'neon-purple',
-    status: 'IN FIELD',
-    connections: ['Hologram Advertising', 'MindShare Collective', 'The Viral Cortex']
+    name: "Maria Victoria Sanchez",
+    role: "Chief Marketing Officer",
+    color: "purple",
+    specialty: "COGNITIVE ADOPTION",
+    imgSrc: "/images/Team/cmo.jpeg",
+    id: "cmo",
+    title: "CHIEF MARKETING OFFICER",
+    bio: "Digital consciousness marketing pioneer. Formerly grew NeuroLink to 50M users in 12 months.",
+    status: "IN LAB",
+    connections: ["Hologram Advertising", "MindShare Collective", "The Viral Cortex"]
   }
 ];
 
@@ -76,30 +82,6 @@ export const supporters = [
     role: 'ADVISORY BOARD',
     contribution: 'Policy guidance',
     color: 'neon-red'
-  }
-];
-
-export const teamMembersWithImages = [
-  {
-    name: "Alvaro Rios",
-    role: "Chief Executive Officer",
-    color: "cyan",
-    specialty: "STRATEGIC SYNTHESIS",
-    imgSrc: "/images/Team/ceo.png"
-  },
-  {
-    name: "Rayan Chairi",
-    role: "Chief Technology Officer",
-    color: "pink",
-    specialty: "NEURAL OPTIMIZATION",
-    imgSrc: "/images/Team/cto.jpeg"
-  },
-  {
-    name: "Maria Victoria Sanchez",
-    role: "Chief Marketing Officer",
-    color: "purple",
-    specialty: "COGNITIVE ADOPTION",
-    imgSrc: "/images/Team/cmo.jpeg"
   }
 ];
 

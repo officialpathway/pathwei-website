@@ -1,17 +1,20 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslations } from 'next-intl';
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const t = useTranslations("Pathway");
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!email || !email.includes("@")) {
-      setMessage("Please enter a valid email address.");
+      setMessage(`${t("provide-valid-email")}`);
       return;
     }
 
@@ -30,10 +33,10 @@ const Newsletter = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage("Thank you for subscribing!");
+        setMessage(`${t("subscription-success")}`);
         setEmail(""); // Clear the input
       } else {
-        setMessage(data.error || "Failed to subscribe. Please try again.");
+        setMessage(data.error || `${t("subscription-failed")}`);
       }
     } catch (error) {
       setMessage("An error occurred. Please try again.");
@@ -48,12 +51,12 @@ const Newsletter = () => {
       <div className="container mx-auto px-4 sm:px-6 text-center">
         {/* Heading */}
         <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">
-          ¡No te lo pierdas!
+          {t("newsletter-heading")}
         </h2>
 
         {/* Subtext */}
         <p className="text-base sm:text-xl mb-6 sm:mb-8">
-          Suscríbete para recibir una notificación cuando la aplicación esté disponible.
+          {t("newsletter-subheading")}
         </p>
 
         {/* Form */}
@@ -63,7 +66,7 @@ const Newsletter = () => {
         >
           <input
             type="email"
-            placeholder="Tu correo electrónico"
+            placeholder={t("email-placeholder")}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="flex-grow px-4 sm:px-6 py-3 sm:py-4 border-2 border-white bg-transparent text-white placeholder-gray-300 rounded-lg sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
@@ -81,17 +84,17 @@ const Newsletter = () => {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                Enviando...
+                {t("sending")}
               </span>
             ) : (
-              "Suscribirse"
+              `${t("subscribe")}`
             )}
           </button>
         </form>
 
         {/* Feedback Message */}
         {message && (
-          <p className={`mt-4 text-sm ${message.includes("Thank you") ? "text-green-400" : "text-red-400"}`}>
+          <p className={`mt-4 text-sm ${message.includes(`${t("success-checker")}`) ? "text-green-400" : "text-red-400"}`}>
             {message}
           </p>
         )}

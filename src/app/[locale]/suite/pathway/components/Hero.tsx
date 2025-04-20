@@ -3,14 +3,17 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Modal from "./PricingModal";
+import { useTranslations } from 'next-intl';
 
 const PRICE_OPTIONS = [4.99, 7.49, 9.99];
 
-// Modified Hero component with modal integration
 const Hero = () => {
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [price, setPrice] = useState(PRICE_OPTIONS[0]);
   const [priceLoaded, setPriceLoaded] = useState(false);
+
+  const t = useTranslations("Pathway");
 
   // Set random price on component mount
   useEffect(() => {
@@ -65,9 +68,9 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              <span className="block mb-2">Potencia Tu</span>
+              <span className="block mb-2">{t("hero-heading-1")}</span>
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-orange-500">
-                Aprendizaje Con IA
+                {t("hero-heading-2")}
               </span>
             </motion.h1>
 
@@ -77,7 +80,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
-              La primera plataforma que combina inteligencia artificial con gamificación y técnicas de aprendizaje probadas para resultados extraordinarios.
+              {t("hero-subheading")}
             </motion.p>
 
             {/* CTA Buttons */}
@@ -98,7 +101,7 @@ const Hero = () => {
                 }}
               >
                 <span className="relative z-10">
-                  {priceLoaded ? `Empieza por solo $${price.toFixed(2)}` : 'Cargando...'}
+                  {priceLoaded ? `${t("cta")} $${price.toFixed(2)}` : `${t("loading")}`}
                 </span>
                 <span className="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </button>
@@ -124,7 +127,7 @@ const Hero = () => {
                   }
                 }}
               >
-                <span>Ver Demo</span>
+                <span>{t("demo-cta")}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>

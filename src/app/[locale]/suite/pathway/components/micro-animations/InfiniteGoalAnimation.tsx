@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { goalCategories, stepTexts } from '../../utils/constants';
+import { useTranslations } from 'next-intl';
+import { getPathwayConstants } from "../../utils/constants";
 
 export default function InfiniteGoalAnimation() {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
@@ -11,8 +12,11 @@ export default function InfiniteGoalAnimation() {
   const [aiThinking, setAiThinking] = useState(false);
   const [showPathReveal, setShowPathReveal] = useState(false);
   const [pathSteps, setPathSteps] = useState<string[]>([]);
+
+  const t = useTranslations("Pathway");
+  const constants = getPathwayConstants(t);
   
-  const activeCategory = goalCategories[activeCategoryIndex];
+  const activeCategory = constants.CATEGORIES[activeCategoryIndex];
   const activeGoal = activeCategory.goals[activeGoalIndex];
   
   // Reset animation states when changing category or goal
@@ -56,7 +60,7 @@ export default function InfiniteGoalAnimation() {
           // Change category when we've gone through all goals
           setTimeout(() => {
             setActiveCategoryIndex((prevCatIndex) => 
-              (prevCatIndex + 1) % goalCategories.length
+              (prevCatIndex + 1) % constants.CATEGORIES.length
             );
             setActiveGoalIndex(0);
           }, 500);
@@ -136,14 +140,14 @@ export default function InfiniteGoalAnimation() {
         >
           <div className={`inline-flex items-center px-4 py-1 rounded-full bg-white shadow-md ${activeCategory.textColor}`}>
             <span className="text-2xl mr-2">{activeCategory.icon}</span>
-            <span className="font-semibold">{activeCategory.category}</span>
+            <span className="font-semibold">{activeCategory.name}</span>
           </div>
         </motion.div>
       </AnimatePresence>
       
       {/* Goal */}
       <div className="text-center relative z-10">
-        <h3 className="text-gray-500 mb-1 text-sm">Quiero:</h3>
+        <h3 className="text-gray-500 mb-1 text-sm">{t("animation-objective")}</h3>
         <AnimatePresence mode="wait">
           <motion.div 
             key={`${activeCategoryIndex}-${activeGoalIndex}`} 
@@ -181,7 +185,7 @@ export default function InfiniteGoalAnimation() {
                 />
               </div>
               <div className="flex items-center">
-                <span className="text-gray-600">Creando una ruta</span>
+                <span className="text-gray-600">{t("animation-creating-route")}</span>
                 <motion.div 
                   className="ml-2 flex space-x-1"
                   animate={{ opacity: [0.4, 1, 0.4] }}
@@ -208,7 +212,7 @@ export default function InfiniteGoalAnimation() {
             className="mt-6 max-w-md mx-auto relative z-10"
           >
             <div className="bg-white rounded-lg shadow-md p-4">
-              <h3 className={`font-medium mb-3 ${activeCategory.textColor}`}>Tu camino al éxito:</h3>
+              <h3 className={`font-medium mb-3 ${activeCategory.textColor}`}>{t("animation-path-success")}</h3>
               
               <div className="space-y-4">
                 {pathSteps.map((step, index) => (
@@ -245,7 +249,7 @@ export default function InfiniteGoalAnimation() {
                         <div className={`${completedSteps > index ? "text-gray-400" : "text-gray-700"}`}>
                           {completedSteps > index ? (
                             <span className="relative">
-                              {getStepText(activeCategory.category, activeGoal, index)}
+                              {getStepText(t, activeCategory.name, activeGoal, index)}
                               {/* Line through that works with multiple lines */}
                               <motion.div 
                                 initial={{ width: 0 }}
@@ -255,7 +259,7 @@ export default function InfiniteGoalAnimation() {
                               />
                             </span>
                           ) : (
-                            <span>{getStepText(activeCategory.category, activeGoal, index)}</span>
+                            <span>{getStepText(t, activeCategory.name, activeGoal, index)}</span>
                           )}
                         </div>
                       </div>
@@ -290,7 +294,7 @@ export default function InfiniteGoalAnimation() {
                   transition={{ type: "spring" }}
                 >
                   <div className={`inline-block px-4 py-1 rounded-full ${activeCategory.textColor} bg-opacity-20 font-medium text-sm`}>
-                    ¡Meta alcanzada! 🎉
+                    {t("animation-goal-achieved")} 🎉
                   </div>
                 </motion.div>
               )}
@@ -303,11 +307,13 @@ export default function InfiniteGoalAnimation() {
 }
 
 // Helper function to generate sensible step text based on the category and goal
-function getStepText(category: string, goal: string, stepIndex: number) {
+function getStepText(t: ReturnType<typeof useTranslations>, category: string, goal: string, stepIndex: number) {
+  const constants = getPathwayConstants(t);
+
   // Return the step text if it exists, otherwise a generic step
-  return stepTexts[category] && 
-         stepTexts[category][goal] && 
-         stepTexts[category][goal][stepIndex] 
-    ? stepTexts[category][goal][stepIndex]
-    : `Paso ${stepIndex + 1} para ${goal}`;
+  return constants.STEPS[category] && 
+         constants.STEPS[category][goal] && 
+         constants.STEPS[category][goal][stepIndex] 
+    ? constants.STEPS[category][goal][stepIndex]
+    : `${t("animation-step")} ${stepIndex + 1} ${t("animation-for")} ${goal}`;
 }

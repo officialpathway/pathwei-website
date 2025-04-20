@@ -3,8 +3,12 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import Newsletter from "./Newsletter";
+import { useTranslations } from 'next-intl';
 
 const Footer = () => {
+
+  const t = useTranslations("Pathway");
+
   useEffect(() => {
     const handleScroll = () => {
       const footer = document.getElementById("footer");
@@ -44,8 +48,8 @@ const Footer = () => {
 
         {/* Footer text */}
         <div className="flex flex-col md:flex-row justify-between px-8">
-          <p className="text-xs mb-2">&copy; 2025 Pathway. Todos los derechos reservados.</p>
-          <p className="text-xs">Gracias por acompañarnos en el viaje.</p>
+          <p className="text-xs mb-2">{t("footer-rights")}</p>
+          <p className="text-xs">{t("footer-message")}</p>
         </div>
       </div>
   

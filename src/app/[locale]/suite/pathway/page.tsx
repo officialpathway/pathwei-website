@@ -31,17 +31,17 @@ export default function Home() {
         </NeonFuturismBackground>
 
         {/* Functionality Section - Centered */}
-        <section id='demo-section' className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black px-4 pt-20 overflow-hidden">
-          <div className="max-w-6xl mx-auto text-center space-y-16 z-10">
+        <section id='demo-section' className="relative w-full min-h-screen flex flex-col items-center justify-center bg-white px-4 pt-20 overflow-hidden">
+          <div className="text-center space-y-16 z-10">
             {/* First Section */}
             <div className="space-y-8">
               <h2 className="text-5xl md:text-6xl font-bold text-white leading-tight">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-orange-500 pt-4">
-                  {t("first-section-t")}
+                  {t("first-section-heading")}
                 </span>
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Transformamos tus ideas en habilidades concretas paso a paso
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                {t("first-section-subheading")}
               </p>
               <div className="w-full max-w-4xl mx-auto">
                 <InfiniteGoalAnimation />
@@ -49,14 +49,14 @@ export default function Home() {
             </div>
 
             {/* Test Completion Section */}
-            <div className="space-y-8 w-full">
+            <div className="space-y-8">
               <h3 className="text-3xl md:text-5xl font-bold text-white">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-500 pt-4">
-                  DOMINA TU PROGRESO
+                  {t("second-section-heading")}
                 </span>
               </h3>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Pon a prueba tu conocimiento y refuerza tu aprendizaje
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                {t("second-section-subheading")}
               </p>
               <div className="w-full h-full max-w-3xl mx-auto">
                 <TestCompletionDemoAnimation objective={userPrompt} />
@@ -70,11 +70,11 @@ export default function Home() {
             <div className="space-y-8 pt-8">
               <h2 className="text-5xl md:text-6xl font-bold text-white leading-tight">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-500 pt-4">
-                  POTENCIAL HUMANO CON INTELIGENCIA ARTIFICIAL
+                  {t("third-section-heading")}
                 </span>
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Tecnología que se adapta a tu forma de aprender
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                {t("third-section-subheading")}
               </p>
               <div className="w-full max-w-4xl mx-auto">
                 <EnhancedAIEmpowerment />

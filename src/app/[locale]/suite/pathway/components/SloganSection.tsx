@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useTranslations } from 'next-intl';
 
 const SloganSection = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -9,6 +10,8 @@ const SloganSection = () => {
     target: ref,
     offset: ["start end", "end start"],
   });
+
+  const t = useTranslations("Pathway");
 
   // Smooth scroll-driven animations
   const y1 = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
@@ -39,11 +42,11 @@ const SloganSection = () => {
             transition={{ duration: 0.8 }}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight"
           >
-            <span className="block mb-2">¡LA</span>
+            <span className="block mb-2">{t("under-hero-heading-1")}</span>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-orange-500">
-              REVOLUCIÓN
+            {t("under-hero-heading-2")}
             </span>
-            <span className="block">COMIENZA CONTIGO!</span>
+            <span className="block">{t("under-hero-heading-3")}</span>
           </motion.h3>
 
           {/* Subtitle */}
@@ -53,12 +56,12 @@ const SloganSection = () => {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="text-xl sm:text-2xl md:text-3xl text-white/80 max-w-2xl"
           >
-            <span className="text-white/60">Toma el</span>{" "}
-            <span className="font-semibold text-white">control</span>{" "}
-            <span className="text-white/60">de tus</span>{" "}
-            <span className="font-bold text-amber-300">metas</span>{" "}
-            <span className="text-white/60">y potencia tu</span>{" "}
-            <span className="italic text-purple-300">productividad.</span>
+            <span className="text-white/60">{t("under-hero-subheading-1")}</span>{" "}
+            <span className="font-semibold text-white">{t("under-hero-subheading-2")}</span>{" "}
+            <span className="text-white/60">{t("under-hero-subheading-3")}</span>{" "}
+            <span className="font-bold text-amber-300">{t("under-hero-subheading-4")}</span>{" "}
+            <span className="text-white/60">{t("under-hero-subheading-5")}</span>{" "}
+            <span className="italic text-purple-300">{t("under-hero-subheading-6")}</span>
           </motion.p>
         </motion.div>
       </motion.div>
