@@ -3,16 +3,28 @@ import type { Metadata } from "next";
 import { myCustomFont } from "@/src/lib/styles/fonts";
 import { AnimatePresence } from "framer-motion";
 import { globalKeywords } from "../../lib/seo/keywords";
-import { Locale, NextIntlClientProvider } from 'next-intl';
-import { notFound } from 'next/navigation';
-import "./globals.css";
 import { ReactNode } from "react";
+import ClientProviders from "@/src/components/providers";
+import { CyberpunkFooter } from "./components/Footer/Footer";
 import { getMessages, setRequestLocale } from "next-intl/server";
+import "./globals.css";
 
-export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
-    return {
+// Proper typing for params that might be a Promise
+type Props = {
+  children: ReactNode;
+  params: Promise<{ locale: string }> | { locale: string };
+};
+
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
+  // Safely resolve params if it's a Promise
+  const resolvedParams = await Promise.resolve(params);
+  const locale = resolvedParams.locale;
+  
+  return {
     title: {
-      default: "AI Haven Labs | AI-Powered Productivity Suite",
+      default: `AI Haven Labs / ${locale} | AI-Powered Productivity Suite`,
       template: "%s | AI Haven Labs"
     },
     description: "Building AI tools to enhance human potential through technology. Explore our suite of productivity applications.",
@@ -42,41 +54,31 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
       icon: "/favicon.ico",
       apple: "/apple-touch-icon.png"
     }
-  }
+  };
 }
 
-export default async function LocaleLayout({
+export default async function RootLayout({
   children,
   params
-}: {
-  children: ReactNode;
-  params: Promise<{ locale: string }>;
-}) {
-  // Validate locale first
-  const { locale } = await params;
+}: Props) {
+  // Safely resolve params if it's a Promise
+  const resolvedParams = await Promise.resolve(params);
+  const locale = resolvedParams.locale;
 
-  // Must call setRequestLocale FIRST
   setRequestLocale(locale);
   
-  // Then get messages
   const messages = await getMessages();
 
   return (
     <html lang={locale}>
       <body className={`${myCustomFont.variable} antialiased`}>
-        <NextIntlClientProvider
-          locale={locale}
-          messages={messages}
-          now={new Date()}
-          timeZone="UTC"
-        >
-          {children}
-        </NextIntlClientProvider>
+        <ClientProviders locale={locale} messages={messages}>
+          <AnimatePresence mode="wait">
+            {children}
+          </AnimatePresence>
+          <CyberpunkFooter />
+        </ClientProviders>
       </body>
     </html>
   );
 }
-
-export const generateStaticParams = () => {
-  return [{ locale: 'en' }, { locale: 'es' }];
-};
