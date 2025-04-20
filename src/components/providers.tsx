@@ -1,13 +1,13 @@
-// app/components/providers.tsx
+// src/components/providers.tsx
 'use client';
 
 import { NextIntlClientProvider } from 'next-intl';
 import { PropsWithChildren } from 'react';
+import { AbstractIntlMessages } from 'next-intl';
 
 type Props = {
   locale: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  messages: any; // Using 'any' to avoid type issues
+  messages: AbstractIntlMessages;
 };
 
 const timeZone = "Europe/Amsterdam";

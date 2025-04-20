@@ -2,25 +2,16 @@
 import type { Metadata } from "next";
 import { myCustomFont } from "@/src/lib/styles/fonts";
 import { AnimatePresence } from "framer-motion";
-import { globalKeywords } from "../../lib/seo/keywords";
+import { globalKeywords } from "@/src/lib/seo/keywords";
 import { ReactNode } from "react";
 import ClientProviders from "@/src/components/providers";
-//import { CyberpunkFooter } from "./components/Footer/Footer";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { getMessages } from "next-intl/server";
 import "./globals.css";
+import { detectLocale } from './locale-detector';
 
-// Proper typing for params that might be a Promise
-type Props = {
-  children: ReactNode;
-  params: Promise<{ locale: string }> | { locale: string };
-};
-
-export async function generateMetadata(
-  { params }: Props
-): Promise<Metadata> {
-  // Safely resolve params if it's a Promise
-  const resolvedParams = await Promise.resolve(params);
-  const locale = resolvedParams.locale;
+// Server component for metadata
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = detectLocale(); // Custom locale detection
   
   return {
     title: {
@@ -59,23 +50,19 @@ export async function generateMetadata(
 
 export default async function RootLayout({
   children,
-  params
-}: Props) {
-  // Safely resolve params if it's a Promise
-  const resolvedParams = await Promise.resolve(params);
-  const locale = resolvedParams.locale;
-  
-  setRequestLocale(locale);
+}: {
+  children: ReactNode;
+}) {
+  const locale = await detectLocale(); // Custom locale detection
   const messages = await getMessages({ locale });
 
   return (
-    <html lang={locale}>
-      <body className={`${myCustomFont.variable} antialiased`}>
+    <html lang={locale} className={myCustomFont.variable}>
+      <body className="antialiased">
         <ClientProviders locale={locale} messages={messages}>
           <AnimatePresence mode="wait">
             {children}
           </AnimatePresence>
-          {/*<CyberpunkFooter />*/}
         </ClientProviders>
       </body>
     </html>

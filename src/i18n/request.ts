@@ -1,14 +1,13 @@
 // src/i18n/request.ts
 import { getRequestConfig } from 'next-intl/server';
+import { cookies } from 'next/headers';
 
 export default getRequestConfig(async ({ locale }) => {
-  
-  // Since we know the locale should be available, we'll use the URL path as fallback
-  // This is a workaround for the undefined locale issue
-  const effectiveLocale = locale || process.env.NEXT_PUBLIC_DEFAULT_LOCALE || 'en-US';
+  // Fallback to cookie if locale is undefined
+  const cookieLocale = (await cookies()).get('NEXT_LOCALE')?.value;
+  const effectiveLocale = locale || cookieLocale || 'en-US';
   
   try {
-    // Import the messages for the current locale
     const messages = (await import(`../messages/${effectiveLocale}.json`)).default;
     
     return {
@@ -20,7 +19,7 @@ export default getRequestConfig(async ({ locale }) => {
   } catch (error) {
     console.error(`Error loading messages for ${effectiveLocale}:`, error);
     
-    // Fallback to en-US if there's an error loading the messages
+    // Fallback to en-US if there's an error
     if (effectiveLocale !== 'en-US') {
       const fallbackMessages = (await import('../messages/en-US.json')).default;
       

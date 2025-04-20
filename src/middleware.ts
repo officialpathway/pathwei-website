@@ -1,20 +1,38 @@
 // src/middleware.ts
-import { NextResponse, type NextRequest } from 'next/server';
+import { type NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
 const PRICE_OPTIONS = [4.99, 7.49, 9.99];
+const LOCALES = ['en-US', 'es-ES'];
+const DEFAULT_LOCALE = 'en-US';
 
 const intlMiddleware = createMiddleware({
-  locales: ['en-US', 'es-ES'],
-  defaultLocale: 'en-US',
+  locales: LOCALES,
+  defaultLocale: DEFAULT_LOCALE,
   localePrefix: 'as-needed',
 });
 
 export default async function middleware(request: NextRequest) {
-  const response = NextResponse.next();
+  // Handle locale cookie
+  const localeCookie = request.cookies.get('NEXT_LOCALE');
+  const pathLocale = request.nextUrl.pathname.split('/')[1];
   
+  // Set locale cookie if not present or doesn't match path
+  if (!localeCookie || !LOCALES.includes(localeCookie.value)) {
+    const effectiveLocale = LOCALES.includes(pathLocale) 
+      ? pathLocale 
+      : DEFAULT_LOCALE;
+    
+    request.cookies.set({
+      name: 'NEXT_LOCALE',
+      value: effectiveLocale
+    });
+  }
+
   // Handle price A/B testing
+  const response = intlMiddleware(request);
   const priceCookie = request.cookies.get('selected_price');
+  
   if (!priceCookie?.value) {
     const randomIndex = Math.floor(Math.random() * PRICE_OPTIONS.length);
     response.cookies.set({
@@ -22,14 +40,12 @@ export default async function middleware(request: NextRequest) {
       value: PRICE_OPTIONS[randomIndex].toString(),
       maxAge: 60 * 60 * 24 * 30,
       sameSite: 'lax',
-      secure: process.env.NODE_ENV === 'production',
-      path: '/',
+      secure: process.env.NODE_ENV === 'production'
     });
-  }
 
-  return intlMiddleware(request);
+  return response;
 }
-
+}
 export const config = {
   matcher: [
     /*
