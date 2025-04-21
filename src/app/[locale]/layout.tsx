@@ -8,14 +8,15 @@ import ClientProviders from "@/src/components/providers";
 import { getMessages } from "next-intl/server";
 import "./globals.css";
 import { detectLocale } from './locale-detector';
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react"
 
 // Server component for metadata
 export async function generateMetadata(): Promise<Metadata> {
-  const locale = detectLocale(); // Custom locale detection
   
   return {
     title: {
-      default: `AI Haven Labs / ${locale} | AI-Powered Productivity Suite`,
+      default: `AI Haven Labs | AI-Powered Productivity Suite`,
       template: "%s | AI Haven Labs"
     },
     description: "Building AI tools to enhance human potential through technology. Explore our suite of productivity applications.",
@@ -63,6 +64,8 @@ export default async function RootLayout({
           <AnimatePresence mode="wait">
             {children}
           </AnimatePresence>
+          <SpeedInsights />
+          <Analytics />
         </ClientProviders>
       </body>
     </html>

@@ -31,10 +31,12 @@ export default function StatsPage() {
       
       const basicAuth = btoa(`${credentials.username}:${credentials.password}`);
       
-      const response = await fetch('/api/track-price', {
-        method: 'GET',
+      // Add a leading slash to ensure absolute path
+      const response = await fetch('/api/locale-stats', {
         headers: {
-          'Authorization': `Basic ${basicAuth}`
+          'Authorization': `Basic ${basicAuth}`,
+          // Add Content-Type header if needed
+          'Content-Type': 'application/json'
         }
       });
       

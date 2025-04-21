@@ -14,15 +14,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // Fetch the existing content of the blob (if it exists)
       let existingContent = "";
       try {
-        const { blobs } = await list({ token: process.env.BLOB_READ_WRITE_TOKEN });
-        const emailsBlob = blobs.find(b => b.pathname === 'emails.txt');
-        if (emailsBlob) {
-          const response = await fetch(emailsBlob.url);
+        const { blobs } = await list({ 
+          prefix: "emails.txt",
+          token: process.env.BLOB_READ_WRITE_TOKEN 
+        });
+        
+        if (blobs.length > 0) {
+          const response = await fetch(blobs[0].url);
           existingContent = await response.text();
         }
-      } catch (error: unknown) {
-        // If the blob doesn't exist, ignore the error
-        if (typeof error === 'object' && error && 'status' in error && error.status !== 404) throw error;
+      } catch (error) {
+        console.error("Error fetching existing blob:", error);
+        // Continue with empty content if blob doesn't exist
       }
 
       // Append the new email to the existing content
@@ -32,15 +35,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const blob = await put("emails.txt", updatedContent, {
         access: "public",
         token: process.env.BLOB_READ_WRITE_TOKEN,
-        addRandomSuffix: false, // Ensure the same file is updated
+        addRandomSuffix: false,
+        allowOverwrite: true // This is the critical fix
       });
 
       console.log("Email saved to blob:", blob.url);
-
       return res.status(200).json({ message: "Subscription successful!" });
     } catch (error) {
       console.error("Error saving email to blob:", error);
-      return res.status(500).json({ error: "Failed to subscribe. Please try again." });
+      return res.status(500).json({ 
+        error: "Failed to subscribe. Please try again.",
+        details: error instanceof Error ? error.message : "Unknown error"
+      });
     }
   } else {
     return res.status(405).json({ error: "Method not allowed" });

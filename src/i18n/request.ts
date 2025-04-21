@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 export default getRequestConfig(async ({ locale }) => {
   // Fallback to cookie if locale is undefined
   const cookieLocale = (await cookies()).get('NEXT_LOCALE')?.value;
-  const effectiveLocale = locale || cookieLocale || 'en-US';
+  const effectiveLocale = locale || cookieLocale || 'en';
   
   try {
     const messages = (await import(`../messages/${effectiveLocale}.json`)).default;
@@ -19,12 +19,12 @@ export default getRequestConfig(async ({ locale }) => {
   } catch (error) {
     console.error(`Error loading messages for ${effectiveLocale}:`, error);
     
-    // Fallback to en-US if there's an error
-    if (effectiveLocale !== 'en-US') {
-      const fallbackMessages = (await import('../messages/en-US.json')).default;
+    // Fallback to en if there's an error
+    if (effectiveLocale !== 'en') {
+      const fallbackMessages = (await import('../messages/en.json')).default;
       
       return {
-        locale: 'en-US',
+        locale: 'en',
         messages: fallbackMessages,
         now: new Date(),
         timeZone: 'Europe/Amsterdam',

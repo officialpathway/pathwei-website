@@ -1,9 +1,9 @@
 // src/lib/locale-detector.ts
 import { cookies, headers } from 'next/headers';
 
-const SUPPORTED_LOCALES = ['en-US', 'es-ES'] as const;
+const SUPPORTED_LOCALES = ['en', 'es'] as const;
 type SupportedLocale = typeof SUPPORTED_LOCALES[number];
-const DEFAULT_LOCALE: SupportedLocale = 'en-US';
+const DEFAULT_LOCALE: SupportedLocale = 'en';
 
 /**
  * Detects the user's preferred locale using multiple fallback methods
@@ -59,7 +59,7 @@ async function getHeaderLocale(): Promise<SupportedLocale | null> {
       return lang as SupportedLocale;
     }
 
-    // Check language-only match (e.g., 'es' for 'es-ES')
+    // Check language-only match (e.g., 'es' for 'es')
     const languageOnly = lang.split('-')[0];
     const matchedLocale = SUPPORTED_LOCALES.find(locale => 
       locale.toLowerCase().startsWith(languageOnly)
