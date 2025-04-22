@@ -19,31 +19,37 @@ export default function AdminHub() {
 
   // Check for existing auth cookie on mount
   useEffect(() => {
-    const authCookie = Cookies.get('adminAuth');
-    if (authCookie) {
-      setAuthenticated(true);
-    }
+    const checkAuth = async () => {
+      try {
+        const res = await fetch('/api/auth/check', {
+          credentials: 'include',
+        });
+        const data = await res.json();
+        if (data.authenticated) {
+          setAuthenticated(true);
+        }
+      } catch {
+        setAuthenticated(false);
+      }
+    };
+  
+    checkAuth();
   }, []);
+  
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     try {
       const basicAuth = btoa(`${credentials.username}:${credentials.password}`);
-      const response = await fetch('/api/validate-auth', {
+      const response = await fetch('/api/admin/validate-auth', {
         method: 'POST',
         headers: {
           'Authorization': `Basic ${basicAuth}`
-        }
+        },
+        credentials: 'include' // 👈 IMPORTANTE para que acepte cookies
       });
 
       if (!response.ok) throw new Error('Invalid credentials');
-      
-      // Set cookie with 1 hour expiration
-      Cookies.set('adminAuth', 'true', { 
-        expires: 1 / 24, // 1 hour in days
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict'
-      });
       
       setAuthenticated(true);
     } catch (err) {

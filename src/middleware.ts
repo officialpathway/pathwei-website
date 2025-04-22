@@ -1,4 +1,3 @@
-// src/middleware.ts
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
@@ -15,21 +14,23 @@ const intlMiddleware = createMiddleware({
 });
 
 export default async function middleware(request: NextRequest) {
-  // Skip non-page requests
-  if (request.nextUrl.pathname.includes('.') || 
-      request.nextUrl.pathname.startsWith('/_next')) {
+  const pathname = request.nextUrl.pathname;
+
+
+  // 2. Skip non-page requests (existing logic)
+  if (pathname.includes('.') || pathname.startsWith('/_next')) {
     return NextResponse.next();
   }
 
-  // Handle root redirect
-  if (request.nextUrl.pathname === '/') {
+  // 3. Handle root redirect (existing logic)
+  if (pathname === '/') {
     return NextResponse.redirect(new URL(`/${DEFAULT_LOCALE}`, request.url));
   }
 
   const response = intlMiddleware(request);
-  const pathLocale = request.nextUrl.pathname.split('/')[1] || DEFAULT_LOCALE;
+  const pathLocale = pathname.split('/')[1] || DEFAULT_LOCALE;
 
-  // Track locale usage
+  // 4. Track locale usage (existing logic)
   if (LOCALES.includes(pathLocale)) {
     const timestamp = new Date().toISOString();
     const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
@@ -42,14 +43,14 @@ export default async function middleware(request: NextRequest) {
       timestamp,
       ip,
       userAgent,
-      path: request.nextUrl.pathname
+      path: pathname
     }), {
       access: 'public',
       contentType: 'application/json'
     });
   }
 
-  // Handle price A/B testing
+  // 5. Handle price A/B testing (existing logic)
   const priceCookie = request.cookies.get('selected_price');
   if (!priceCookie?.value) {
     const randomIndex = Math.floor(Math.random() * PRICE_OPTIONS.length);
@@ -67,8 +68,9 @@ export default async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
+    // Include both existing matchers and admin API routes
     '/((?!api|_next|_vercel|.*\\..*).*)',
-    // Explicitly exclude admin from locale matching
+    '/api/admin/:path*',
     '/((?!admin).*)'
   ]
 };

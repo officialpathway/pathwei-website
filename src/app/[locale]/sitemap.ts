@@ -1,34 +1,27 @@
 // src/app/sitemap.ts
-import { MetadataRoute } from 'next/dist/lib/metadata/types/metadata-interface'
-import pathwaySitemap from './suite/pathway/sitemap'
+import { MetadataRoute } from 'next';
+import pathwaySitemap from './suite/pathway/sitemap';
+
+const locales = ['en', 'es']; // Supported locales
+const baseUrl = 'https://aihavenlabs.com';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const basePages = [
-    {
-      url: 'https://aihavenlabs.com',
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 1.0,
-    },
-    {
-      url: 'https://aihavenlabs.com/suite',
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8, // Important (product showcase)
-    },
-    {
-      url: 'https://aihavenlabs.com/team',
-      lastModified: new Date(),
-      changeFrequency: 'yearly' as const,
-      priority: 0.5, // Lower (static page)
-    },
-    {
-      url: 'https://aihavenlabs.com/privacy',
-      lastModified: new Date(),
-      changeFrequency: 'yearly' as const,
-      priority: 0.3, // Lowest (legal page)
-    },
+    { url: '/', changefreq: 'weekly', priority: 1.0 },
+    { url: '/suite', changefreq: 'monthly', priority: 0.8 },
+    { url: '/team', changefreq: 'yearly', priority: 0.5 },
+    { url: '/privacy', changefreq: 'yearly', priority: 0.3 },
   ];
 
-  return [...basePages, ...pathwaySitemap()];
+  // Generate localized URLs
+  const localizedUrls = basePages.flatMap((page) => 
+    locales.map((locale) => ({
+      url: `${baseUrl}/${locale}${page.url}`,
+      lastModified: new Date(),
+      changefreq: page.changefreq,
+      priority: page.priority,
+    }))
+  );
+
+  return [...localizedUrls, ...pathwaySitemap()];
 }

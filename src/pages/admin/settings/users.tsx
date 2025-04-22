@@ -21,6 +21,7 @@ import {
 import { MoreVertical, Search, Mail, Trash2, Edit } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
+import { useAdminAuthGuard } from '@/hooks/useAdminAuthGuard';
 
 type User = {
   id: string;
@@ -32,6 +33,7 @@ type User = {
 };
 
 export default function UserManagement() {
+  useAdminAuthGuard();
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 8;

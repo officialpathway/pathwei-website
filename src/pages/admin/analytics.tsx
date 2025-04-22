@@ -17,8 +17,11 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
+import { useAdminAuthGuard } from '@/hooks/useAdminAuthGuard';
 
 export default function AnalyticsDashboard() {
+  useAdminAuthGuard();
+
   // Date range state
   const [dateRange, setDateRange] = useState({
     start: new Date(new Date().setDate(new Date().getDate() - 30)),

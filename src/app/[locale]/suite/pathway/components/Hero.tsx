@@ -37,7 +37,7 @@ const Hero = () => {
 
   const trackClick = async (clickedPrice: number) => {
     try {
-      await fetch('/api/track-price', {
+      await fetch('/api/public/track-price', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

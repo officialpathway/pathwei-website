@@ -28,7 +28,7 @@ export default function LocaleStatsPage() {
 
   async function fetchStats() {
     try {
-      const response = await fetch('/api/locale-stats');
+      const response = await fetch('/api/public/locale-stats');
       
       if (!response.ok) {
         if (response.status === 401) {

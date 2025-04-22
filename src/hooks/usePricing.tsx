@@ -34,7 +34,7 @@ export function usePricing() {
   // Function to track clicks
   const trackClick = async (clickedPrice: number) => {
     try {
-      await fetch('/api/track-price', {
+      await fetch('/api/public/track-price', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export function usePricing() {
   // Function to track conversions (when purchase completed)
   const trackConversion = async (conversionPrice: number) => {
     try {
-      await fetch('/api/track-price', {
+      await fetch('/api/public/track-price', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

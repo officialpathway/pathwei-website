@@ -28,17 +28,8 @@ export default function StatsPage() {
     try {
       setLoading(true);
       setError(null);
-      
-      const basicAuth = btoa(`${credentials.username}:${credentials.password}`);
-      
-      // Add a leading slash to ensure absolute path
-      const response = await fetch('/api/locale-stats', {
-        headers: {
-          'Authorization': `Basic ${basicAuth}`,
-          // Add Content-Type header if needed
-          'Content-Type': 'application/json'
-        }
-      });
+            
+      const response = await fetch('/api/locale-stats');
       
       if (!response.ok) {
         if (response.status === 401) {
@@ -136,6 +127,7 @@ export default function StatsPage() {
           </div>
           {authenticated && (
             <button 
+              type='button'
               onClick={() => {
                 setAuthenticated(false);
                 setStats([]);
@@ -303,6 +295,7 @@ export default function StatsPage() {
                 </div>
                 <div className="flex space-x-3">
                   <button
+                    type='button'
                     onClick={fetchStats}
                     disabled={loading}
                     className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"

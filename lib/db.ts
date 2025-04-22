@@ -4,6 +4,11 @@ import { put, head, del } from '@vercel/blob';
 const BLOB_KEY_PREFIX = 'price-tracking';
 const STATS_BLOB_KEY = `${BLOB_KEY_PREFIX}/stats`;
 
+
+// Add these constants at the top
+const SEO_BLOB_KEY = 'seo/settings';
+const SITEMAP_METADATA_KEY = 'seo/sitemap-metadata';
+
 // Type definition for our price tracking stats
 interface PriceStats {
   prices: {
@@ -129,6 +134,89 @@ export async function resetStats(): Promise<boolean> {
     return true;
   } catch (error) {
     console.error('Error resetting stats:', error);
+    return false;
+  }
+}
+
+// Type definitions
+interface SEOSettings {
+  title: string;
+  description: string;
+  keywords: string;
+  allowIndexing: boolean;
+  ogTitle: string;
+  ogDescription: string;
+  ogImage: string;
+  twitterCard: string;
+  twitterImage: string;
+}
+
+interface SitemapMetadata {
+  lastGenerated: string;
+  status: 'active' | 'inactive' | 'error';
+}
+
+// Helper to handle blob operations
+async function getBlobJSON<T>(key: string, defaultValue: T): Promise<T> {
+  try {
+    const blob = await head(key).catch(() => null);
+    if (!blob) return defaultValue;
+    
+    const response = await fetch(blob.url);
+    return await response.json() as T;
+  } catch (error) {
+    console.error(`Error reading ${key}:`, error);
+    return defaultValue;
+  }
+}
+
+// Sitemap Metadata Operations
+export async function getSitemapMetadata(): Promise<SitemapMetadata> {
+  return getBlobJSON(SITEMAP_METADATA_KEY, {
+    lastGenerated: new Date(0).toISOString(),
+    status: 'inactive'
+  });
+}
+
+export async function updateSitemapMetadata(metadata: Partial<SitemapMetadata>): Promise<boolean> {
+  try {
+    const current = await getSitemapMetadata();
+    await put(SITEMAP_METADATA_KEY, JSON.stringify({ ...current, ...metadata }), {
+      contentType: 'application/json',
+      access: 'public',
+    });
+    return true;
+  } catch (error) {
+    console.error('Error updating sitemap metadata:', error);
+    return false;
+  }
+}
+
+// SEO Settings Operations
+export async function getSEOSettings(): Promise<SEOSettings> {
+  const defaults: SEOSettings = {
+    title: "AI Haven Labs | AI-Powered Productivity Suite",
+    description: "Building AI tools to enhance human potential",
+    keywords: "AI, productivity, tools, technology",
+    allowIndexing: true,
+    ogTitle: "AI Haven Labs",
+    ogDescription: "Next-gen AI tools for growth",
+    ogImage: "/og-default.jpg",
+    twitterCard: "summary_large_image",
+    twitterImage: "/twitter-default.jpg"
+  };
+  return getBlobJSON(SEO_BLOB_KEY, defaults);
+}
+
+export async function saveSEOSettings(settings: SEOSettings): Promise<boolean> {
+  try {
+    await put(SEO_BLOB_KEY, JSON.stringify(settings), {
+      contentType: 'application/json',
+      access: 'public',
+    });
+    return true;
+  } catch (error) {
+    console.error('Error saving SEO settings:', error);
     return false;
   }
 }

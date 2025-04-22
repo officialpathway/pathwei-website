@@ -7,8 +7,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
+import { useAdminAuthGuard } from "@/hooks/useAdminAuthGuard";
 
 export default function GeneralSettings() {
+  useAdminAuthGuard();
+
   const [settings, setSettings] = useState({
     siteTitle: "AI Haven Labs",
     siteDescription: "Building AI tools to enhance human potential through technology",

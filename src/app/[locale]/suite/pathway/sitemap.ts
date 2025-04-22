@@ -1,23 +1,14 @@
 // src/app/suite/pathway/sitemap.ts
 import { MetadataRoute } from 'next'
 
+const locales = ['en', 'es']; // Supported locales
+const baseUrl = 'https://aihavenlabs.com';
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: 'https://aihavenlabs.com/suite/pathway',
-      lastModified: new Date(),
-      changeFrequency: 'monthly', // Landing pages change less often
-      priority: 0.7 // Lower than main product pages
-    },
-    /* Add localized versions if needed:
-    {
-      url: 'https://aihavenlabs.com/es/suite/pathway',
-      alternates: {
-        languages: {
-          es: 'https://aihavenlabs.com/es/suite/pathway',
-          en: 'https://aihavenlabs.com/suite/pathway',
-        }
-      }
-    } */
-  ]
+  return locales.map((locale) => ({
+    url: `${baseUrl}/${locale}/suite/pathway`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
 }
