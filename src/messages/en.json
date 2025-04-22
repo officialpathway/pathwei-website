@@ -302,9 +302,12 @@
     "subscription-success": "Thank you for subscribing",
     "subscription-failed": "There was an error subscribing you. Please try again.",
     "success-checker": "Thank you",
+    "terms-agreement": "By subscribing, I agree to the",
+    "terms-link": "Terms and Conditions",
+    "agree-to-terms": "Please agree to the terms and conditions to continue.",
 
     "footer-rights": "© 2025 Pathway. All rights reserved.",
-    "footer-message": "Thank you for joining us on the journey.",
+    "footer-privacy-policy": "Our privacy policy.",
 
     "loading": "Loading...",
 
@@ -321,6 +324,97 @@
         "pedal": "What does the right pedal do?",
         "answer_pedal": "Sustains the notes (wrong: makes sound louder)"
       }
+    },
+
+    "Terms": {
+      "page-title": "Terms and Conditions",
+      "last-updated": "Last updated: {date}",
+      "update-date": "April 22, 2025",
+      
+      "intro-paragraph": "Welcome to our application. These Terms and Conditions govern your use of our newsletter service and outline the rules for subscribing to our communications.",
+      "acceptance-paragraph": "By subscribing to our newsletter, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not subscribe to our newsletter.",
+      
+      "newsletter-section-title": "Newsletter Service Description",
+      "newsletter-description": "Our newsletter is designed to keep subscribers informed about our application and services. By subscribing, you will receive emails related to:",
+      "newsletter-purpose-commercial": "Commercial offers, promotions, and discount opportunities related to our application",
+      "newsletter-purpose-beta": "Invitations to participate in beta testing of new application features and functionalities",
+      "newsletter-purpose-features": "Polls and surveys regarding potential new features and your preferences",
+      "newsletter-purpose-announcements": "Launch announcements for new features, services, and application updates",
+      
+      "subscription-section-title": "Subscription Terms",
+      "subscription-paragraph-1": "To subscribe to our newsletter, you must provide a valid email address. You are responsible for ensuring the accuracy of the information you provide.",
+      "subscription-paragraph-2": "The frequency of our communications may vary based on our release schedule, promotions, and other factors. We aim to send relevant content and avoid excessive communications.",
+      
+      "privacy-section-title": "Privacy and Data Usage",
+      "privacy-paragraph-1": "When you subscribe to our newsletter, we collect your email address and any other information you voluntarily provide. This information is used to send you the newsletter and to personalize content based on your preferences.",
+      "privacy-paragraph-2": "We may use tracking technologies to monitor how subscribers interact with our emails, including open rates and click-through rates. This data helps us improve our communications and services.",
+      "privacy-paragraph-3": "Your personal information will be handled in accordance with our Privacy Policy. We will not sell or rent your email address to third parties, although we may share anonymized, aggregated data for analytical purposes.",
+
+      "unsubscribe-section-title": "Unsubscribing",
+      "unsubscribe-paragraph": "You may unsubscribe from our newsletter at any time by clicking the 'Unsubscribe' link included in every email we send, or by contacting us directly. Upon unsubscribing, we will promptly remove your email address from our distribution list for marketing communications, though we may retain certain information as required for legal or legitimate business purposes.",
+      
+      "content-section-title": "Newsletter Content",
+      "content-paragraph-1": "While we strive to ensure the accuracy of the information contained in our newsletters, we do not warrant that all content will be error-free. Promotional offers may be subject to additional terms and conditions, which will be clearly communicated.",
+      "content-paragraph-2": "We reserve the right to determine the content, timing, and recipients of our newsletters. Beta testing invitations and feature polls may be sent to selected segments of our subscriber base based on usage patterns, previous feedback, or other criteria.",
+      
+      "changes-section-title": "Changes to Terms",
+      "changes-paragraph": "We reserve the right to modify these Terms and Conditions at any time. We will notify subscribers of any material changes via email. Your continued subscription to our newsletter following such notification constitutes your acceptance of the revised terms.",
+      
+      "contact-section-title": "Contact Us",
+      "contact-paragraph": "If you have questions or concerns about these Terms and Conditions or our newsletter service, please contact our support team. We are committed to addressing your inquiries promptly and thoroughly.",
+      
+      "back-to-home": "Back to Home"
+    },
+
+    "Privacy": {
+      "page-title": "Privacy Policy",
+      "last-updated": "Last updated: {date}",
+      "update-date": "April 22, 2025",
+      
+      "intro-paragraph": "This Privacy Policy explains how we collect, use, and protect information when you use our application and services. We are committed to ensuring the privacy and security of all our users.",
+      "scope-paragraph": "By using our application, subscribing to our newsletter, or interacting with our services, you consent to the practices described in this Privacy Policy.",
+      
+      "collection-section-title": "Information We Collect",
+      "collection-paragraph": "We collect minimal information necessary to provide and improve our services. This may include:",
+      "collection-email": "Email address (when subscribing to our newsletter)",
+      "collection-usage": "Anonymous usage data (such as interaction patterns and feature usage)",
+      "collection-feedback": "Voluntary feedback and survey responses",
+      
+      "ai-section-title": "Artificial Intelligence Usage",
+      "ai-paragraph-1": "Our application utilizes artificial intelligence (AI) technologies to enhance user experience. Our AI systems operate without collecting or processing personal data.",
+      "ai-paragraph-2": "All AI functionality is designed with privacy by design principles, ensuring that no personally identifiable information is required for the AI features to function effectively.",
+      "ai-paragraph-3": "Our AI systems are used primarily for:",
+      "ai-use-recommendations": "Generating personalized recommendations based on anonymized usage patterns",
+      "ai-use-content": "Creating and optimizing content within the application",
+      "ai-use-support": "Providing automated support responses based on common queries",
+      
+      "no-personal-data-title": "No Collection of Personal Data",
+      "no-personal-data-paragraph-1": "Our AI systems are specifically designed to function without collecting, storing, or processing personal data. They operate on anonymized and aggregated data patterns that cannot be traced back to individual users.",
+      "no-personal-data-paragraph-2": "When interacting with AI features in our application, your inputs are processed in real-time and are not stored or used to build user profiles.",
+      
+      "cookies-section-title": "Cookies and Similar Technologies",
+      "cookies-paragraph-1": "We use essential cookies to ensure the proper functioning of our application. These cookies do not track your browsing activity on other websites or collect personal information.",
+      "cookies-paragraph-2": "You can configure your browser to refuse cookies, although this may limit your ability to use certain features of our application.",
+      
+      "security-section-title": "Data Security",
+      "security-paragraph": "We implement appropriate technical and organizational measures to protect the information we collect and process. However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.",
+      
+      "third-party-section-title": "Third-Party Services",
+      "third-party-paragraph": "Our application may integrate with third-party services for specific functionalities. These services have their own privacy policies, and we encourage you to review them. We do not share your information with third parties for marketing purposes.",
+      
+      "rights-section-title": "Your Rights",
+      "rights-paragraph": "You have certain rights regarding your information. These include:",
+      "rights-access": "The right to access any information we have about you",
+      "rights-delete": "The right to request deletion of your email address from our newsletter subscription list",
+      "rights-object": "The right to object to processing of your information",
+      
+      "changes-section-title": "Changes to This Policy",
+      "changes-paragraph": "We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify users of any material changes via email or through the application.",
+      
+      "contact-section-title": "Contact Us",
+      "contact-paragraph": "If you have questions or concerns about this Privacy Policy or our data practices, please contact our support team. We are committed to addressing your inquiries promptly and thoroughly.",
+      
+      "back-to-home": "Back to Home"
     }
   }
 }

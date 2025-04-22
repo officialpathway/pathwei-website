@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from '@/src/components/LanguageSwitcher';
+import Link from 'next/link';
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -60,15 +61,17 @@ export const Header = () => {
       >
         <div className="container mx-auto px-4 h-full flex justify-between items-center">
           {/* Logo */}
-          <div className="flex items-center">
-            <Image 
-              src="/images/pathway/logo.png"
-              alt="Pathway"
-              width={32}
-              height={32}
-            />
-            <span className="ml-2 text-white font-bold">Pathway</span>
-          </div>
+          <Link href="/suite/pathway">
+            <div className="flex items-center">
+              <Image 
+                src="/images/pathway/logo.png"
+                alt="Pathway"
+                width={32}
+                height={32}
+              />
+              <span className="ml-2 text-white font-bold">Pathway</span>
+            </div>
+          </Link>
 
           {/* Desktop Nav */}
           {!isMobile && (

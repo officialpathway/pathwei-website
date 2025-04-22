@@ -185,7 +185,7 @@ export async function uploadAvatar(userId: string, file: File) {
       formData.append('file', file);
       
       // Call the API endpoint
-      const response = await fetch('/api/admin/upload-avatar', {
+      const response = await fetch('/api/admin/user-management/upload-avatar', {
         method: 'POST',
         body: formData,
         // No need to set content-type, it will be set automatically for FormData

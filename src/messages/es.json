@@ -302,9 +302,12 @@
     "subscription-success": "Gracias por suscribirte",
     "subscription-failed": "Hubo un error al suscribirte. Por favor inténtalo de nuevo.",
     "success-checker": "Gracias",
+    "terms-agreement": "Al suscribirme, acepto que",
+    "terms-link": "Términos y Condiciones",
+    "agree-to-terms": "Por favor acepta los términos y condiciones antes de continuar.",
 
     "footer-rights": "© 2025 Pathway. Todos los derechos reservados.",
-    "footer-message": "Gracias por acompañarnos en el viaje.",
+    "footer-privacy-policy": "Política de privacidad.",
 
     "loading": "Cargando...",
 
@@ -321,6 +324,97 @@
         "pedal": "¿Qué hace el pedal de la derecha?",
         "answer_pedal": "Mantiene las notas (incorrecto: hace el sonido más fuerte)"
       }
+    },
+
+    "Terms": {
+      "page-title": "Terminos y Condiciones",
+      "last-updated": "Última actualización: {date}",
+      "update-date": "22 de abril de 2025",
+      
+      "intro-paragraph": "Bienvenido a nuestra aplicación. Estos Términos y Condiciones regulan el uso de nuestro servicio de boletines informativos y describen las reglas para suscribirse a nuestras comunicaciones.",
+      "acceptance-paragraph": "Al suscribirse a nuestro boletín informativo, usted reconoce que ha leído, entendido y acepta estar sujeto a estos Términos y Condiciones. Si no está de acuerdo con alguna parte de estos términos, por favor no se suscriba a nuestro boletín.",
+      
+      "newsletter-section-title": "Descripción del Servicio de Boletines",
+      "newsletter-description": "Nuestro boletín está diseñado para mantener a los suscriptores informados sobre nuestra aplicación y servicios. Al suscribirse, recibirá correos electrónicos relacionados con:",
+      "newsletter-purpose-commercial": "Ofertas comerciales, promociones y oportunidades de descuento relacionadas con nuestra aplicación",
+      "newsletter-purpose-beta": "Invitaciones para participar en pruebas beta de nuevas funcionalidades y características de la aplicación",
+      "newsletter-purpose-features": "Encuestas y sondeos sobre posibles nuevas características y sus preferencias",
+      "newsletter-purpose-announcements": "Anuncios de lanzamiento de nuevas funciones, servicios y actualizaciones de la aplicación",
+      
+      "subscription-section-title": "Términos de Suscripción",
+      "subscription-paragraph-1": "Para suscribirse a nuestro boletín, debe proporcionar una dirección de correo electrónico válida. Usted es responsable de garantizar la precisión de la información proporcionada.",
+      "subscription-paragraph-2": "La frecuencia de nuestras comunicaciones puede variar según nuestro calendario de lanzamientos, promociones y otros factores. Nuestro objetivo es enviar contenido relevante y evitar comunicaciones excesivas.",
+      
+      "privacy-section-title": "Privacidad y Uso de Datos",
+      "privacy-paragraph-1": "Al suscribirse a nuestro boletín, recopilamos su dirección de correo electrónico y cualquier otra información que usted proporcione voluntariamente. Esta información se utiliza para enviarle el boletín y personalizar el contenido según sus preferencias.",
+      "privacy-paragraph-2": "Podemos utilizar tecnologías de seguimiento para monitorizar cómo los suscriptores interactúan con nuestros correos electrónicos, incluyendo tasas de apertura y clics. Estos datos nos ayudan a mejorar nuestras comunicaciones y servicios.",
+      "privacy-paragraph-3": "Su información personal será tratada de acuerdo con nuestra Política de Privacidad. No venderemos ni alquilaremos su dirección de correo electrónico a terceros, aunque podemos compartir datos anonimizados y agregados con fines analíticos.",
+      
+      "unsubscribe-section-title": "Cancelación de Suscripción",
+      "unsubscribe-paragraph": "Puede cancelar su suscripción al boletín en cualquier momento haciendo clic en el enlace 'Cancelar suscripción' incluido en cada correo electrónico que enviamos, o contactándonos directamente. Al cancelar su suscripción, eliminaremos de inmediato su dirección de correo electrónico de nuestra lista de distribución para comunicaciones de marketing, aunque podremos conservar cierta información según lo requiera la ley o fines comerciales legítimos.",
+      
+      "content-section-title": "Contenido del Boletín",
+      "content-paragraph-1": "Aunque nos esforzamos por garantizar la precisión de la información contenida en nuestros boletines, no garantizamos que todo el contenido esté libre de errores. Las ofertas promocionales pueden estar sujetas a términos y condiciones adicionales, que se comunicarán claramente.",
+      "content-paragraph-2": "Nos reservamos el derecho de determinar el contenido, la programación y los destinatarios de nuestros boletines. Las invitaciones para pruebas beta y encuestas de características pueden enviarse a segmentos seleccionados de nuestra base de suscriptores según patrones de uso, comentarios previos u otros criterios.",
+      
+      "changes-section-title": "Cambios en los Términos",
+      "changes-paragraph": "Nos reservamos el derecho de modificar estos Términos y Condiciones en cualquier momento. Notificaremos a los suscriptores sobre cualquier cambio material por correo electrónico. Su suscripción continua a nuestro boletín después de dicha notificación constituye su aceptación de los términos revisados.",
+      
+      "contact-section-title": "Contáctenos",
+      "contact-paragraph": "Si tiene preguntas o inquietudes sobre estos Términos y Condiciones o nuestro servicio de boletín informativo, por favor contacte a nuestro equipo de soporte. Estamos comprometidos a atender sus consultas de manera pronta y completa.",
+      
+      "back-to-home": "Volver al Inicio"
+    },
+
+    "Privacy": {
+      "page-title": "Politica de Privacidad",
+      "last-updated": "Última actualización: {date}",
+      "update-date": "22 de abril de 2025",
+      
+      "intro-paragraph": "Esta Política de Privacidad explica cómo recopilamos, utilizamos y protegemos la información cuando utilizas nuestra aplicación y servicios. Estamos comprometidos a garantizar la privacidad y seguridad de todos nuestros usuarios.",
+      "scope-paragraph": "Al utilizar nuestra aplicación, suscribirte a nuestro boletín o interactuar con nuestros servicios, consientes las prácticas descritas en esta Política de Privacidad.",
+      
+      "collection-section-title": "Información que Recopilamos",
+      "collection-paragraph": "Recopilamos la información mínima necesaria para proporcionar y mejorar nuestros servicios. Esto puede incluir:",
+      "collection-email": "Dirección de correo electrónico (al suscribirte a nuestro boletín)",
+      "collection-usage": "Datos de uso anónimos (como patrones de interacción y uso de funciones)",
+      "collection-feedback": "Comentarios voluntarios y respuestas a encuestas",
+      
+      "ai-section-title": "Uso de Inteligencia Artificial",
+      "ai-paragraph-1": "Nuestra aplicación utiliza tecnologías de inteligencia artificial (IA) para mejorar la experiencia del usuario. Nuestros sistemas de IA operan sin recopilar ni procesar datos personales.",
+      "ai-paragraph-2": "Toda la funcionalidad de IA está diseñada con principios de privacidad desde el diseño, asegurando que no se requiera información de identificación personal para que las funciones de IA funcionen eficazmente.",
+      "ai-paragraph-3": "Nuestros sistemas de IA se utilizan principalmente para:",
+      "ai-use-recommendations": "Generar recomendaciones personalizadas basadas en patrones de uso anonimizados",
+      "ai-use-content": "Crear y optimizar contenido dentro de la aplicación",
+      "ai-use-support": "Proporcionar respuestas de soporte automatizadas basadas en consultas comunes",
+      
+      "no-personal-data-title": "Sin Recopilación de Datos Personales",
+      "no-personal-data-paragraph-1": "Nuestros sistemas de IA están específicamente diseñados para funcionar sin recopilar, almacenar o procesar datos personales. Operan con patrones de datos anonimizados y agregados que no pueden rastrearse hasta usuarios individuales.",
+      "no-personal-data-paragraph-2": "Al interactuar con las funciones de IA en nuestra aplicación, tus entradas se procesan en tiempo real y no se almacenan ni se utilizan para crear perfiles de usuario.",
+      
+      "cookies-section-title": "Cookies y Tecnologías Similares",
+      "cookies-paragraph-1": "Utilizamos cookies esenciales para garantizar el correcto funcionamiento de nuestra aplicación. Estas cookies no rastrean tu actividad de navegación en otros sitios web ni recopilan información personal.",
+      "cookies-paragraph-2": "Puedes configurar tu navegador para rechazar cookies, aunque esto puede limitar tu capacidad para utilizar ciertas funciones de nuestra aplicación.",
+      
+      "security-section-title": "Seguridad de Datos",
+      "security-paragraph": "Implementamos medidas técnicas y organizativas apropiadas para proteger la información que recopilamos y procesamos. Sin embargo, ningún método de transmisión por Internet o almacenamiento electrónico es 100% seguro, y no podemos garantizar una seguridad absoluta.",
+      
+      "third-party-section-title": "Servicios de Terceros",
+      "third-party-paragraph": "Nuestra aplicación puede integrarse con servicios de terceros para funcionalidades específicas. Estos servicios tienen sus propias políticas de privacidad, y te animamos a revisarlas. No compartimos tu información con terceros con fines de marketing.",
+      
+      "rights-section-title": "Tus Derechos",
+      "rights-paragraph": "Tienes ciertos derechos con respecto a tu información. Estos incluyen:",
+      "rights-access": "El derecho a acceder a cualquier información que tengamos sobre ti",
+      "rights-delete": "El derecho a solicitar la eliminación de tu dirección de correo electrónico de nuestra lista de suscripción al boletín",
+      "rights-object": "El derecho a oponerte al procesamiento de tu información",
+      
+      "changes-section-title": "Cambios en Esta Política",
+      "changes-paragraph": "Podemos actualizar esta Política de Privacidad de vez en cuando para reflejar cambios en nuestras prácticas o por otras razones operativas, legales o regulatorias. Notificaremos a los usuarios sobre cualquier cambio material por correo electrónico o a través de la aplicación.",
+      
+      "contact-section-title": "Contáctanos",
+      "contact-paragraph": "Si tienes preguntas o inquietudes sobre esta Política de Privacidad o nuestras prácticas de datos, por favor contacta a nuestro equipo de soporte. Estamos comprometidos a responder a tus consultas con prontitud y minuciosidad.",
+      
+      "back-to-home": "Volver al Inicio"
     }
   }
 }

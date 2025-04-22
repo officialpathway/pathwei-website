@@ -1,4 +1,4 @@
-// pages/api/admin/set-auth-cookie.ts
+// pages/api/auth/set-auth-cookie.ts
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@supabase/supabase-js';
 import cookie from 'cookie';

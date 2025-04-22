@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// pages/api/admin/upload-avatar.ts
+// pages/api/admin/user-management/upload-avatar.ts
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createServerClient } from '@supabase/ssr';
 import formidable from 'formidable';

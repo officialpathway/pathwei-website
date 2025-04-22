@@ -435,7 +435,15 @@ const TestExplanationScroll: React.FC<TestExplanationScrollProps> = ({ objective
           <p className="text-gray-700 mb-8">
             {t("cta-description")}
           </p>
-          <div className="inline-block bg-indigo-600 text-white font-medium py-3 px-8 rounded-lg shadow-lg hover:bg-indigo-700 transition-colors">
+          <div 
+            onClick={() => {
+              const newsletterSection = document.querySelector('#newsletter');
+              if (newsletterSection) {
+                newsletterSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="inline-block bg-indigo-600 text-white font-medium py-3 px-8 rounded-lg shadow-lg hover:bg-indigo-700 transition-colors cursor-pointer"
+          >
             {t("cta-button")}
           </div>
         </motion.div>

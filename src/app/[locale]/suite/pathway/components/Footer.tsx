@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import Newsletter from "./Newsletter";
 import { useTranslations } from 'next-intl';
+import Link from "next/link";
 
 const Footer = () => {
 
@@ -49,7 +50,9 @@ const Footer = () => {
         {/* Footer text */}
         <div className="flex flex-col md:flex-row justify-between px-8">
           <p className="text-xs mb-2">{t("footer-rights")}</p>
-          <p className="text-xs">{t("footer-message")}</p>
+          <Link href="/suite/pathway/policy" className="underline text-xs font-medium hover:text-gray-300 transition-colors duration-300">
+            {t("footer-privacy-policy")}
+          </Link>
         </div>
       </div>
   

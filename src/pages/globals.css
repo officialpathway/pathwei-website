@@ -1,23 +1,2 @@
 /* globals.css */
 @import "tailwindcss";
-
-@layer base {
-  :root {
-    --radius: 0.625rem;
-    /* Light mode colors */
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    /* Add all your other custom colors here */
-  }
-
-  .dark {
-    /* Dark mode colors */
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    /* Add all your other dark mode colors */
-  }
-}

@@ -81,7 +81,7 @@ export const NeonFuturismBackground: React.FC<NeonFuturismBackgroundProps> = ({
           animate={{
             x: [particle.x, particle.x + 10],
             y: [particle.y, particle.y + 10],
-            opacity: [0, 0.5, 0],
+            opacity: [0, 0.8, 0],
           }}
           transition={{
             duration: 3 + particle.delay,

@@ -7,6 +7,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { pathwayKeywords } from "@/src/lib/seo/keywords";
 import "./globals.css";
+import { Header } from "./components/Header";
+import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
   title: "Pathway | AI-Powered Productivity Tracker",
@@ -53,7 +55,9 @@ export default function RootLayout({
 }) {
   return (
     <section className={`${myCustomFont.variable} antialiased`}>
+      <Header />
       {children}
+      <Footer />
     </section>
   );
 }

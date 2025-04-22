@@ -1,4 +1,4 @@
-// src/pages/admin/stats.tsx
+// src/pages/admin/price-stats.tsx
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -18,6 +18,7 @@ interface PriceStatData {
 export default function StatsPage() {
   const [stats, setStats] = useState<PriceStatData[]>([]);
   const [dataLoading, setDataLoading] = useState(false);
+  const [downloadLoading, setDownloadLoading] = useState(false);
   const [, setError] = useState<string | null>(null);
   const { isAuthorized } = useAdminAuthGuard(); // Correct property name from the hook
   const [showResetModal, setShowResetModal] = useState(false);
@@ -27,19 +28,44 @@ export default function StatsPage() {
     try {
       setDataLoading(true);
       setError(null);
-            
-      const response = await fetch('/api/public/track-price');
       
+      console.log('Initiating fetch request to /api/admin/price-A-B/track-price');
+      
+      const response = await fetch('/api/admin/price-A-B/track-price', {
+        method: 'GET', // Explicitly set the method
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      console.log('Received response:', {
+        status: response.status,
+        statusText: response.statusText,
+        headers: Object.fromEntries(response.headers.entries()),
+        ok: response.ok,
+      });
+  
       if (!response.ok) {
-        throw new Error(`Error fetching stats: ${response.status}`);
+        const errorBody = await response.text();
+        console.error('Error response body:', errorBody);
+        throw new Error(`HTTP error! status: ${response.status}, body: ${errorBody}`);
       }
       
       const data = await response.json();
+      console.log('Successfully parsed response data:', data);
       setStats(data);
     } catch (error) {
-      console.error('Error fetching stats:', error);
+      console.error('Detailed fetch error:', {
+        error: error instanceof Error ? {
+          name: error.name,
+          message: error.message,
+          stack: error.stack
+        } : error,
+        timestamp: new Date().toISOString(),
+      });
       setError(error instanceof Error ? error.message : 'Unknown error');
     } finally {
+      console.log('Fetch operation completed');
       setDataLoading(false);
     }
   }
@@ -54,21 +80,84 @@ export default function StatsPage() {
   async function handleResetStats() {
     try {
       setResetLoading(true);
-      const response = await fetch('/api/reset-stats', {
-        method: 'POST'
+      console.log("Reset stats button clicked");
+      
+      // Make the request with credentials and detailed logging
+      console.log("Sending reset request to /api/admin/price-A-B/reset-stats");
+      const response = await fetch('/api/admin/price-A-B/reset-stats', {
+        method: 'POST',
+        credentials: 'include', // Include cookies for auth
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+      
+      console.log("Reset response received:", {
+        status: response.status,
+        statusText: response.statusText,
+        headers: Object.fromEntries(response.headers.entries()),
+        ok: response.ok
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to reset stats');
+      // Try to parse the response body for more details
+      let responseData;
+      try {
+        responseData = await response.json();
+        console.log("Reset response data:", responseData);
+      } catch (parseError) {
+        const textResponse = await response.text();
+        console.log("Could not parse JSON response. Text response:", textResponse);
+        console.error("Parse error:", parseError);
       }
 
+      if (!response.ok) {
+        throw new Error(`Failed to reset stats: ${response.status} ${response.statusText}`);
+      }
+
+      console.log("Reset successful, fetching updated stats");
       await fetchStats();
+      console.log("Stats refreshed successfully");
       setShowResetModal(false);
     } catch (error) {
-      console.error('Error resetting stats:', error);
+      console.error("Detailed reset error:", {
+        error: error instanceof Error ? {
+          name: error.name,
+          message: error.message,
+          stack: error.stack
+        } : error,
+        timestamp: new Date().toISOString()
+      });
       setError(error instanceof Error ? error.message : 'Failed to reset stats');
     } finally {
       setResetLoading(false);
+      console.log("Reset operation completed");
+    }
+  }
+
+  // New function to handle downloading stats
+  async function handleDownloadStats() {
+    try {
+      setDownloadLoading(true);
+      const response = await fetch('/api/admin/price-A-B/get-download-url');
+      
+      if (!response.ok) {
+        throw new Error('Failed to get download URL');
+      }
+      
+      const data = await response.json();
+      
+      // Create a temporary link element and click it to trigger download
+      const link = document.createElement('a');
+      link.href = data.downloadUrl;
+      link.download = data.filename || 'stats.json';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading stats:', error);
+      setError(error instanceof Error ? error.message : 'Failed to download stats');
+    } finally {
+      setDownloadLoading(false);
     }
   }
 
@@ -228,6 +317,20 @@ export default function StatsPage() {
                       </svg>
                       Refresh
                     </button>
+                    
+                    {/* Download Button */}
+                    <button
+                      type='button'
+                      onClick={handleDownloadStats}
+                      disabled={downloadLoading}
+                      className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    >
+                      <svg className="-ml-0.5 mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      </svg>
+                      {downloadLoading ? 'Downloading...' : 'Download'}
+                    </button>
+                    
                     {process.env.NODE_ENV === 'development' && (
                       <button
                         onClick={() => setShowResetModal(true)}

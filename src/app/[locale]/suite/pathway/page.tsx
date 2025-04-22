@@ -3,12 +3,10 @@
 import Hero from './components/Hero';
 import SloganSection from './components/SloganSection';
 import FeedbackSection from './components/FeedbackSection';
-import Footer from './components/Footer';
 import DotFollower from './components/DotFollower';
 import TestCompletionDemoAnimation from './components/micro-animations/TestCompletionDemoAnimation';
 import InfiniteGoalAnimation from './components/micro-animations/InfiniteGoalAnimation';
 import EnhancedAIEmpowerment from './components/micro-animations/HumanAI';
-import { Header } from './components/Header';
 import { NeonFuturismBackground } from './components/NeonBackground';
 import { useTranslations } from 'next-intl';
 
@@ -21,9 +19,8 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-black overflow-x-hidden w-full">
-      <Header />
       <DotFollower />
-      <main className="flex-grow w-full overflow-x-hidden">
+      <main className="flex-grow w-full overflow-x-hidden pt-10">
         
         <NeonFuturismBackground>
           <Hero />
@@ -93,7 +90,6 @@ export default function Home() {
 
         <FeedbackSection />
       </main>
-      <Footer />
     </div>
   );
 }
