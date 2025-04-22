@@ -619,7 +619,7 @@ export default function SEOSettings() {
                             <SelectTrigger>
                               <SelectValue placeholder="Select card type" />
                             </SelectTrigger>
-                            <SelectContent>
+                            <SelectContent className='bg-white'>
                               <SelectItem value="summary">Summary</SelectItem>
                               <SelectItem value="summary_large_image">Summary Large Image</SelectItem>
                             </SelectContent>
@@ -827,7 +827,7 @@ export default function SEOSettings() {
                               <SelectTrigger className="w-32">
                                 <SelectValue placeholder="Select frequency" />
                               </SelectTrigger>
-                              <SelectContent>
+                              <SelectContent className='bg-white'>
                                 <SelectItem value="always">Always</SelectItem>
                                 <SelectItem value="hourly">Hourly</SelectItem>
                                 <SelectItem value="daily">Daily</SelectItem>
@@ -848,7 +848,7 @@ export default function SEOSettings() {
                               <SelectTrigger className="w-32">
                                 <SelectValue placeholder="Select priority" />
                               </SelectTrigger>
-                              <SelectContent>
+                              <SelectContent className='bg-white'>
                                 <SelectItem value="0.1">0.1</SelectItem>
                                 <SelectItem value="0.3">0.3</SelectItem>
                                 <SelectItem value="0.5">0.5</SelectItem>
@@ -913,7 +913,7 @@ export default function SEOSettings() {
 
       {/* Robots.txt Edit Dialog */}
       <Dialog open={robotsDialogOpen} onOpenChange={setRobotsDialogOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl bg-white">
           <DialogHeader>
             <DialogTitle>Edit robots.txt</DialogTitle>
             <DialogDescription>
@@ -941,15 +941,15 @@ export default function SEOSettings() {
             </div>
           </div>
           <DialogFooter>
-            <Button variant="ghost" onClick={() => setRobotsDialogOpen(false)}>Cancel</Button>
-            <Button onClick={saveRobotsTxt}>Save Changes</Button>
+            <Button className='bg-gray-200 cursor-pointer' variant="ghost" onClick={() => setRobotsDialogOpen(false)}>Cancel</Button>
+            <Button className='bg-gray-200 cursor-pointer' onClick={saveRobotsTxt}>Save Changes</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
       {/* JSON-LD Edit Dialog */}
       <Dialog open={jsonLdDialogOpen} onOpenChange={setJsonLdDialogOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl bg-white">
           <DialogHeader>
             <DialogTitle>Edit JSON-LD Structured Data</DialogTitle>
             <DialogDescription>
@@ -987,8 +987,8 @@ export default function SEOSettings() {
             </div>
           </div>
           <DialogFooter>
-            <Button variant="ghost" onClick={() => setJsonLdDialogOpen(false)}>Cancel</Button>
-            <Button onClick={saveJsonLd}>Save Changes</Button>
+            <Button className='bg-gray-200 cursor-pointer' variant="ghost" onClick={() => setJsonLdDialogOpen(false)}>Cancel</Button>
+            <Button className='bg-gray-200 cursor-pointer' onClick={saveJsonLd}>Save Changes</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

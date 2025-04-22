@@ -1,6 +1,6 @@
 import { put, head } from "@vercel/blob";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { validateBasicAuth } from "@/lib/auth"; // Update path to auth utility
+import { isAdminAuthenticated } from "@/lib/auth/auth"; // Using our auth helper function
 
 const BLOB_KEY = "price-tracking/stats.json";
 
@@ -45,7 +45,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const isAuthenticated = req.cookies.adminAuth === process.env.ADMIN_AUTH_TOKEN || validateBasicAuth(req);
+  // Use the isAdminAuthenticated helper function for authentication
+  const isAuthenticated = await isAdminAuthenticated(req);
 
   if (!isAuthenticated) {
     return res.status(401).json({ error: "Unauthorized" });

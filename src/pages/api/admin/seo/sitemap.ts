@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { validateBasicAuth } from '@/lib/auth';
+import { isAdminAuthenticated } from '@/lib/auth/auth';
 import { updateSitemapMetadata } from '@/lib/db';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
@@ -8,9 +8,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // Authentication check
-  const isAuthenticated = req.cookies.adminAuth === process.env.ADMIN_AUTH_TOKEN || 
-                        validateBasicAuth(req);
+  // Check admin authentication
+  const isAuthenticated = await isAdminAuthenticated(req);
 
   if (!isAuthenticated) {
     return res.status(401).json({ error: 'Unauthorized' });

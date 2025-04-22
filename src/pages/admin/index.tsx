@@ -1,35 +1,57 @@
 // src/pages/admin/index.tsx
 "use client";
 
-import { Lock, BarChart2, Globe, Settings } from 'lucide-react';
+import { Lock, BarChart2, Globe, Settings, Fingerprint } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import AdminLayout from './layout';
 import '@/src/pages/globals.css';
+// Import Supabase auth functions
+import { supabase, signIn as supabaseSignIn, getCurrentUser } from '@/lib/supabase';
 
 export default function AdminHub() {
   const router = useRouter();
   const [credentials, setCredentials] = useState({
-    username: '',
+    email: '',
     password: ''
   });
   const [authenticated, setAuthenticated] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [authLoading, setAuthLoading] = useState(true);
 
-  // Check for existing auth cookie on mount
+  // Check for existing auth on mount (both cookie and Supabase)
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await fetch('/api/auth/check', {
-          credentials: 'include',
+        // First check server-side cookie-based admin auth
+        const res = await fetch('/api/auth/admin-check', {
+          method: 'GET',
+          credentials: 'include', // Important for sending cookies
+          headers: {
+            'Content-Type': 'application/json',
+          },
         });
-        const data = await res.json();
-        if (data.authenticated) {
-          setAuthenticated(true);
-        }
-      } catch {
+        
+        const cookieAuthData = await res.json();
+        const cookieAuth = cookieAuthData.authenticated;
+        
+        // Then check Supabase session
+        const user = await getCurrentUser();
+        
+        console.log('Auth check:', { 
+          cookieAuth: cookieAuth ? 'Valid' : 'None',
+          cookieAuthDetails: cookieAuthData,
+          supabaseAuth: user ? `Valid (${user.email})` : 'None' 
+        });
+        
+        // Consider authenticated if both or at least Supabase auth is valid
+        setAuthenticated(cookieAuth && !!user);
+      } catch (error) {
+        console.error('Auth check error:', error);
         setAuthenticated(false);
+      } finally {
+        setAuthLoading(false);
       }
     };
   
@@ -39,27 +61,85 @@ export default function AdminHub() {
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
+    setError(null);
+    
     try {
-      const basicAuth = btoa(`${credentials.username}:${credentials.password}`);
-      const response = await fetch('/api/admin/validate-auth', {
+      console.log('Login attempt with:', credentials.email);
+      
+      // First authenticate with Supabase
+      const result = await supabaseSignIn(credentials.email, credentials.password);
+      
+      if (!result || !result.user) {
+        throw new Error('Supabase authentication failed');
+      }
+      
+      console.log('Supabase auth successful for user ID:', result.user.id);
+      
+      // Get the JWT claims to check for admin role
+      const { data: { session } } = await supabase.auth.getSession();
+      const claims = session?.user?.app_metadata;
+      
+      console.log('User JWT claims:', claims);
+      
+      // Check if user has admin role in the JWT claims
+      if (!claims || claims.role !== 'admin') {
+        console.error('User does not have admin role in JWT claims:', claims);
+        await supabase.auth.signOut();
+        throw new Error('Not authorized as admin');
+      }
+      
+      console.log('Admin role verified in JWT claims');
+      
+      // If Supabase auth succeeds, also set admin cookie
+      const response = await fetch('/api/admin/set-auth-cookie', {
         method: 'POST',
         headers: {
-          'Authorization': `Basic ${basicAuth}`
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${result.session?.access_token}` // Pass Supabase token
         },
-        credentials: 'include' // 👈 IMPORTANTE para que acepte cookies
+        credentials: 'include'
       });
-
-      if (!response.ok) throw new Error('Invalid credentials');
+  
+      if (!response.ok) {
+        const responseData = await response.text();
+        console.error('Cookie API error:', response.status, responseData);
+        throw new Error('Failed to set admin cookie');
+      }
       
+      console.log('Admin cookie set successfully');
       setAuthenticated(true);
     } catch (err) {
+      console.error('Login error:', err);
       setError(err instanceof Error ? err.message : 'Login failed');
     }
   }
 
-  function handleLogout() {
-    Cookies.remove('adminAuth');
-    setAuthenticated(false);
+  async function handleLogout() {
+    try {
+      // Remove admin cookie
+      Cookies.remove('adminAuth');
+      
+      // Also sign out from Supabase
+      await supabase.auth.signOut();
+      
+      // Call logout API to clear server-side cookies if needed
+      await fetch('/api/admin/logout', {
+        method: 'POST',
+        credentials: 'include'
+      });
+      
+      setAuthenticated(false);
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  }
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-gray-600">Loading authentication status...</div>
+      </div>
+    );
   }
 
   if (!authenticated) {
@@ -67,7 +147,7 @@ export default function AdminHub() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
         <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8">
           <div className="text-center mb-6">
-            <Lock className="mx-auto h-12 w-12 text-blue-500 mb-4" />
+            <Fingerprint className="mx-auto h-12 w-12 text-blue-500 mb-4" />
             <h2 className="text-2xl font-bold text-gray-800">Admin Portal</h2>
             <p className="text-gray-600 mt-2">Please sign in to continue</p>
           </div>
@@ -75,13 +155,13 @@ export default function AdminHub() {
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Username
+                Email
               </label>
               <input
-                title='username'
-                type="text"
-                value={credentials.username}
-                onChange={(e) => setCredentials({...credentials, username: e.target.value})}
+                title='email'
+                type="email"
+                value={credentials.email}
+                onChange={(e) => setCredentials({...credentials, email: e.target.value})}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                 required
               />
@@ -125,6 +205,7 @@ export default function AdminHub() {
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
           <button
+            type='button'
             onClick={handleLogout}
             className="text-gray-700 hover:text-gray-900 flex items-center gap-1"
           >
@@ -138,7 +219,7 @@ export default function AdminHub() {
             icon={<BarChart2 className="h-8 w-8" />}
             title="Price Statistics"
             description="View price tracking analytics"
-            onClick={() => router.push('/admin/stats')}
+            onClick={() => router.push('/admin/price-stats')}
           />
 
           <DashboardCard 

@@ -1,18 +1,18 @@
 // src/pages/api/admin/seo/settings.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getSEOSettings, saveSEOSettings } from '@/lib/db';
+import { isAdminAuthenticated } from '@/lib/auth/auth';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // AUTH CHECK // PROTECTED ROUTE
-  const authCookie = req.cookies.adminAuth;
+  // Check admin authentication
+  const isAuthenticated = await isAdminAuthenticated(req);
   
-  if (!authCookie || authCookie !== 'true') {
+  if (!isAuthenticated) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
-  // AUTH CHECK // PROTECTED ROUTE
   
   // Always set Content-Type first
   res.setHeader('Content-Type', 'application/json');
@@ -35,7 +35,8 @@ export default async function handler(
     }
 
     return res.status(405).json({ error: 'Method not allowed' });
-  } catch (error) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     console.error('API Error:', error);
     return res.status(500).json({ 
       error: 'Internal server error',

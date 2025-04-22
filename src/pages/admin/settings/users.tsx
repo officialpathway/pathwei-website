@@ -43,7 +43,18 @@ import {
 import { toast } from 'sonner';
 import { Skeleton } from '@/components/ui/skeleton';
 import { formatDistanceToNow } from 'date-fns';
-import { User, getUsers, deleteUser, updateUser, addUser, resendInvite, uploadAvatar, removeAvatar } from '@/lib/db/users';
+import { 
+  User, 
+  getUsers, 
+  deleteUser, 
+  updateUser, 
+  addUser, 
+  resendInvite, 
+  uploadAvatar, 
+  deleteAvatar,
+  isAdmin as checkIsAdmin,
+  getCurrentUser 
+} from '@/lib/db/users';
 
 type InviteUserForm = {
   email: string;
@@ -59,7 +70,9 @@ type EditUserForm = {
 };
 
 export default function UserManagement() {
+  // Still use your existing cookie auth guard
   useAdminAuthGuard();
+  
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
@@ -67,8 +80,10 @@ export default function UserManagement() {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [userToDelete, setUserToDelete] = useState<string | null>(null);
-  const [isUploadingAvatar, setIsUploadingAvatar] = useState(false);
+  const [, setIsUploadingAvatar] = useState(false);
   const [userForAvatar, setUserForAvatar] = useState<string | null>(null);
+  const [supabaseAdminStatus, setSupabaseAdminStatus] = useState(false);
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [inviteForm, setInviteForm] = useState<InviteUserForm>({
     email: '',
@@ -83,6 +98,26 @@ export default function UserManagement() {
   });
   const [users, setUsers] = useState<User[]>([]);
   const usersPerPage = 8;
+
+  // Check if user is admin via Supabase Auth
+  useEffect(() => {
+    const checkSupabaseAdmin = async () => {
+      try {
+        const isSupabaseAdmin = await checkIsAdmin();
+        setSupabaseAdminStatus(isSupabaseAdmin);
+        
+        // Get current user ID for self-management operations
+        const user = await getCurrentUser();
+        if (user) {
+          setCurrentUserId(user.id);
+        }
+      } catch (error) {
+        console.error('Error checking Supabase admin status:', error);
+      }
+    };
+    
+    checkSupabaseAdmin();
+  }, []);
 
   // Data Fetching
   useEffect(() => {
@@ -272,33 +307,37 @@ export default function UserManagement() {
   const handleAvatarUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file || !userForAvatar) return;
-    
+  
     try {
       setIsUploadingAvatar(true);
+      
+      // Client-side validation
+      if (file.size > 5 * 1024 * 1024) {
+        throw new Error('File size must be less than 5MB');
+      }
+  
       const avatarUrl = await uploadAvatar(userForAvatar, file);
       
-      // Update user in the local state with new avatar
+      // Optimistic UI update
       setUsers(users.map(u => 
         u.id === userForAvatar ? { ...u, avatar: avatarUrl } : u
       ));
-      
+  
       toast.success('Avatar updated successfully');
     } catch (error) {
-      toast.error('Failed to upload avatar');
-      console.error(error);
+      toast.error(error instanceof Error ? error.message : 'Upload failed');
     } finally {
       setIsUploadingAvatar(false);
       setUserForAvatar(null);
-      // Reset file input
-      if (fileInputRef.current) fileInputRef.current.value = '';
+      if (event.target) event.target.value = '';
     }
   };
-  
+
   // Handle avatar removal
   const handleRemoveAvatar = async (userId: string) => {
     try {
       setIsUploadingAvatar(true);
-      await removeAvatar(userId);
+      await deleteAvatar(userId);
       
       // Update user in the local state to remove avatar
       setUsers(users.map(u => 
@@ -322,6 +361,7 @@ export default function UserManagement() {
             <h2 className="text-2xl font-bold">User Management</h2>
             <p className="text-sm text-gray-500 mt-1">
               {filteredUsers.length} {filteredUsers.length === 1 ? 'user' : 'users'} found
+              {supabaseAdminStatus && <span className="ml-2 text-green-500">(Supabase Admin)</span>}
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
@@ -477,7 +517,7 @@ export default function UserManagement() {
                               <MoreVertical className="h-4 w-4" />
                             </Button>
                           </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end" className="w-48">
+                          <DropdownMenuContent align="end" className="w-48 bg-white">
                             {user.status === 'invited' && (
                               <DropdownMenuItem 
                                 onClick={() => handleResendInvite(user.email)}
@@ -519,10 +559,11 @@ export default function UserManagement() {
                                 setUserToDelete(user.id);
                                 setIsDeleteDialogOpen(true);
                               }}
-                              disabled={isLoading}
+                              disabled={isLoading || (user.id === currentUserId)}
                             >
                               <Trash2 className="h-4 w-4 mr-2" />
                               Delete
+                              {user.id === currentUserId && <span className="ml-1 text-xs">(Cannot delete self)</span>}
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -581,7 +622,7 @@ export default function UserManagement() {
 
       {/* Invite User Dialog */}
       <Dialog open={isInviteDialogOpen} onOpenChange={setIsInviteDialogOpen}>
-        <DialogContent>
+        <DialogContent className='bg-white'>
           <DialogHeader>
             <DialogTitle>Invite New User</DialogTitle>
             <DialogDescription>
@@ -659,7 +700,7 @@ export default function UserManagement() {
 
       {/* Edit User Dialog */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent>
+        <DialogContent className='bg-white'>
           <DialogHeader>
             <DialogTitle>Edit User</DialogTitle>
             <DialogDescription>
@@ -702,7 +743,7 @@ export default function UserManagement() {
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select a role" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className='bg-white'>
                   <SelectItem value="admin">Admin</SelectItem>
                   <SelectItem value="editor">Editor</SelectItem>
                   <SelectItem value="viewer">Viewer</SelectItem>
@@ -737,7 +778,7 @@ export default function UserManagement() {
 
       {/* Delete User Dialog */}
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
-        <DialogContent>
+        <DialogContent className='bg-white'>
           <DialogHeader>
             <DialogTitle>Confirm Deletion</DialogTitle>
             <DialogDescription>
