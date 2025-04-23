@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { isAdminAuthenticated } from '@/lib/auth/auth';
-import { updateSitemapMetadata } from '@/lib/db';
+import { isAdminAuthenticated } from '@/lib/api/auth/auth';
+import { updateSitemapMetadata } from '@/lib/db/db';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 

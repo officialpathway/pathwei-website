@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 import { opacity, expand } from "./stairsAnim";
-import "../styles/stairs-transition.css";
+import "../stairs-transition.css";
 
 export default function Stairs({ children, backgroundColor }: { children: ReactNode; backgroundColor: string }) {
 

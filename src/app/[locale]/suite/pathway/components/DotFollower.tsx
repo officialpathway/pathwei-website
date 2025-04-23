@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { useWindowSize } from "@/src/hooks/useWindowSize"; // Adjust import path as needed
+import { useWindowSize } from "@/hooks/client/useWindowSize"; // Adjust import path as needed
 
 const DotFollower = () => {
   const dotRef = useRef<HTMLDivElement>(null);

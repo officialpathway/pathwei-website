@@ -1,7 +1,7 @@
 // src/pages/api/admin/price-A-B/track-price.ts
 import { put, head } from "@vercel/blob";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { isAdminAuthenticated } from "@/lib/auth/auth";
+import { isAdminAuthenticated } from "@/lib/api/auth/auth";
 
 const BLOB_KEY = "price-tracking/stats.json";
 

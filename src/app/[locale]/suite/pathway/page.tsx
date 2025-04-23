@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-black overflow-x-hidden w-full">
       <DotFollower />
-      <main className="flex-grow w-full overflow-x-hidden pt-10">
+      <main className="flex-grow w-full overflow-x-hidden">
         
         <NeonFuturismBackground>
           <Hero />

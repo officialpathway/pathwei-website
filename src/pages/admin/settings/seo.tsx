@@ -46,7 +46,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useAdminAuthGuard } from '@/hooks/useAdminAuthGuard';
+import { useAdminAuthGuard } from '@/hooks/api/useAdminAuthGuard';
 
 type SEOData = {
   title: string;

@@ -10,7 +10,7 @@ Follow these import patterns:
 
 ```ts
 // For animations
-import { animationPresets } from '@/lib/animations';
+import { animationPresets } from '@/lib/styles/animations';
 
 // For constants
 import { siteConfig } from '@/lib/constants';

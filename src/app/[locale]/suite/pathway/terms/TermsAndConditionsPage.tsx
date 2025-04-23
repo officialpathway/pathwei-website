@@ -3,7 +3,7 @@
 import React from "react";
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { BigTitle } from "@/src/app/[locale]/components/common/BigTitle";
+import { BigTitle } from "../../../components/common/BigTitle";
 
 const TermsAndConditionsPage = () => {
   const t = useTranslations("Pathway.Terms");

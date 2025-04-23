@@ -4,7 +4,7 @@
 import { motion, useScroll, useTransform, useMotionTemplate, useMotionValue } from 'framer-motion';
 import { useEffect, useRef } from "react";
 import Lenis from 'lenis';
-import { useWindowSize } from '@/src/hooks/useWindowSize';
+import { useWindowSize } from '@/hooks/client/useWindowSize';
 
 // Components
 import SplineScene from "../components/common/SplineModel";

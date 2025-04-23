@@ -4,7 +4,7 @@ import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import LanguageSwitcher from '@/src/components/LanguageSwitcher';
+import LanguageSwitcher from '@/components/locales/LanguageSwitcher';
 import Link from 'next/link';
 
 export const Header = () => {

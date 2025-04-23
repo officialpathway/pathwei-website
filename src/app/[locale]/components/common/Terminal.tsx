@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { COMMANDS } from '@/src/lib/constants/constants'
+import { COMMANDS } from '@/lib/constants/constants'
 import Link from 'next/link';
 
 interface TerminalProps {

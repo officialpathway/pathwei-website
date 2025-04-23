@@ -10,6 +10,8 @@ export default function robots(): MetadataRoute.Robots {
           '/',
           '/suite',
           '/suite/pathway',
+          '/suite/pathway/terms',
+          '/suite/pathway/privacy',
           '/team',
           '/privacy'
         ],

@@ -3,8 +3,10 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import PrivacyPolicyPage from './PrivacyPolicyPage';
+import { detectLocale } from '../../../locale-detector';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await detectLocale();
   const t = await getTranslations({ locale, namespace: 'Pathway.Privacy' });
   
   return {

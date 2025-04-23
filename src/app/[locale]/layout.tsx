@@ -1,10 +1,10 @@
 // src/app/[locale]/layout.tsx
 import type { Metadata } from "next";
-import { myCustomFont } from "@/src/lib/styles/fonts";
+import { myCustomFont } from "@/lib/styles/fonts";
 import { AnimatePresence } from "framer-motion";
-import { globalKeywords } from "@/src/lib/seo/keywords";
+import { globalKeywords } from "@/lib/seo/keywords";
 import { ReactNode } from "react";
-import ClientProviders from "@/src/components/providers";
+import ClientProviders from "@/components/locales/providers";
 import { getMessages } from "next-intl/server";
 import "./globals.css";
 import { detectLocale } from './locale-detector';

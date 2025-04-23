@@ -1,6 +1,6 @@
 'use client';
 
-import Stairs from '@/src/lib/animations/StairTransition';
+import Stairs from '@/lib/styles/animations/StairTransition';
 import { BigTitle } from '../components/common/BigTitle';
 import { CyberpunkFooter } from '../components/Footer/Footer';
 import { CyberpunkHeader } from '../components/Header/CyberpunkHeader';

@@ -4,7 +4,7 @@
 import { motion } from 'framer-motion';
 import { InfoMessage } from '../components/common/InfoMessage';
 import { useRef } from 'react';
-import { features } from '@/src/lib/constants';
+import { features } from '@/lib/constants';
 
 const Notification = ({ feature }: {
   feature: typeof features[0];

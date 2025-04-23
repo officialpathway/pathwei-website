@@ -5,8 +5,8 @@ import { CyberpunkHeader } from '../components/Header/CyberpunkHeader';
 import { motion } from 'framer-motion';
 import { BigTitle } from '../components/common/BigTitle';
 import { CyberpunkFooter } from '../components/Footer/Footer';
-import Stairs from '@/src/lib/animations/StairTransition';
-import { apps } from '@/src/lib/constants';
+import Stairs from '@/lib/styles/animations/StairTransition';
+import { apps } from '@/lib/constants';
 import { FlipCard } from '../components/common/FlipCard';
 
 export default function SuitePage() {

@@ -1,7 +1,7 @@
 // src/pages/api/admin/seo/settings.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getSEOSettings, saveSEOSettings } from '@/lib/db';
-import { isAdminAuthenticated } from '@/lib/auth/auth';
+import { getSEOSettings, saveSEOSettings } from '@/lib/db/db';
+import { isAdminAuthenticated } from '@/lib/api/auth/auth';
 
 export default async function handler(
   req: NextApiRequest,

@@ -3,14 +3,14 @@
 
 import { motion } from 'framer-motion';
 import { ProductCard } from './ProductCard';
-import { products } from '@/src/lib/constants';
+import { products } from '@/lib/constants';
 
 export default function ProductGridSection() {
   return (
     <section className="relativepy-20 px-6 overflow-hidden">
       <div className="container mx-auto">
 
-        <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black">
+        <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
           Our <span className="text-neon-blue">Product Suite</span>
         </h2>
         <p className="text-xl text-gray-600 mb-12 max-w-3xl">

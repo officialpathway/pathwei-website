@@ -1,7 +1,7 @@
 // components/VisionSection.tsx
 'use client';
 
-import Particles from '@/src/app/[locale]/components/common/Particles';
+import Particles from '../../components/common/Particles';
 
 export default function VisionSection() {
   return (

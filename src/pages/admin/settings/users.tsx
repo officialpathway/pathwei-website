@@ -24,7 +24,7 @@ import {
 import { MoreVertical, Search, Mail, Trash2, Edit, UserPlus, RefreshCw, Check, X, Camera } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
-import { useAdminAuthGuard } from '@/hooks/useAdminAuthGuard';
+import { useAdminAuthGuard } from '@/hooks/api/useAdminAuthGuard';
 import {
   Dialog,
   DialogContent,

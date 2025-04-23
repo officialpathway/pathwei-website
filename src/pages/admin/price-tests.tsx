@@ -2,9 +2,9 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { useAdminAuthGuard } from '@/hooks/useAdminAuthGuard';
+import { useAdminAuthGuard } from '@/hooks/api/useAdminAuthGuard';
 import './layout';
-import '@/src/pages/globals.css';
+import '@/pages/globals.css';
 import AdminLayout from './layout';
 
 interface PriceStatData {

@@ -2,7 +2,7 @@
 
 import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import Particles from '@/src/app/[locale]/components/common/Particles';
+import Particles from '../../components/common/Particles';
 import AnimatedGraph from './AnimatedGraph';
 
 export default function DataVizSection() {

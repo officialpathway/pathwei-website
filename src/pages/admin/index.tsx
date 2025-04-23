@@ -15,9 +15,8 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import AdminLayout from './layout';
-import '@/src/pages/globals.css';
 // Import Supabase auth functions
-import { supabase, signIn as supabaseSignIn, getCurrentUser } from '@/lib/supabase';
+import { supabase, signIn as supabaseSignIn, getCurrentUser } from '@/lib/db/supabase';
 
 export default function AdminHub() {
   const router = useRouter();

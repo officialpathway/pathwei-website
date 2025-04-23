@@ -2,10 +2,10 @@
 
 import type { Metadata } from "next";
 import { ReactNode } from "react";
-import { myCustomFont } from "@/src/lib/styles";
+import { myCustomFont } from "@/lib/styles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { pathwayKeywords } from "@/src/lib/seo/keywords";
+import { pathwayKeywords } from "@/lib/seo/keywords";
 import "./globals.css";
 import { Header } from "./components/Header";
 import Footer from "./components/Footer";

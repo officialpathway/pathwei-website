@@ -1,7 +1,7 @@
 import { CogIcon, ChartBarIcon, UsersIcon, StarIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import '@/src/pages/globals.css';
+import '@/pages/globals.css';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
