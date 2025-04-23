@@ -14,7 +14,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax' as const,
       maxAge: -1, // Immediately expire the cookie
-      path: '/'
+      path: '/',
+      domain: process.env.NODE_ENV === 'production' 
+        ? process.env.COOKIE_DOMAIN 
+        : undefined
     };
 
     // Set an expired cookie to clear the existing admin auth cookie

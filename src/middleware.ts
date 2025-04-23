@@ -1,15 +1,3 @@
-/**
- * middleware.ts
- * 
- * This middleware handles several application-wide concerns:
- * 1. Internationalization (i18n) via next-intl
- * 2. A/B price testing with cookie-based user assignment
- * 3. Request filtering for static assets and API routes
- * 4. Root path redirection to the default locale
- *
- * The middleware runs on every request before it reaches the actual route handler.
- */
-
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
@@ -26,6 +14,14 @@ const LOCALES = ['en', 'es'];
 // Default locale for redirects and fallbacks
 const DEFAULT_LOCALE = 'en';
 
+// CORS configuration
+const ALLOWED_ORIGINS = [
+  'http://localhost:3000',
+  'https://aihavenlabs.com',
+  'https://ai-haven-labs-git-develop-alvr10s-projects.vercel.app',
+  // Add any additional domains here
+];
+
 /**
  * Initialize the internationalization middleware from next-intl
  */
@@ -34,6 +30,44 @@ const intlMiddleware = createMiddleware({
   defaultLocale: DEFAULT_LOCALE,
   localePrefix: 'always' // Always show locale in URL, e.g., /en/about
 });
+
+/**
+ * CORS handling function
+ * @param {NextRequest} request The incoming request object
+ * @param {NextResponse} response The response to modify
+ * @returns {NextResponse} The modified response with CORS headers
+ */
+function handleCORS(request: NextRequest, response: NextResponse) {
+  const origin = request.headers.get('origin') || '';
+  
+  // Check if the origin is allowed
+  const isAllowedOrigin = ALLOWED_ORIGINS.some(allowedOrigin => 
+    origin.startsWith(allowedOrigin)
+  );
+
+  if (isAllowedOrigin) {
+    // Handle preflight requests
+    if (request.method === 'OPTIONS') {
+      response.headers.set('Access-Control-Allow-Origin', origin);
+      response.headers.set('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS');
+      response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      response.headers.set('Access-Control-Allow-Credentials', 'true');
+      
+      return new NextResponse(null, {
+        status: 204,
+        headers: response.headers
+      });
+    }
+
+    // Set CORS headers for non-OPTIONS requests
+    response.headers.set('Access-Control-Allow-Origin', origin);
+    response.headers.set('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS');
+    response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    response.headers.set('Access-Control-Allow-Credentials', 'true');
+  }
+
+  return response;
+}
 
 /**
  * Main middleware function that processes all incoming requests
@@ -63,7 +97,7 @@ export default async function middleware(request: NextRequest) {
    * 3. Apply internationalization middleware
    * This handles locale detection and routing based on URL path
    */
-  const response = intlMiddleware(request);
+  let response = intlMiddleware(request);
   
   /**
    * 4. Handle price A/B testing
@@ -72,15 +106,19 @@ export default async function middleware(request: NextRequest) {
    */
   const priceCookie = request.cookies.get('selected_price');
   if (!priceCookie?.value) {
-    const randomIndex = Math.floor(Math.random() * PRICE_OPTIONS.length);
     response.cookies.set({
       name: 'selected_price',
-      value: PRICE_OPTIONS[randomIndex].toString(),
+      value: PRICE_OPTIONS[Math.floor(Math.random() * PRICE_OPTIONS.length)].toString(),
       maxAge: 60 * 60 * 24 * 30, // 30 days
       sameSite: 'lax',
       secure: process.env.NODE_ENV === 'production'
     });
   }
+
+  /**
+   * 5. Apply CORS headers
+   */
+  response = handleCORS(request, response);
 
   return response;
 }

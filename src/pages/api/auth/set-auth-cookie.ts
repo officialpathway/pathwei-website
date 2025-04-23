@@ -87,7 +87,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax' as const, // Changed from 'strict' to 'lax'
       maxAge: 7 * 24 * 60 * 60, // 7 days
-      path: '/', // Changed from '/admin' to '/' so it's accessible everywhere
+      path: '/',
+      domain: process.env.NODE_ENV === 'production' 
+        ? process.env.COOKIE_DOMAIN 
+        : undefined
     };
     
     // Set cookie with admin role
