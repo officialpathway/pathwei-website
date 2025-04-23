@@ -1,3 +1,4 @@
+// pages/admin/index.tsx
 "use client";
 
 import { 
@@ -9,14 +10,18 @@ import {
   Search, 
   LineChart, 
   LayoutGrid, 
-  Activity
+  Activity,
+
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
 import AdminLayout from './layout';
+
 // Import Supabase auth functions
-import { supabase, signIn as supabaseSignIn, getCurrentUser } from '@/lib/db/supabase';
+import { supabase, signIn as supabaseSignIn } from '@/lib/db/supabase';
+
+// Import auth utilities
+import { checkAdminAuth, logoutAdmin } from '@/lib/api/auth/adminAuth';
 
 export default function AdminHub() {
   const router = useRouter();
@@ -27,49 +32,38 @@ export default function AdminHub() {
   const [authenticated, setAuthenticated] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
-
+  const [, setIsSubmitting] = useState(false);
+  const [, setAuthMethod] = useState<'cookie' | 'token' | null>(null);
+  
   // Check for existing auth on mount (both cookie and Supabase)
   useEffect(() => {
-    const checkAuth = async () => {
+    const verifyAuth = async () => {
       try {
-        // First check server-side cookie-based admin auth
-        const res = await fetch('/api/auth/admin-check', {
-          method: 'GET',
-          credentials: 'include', // Important for sending cookies
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+        setAuthLoading(true);
+        const isAuthenticated = await checkAdminAuth();
+        setAuthenticated(isAuthenticated);
         
-        const cookieAuthData = await res.json();
-        const cookieAuth = cookieAuthData.authenticated;
-        
-        // Then check Supabase session
-        const user = await getCurrentUser();
-        
-        console.log('Auth check:', { 
-          cookieAuth: cookieAuth ? 'Valid' : 'None',
-          cookieAuthDetails: cookieAuthData,
-          supabaseAuth: user ? `Valid (${user.email})` : 'None' 
-        });
-        
-        // Consider authenticated if both or at least Supabase auth is valid
-        setAuthenticated(cookieAuth && !!user);
+        // Determine which auth method is active
+        if (isAuthenticated) {
+          // Check if we have a token in localStorage to determine auth method
+          const hasToken = !!localStorage.getItem('adminAuthToken');
+          setAuthMethod(hasToken ? 'token' : 'cookie');
+        }
       } catch (error) {
-        console.error('Auth check error:', error);
+        console.error('Auth verification error:', error);
         setAuthenticated(false);
       } finally {
         setAuthLoading(false);
       }
     };
   
-    checkAuth();
+    verifyAuth();
   }, []);
   
-
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
+    setIsSubmitting(true);
     
     try {
       console.log('Login attempt with:', credentials.email);
@@ -98,50 +92,91 @@ export default function AdminHub() {
       
       console.log('Admin role verified in JWT claims');
       
-      // If Supabase auth succeeds, also set admin cookie
-      const response = await fetch('/api/auth/set-auth-cookie', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${result.session?.access_token}` // Pass Supabase token
-        },
-        credentials: 'include'
-      });
-  
-      if (!response.ok) {
-        const responseData = await response.text();
-        console.error('Cookie API error:', response.status, responseData);
-        throw new Error('Failed to set admin cookie');
+      // Attempt cookie-based authentication first
+      try {
+        console.log('Attempting cookie-based authentication...');
+        // Set admin cookie
+        const cookieResponse = await fetch('/api/auth/set-auth-cookie', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${session?.access_token}`
+          },
+          credentials: 'include'
+        });
+    
+        if (cookieResponse.ok) {
+          console.log('Admin cookie set successfully');
+          setAuthMethod('cookie');
+          setAuthenticated(true);
+          return;
+        } else {
+          const cookieErrorData = await cookieResponse.text();
+          console.warn('Cookie-based auth failed, falling back to token-based auth:', cookieResponse.status, cookieErrorData);
+        }
+      } catch (cookieError) {
+        console.warn('Cookie auth error, using token fallback:', cookieError);
       }
       
-      console.log('Admin cookie set successfully');
-      setAuthenticated(true);
+      console.log('Attempting token-based authentication as fallback...');
+      
+      // Cookie-based auth failed, try token-based auth
+      try {
+        const tokenResponse = await fetch('/api/auth/get-auth-token', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${session?.access_token}`
+          }
+        });
+        
+        if (!tokenResponse.ok) {
+          const tokenErrorData = await tokenResponse.text();
+          console.error('Token API error:', tokenResponse.status, tokenErrorData);
+          throw new Error('Failed to get admin token');
+        }
+        
+        const tokenData = await tokenResponse.json();
+        
+        if (tokenData.success && tokenData.token) {
+          // Store token in localStorage
+          localStorage.setItem('adminAuthToken', tokenData.token);
+          localStorage.setItem('adminAuthExpires', tokenData.expiresAt.toString());
+          
+          // Store user data for easy access
+          if (tokenData.user) {
+            localStorage.setItem('adminUser', JSON.stringify(tokenData.user));
+          }
+          
+          console.log('Admin token stored successfully');
+          setAuthMethod('token');
+          setAuthenticated(true);
+        } else {
+          throw new Error('Invalid token response');
+        }
+      } catch (tokenError) {
+        console.error('Token auth error:', tokenError);
+        throw new Error('Authentication failed');
+      }
+      
     } catch (err) {
       console.error('Login error:', err);
       setError(err instanceof Error ? err.message : 'Login failed');
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
   async function handleLogout() {
     try {
-      // Remove admin cookie
-      Cookies.remove('adminAuth');
-      
-      // Also sign out from Supabase
-      await supabase.auth.signOut();
-      
-      // Call logout API to clear server-side cookies if needed
-      await fetch('/api/auth/logout', {
-        method: 'POST',
-        credentials: 'include'
-      });
-      
+      await logoutAdmin();
       setAuthenticated(false);
     } catch (error) {
       console.error('Logout error:', error);
     }
   }
 
+  // Rest of the component stays the same...
   if (authLoading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
@@ -156,6 +191,7 @@ export default function AdminHub() {
   if (!authenticated) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-slate-100 flex items-center justify-center p-4">
+        {/* Login form... */}
         <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8 border border-slate-200">
           <div className="text-center mb-8">
             <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -166,6 +202,7 @@ export default function AdminHub() {
           </div>
           
           <form onSubmit={handleLogin} className="space-y-5">
+            {/* Email field */}
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1.5">
                 Email Address
@@ -189,6 +226,7 @@ export default function AdminHub() {
               </div>
             </div>
 
+            {/* Password field */}
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1.5">
                 Password
@@ -211,6 +249,7 @@ export default function AdminHub() {
               </div>
             </div>
 
+            {/* Error display */}
             {error && (
               <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
                 <div className="flex">
@@ -226,6 +265,7 @@ export default function AdminHub() {
               </div>
             )}
 
+            {/* Login button */}
             <button
               type="submit"
               className="w-full bg-blue-600 text-white py-2.5 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors font-medium"

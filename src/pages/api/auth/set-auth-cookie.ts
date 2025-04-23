@@ -7,19 +7,18 @@ import Cors from 'cors';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
-// Initializing the cors middleware
+// Improved CORS configuration
 const cors = Cors({
   origin: [
-    // Add your frontend domains here
-    'http://localhost:3000', // Development
-    'https://your-production-domain.com', // Production domain
-    // Add any other domains that need to access this endpoint
+    'http://localhost:3000',
+    'https://aihavenlabs.com',
+    'https://www.aihavenlabs.com',
+    'https://ai-haven-labs-git-develop-alvr10s-projects.vercel.app',
   ],
-  methods: ['POST', 'OPTIONS'], // Allowed methods
-  credentials: true, // Allow credentials (cookies)
+  methods: ['POST', 'OPTIONS'],
+  credentials: true,
 });
 
-// Helper method to wait for a middleware to execute before continuing
 function runMiddleware(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -38,20 +37,20 @@ function runMiddleware(
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  // Run the CORS middleware
-  await runMiddleware(req, res, cors);
-
-  // Handle OPTIONS request
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
-  }
-  
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
   try {
+    // Run the CORS middleware
+    await runMiddleware(req, res, cors);
+
+    // Handle OPTIONS request
+    if (req.method === 'OPTIONS') {
+      res.status(200).end();
+      return;
+    }
+    
+    if (req.method !== 'POST') {
+      return res.status(405).json({ error: 'Method not allowed' });
+    }
+
     // Get token from Authorization header
     const authHeader = req.headers.authorization;
     if (!authHeader?.startsWith('Bearer ')) {
@@ -67,6 +66,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { data: { user }, error } = await supabase.auth.getUser(token);
     
     if (error || !user) {
+      console.error('Auth error:', error);
       return res.status(401).json({ error: 'Invalid authentication' });
     }
     
@@ -78,20 +78,52 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       .single();
     
     if (userError || !userData || userData.role !== 'admin') {
+      console.error('User role error:', userError);
       return res.status(403).json({ error: 'Not authorized as admin' });
     }
     
-    // Set secure admin cookie with modified options
+    // Get the host from request to determine domain
+    const host = req.headers.host || '';
+    
+    // Determine appropriate domain settings based on host
+    let cookieDomain;
+    if (process.env.NODE_ENV === 'production') {
+      // Extract base domain for production
+      if (host.includes('aihavenlabs.com')) {
+        // Use root domain for production to work across all subdomains
+        cookieDomain = 'aihavenlabs.com';
+      } else if (host.includes('vercel.app')) {
+        // For Vercel preview deployments
+        cookieDomain = undefined; // Let the browser set it based on current domain
+      } else {
+        // Fallback to configured domain
+        cookieDomain = process.env.COOKIE_DOMAIN;
+      }
+    } else {
+      // For development
+      cookieDomain = undefined;
+    }
+    
+    // Configure cookie options with improved security
     const cookieOptions = {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax' as const, // Changed from 'strict' to 'lax'
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' as const : 'lax' as const,
       maxAge: 7 * 24 * 60 * 60, // 7 days
       path: '/',
-      domain: process.env.NODE_ENV === 'production' 
-        ? process.env.COOKIE_DOMAIN 
-        : undefined
+      domain: cookieDomain
     };
+
+    console.log('Setting admin cookie with options:', {
+      domain: cookieOptions.domain,
+      secure: cookieOptions.secure,
+      sameSite: cookieOptions.sameSite,
+      path: cookieOptions.path,
+      httpOnly: cookieOptions.httpOnly,
+      env: process.env.NODE_ENV,
+      requestHost: host,
+      requestOrigin: req.headers.origin
+    });
     
     // Set cookie with admin role
     res.setHeader('Set-Cookie', cookie.serialize('adminAuth', 

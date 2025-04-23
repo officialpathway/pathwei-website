@@ -18,6 +18,7 @@ const DEFAULT_LOCALE = 'en';
 const ALLOWED_ORIGINS = [
   'http://localhost:3000',
   'https://aihavenlabs.com',
+  'https://www.aihavenlabs.com',
   'https://ai-haven-labs-git-develop-alvr10s-projects.vercel.app',
   // Add any additional domains here
 ];
@@ -70,6 +71,75 @@ function handleCORS(request: NextRequest, response: NextResponse) {
 }
 
 /**
+ * Handle auth cookie checks for admin routes
+ * @param {NextRequest} request The incoming request
+ * @param {NextResponse} response The response
+ * @returns {NextResponse} Modified response
+ */
+function handleAdminAuth(request: NextRequest, response: NextResponse) {
+  const pathname = request.nextUrl.pathname;
+  
+  // Only process admin routes
+  if (!pathname.startsWith('/admin') && !pathname.startsWith('/api/admin')) {
+    return response;
+  }
+  
+  // Check for admin cookie or auth token in header
+  const adminAuthCookie = request.cookies.get('adminAuth');
+  const authToken = request.headers.get('authorization')?.split(' ')[1];
+  
+  // For API routes, just check presence of auth but let the API handler handle validation
+  if (pathname.startsWith('/api/')) {
+    // Log authentication attempt but don't block - API endpoints will validate
+    if (!adminAuthCookie?.value && !authToken) {
+      console.log('No auth credentials found for admin API route:', pathname);
+    }
+    return response;
+  }
+  
+  // For admin UI routes, validate cookie
+  if (adminAuthCookie?.value) {
+    try {
+      // Parse and validate the cookie
+      const adminAuthData = JSON.parse(adminAuthCookie.value);
+      const isExpired = adminAuthData.exp && adminAuthData.exp < Math.floor(Date.now() / 1000);
+      const isAdmin = adminAuthData.role === 'admin';
+      
+      console.log('Admin middleware check:', {
+        path: pathname,
+        isExpired,
+        isAdmin,
+        userId: adminAuthData.userId
+      });
+      
+      // If expired or not admin, redirect to login
+      if (isExpired || !isAdmin) {
+        // Allow access to the admin login page even with invalid auth
+        if (pathname === '/admin') {
+          return response;
+        }
+        
+        // Redirect other admin pages to login
+        return NextResponse.redirect(new URL('/admin', request.url));
+      }
+    } catch (error) {
+      console.error('Error parsing admin auth cookie in middleware:', error);
+      // Redirect to login page on error
+      if (pathname !== '/admin') {
+        return NextResponse.redirect(new URL('/admin', request.url));
+      }
+    }
+  } else {
+    // No auth cookie - allow access to admin login page but redirect other admin pages
+    if (pathname !== '/admin') {
+      return NextResponse.redirect(new URL('/admin', request.url));
+    }
+  }
+  
+  return response;
+}
+
+/**
  * Main middleware function that processes all incoming requests
  * @param {NextRequest} request The incoming request object
  * @returns {NextResponse} The modified response
@@ -79,7 +149,6 @@ export default async function middleware(request: NextRequest) {
 
   /**
    * 1. Skip middleware for static assets and Next.js internals
-   * This improves performance by avoiding unnecessary processing
    */
   if (pathname.includes('.') || pathname.startsWith('/_next')) {
     return NextResponse.next();
@@ -87,7 +156,6 @@ export default async function middleware(request: NextRequest) {
 
   /**
    * 2. Handle requests to the root path
-   * Redirect to the default locale, e.g., / → /en
    */
   if (pathname === '/') {
     return NextResponse.redirect(new URL(`/${DEFAULT_LOCALE}`, request.url));
@@ -95,14 +163,11 @@ export default async function middleware(request: NextRequest) {
 
   /**
    * 3. Apply internationalization middleware
-   * This handles locale detection and routing based on URL path
    */
   let response = intlMiddleware(request);
   
   /**
    * 4. Handle price A/B testing
-   * If the user doesn't have a price selection cookie, randomly assign one
-   * This ensures consistent price display across visits
    */
   const priceCookie = request.cookies.get('selected_price');
   if (!priceCookie?.value) {
@@ -116,7 +181,12 @@ export default async function middleware(request: NextRequest) {
   }
 
   /**
-   * 5. Apply CORS headers
+   * 5. Check admin authentication for admin routes
+   */
+  response = handleAdminAuth(request, response);
+
+  /**
+   * 6. Apply CORS headers
    */
   response = handleCORS(request, response);
 
@@ -131,9 +201,7 @@ export const config = {
   matcher: [
     // Match all paths except static files, API routes, and Next.js internals
     '/((?!api|_next|_vercel|.*\\..*).*)',
-    // Match admin API routes for authentication
-    '/api/admin/:path*',
-    // Exclude admin paths for performance (already covered by first matcher)
-    '/((?!admin).*)'
+    // Match API routes for authentication and CORS
+    '/api/:path*',
   ]
 };
