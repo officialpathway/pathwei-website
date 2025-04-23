@@ -2,11 +2,51 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@supabase/supabase-js';
 import cookie from 'cookie';
+import Cors from 'cors';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
+// Initializing the cors middleware
+const cors = Cors({
+  origin: [
+    // Add your frontend domains here
+    'http://localhost:3000', // Development
+    'https://your-production-domain.com', // Production domain
+    // Add any other domains that need to access this endpoint
+  ],
+  methods: ['POST', 'OPTIONS'], // Allowed methods
+  credentials: true, // Allow credentials (cookies)
+});
+
+// Helper method to wait for a middleware to execute before continuing
+function runMiddleware(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+  fn: Function
+) {
+  return new Promise((resolve, reject) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    fn(req, res, (result: any) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+      return resolve(result);
+    });
+  });
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // Run the CORS middleware
+  await runMiddleware(req, res, cors);
+
+  // Handle OPTIONS request
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+  
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
