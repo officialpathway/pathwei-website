@@ -1,7 +1,7 @@
 // src/pages/api/admin/price-A-B/track-price.ts
 import { put, head } from "@vercel/blob";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { isAdminAuthenticated } from "@/lib/api/auth/auth";
+import { withAdminAuth } from "@/lib/api/middleware/adminApiMiddleware";
 
 const BLOB_KEY = "price-tracking/stats.json";
 
@@ -58,19 +58,13 @@ function transformStatsForFrontend(rawStats: PriceStats): Array<{
   });
 }
 
-export default async function handler(
+async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
     // GET request to fetch stats
     if (req.method === "GET") {
-      // Authentication check for GET
-      const isAuthenticated = await isAdminAuthenticated(req);
-      if (!isAuthenticated) {
-        return res.status(401).json({ error: "Unauthorized" });
-      }
-
       const rawStats = await getStatsFromBlob();
       const formattedStats = transformStatsForFrontend(rawStats);
       
@@ -117,3 +111,6 @@ export default async function handler(
     });
   }
 }
+
+// Export with admin auth middleware
+export default withAdminAuth(handler);

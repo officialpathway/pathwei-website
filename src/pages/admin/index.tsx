@@ -11,7 +11,6 @@ import {
   LineChart, 
   LayoutGrid, 
   Activity,
-
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -33,22 +32,14 @@ export default function AdminHub() {
   const [error, setError] = useState<string | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
   const [, setIsSubmitting] = useState(false);
-  const [, setAuthMethod] = useState<'cookie' | 'token' | null>(null);
   
-  // Check for existing auth on mount (both cookie and Supabase)
+  // Check for existing auth on mount
   useEffect(() => {
     const verifyAuth = async () => {
       try {
         setAuthLoading(true);
         const isAuthenticated = await checkAdminAuth();
         setAuthenticated(isAuthenticated);
-        
-        // Determine which auth method is active
-        if (isAuthenticated) {
-          // Check if we have a token in localStorage to determine auth method
-          const hasToken = !!localStorage.getItem('adminAuthToken');
-          setAuthMethod(hasToken ? 'token' : 'cookie');
-        }
       } catch (error) {
         console.error('Auth verification error:', error);
         setAuthenticated(false);
@@ -92,73 +83,38 @@ export default function AdminHub() {
       
       console.log('Admin role verified in JWT claims');
       
-      // Attempt cookie-based authentication first
-      try {
-        console.log('Attempting cookie-based authentication...');
-        // Set admin cookie
-        const cookieResponse = await fetch('/api/auth/set-auth-cookie', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${session?.access_token}`
-          },
-          credentials: 'include'
-        });
-    
-        if (cookieResponse.ok) {
-          console.log('Admin cookie set successfully');
-          setAuthMethod('cookie');
-          setAuthenticated(true);
-          return;
-        } else {
-          const cookieErrorData = await cookieResponse.text();
-          console.warn('Cookie-based auth failed, falling back to token-based auth:', cookieResponse.status, cookieErrorData);
+      // Get admin JWT token from server
+      const tokenResponse = await fetch('/api/auth/get-auth-token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session?.access_token}`
         }
-      } catch (cookieError) {
-        console.warn('Cookie auth error, using token fallback:', cookieError);
+      });
+      
+      if (!tokenResponse.ok) {
+        const tokenErrorData = await tokenResponse.text();
+        console.error('Token API error:', tokenResponse.status, tokenErrorData);
+        throw new Error('Failed to get admin token');
       }
       
-      console.log('Attempting token-based authentication as fallback...');
+      const tokenData = await tokenResponse.json();
       
-      // Cookie-based auth failed, try token-based auth
-      try {
-        const tokenResponse = await fetch('/api/auth/get-auth-token', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${session?.access_token}`
-          }
-        });
+      if (tokenData.success && tokenData.token) {
+        // Store token in localStorage
+        localStorage.setItem('adminAuthToken', tokenData.token);
+        localStorage.setItem('adminAuthExpires', tokenData.expiresAt.toString());
         
-        if (!tokenResponse.ok) {
-          const tokenErrorData = await tokenResponse.text();
-          console.error('Token API error:', tokenResponse.status, tokenErrorData);
-          throw new Error('Failed to get admin token');
+        // Store user data for easy access
+        if (tokenData.user) {
+          localStorage.setItem('adminUser', JSON.stringify(tokenData.user));
         }
         
-        const tokenData = await tokenResponse.json();
-        
-        if (tokenData.success && tokenData.token) {
-          // Store token in localStorage
-          localStorage.setItem('adminAuthToken', tokenData.token);
-          localStorage.setItem('adminAuthExpires', tokenData.expiresAt.toString());
-          
-          // Store user data for easy access
-          if (tokenData.user) {
-            localStorage.setItem('adminUser', JSON.stringify(tokenData.user));
-          }
-          
-          console.log('Admin token stored successfully');
-          setAuthMethod('token');
-          setAuthenticated(true);
-        } else {
-          throw new Error('Invalid token response');
-        }
-      } catch (tokenError) {
-        console.error('Token auth error:', tokenError);
-        throw new Error('Authentication failed');
+        console.log('Admin token stored successfully');
+        setAuthenticated(true);
+      } else {
+        throw new Error('Invalid token response');
       }
-      
     } catch (err) {
       console.error('Login error:', err);
       setError(err instanceof Error ? err.message : 'Login failed');
@@ -169,10 +125,14 @@ export default function AdminHub() {
 
   async function handleLogout() {
     try {
+      setAuthLoading(true);
       await logoutAdmin();
       setAuthenticated(false);
     } catch (error) {
       console.error('Logout error:', error);
+      setError('Logout failed. Please try again.');
+    } finally {
+      setAuthLoading(false);
     }
   }
 

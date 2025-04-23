@@ -6,66 +6,33 @@ import { useAdminAuthGuard } from '@/hooks/api/useAdminAuthGuard';
 import './layout';
 import '@/pages/globals.css';
 import AdminLayout from './layout';
-
-interface PriceStatData {
-  price: number;
-  clicks: number;
-  conversions: number;
-  conversion_rate: number;
-  last_updated: string;
-}
+import { usePriceStatsApi, PriceStatData } from '@/lib/api/admin/priceStatsApi';
 
 export default function StatsPage() {
   const [stats, setStats] = useState<PriceStatData[]>([]);
   const [dataLoading, setDataLoading] = useState(false);
   const [downloadLoading, setDownloadLoading] = useState(false);
   const [, setError] = useState<string | null>(null);
-  const { isAuthorized } = useAdminAuthGuard(); // Correct property name from the hook
+  const { isAuthorized } = useAdminAuthGuard();
   const [showResetModal, setShowResetModal] = useState(false);
   const [resetLoading, setResetLoading] = useState(false);
+  
+  // Get the price stats API client
+  const priceStatsApi = usePriceStatsApi();
 
   async function fetchStats() {
     try {
       setDataLoading(true);
       setError(null);
       
-      console.log('Initiating fetch request to /api/admin/price-A-B/track-price');
-      
-      const response = await fetch('/api/admin/price-A-B/track-price', {
-        method: 'GET', // Explicitly set the method
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      console.log('Received response:', {
-        status: response.status,
-        statusText: response.statusText,
-        headers: Object.fromEntries(response.headers.entries()),
-        ok: response.ok,
-      });
-  
-      if (!response.ok) {
-        const errorBody = await response.text();
-        console.error('Error response body:', errorBody);
-        throw new Error(`HTTP error! status: ${response.status}, body: ${errorBody}`);
-      }
-      
-      const data = await response.json();
-      console.log('Successfully parsed response data:', data);
+      console.log('Fetching price stats...');
+      const data = await priceStatsApi.getStats();
+      console.log('Successfully fetched price stats:', data);
       setStats(data);
     } catch (error) {
-      console.error('Detailed fetch error:', {
-        error: error instanceof Error ? {
-          name: error.name,
-          message: error.message,
-          stack: error.stack
-        } : error,
-        timestamp: new Date().toISOString(),
-      });
+      console.error('Error fetching stats:', error);
       setError(error instanceof Error ? error.message : 'Unknown error');
     } finally {
-      console.log('Fetch operation completed');
       setDataLoading(false);
     }
   }
@@ -75,76 +42,35 @@ export default function StatsPage() {
     if (isAuthorized) {
       fetchStats();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthorized]);
 
   async function handleResetStats() {
     try {
       setResetLoading(true);
-      console.log("Reset stats button clicked");
+      console.log("Resetting stats...");
       
-      // Make the request with credentials and detailed logging
-      console.log("Sending reset request to /api/admin/price-A-B/reset-stats");
-      const response = await fetch('/api/admin/price-A-B/reset-stats', {
-        method: 'POST',
-        credentials: 'include', // Include cookies for auth
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-      
-      console.log("Reset response received:", {
-        status: response.status,
-        statusText: response.statusText,
-        headers: Object.fromEntries(response.headers.entries()),
-        ok: response.ok
-      });
-
-      // Try to parse the response body for more details
-      let responseData;
-      try {
-        responseData = await response.json();
-        console.log("Reset response data:", responseData);
-      } catch (parseError) {
-        const textResponse = await response.text();
-        console.log("Could not parse JSON response. Text response:", textResponse);
-        console.error("Parse error:", parseError);
-      }
-
-      if (!response.ok) {
-        throw new Error(`Failed to reset stats: ${response.status} ${response.statusText}`);
-      }
-
+      await priceStatsApi.resetStats();
       console.log("Reset successful, fetching updated stats");
+      
       await fetchStats();
       console.log("Stats refreshed successfully");
       setShowResetModal(false);
     } catch (error) {
-      console.error("Detailed reset error:", {
-        error: error instanceof Error ? {
-          name: error.name,
-          message: error.message,
-          stack: error.stack
-        } : error,
-        timestamp: new Date().toISOString()
-      });
+      console.error("Error resetting stats:", error);
       setError(error instanceof Error ? error.message : 'Failed to reset stats');
     } finally {
       setResetLoading(false);
-      console.log("Reset operation completed");
     }
   }
 
-  // New function to handle downloading stats
   async function handleDownloadStats() {
     try {
       setDownloadLoading(true);
-      const response = await fetch('/api/admin/price-A-B/get-download-url');
+      console.log("Getting download URL...");
       
-      if (!response.ok) {
-        throw new Error('Failed to get download URL');
-      }
-      
-      const data = await response.json();
+      const data = await priceStatsApi.getDownloadUrl();
+      console.log("Got download URL:", data);
       
       // Create a temporary link element and click it to trigger download
       const link = document.createElement('a');

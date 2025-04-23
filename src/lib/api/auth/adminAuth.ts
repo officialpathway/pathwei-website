@@ -1,7 +1,7 @@
 // lib/api/auth/adminAuth.ts
 import { supabase, getCurrentUser } from '@/lib/db/supabase';
 
-// Interfaces for auth data
+// Interface for decoded token data
 interface AdminTokenData {
   userId: string;
   role: string;
@@ -11,89 +11,79 @@ interface AdminTokenData {
 }
 
 /**
- * Checks if the user is authenticated as an admin
- * Tries both cookie-based and token-based authentication
+ * Checks if the user is authenticated as an admin using JWT token
  */
 export async function checkAdminAuth(): Promise<boolean> {
   try {
-    // Log initial auth state
-    console.log('Auth check:', {
-      cookieAuth: localStorage.getItem('adminAuthToken') ? 'Present' : 'None',
-      cookieAuthDetails: localStorage.getItem('adminAuthToken') ? 'Token exists' : {},
-      supabaseAuth: 'Checking...'
-    });
-
-    // First check cookie-based auth
-    try {
-      const res = await fetch('/api/auth/admin-check', {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      
-      if (!res.ok) {
-        console.warn('Cookie auth check returned non-OK response:', res.status);
-        throw new Error(`Cookie auth check failed with status: ${res.status}`);
-      }
-      
-      const cookieAuthData = await res.json();
-      
-      if (cookieAuthData.authenticated) {
-        console.log('Authenticated via cookie');
-        return true;
-      }
-    } catch (cookieError) {
-      console.warn('Cookie auth check failed:', cookieError);
-    }
-    
-    // If cookie auth fails, check for token in localStorage
+    // Check for token in localStorage
     const token = localStorage.getItem('adminAuthToken');
     const expiresAt = localStorage.getItem('adminAuthExpires');
     
-    if (token && expiresAt) {
-      const expiryTime = parseInt(expiresAt);
-      const currentTime = Math.floor(Date.now() / 1000);
-      
-      console.log('Token auth check:', {
-        tokenPresent: !!token,
-        expiryTime,
-        currentTime,
-        isExpired: expiryTime <= currentTime
-      });
-      
-      if (expiryTime > currentTime) {
-        // Token exists and is not expired
-        console.log('Found valid token in localStorage');
-        
-        try {
-          // Verify the token is still valid with Supabase
-          const user = await getCurrentUser();
-          if (user) {
-            console.log('Supabase session confirmed for user:', user.id);
-            return true;
-          } else {
-            console.log('No valid Supabase session found');
-            // Supabase session expired, clear token
-            localStorage.removeItem('adminAuthToken');
-            localStorage.removeItem('adminAuthExpires');
-            return false;
-          }
-        } catch (supabaseError) {
-          console.error('Supabase session check error:', supabaseError);
-          return false;
-        }
-      } else {
-        // Token is expired, clear it
-        console.log('Token expired, clearing from localStorage');
-        localStorage.removeItem('adminAuthToken');
-        localStorage.removeItem('adminAuthExpires');
-      }
+    if (!token || !expiresAt) {
+      console.log('No auth token found');
+      return false;
     }
     
-    console.log('No valid authentication found');
-    return false;
+    const expiryTime = parseInt(expiresAt);
+    const currentTime = Math.floor(Date.now() / 1000);
+    
+    console.log('Token auth check:', {
+      tokenPresent: true,
+      expiryTime,
+      currentTime,
+      isExpired: expiryTime <= currentTime
+    });
+    
+    if (expiryTime <= currentTime) {
+      console.log('Token expired, clearing from localStorage');
+      localStorage.removeItem('adminAuthToken');
+      localStorage.removeItem('adminAuthExpires');
+      localStorage.removeItem('adminUser');
+      return false;
+    }
+    
+    // Token exists and is not expired, verify with server
+    try {
+      const response = await fetch('/api/auth/admin-check', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error(`API responded with status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      if (data.authenticated) {
+        console.log('Token verified with server');
+        return true;
+      } else {
+        console.log('Server rejected token:', data.message);
+        localStorage.removeItem('adminAuthToken');
+        localStorage.removeItem('adminAuthExpires');
+        localStorage.removeItem('adminUser');
+        return false;
+      }
+    } catch (serverCheckError) {
+      console.error('Error checking token with server:', serverCheckError);
+      
+      // As a fallback, verify with Supabase if server check fails
+      try {
+        const user = await getCurrentUser();
+        if (user) {
+          console.log('Supabase session confirmed for user:', user.id);
+          return true;
+        }
+      } catch (supabaseError) {
+        console.error('Supabase session check error:', supabaseError);
+      }
+      
+      return false;
+    }
   } catch (error) {
     console.error('Auth check error:', error);
     return false;
@@ -101,7 +91,7 @@ export async function checkAdminAuth(): Promise<boolean> {
 }
 
 /**
- * Logs out the user from both cookie and token auth
+ * Logs out the admin user
  */
 export async function logoutAdmin(): Promise<void> {
   try {
@@ -112,22 +102,6 @@ export async function logoutAdmin(): Promise<void> {
     localStorage.removeItem('adminAuthExpires');
     localStorage.removeItem('adminUser');
     
-    // Clear cookies
-    try {
-      const cookieResponse = await fetch('/api/auth/logout', {
-        method: 'POST',
-        credentials: 'include'
-      });
-      
-      if (!cookieResponse.ok) {
-        console.warn('Logout cookie clearing failed:', await cookieResponse.text());
-      } else {
-        console.log('Logout cookie cleared successfully');
-      }
-    } catch (cookieError) {
-      console.warn('Error during cookie logout:', cookieError);
-    }
-    
     // Sign out from Supabase
     try {
       await supabase.auth.signOut();
@@ -135,7 +109,6 @@ export async function logoutAdmin(): Promise<void> {
     } catch (supabaseError) {
       console.warn('Error during Supabase signout:', supabaseError);
     }
-    
   } catch (error) {
     console.error('Logout error:', error);
     throw error;
@@ -147,12 +120,11 @@ export async function logoutAdmin(): Promise<void> {
  * @returns The user ID if authenticated, null otherwise
  */
 export function getAdminUserId(): string | null {
-  // Check localStorage token first
+  // Check localStorage token
   const token = localStorage.getItem('adminAuthToken');
   if (token) {
     try {
-      // For JWT tokens, we can decode without verification to get the payload
-      // Note: This is safe for client-side use as we're not trusting this data for auth decisions
+      // Decode JWT token without verification
       const base64Url = token.split('.')[1];
       const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
       const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
@@ -167,9 +139,6 @@ export function getAdminUserId(): string | null {
     }
   }
   
-  // Fallback to cookie if available (needs to be added to the cookie when setting it)
-  // This requires the cookie to be accessible from JS, which might not be the case for httpOnly cookies
-  // This is just a placeholder for custom implementation if needed
   return null;
 }
 
@@ -188,7 +157,7 @@ export function getAdminUser(): { id: string; name: string; email: string; role:
     }
   }
 
-  // Fall back to token decoding if user data isn't stored directly
+  // Fall back to token decoding
   const token = localStorage.getItem('adminAuthToken');
   if (token) {
     try {

@@ -1,21 +1,14 @@
 // src/pages/api/admin/price-A-B/get-download-url.ts
 import { head } from "@vercel/blob";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { isAdminAuthenticated } from "@/lib/api/auth/auth";
+import { withAdminAuth } from "@/lib/api/middleware/adminApiMiddleware";
 
 const BLOB_KEY = "price-tracking/stats.json";
 
-export default async function handler(
+async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // Authentication check
-  const isAuthenticated = await isAdminAuthenticated(req);
-
-  if (!isAuthenticated) {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
-
   if (req.method !== "GET") {
     return res.status(405).json({ error: "Method not allowed" });
   }
@@ -43,3 +36,6 @@ export default async function handler(
     });
   }
 }
+
+// Export with admin auth middleware
+export default withAdminAuth(handler);

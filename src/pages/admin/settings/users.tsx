@@ -48,7 +48,6 @@ import {
   getUsers, 
   deleteUser, 
   updateUser, 
-  addUser, 
   resendInvite, 
   uploadAvatar, 
   deleteAvatar,
@@ -221,32 +220,71 @@ export default function UserManagement() {
     }
   };
 
-  // Add User
   const handleInviteUser = async () => {
     if (!inviteForm.email) {
       toast.error('Email is required');
       return;
     }
-
+  
     try {
       setIsLoading(true);
-      await addUser({
+      
+      // Prepare user data
+      const userData = {
         email: inviteForm.email,
         name: inviteForm.name || inviteForm.email.split('@')[0],
         role: inviteForm.role,
         status: 'invited',
-        lastActive: new Date().toISOString()
+        last_active: new Date().toISOString()
+      };
+      
+      // First add the user using the API endpoint that has admin access
+      const addUserResponse = await fetch('/api/admin/user-management/add-user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(userData),
       });
+      
+      if (!addUserResponse.ok) {
+        const errorData = await addUserResponse.json();
+        throw new Error(errorData.error || 'Failed to add user');
+      }
+      
+      // Get the created user data
+      const { user: newUser } = await addUserResponse.json();
+      
+      // Then send the invitation email via API
+      const emailResponse = await fetch('/api/admin/user-management/invite', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: newUser.email,
+          name: newUser.name,
+          role: newUser.role,
+          status: newUser.status,
+          last_active: newUser.last_active
+        }),
+      });
+      
+      if (!emailResponse.ok) {
+        const errorData = await emailResponse.json();
+        throw new Error(errorData.error || 'Failed to send invitation email');
+      }
       
       // Refresh the user list
       const updatedUsers = await getUsers();
       setUsers(updatedUsers);
       
-      toast.success(`Invite sent to ${inviteForm.email}`);
+      toast.success(`Invite sent to ${newUser.email}`);
       setIsInviteDialogOpen(false);
       setInviteForm({ email: '', name: '', role: 'editor' });
     } catch (error) {
-      toast.error('Failed to send invite');
+      toast.error(error instanceof Error ? error.message : 'Failed to send invite');
       console.error(error);
     } finally {
       setIsLoading(false);
@@ -504,7 +542,7 @@ export default function UserManagement() {
                         {user.status}
                       </Badge>
                     </TableCell>
-                    <TableCell>{formatLastActive(user.lastActive)}</TableCell>
+                    <TableCell>{formatLastActive(user.last_active)}</TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end">
                         <DropdownMenu>
@@ -665,7 +703,7 @@ export default function UserManagement() {
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select a role" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className='bg-white'>
                   <SelectItem value="admin">Admin</SelectItem>
                   <SelectItem value="editor">Editor</SelectItem>
                   <SelectItem value="viewer">Viewer</SelectItem>

@@ -1,63 +1,52 @@
 /**
  * Custom hook for making authenticated API requests in the admin panel
- * Automatically includes auth tokens from localStorage and cookies
+ * Automatically includes JWT token from localStorage
  */
-import { useCallback } from 'react';
-
 export function useAuthFetch() {
-  // Use useCallback to ensure a stable function reference
-  const authFetch = useCallback(async (url: string, options: RequestInit = {}) => {
+  const authFetch = async (url: string, options: RequestInit = {}) => {
     try {
-      // Get auth headers (this function is inside the callback to ensure fresh token)
-      const getAuthHeaders = (): Record<string, string> => {
-        const token = localStorage.getItem('adminAuthToken');
-        return token 
-          ? { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
-          : { 'Content-Type': 'application/json' };
-      };
-      
-      // Properly type the headers
-      const combinedHeaders: Record<string, string> = {
-        ...getAuthHeaders(),
-        ...(options.headers as Record<string, string> || {}),
-      };
-      
+      // Get the token from localStorage - done inside the function to always get fresh token
+      const token = localStorage.getItem('adminAuthToken');
+
+      // Create headers with Authorization header when token exists
+      const headers = new Headers({
+        'Content-Type': 'application/json',
+        ...(options.headers || {}),
+      });
+
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
+
+      // Log for debugging
+      console.log(`Auth fetch to ${url}:`, { 
+        hasToken: !!token,
+        firstCharsOfToken: token ? `${token.substring(0, 8)}...` : 'none'
+      });
+
+      // Make the API call
       const response = await fetch(url, {
         ...options,
-        headers: combinedHeaders,
-        credentials: 'include', // Always include cookies when available
+        headers,
       });
-      
-      // Check for auth errors and attempt refresh/retry
-      if (response.status === 401 || response.status === 403) {
-        // If this was a token-based auth failure, try with cookies only
-        const token = localStorage.getItem('adminAuthToken');
-        if (token) {
-          console.log('Token-based auth failed, trying with cookies only');
-          
-          // Create new headers without Authorization
-          const cookieOnlyHeaders: Record<string, string> = { ...combinedHeaders };
-          delete cookieOnlyHeaders.Authorization;
-          
-          const cookieOnlyResponse = await fetch(url, {
-            ...options,
-            headers: cookieOnlyHeaders,
-            credentials: 'include',
-          });
-          
-          if (cookieOnlyResponse.ok) {
-            return cookieOnlyResponse;
-          }
-        }
+
+      // Handle 401 errors (expired/invalid token)
+      if (response.status === 401) {
+        console.warn('Authentication failed for request:', url);
+        
+        // Clear tokens if unauthorized
+        localStorage.removeItem('adminAuthToken');
+        localStorage.removeItem('adminAuthExpires');
+        localStorage.removeItem('adminUser');
       }
-      
+
       return response;
     } catch (error) {
       console.error('Error in authFetch:', error);
       throw error;
     }
-  }, []); // Empty dependency array ensures this function reference is stable
-  
+  };
+
   return authFetch;
 }
 

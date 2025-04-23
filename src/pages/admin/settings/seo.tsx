@@ -47,6 +47,7 @@ import {
   TooltipTrigger,
 } from "@/components/server/ui/tooltip";
 import { useAdminAuthGuard } from '@/hooks/api/useAdminAuthGuard';
+import { useSeoApi } from '@/lib/api/admin/adminApiClient';
 
 type SEOData = {
   title: string;
@@ -70,6 +71,7 @@ type SEOData = {
 
 export default function SEOSettings() { 
   useAdminAuthGuard();
+  const seoApi = useSeoApi();
   
   const [seoData, setSeoData] = useState<SEOData>({
     title: '',
@@ -100,33 +102,22 @@ export default function SEOSettings() {
   const [tempJsonLd, setTempJsonLd] = useState('');
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
 
-  // Fetch initial data
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
+    async function loadData() {
       try {
-        const response = await fetch('/api/admin/seo/settings', {
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-            'Cookie': document.cookie // Explicitly send cookies
-  }
-        });
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
+        setIsLoading(true);
+        const data = await seoApi.getSeoSettings();
         setSeoData(data);
-      } catch (error: unknown) {
-        const message = error instanceof Error ? error.message : 'Failed to load settings';
-        toast.error(message);
+      } catch (error) {
+        console.error('Error loading SEO settings:', error);
+        // Handle error
       } finally {
         setIsLoading(false);
       }
-    };
-    fetchData();
+    }
+    
+    loadData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
   // Validate input based on SEO best practices
@@ -180,19 +171,13 @@ export default function SEOSettings() {
         setValidationErrors(errors);
         throw new Error('Validation failed');
       }
-
-      const res = await fetch('/api/admin/seo/settings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(seoData),
-      });
-      
-      if (!res.ok) throw new Error('Save failed');
-      
+  
+      // Use the API client instead of direct fetch
+      await seoApi.saveSeoSettings(seoData);
       toast.success("Settings saved. Your SEO settings have been updated successfully.");
     } catch (error) {
       console.error("Failed to save settings", error);
-      toast.success(
+      toast.error(
         error instanceof Error && error.message === 'Validation failed' 
           ? "Please fix the validation errors and try again."
           : "Could not save SEO settings. Please try again later."
@@ -205,16 +190,11 @@ export default function SEOSettings() {
   const generateSitemap = async () => {
     setIsGeneratingSitemap(true);
     try {
-      const res = await fetch('/api/generate-sitemap', { 
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          frequency: seoData.sitemapFrequency,
-          priority: seoData.sitemapPriority
-        })
+      // Use the API client instead of direct fetch
+      await seoApi.generateSitemap({
+        frequency: seoData.sitemapFrequency,
+        priority: seoData.sitemapPriority
       });
-      
-      if (!res.ok) throw new Error('Generation failed');
       
       // Update last generated time
       setSeoData(prev => ({

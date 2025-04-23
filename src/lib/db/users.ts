@@ -25,7 +25,7 @@ export type User = {
   name: string;
   email: string;
   role: 'admin' | 'editor' | 'viewer';
-  lastActive: string;
+  last_active: string;
   status: 'active' | 'invited' | 'suspended';
   avatar?: string;
 };
@@ -82,22 +82,28 @@ export async function getUsers(): Promise<User[]> {
 
 export async function addUser(user: Omit<User, 'id'>): Promise<User> {
   try {
-    const { data, error } = await supabase
+    // For client-side: Use regular Supabase client but be aware it may fail due to RLS
+    // For server-side: Use adminSupabase if available
+    const client = typeof window === 'undefined' && adminSupabase ? adminSupabase : supabase;
+    
+    // Log which client we're using (for debugging)
+    console.log(`Using ${typeof window === 'undefined' && adminSupabase ? 'admin' : 'regular'} Supabase client for addUser`);
+    
+    const { data, error } = await client
       .from('users')
       .insert([{
         name: user.name,
         email: user.email,
         role: user.role,
-        status: 'invited',
-        lastActive: new Date().toISOString(),
-        // Excluding id as Supabase will generate it
+        status: user.status || 'invited',
+        last_active: user.last_active || new Date().toISOString(),
       }])
       .select();
     
-    if (error) throw error;
-    
-    // In a production app, you would send an invitation email here
-    // This could be done via Supabase Edge Functions or your own API
+    if (error) {
+      console.error('Error adding user:', error);
+      throw error;
+    }
     
     return data[0] as User;
   } catch (error) {

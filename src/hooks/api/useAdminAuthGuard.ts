@@ -1,4 +1,3 @@
-// hooks/api/useAdminAuthGuard.ts
 import { useRouter, usePathname } from 'next/navigation';
 import { useEffect, useState, useRef } from 'react';
 import useAuthFetch from './useAuthFetch';
@@ -9,29 +8,20 @@ export function useAdminAuthGuard() {
   const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const authFetch = useAuthFetch();
-  
-  // Use refs to track if we've already checked auth for this pathname
-  // and to prevent multiple redirects
-  const checkedPathRef = useRef<string | null>(null);
   const isCheckingRef = useRef(false);
 
   useEffect(() => {
-    // Reset the check when pathname changes
-    if (checkedPathRef.current !== pathname) {
-      checkedPathRef.current = pathname;
-    }
-    
     // Don't run the check if we're already on the login page or not on an admin route
     const isAdminRoute = pathname?.includes('/admin');
     const isLoginPage = pathname === '/admin';
 
     if (!isAdminRoute || isLoginPage) {
       setIsLoading(false);
-      setIsAuthorized(isLoginPage ? null : true);
+      setIsAuthorized(isLoginPage ? null : false);
       return;
     }
 
-    // Skip if we're already performing a check
+    // Prevent multiple simultaneous checks and infinite loops
     if (isCheckingRef.current) {
       return;
     }
@@ -43,10 +33,18 @@ export function useAdminAuthGuard() {
       try {
         setIsLoading(true);
         
-        // Call the server API to check auth status
+        // Quick check if we have a token
+        const token = localStorage.getItem('adminAuthToken');
+        if (!token) {
+          console.log('No auth token found in localStorage');
+          setIsAuthorized(false);
+          router.push('/admin');
+          return;
+        }
+        
+        // Verify token with server
         const res = await authFetch('/api/auth/admin-check', {
           method: 'GET',
-          credentials: 'include',
         });
 
         if (!res.ok) {
@@ -54,7 +52,8 @@ export function useAdminAuthGuard() {
         }
 
         const data = await res.json();
-        
+        console.log('Admin auth guard check:', data);
+
         if (!data.authenticated) {
           console.log('Not authenticated as admin:', data.message);
           setIsAuthorized(false);
@@ -62,6 +61,7 @@ export function useAdminAuthGuard() {
           return;
         }
 
+        console.log('Admin authentication successful');
         setIsAuthorized(true);
       } catch (err) {
         console.error('Admin auth check failed:', err);
@@ -69,17 +69,17 @@ export function useAdminAuthGuard() {
         router.push('/admin');
       } finally {
         setIsLoading(false);
-        // Reset the checking flag when done
+        // Reset the flag after check completes
         isCheckingRef.current = false;
       }
     };
 
     checkAdminAuth();
     
-    // We don't need authFetch in the dependency array since we're using
-    // the refs to prevent duplicate checks
+    // Only add pathname as a dependency, not router or authFetch
+    // This prevents re-running when redirects happen
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname, router]);
+  }, [pathname]); // Removed router and authFetch dependencies
 
   return { isAuthorized, isLoading };
 }

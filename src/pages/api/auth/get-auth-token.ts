@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-const JWT_SECRET = process.env.JWT_AUTH_SECRET!; // Add this to your env vars
+const JWT_SECRET = process.env.JWT_AUTH_SECRET!;
 
 // Initialize cors middleware
 const cors = Cors({
@@ -94,7 +94,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         role: 'admin',
         email: user.email,
         name: userData.name || user.email?.split('@')[0] || 'Admin User',
-        // Add iat (issued at) and exp (expiration) claims for better security
         iat: Math.floor(Date.now() / 1000),
         exp: expiresAt
       },
