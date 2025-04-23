@@ -131,7 +131,7 @@ export default function AdminHub() {
       await supabase.auth.signOut();
       
       // Call logout API to clear server-side cookies if needed
-      await fetch('/api/admin/logout', {
+      await fetch('/api/auth/logout', {
         method: 'POST',
         credentials: 'include'
       });
