@@ -1,13 +1,13 @@
 // app/suite/page.tsx
 'use client';
 
-import { CyberpunkHeader } from '../components/Header/CyberpunkHeader';
+import { CyberpunkHeader } from '../../../components/client/aihavenlabs/CyberpunkHeader';
 import { motion } from 'framer-motion';
-import { BigTitle } from '../components/common/BigTitle';
-import { CyberpunkFooter } from '../components/Footer/Footer';
+import { BigTitle } from '../../../components/client/common/BigTitle';
+import { CyberpunkFooter } from '../../../components/client/aihavenlabs/Footer';
 import Stairs from '@/lib/styles/animations/StairTransition';
 import { apps } from '@/lib/constants';
-import { FlipCard } from '../components/common/FlipCard';
+import { FlipCard } from '../../../components/client/common/FlipCard';
 
 export default function SuitePage() {
   return (

@@ -4,8 +4,8 @@
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import AdminLayout from '../layout';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Button } from '@/components/server/ui/button';
+import { Input } from '@/components/server/ui/input';
 import {
   Table,
   TableBody,
@@ -13,17 +13,17 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from '@/components/server/ui/table';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
+} from '@/components/server/ui/dropdown-menu';
 import { MoreVertical, Search, Mail, Trash2, Edit, UserPlus, RefreshCw, Check, X, Camera } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
-import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
+import { Badge } from '@/components/server/ui/badge';
+import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from '@/components/server/ui/pagination';
 import { useAdminAuthGuard } from '@/hooks/api/useAdminAuthGuard';
 import {
   Dialog,
@@ -32,16 +32,16 @@ import {
   DialogTitle,
   DialogFooter,
   DialogDescription,
-} from '@/components/ui/dialog';
+} from '@/components/server/ui/dialog';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+} from '@/components/server/ui/select';
 import { toast } from 'sonner';
-import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton } from '@/components/server/ui/skeleton';
 import { formatDistanceToNow } from 'date-fns';
 import { 
   User, 

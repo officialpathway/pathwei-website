@@ -3,8 +3,8 @@
 
 import { useState, useEffect } from 'react';
 import AdminLayout from './layout';
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/server/ui/card';
+import { Button } from '@/components/server/ui/button';
 import { Calendar, Filter, Download, RefreshCw, AlertCircle, Info } from 'lucide-react';
 import {
   Select,
@@ -12,16 +12,16 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+} from '@/components/server/ui/select';
+import { Badge } from '@/components/server/ui/badge';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/server/ui/tabs';
 import { 
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger 
-} from '@/components/ui/tooltip';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+} from '@/components/server/ui/tooltip';
+import { Alert, AlertDescription } from '@/components/server/ui/alert';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 

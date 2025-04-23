@@ -2,10 +2,10 @@
 'use client';
 
 import { TeamSection } from './Team';
-import { CyberpunkHeader } from '../components/Header/CyberpunkHeader';
+import { CyberpunkHeader } from '@/components/client/aihavenlabs/CyberpunkHeader';
 import { motion } from 'framer-motion';
-import { CyberpunkFooter } from '../components/Footer/Footer';
-import { BigTitle } from '../components/common/BigTitle';
+import { CyberpunkFooter } from '@/components/client/aihavenlabs/Footer';
+import { BigTitle } from '@/components/client/common/BigTitle';
 import Stairs from '@/lib/styles/animations/StairTransition';
 
 export default function TeamPage() {

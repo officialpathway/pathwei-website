@@ -4,15 +4,15 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import AdminLayout from '../layout';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Button } from '@/components/server/ui/button';
+import { Input } from '@/components/server/ui/input';
+import { Textarea } from '@/components/server/ui/textarea';
+import { Switch } from '@/components/server/ui/switch';
+import { Label } from '@/components/server/ui/label';
+import { Badge } from '@/components/server/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/server/ui/card';
+import { Separator } from '@/components/server/ui/separator';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/server/ui/tabs';
 import { 
   CheckCircle2, 
   AlertCircle, 
@@ -24,7 +24,7 @@ import {
   XCircle
 } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton } from '@/components/server/ui/skeleton';
 import {
   Dialog,
   DialogContent,
@@ -32,20 +32,20 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from "@/components/server/ui/dialog";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/components/server/ui/select";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@/components/server/ui/tooltip";
 import { useAdminAuthGuard } from '@/hooks/api/useAdminAuthGuard';
 
 type SEOData = {

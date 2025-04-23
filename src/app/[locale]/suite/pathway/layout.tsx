@@ -7,8 +7,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { pathwayKeywords } from "@/lib/seo/keywords";
 import "./globals.css";
-import { Header } from "./components/Header";
-import Footer from "./components/Footer";
+import { Header } from "@/components/client/pathway/Header";
+import Footer from "@/components/client/pathway/Footer";
 
 export const metadata: Metadata = {
   title: "Pathway | AI-Powered Productivity Tracker",

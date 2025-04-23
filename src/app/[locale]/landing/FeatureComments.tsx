@@ -2,7 +2,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { InfoMessage } from '../components/common/InfoMessage';
+import { InfoMessage } from '@/components/client/common/InfoMessage';
 import { useRef } from 'react';
 import { features } from '@/lib/constants';
 

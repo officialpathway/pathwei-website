@@ -3,7 +3,7 @@
 import React from "react";
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { BigTitle } from "../../../components/common/BigTitle";
+import { BigTitle } from "@/components/client/common/BigTitle";
 
 const PrivacyPolicyPage = () => {
   const t = useTranslations("Pathway.Privacy");

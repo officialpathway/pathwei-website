@@ -1,4 +1,4 @@
-// src/lib/seo/keywords.ts
+// lib/seo/keywords.ts
 
 export const globalKeywords = [
   "AI productivity suite",

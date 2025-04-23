@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Particles from "../components/common/Particles";
+import Particles from "@/components/client/common/Particles";
 import { teamMembers } from "@/lib/constants";
 
 export function TeamSection() {

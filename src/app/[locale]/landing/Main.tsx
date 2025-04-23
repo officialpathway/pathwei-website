@@ -7,13 +7,13 @@ import Lenis from 'lenis';
 import { useWindowSize } from '@/hooks/client/useWindowSize';
 
 // Components
-import SplineScene from "../components/common/SplineModel";
-import { CyberpunkHeader } from "../components/Header/CyberpunkHeader";
+import SplineScene from "@/components/client/common/SplineModel";
+import { CyberpunkHeader } from "@/components/client/aihavenlabs/CyberpunkHeader";
 import Hero from "./Hero/Hero";
 import ProductGridSection from "./Grid/ProductGridSection";
 import { FeatureComments } from "./FeatureComments";
 import VisionSection from './Vision/VisionSection';
-import { CyberpunkFooter } from "../components/Footer/Footer";
+import { CyberpunkFooter } from "@/components/client/aihavenlabs/Footer";
 
 /**
  * MainSection - The primary scrolling container for the entire page

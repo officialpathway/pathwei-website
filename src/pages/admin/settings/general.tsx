@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import AdminLayout from "../layout";
-import { Switch } from "@/components/ui/switch";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Switch } from "@/components/server/ui/switch";
+import { Button } from "@/components/server/ui/button";
+import { Input } from "@/components/server/ui/input";
+import { Textarea } from "@/components/server/ui/textarea";
 import Image from "next/image";
 import { useAdminAuthGuard } from "@/hooks/api/useAdminAuthGuard";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { TextScramble } from '../../components/common/TextScramble';
+import { TextScramble } from '@/components/client/common/TextScramble';
 
 export default function Hero() {
   return (

@@ -1,4 +1,4 @@
-// utils/constants.ts
+// utils/pathway-constants.ts
 import { createTranslator } from 'next-intl';
 
 import type { Messages } from 'next-intl';

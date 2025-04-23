@@ -1,9 +1,9 @@
 'use client';
 
 import Stairs from '@/lib/styles/animations/StairTransition';
-import { BigTitle } from '../components/common/BigTitle';
-import { CyberpunkFooter } from '../components/Footer/Footer';
-import { CyberpunkHeader } from '../components/Header/CyberpunkHeader';
+import { BigTitle } from '@/components/client/common/BigTitle';
+import { CyberpunkFooter } from '@/components/client/aihavenlabs/Footer';
+import { CyberpunkHeader } from '@/components/client/aihavenlabs/CyberpunkHeader';
 import { motion } from 'framer-motion';
 
 export default function PrivacyPolicy() {

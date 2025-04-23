@@ -1,5 +1,5 @@
 // lib/constants.ts
-import { Product } from "@/src/app/[locale]/landing/Grid/ProductCard";
+import { Product } from "@/app/[locale]/landing/Grid/ProductCard";
 
 export const teamMembers = [
   {
@@ -7,7 +7,7 @@ export const teamMembers = [
     role: "Chief Executive Officer",
     color: "cyan",
     specialty: "STRATEGIC SYNTHESIS",
-    imgSrc: "/images/Team/ceo.png",
+    imgSrc: "/images/team-portraits/ceo.png",
     id: "ceo",
     title: "FOUNDER & CEO",
     bio: "Former neural interface researcher turned tech entrepreneur. Spearheads our quantum leap into human-AI symbiosis.",
@@ -19,7 +19,7 @@ export const teamMembers = [
     role: "Chief Technology Officer",
     color: "pink",
     specialty: "NEURAL OPTIMIZATION",
-    imgSrc: "/images/Team/cto.jpeg",
+    imgSrc: "/images/team-portraits/cto.jpeg",
     id: "cto",
     title: "CHIEF TECHNOLOGY OFFICER",
     bio: "Ex-Google DeepMind lead engineer. Built the first self-evolving AI architecture at age 23.",
@@ -31,7 +31,7 @@ export const teamMembers = [
     role: "Chief Marketing Officer",
     color: "purple",
     specialty: "COGNITIVE ADOPTION",
-    imgSrc: "/images/Team/cmo.jpeg",
+    imgSrc: "/images/team-portraits/cmo.jpeg",
     id: "cmo",
     title: "CHIEF MARKETING OFFICER",
     bio: "Digital consciousness marketing pioneer. Formerly grew NeuroLink to 50M users in 12 months.",

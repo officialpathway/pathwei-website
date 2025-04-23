@@ -1,13 +1,13 @@
 "use client";
 
-import Hero from './components/Hero';
-import SloganSection from './components/SloganSection';
-import FeedbackSection from './components/FeedbackSection';
-import DotFollower from './components/DotFollower';
-import TestCompletionDemoAnimation from './components/micro-animations/TestCompletionDemoAnimation';
-import InfiniteGoalAnimation from './components/micro-animations/InfiniteGoalAnimation';
-import EnhancedAIEmpowerment from './components/micro-animations/HumanAI';
-import { NeonFuturismBackground } from './components/NeonBackground';
+import Hero from '@/components/client/pathway/Hero';
+import SloganSection from '@/components/client/pathway/SloganSection';
+import FeedbackSection from '@/components/client/pathway/FeedbackSection';
+import DotFollower from '@/components/client/pathway/DotFollower';
+import TestCompletionDemoAnimation from '@/components/client/pathway/micro-animations/TestCompletionDemoAnimation';
+import InfiniteGoalAnimation from '@/components/client/pathway/micro-animations/InfiniteGoalAnimation';
+import EnhancedAIEmpowerment from '@/components/client/pathway/micro-animations/HumanAI';
+import { NeonFuturismBackground } from '@/components/client/pathway/NeonBackground';
 import { useTranslations } from 'next-intl';
 
 export default function Home() {
