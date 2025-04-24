@@ -1,189 +1,139 @@
 // lib/constants.ts
 import { Product } from "@/app/[locale]/landing/Grid/ProductCard";
+import { createTranslator } from 'next-intl';
+import type { Messages } from 'next-intl';
 
-export const teamMembers = [
+// Define the messages interface to include all our translation keys
+type aiHavenLabsMessages = Messages & {
+  team: {
+    members: {
+      [key: string]: {
+        name: string;
+        role: string;
+        specialty: string;
+        title: string;
+        bio: string;
+        status: string;
+        connections: string[];
+      }
+    }
+  },
+  app: {
+    name: string;
+    subtitle: string;
+    description: string;
+    keywords: string[];
+    features: string[];
+    status: string;
+  },
+  products: {
+    [key: string]: {
+      name: string;
+      description: string;
+      stats: string;
+    }
+  },
+  features: {
+    [key: string]: {
+      message: string;
+      subMessage: string;
+    }
+  }
+}
+
+// Update teamMembers to use translations
+export const teamMembers = (t: ReturnType<typeof createTranslator<aiHavenLabsMessages>>) => [
   {
-    name: "Alvaro Rios",
-    role: "Chief Executive Officer",
+    name: t('team.members.ceo.name'),
+    role: t('team.members.ceo.role'),
     color: "cyan",
-    specialty: "STRATEGIC SYNTHESIS",
+    specialty: t('team.members.ceo.specialty'),
     imgSrc: "/images/team-portraits/ceo.png",
     id: "ceo",
-    title: "FOUNDER & CEO",
-    bio: "Former neural interface researcher turned tech entrepreneur. Spearheads our quantum leap into human-AI symbiosis.",
-    status: "ONLINE",
-    connections: ["NeuroTech Inc", "Quantum Leap Ventures", "Future Humanity Fund"]
+    title: t('team.members.ceo.title'),
+    bio: t('team.members.ceo.bio'),
+    status: t('team.members.ceo.status'),
+    // Use t.raw to get the original array
+    connections: t.raw('team.members.ceo.connections') as string[]
   },
   {
-    name: "Rayan Chairi",
-    role: "Chief Technology Officer",
+    name: t('team.members.cto.name'),
+    role: t('team.members.cto.role'),
     color: "pink",
-    specialty: "NEURAL OPTIMIZATION",
+    specialty: t('team.members.cto.specialty'),
     imgSrc: "/images/team-portraits/cto.jpeg",
     id: "cto",
-    title: "CHIEF TECHNOLOGY OFFICER",
-    bio: "Ex-Google DeepMind lead engineer. Built the first self-evolving AI architecture at age 23.",
-    status: "IN LAB",
-    connections: ["MIT Synthetic Intelligence", "OpenNeuro Collective", "The Turing Guild"]
+    title: t('team.members.cto.title'),
+    bio: t('team.members.cto.bio'),
+    status: t('team.members.cto.status'),
+    // Use t.raw to get the original array
+    connections: t.raw('team.members.cto.connections') as string[]
   },
   {
-    name: "Maria Victoria Sanchez",
-    role: "Chief Marketing Officer",
+    name: t('team.members.cmo.name'),
+    role: t('team.members.cmo.role'),
     color: "purple",
-    specialty: "COGNITIVE ADOPTION",
+    specialty: t('team.members.cmo.specialty'),
     imgSrc: "/images/team-portraits/cmo.jpeg",
     id: "cmo",
-    title: "CHIEF MARKETING OFFICER",
-    bio: "Digital consciousness marketing pioneer. Formerly grew NeuroLink to 50M users in 12 months.",
-    status: "IN LAB",
-    connections: ["Hologram Advertising", "MindShare Collective", "The Viral Cortex"]
+    title: t('team.members.cmo.title'),
+    bio: t('team.members.cmo.bio'),
+    status: t('team.members.cmo.status'),
+    // Use t.raw to get the original array
+    connections: t.raw('team.members.cmo.connections') as string[]
   }
 ];
 
-export const investors = [
+// Update apps to use translations
+export const apps = (t: ReturnType<typeof createTranslator<aiHavenLabsMessages>>) => ([
   {
-    name: 'NEURAL CAPITAL',
-    type: 'LEAD INVESTOR',
-    investment: 'Series A - $42M',
-    focus: 'Human-AI convergence technologies',
-    color: 'neon-green'
-  },
-  {
-    name: 'QUANTUM VENTURES',
-    type: 'STRATEGIC PARTNER',
-    investment: 'Seed - $15M',
-    focus: 'Disruptive neurotech',
-    color: 'neon-cyan'
-  },
-  {
-    name: 'FUTURE HORIZON FUND',
-    type: 'GROWTH INVESTOR',
-    investment: 'Series B - $75M',
-    focus: 'Consciousness expansion platforms',
-    color: 'neon-yellow'
-  }
-];
-
-export const supporters = [
-  {
-    name: 'THE TURING INSTITUTE',
-    role: 'RESEARCH PARTNER',
-    contribution: 'AI ethics framework development',
-    color: 'neon-aqua'
-  },
-  {
-    name: 'NEUROTECH FOUNDATION',
-    role: 'OPEN SOURCE SUPPORTER',
-    contribution: 'Core algorithm contributions',
-    color: 'neon-violet'
-  },
-  {
-    name: 'DIGITAL HUMANITY COUNCIL',
-    role: 'ADVISORY BOARD',
-    contribution: 'Policy guidance',
-    color: 'neon-red'
-  }
-];
-
-export const apps = [
-  {
-    id: 'pathway',
-    title: 'PATHWAY',
-    subtitle: 'Your Progress Partner',
-    description: 'Track and achieve your goals with Pathway, the productivity neural-net designed to optimize your human potential.',
-    keywords: ['productivity', 'goals', 'progress', 'social web', 'self-improvement'],
+    id: t('app.name'),
+    title: t('app.name'),
+    subtitle: t('app.subtitle'),
+    description: t('app.description'),
+    // Use t.raw to get the original array instead of a string
+    keywords: t.raw('app.keywords') as string[],
     color: 'neon-green',
-    features: [
-      'Neural goal tracking',
-      'Social accountability networks',
-      'AI-powered progress predictions',
-      'Biometric integration',
-      'Blockchain achievement tokens'
-    ],
-    status: 'ONLINE'
-  },
-  {
-    id: 'neuroforge',
-    title: 'NEUROFORGE',
-    subtitle: 'Cognitive Enhancement Suite',
-    description: 'Augment your mental capabilities with our AI-driven neuro-enhancement platform.',
-    keywords: ['brain training', 'focus', 'memory', 'cognitive'],
-    color: 'neon-blue',
-    features: [
-      'Real-time neural optimization',
-      'Adaptive learning algorithms',
-      'EEG integration',
-      'Neurochemical balancing',
-      'Dreamstate programming'
-    ],
-    status: 'BETA'
-  },
-  {
-    id: 'quantumlink',
-    title: 'QUANTUMLINK',
-    subtitle: 'Decentralized Thought Network',
-    description: 'The first truly decentralized AI-human consciousness sharing platform.',
-    keywords: ['blockchain', 'AI', 'neural', 'decentralized'],
-    color: 'neon-purple',
-    features: [
-      'Quantum encrypted messaging',
-      'Hive-mind knowledge pools',
-      'Neural NFT marketplace',
-      'Consensus reality builder',
-      'Temporal communication channels'
-    ],
-    status: 'ALPHA'
-  },
-  {
-    id: 'biocore',
-    title: 'BIOCORE',
-    subtitle: 'Organic-Digital Interface',
-    description: 'Bridging the gap between biological and artificial intelligence systems.',
-    keywords: ['biotech', 'implants', 'augmentation', 'cybernetics'],
-    color: 'neon-pink',
-    features: [
-      'DNA-based authentication',
-      'Nanite health monitoring',
-      'Synaptic cloud backup',
-      'Biological API endpoints',
-      'Regenerative firmware'
-    ],
-    status: 'PROTOTYPE'
+    // Use t.raw to get the original array instead of a string
+    features: t.raw('app.features') as string[],
+    status: t('app.status')
   }
-];
+]);
 
-export const products: Product[] = [
+// Update products to use translations
+export const products = (t: ReturnType<typeof createTranslator<aiHavenLabsMessages>>): Product[] => [
   {
-    name: 'Pathway',
-    description: 'Productivity companion that enhances focus while protecting digital wellbeing',
-    stats: '↑ 89% task completion | ↓ 62% screen fatigue',
+    name: t('products.pathway.name'),
+    description: t('products.pathway.description'),
+    stats: t('products.pathway.stats'),
     color: 'neon-cyan'
   },
   {
-    name: 'ContentForge',
-    description: 'AI-powered creative suite that organizes and generates content ideas',
-    stats: '3.1x output speed | 40% better engagement',
+    name: t('products.contentForge.name'),
+    description: t('products.contentForge.description'),
+    stats: t('products.contentForge.stats'),
     color: 'neon-pink'
   },
   {
-    name: 'NeuroLink',
-    description: 'Coming soon: Neural interface for thought-to-text workflows',
-    stats: 'Patent pending',
+    name: t('products.neuroLink.name'),
+    description: t('products.neuroLink.description'),
+    stats: t('products.neuroLink.stats'),
     color: 'neon-purple'
   },
   {
-    name: 'Chronos',
-    description: 'Coming soon: Time optimization engine for creative professionals',
-    stats: 'Beta testing Q3 2024',
+    name: t('products.chronos.name'),
+    description: t('products.chronos.description'),
+    stats: t('products.chronos.stats'),
     color: 'neon-green'
   }
 ];
 
-export const features = [
+// Update features to use translations
+export const features = (t: ReturnType<typeof createTranslator<aiHavenLabsMessages>>) => [
   {
     id: 1,
-    message: "YOUR GOALS, POWERED BY AI",
-    subMessage: "We built this because we watched dreams get buried under busywork. Our AI maps personalized paths to success—helping 530K+ users stay focused on what matters.",
+    message: t('features.1.message'),
+    subMessage: t('features.1.subMessage'),
     borderColor: "cyan" as const,
     position: "left",
     top: "10%",
@@ -192,8 +142,8 @@ export const features = [
   },
   {
     id: 2,
-    message: "HUMANS FIRST, ALWAYS",
-    subMessage: "Unlike tools that replace you, ours amplify you. 84% of users report achieving goals faster while feeling *more* creative and in control.",
+    message: t('features.2.message'),
+    subMessage: t('features.2.subMessage'),
     borderColor: "purple" as const,
     position: "right",
     top: "20%",
@@ -202,8 +152,8 @@ export const features = [
   },
   {
     id: 3,
-    message: "THE FUTURE OF WORK IS HERE",
-    subMessage: "We saw the demand for AI that adapts to *you*—not the other way around. Our tech learns your habits, predicts blockers, and course-corrects in real time.",
+    message: t('features.3.message'),
+    subMessage: t('features.3.subMessage'),
     borderColor: "pink" as const,
     position: "left",
     top: "35%",
@@ -212,8 +162,8 @@ export const features = [
   },
   {
     id: 4,
-    message: "PROVEN TO WORK",
-    subMessage: "Users complete 3.2x more weekly priorities. Founders credit us for hitting milestones 6 months early. Therapists use it to help clients build life-changing habits.",
+    message: t('features.4.message'),
+    subMessage: t('features.4.subMessage'),
     borderColor: "green" as const,
     position: "right",
     top: "50%",
@@ -222,8 +172,8 @@ export const features = [
   },
   {
     id: 5,
-    message: "ETHICS BUILT IN",
-    subMessage: "We reject surveillance-style productivity. Your data trains *your* AI—never sold or used to manipulate you. (Certified compliant with GDPR and CCPA.)",
+    message: t('features.5.message'),
+    subMessage: t('features.5.subMessage'),
     borderColor: "cyan" as const,
     position: "left",
     top: "65%",
@@ -232,8 +182,8 @@ export const features = [
   },
   {
     id: 6,
-    message: "JOIN THE MOVEMENT",
-    subMessage: "Over 2,000 teams now use our tools to align work with purpose. From indie creators to Fortune 500s, we’re rewriting how humans and AI collaborate.",
+    message: t('features.6.message'),
+    subMessage: t('features.6.subMessage'),
     borderColor: "purple" as const,
     position: "right",
     top: "80%",
@@ -242,8 +192,8 @@ export const features = [
   },
   {
     id: 7,
-    message: "WHAT'S NEXT?",
-    subMessage: "We're prototyping AI co-pilots that sense burnout before you do, and tools that turn procrastination patterns into productivity breakthroughs.",
+    message: t('features.7.message'),
+    subMessage: t('features.7.subMessage'),
     borderColor: "pink" as const,
     position: "left",
     top: "95%",

@@ -1,4 +1,156 @@
 {
+  "aihavenlabs": {
+    "team": {
+      "members": {
+        "ceo": {
+          "name": "Alvaro Rios",
+          "role": "Director Ejecutivo",
+          "specialty": "SÍNTESIS ESTRATÉGICA",
+          "title": "FUNDADOR Y CEO",
+          "bio": "Ex investigador de interfaces neurales convertido en emprendedor tecnológico. Lidera nuestro salto cuántico hacia la simbiosis humano-IA.",
+          "status": "EN LÍNEA",
+          "connections": ["NeuroTech Inc", "Quantum Leap Ventures", "Future Humanity Fund"]
+        },
+        "cto": {
+          "name": "Rayan Chairi",
+          "role": "Director de Tecnología",
+          "specialty": "OPTIMIZACIÓN NEURAL",
+          "title": "DIRECTOR DE TECNOLOGÍA",
+          "bio": "Ex ingeniero líder de Google DeepMind. Construyó la primera arquitectura de IA auto-evolutiva a los 23 años.",
+          "status": "EN LABORATORIO",
+          "connections": ["MIT Synthetic Intelligence", "OpenNeuro Collective", "The Turing Guild"]
+        },
+        "cmo": {
+          "name": "Maria Victoria Sanchez",
+          "role": "Directora de Marketing",
+          "specialty": "ADOPCIÓN COGNITIVA",
+          "title": "DIRECTORA DE MARKETING",
+          "bio": "Pionera en marketing de conciencia digital. Anteriormente hizo crecer NeuroLink a 50M de usuarios en 12 meses.",
+          "status": "EN LABORATORIO",
+          "connections": ["Hologram Advertising", "MindShare Collective", "The Viral Cortex"]
+        }
+      }
+    },
+    "app": {
+      "name": "pathway",
+      "subtitle": "Tu Compañero de Progreso",
+      "description": "Rastrea y alcanza tus metas con Pathway, la red neural de productividad diseñada para optimizar tu potencial humano.",
+      "keywords": ["productividad", "metas", "progreso", "red social", "superación personal"],
+      "features": [
+        "Seguimiento neural de objetivos",
+        "Redes de responsabilidad social",
+        "Predicciones de progreso impulsadas por IA",
+        "Integración biométrica",
+        "Tokens de logros en blockchain"
+      ],
+      "status": "EN LÍNEA"
+    },
+    "products": {
+      "pathway": {
+        "name": "Pathway",
+        "description": "Compañero de productividad que mejora la concentración mientras protege el bienestar digital",
+        "stats": "↑ 89% de tareas completadas | ↓ 62% de fatiga por pantalla"
+      },
+      "contentForge": {
+        "name": "ContentForge",
+        "description": "Suite creativa potenciada por IA que organiza y genera ideas de contenido",
+        "stats": "3.1x velocidad de producción | 40% mejor engagement"
+      },
+      "neuroLink": {
+        "name": "NeuroLink",
+        "description": "Próximamente: Interfaz neural para flujos de pensamiento a texto",
+        "stats": "Patente pendiente"
+      },
+      "chronos": {
+        "name": "Chronos",
+        "description": "Próximamente: Motor de optimización de tiempo para profesionales creativos",
+        "stats": "Pruebas beta Q3 2024"
+      }
+    },
+    "features": {
+      "1": {
+        "message": "TUS METAS, IMPULSADAS POR IA",
+        "subMessage": "Creamos esto porque vimos cómo los sueños quedaban sepultados bajo el trabajo rutinario. Nuestra IA traza caminos personalizados hacia el éxito, ayudando a más de 530 mil usuarios a mantenerse enfocados en lo importante."
+      },
+      "2": {
+        "message": "HUMANOS PRIMERO, SIEMPRE",
+        "subMessage": "A diferencia de las herramientas que te reemplazan, las nuestras te amplifican. El 84% de los usuarios reportan alcanzar metas más rápido mientras se sienten *más* creativos y en control."
+      },
+      "3": {
+        "message": "EL FUTURO DEL TRABAJO ESTÁ AQUÍ",
+        "subMessage": "Vimos la demanda de IA que se adapta a *ti*, no al revés. Nuestra tecnología aprende tus hábitos, predice obstáculos y corrige el rumbo en tiempo real."
+      },
+      "4": {
+        "message": "COMPROBADO QUE FUNCIONA",
+        "subMessage": "Los usuarios completan 3.2 veces más prioridades semanales. Los fundadores nos atribuyen haber alcanzado hitos con 6 meses de anticipación. Los terapeutas lo usan para ayudar a sus clientes a desarrollar hábitos transformadores."
+      },
+      "5": {
+        "message": "ÉTICA INCORPORADA",
+        "subMessage": "Rechazamos la productividad basada en vigilancia. Tus datos entrenan *tu* IA, nunca son vendidos ni utilizados para manipularte. (Certificado en cumplimiento con GDPR y CCPA.)"
+      },
+      "6": {
+        "message": "ÚNETE AL MOVIMIENTO",
+        "subMessage": "Más de 2,000 equipos ahora usan nuestras herramientas para alinear el trabajo con el propósito. Desde creadores independientes hasta empresas Fortune 500, estamos reescribiendo cómo colaboran humanos e IA."
+      },
+      "7": {
+        "message": "¿QUÉ SIGUE?",
+        "subMessage": "Estamos prototipando copilotos de IA que detectan el agotamiento antes que tú, y herramientas que convierten los patrones de procrastinación en avances de productividad."
+      }
+    }
+  },
+
+  "teamPage": {
+    "title": "RED NEURAL",
+    "subtitle": "LAS MENTES DETRÁS DE AI HAVEN LABS",
+    "highlightWords": ["RED"],
+    "highlightColor": "neon-pink",
+    "teamSection": {
+      "header": "AI HAVEN LABS",
+      "subtitle": "> CONOCE A LOS ARQUITECTOS DEL MAÑANA",
+      "keyContributions": "CONTRIBUCIONES CLAVE:",
+      "connectButton": "CONECTAR EN LINKEDIN"
+    },
+    "investorsSection": {
+      "title": "INVERSORES",
+      "emoji": "🚀",
+      "heading": "Buscando Inversores Estratégicos",
+      "description": "Actualmente estamos financiando nuestra visión por cuenta propia, pero estamos abiertos a conversaciones con inversores visionarios que crean en el futuro de la productividad impulsada por IA."
+    },
+    "partnersSection": {
+      "title": "SOCIOS",
+      "emoji": "🤝",
+      "heading": "Oportunidades de Colaboración Futura",
+      "description": "Estamos buscando activamente asociaciones con empresas innovadoras en el espacio de IA y productividad. Exploremos cómo podemos crear sinergias juntos."
+    },
+    "joinCTA": {
+      "preHighlight": "¿LISTO PARA ",
+      "highlight": "UNIRTE",
+      "postHighlight": " A LA RED?",
+      "description": "Estamos buscando personas talentosas para unirse a nuestro creciente equipo.",
+      "buttonText": "EXPLORAR OPORTUNIDADES PROFESIONALES"
+    }
+  },
+
+  "Suite": {
+    "page-title": "SUITE DE AI HAVEN LABS",
+    "subtitle-1": "SOLUCIONES",
+    "subtitle-2": "CIBERNÉTICAS",
+    "subtitle-3": "DE ÚLTIMA GENERACIÓN",
+    "cta-title": "Accede a Soluciones Cibernéticas Premium",
+    "cta-description": "Únete a nuestra red para obtener acceso exclusivo anticipado a nuestras tecnologías más avanzadas antes de su lanzamiento público.",
+    "cta-button": "Solicitar Acceso",
+    "Card": {
+      "status-online": "EN LÍNEA",
+      "status-developing": "EN DESARROLLO",
+      "features": "CARACTERÍSTICAS",
+      "tech": "ESPECIFICACIONES",
+      "access": "ACCEDER A LA RED",
+      "request": "SOLICITAR INVITACIÓN",
+      "flip": "Voltear"
+    }
+  },
+  
+
   "Pathway": {
     "app": {
       "name": "Pathway",
