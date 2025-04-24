@@ -1,71 +1,126 @@
-// app/suite/page.tsx
 'use client';
 
-import { CyberpunkHeader } from '../../../components/client/aihavenlabs/CyberpunkHeader';
+import { CyberpunkHeader } from '@/components/client/aihavenlabs/CyberpunkHeader';
 import { motion } from 'framer-motion';
-import { BigTitle } from '../../../components/client/common/BigTitle';
-import { CyberpunkFooter } from '../../../components/client/aihavenlabs/Footer';
+import { BigTitle } from '@/components/client/common/BigTitle';
+import { CyberpunkFooter } from '@/components/client/aihavenlabs/Footer';
 import Stairs from '@/lib/styles/animations/StairTransition';
 import { apps } from '@/lib/constants';
-import { FlipCard } from '../../../components/client/common/FlipCard';
+import { FlipCard } from '@/components/client/common/FlipCard';
+import { useTranslations } from 'next-intl';
 
 export default function SuitePage() {
+  // Get translations for the Suite namespace
+  const t = useTranslations('Suite');
+  
+  // Get translations for the aihavenlabs namespace (for the apps data)
+  const tAihaven = useTranslations('aihavenlabs');
+  
+  // Call the apps function with the translator to get the array
+  const appsArray = apps(tAihaven);
+
+  // Animation variants for staggered animations
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
   return (
     <Stairs backgroundColor='#ffffff'>
-      <div className="main-container bg-black text-white min-h-screen">
+      <div className="main-container bg-white text-slate-800 min-h-screen">
         <CyberpunkHeader />
 
-        <BigTitle 
-          text="AI HAVEN SUITE" 
-          highlightWords={["SUITE"]} 
-          highlightColor='neon-yellow'
-          className='bg-purple-600 py-50' 
-        />
+        {/* Keep BigTitle with original styling */}
+        <div className="bg-gradient-to-r from-blue-900 via-indigo-400 to-violet-600">
+          <BigTitle 
+            text={t('page-title')}
+            highlightWords={["SUITE"]} 
+            highlightColor='neon-yellow'
+            className='py-50' 
+          />
+        </div>
         
         <motion.main
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="max-w-7xl mx-auto px-6 py-12"
+          className="max-w-6xl mx-auto px-6 py-12"
         >
           {/* Hero Section */}
           <motion.div 
-            initial={{ y: -20 }}
-            animate={{ y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mb-20 text-center"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="mb-16 text-center"
           >
-            <p className="text-neon-blue text-xl md:text-2xl">
-              NEXT-GEN <span className="text-neon-yellow">CYBERNETIC</span> SOLUTIONS
+            <p className="text-slate-800 text-xl md:text-2xl font-normal tracking-wide">
+              {t('subtitle-1')} <span className="text-indigo-600 font-medium">{t('subtitle-2')}</span> {t('subtitle-3')}
             </p>
+            <div className="h-px w-32 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 mx-auto mt-6"></div>
           </motion.div>
 
-          {/* Apps Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {apps.map((app, index) => (
-              <FlipCard key={app.id} app={app} index={index} />
+          {/* Apps Container - Centered */}
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex justify-center flex-wrap gap-6 mb-16"
+          >
+            {appsArray.map((app, index) => (
+              <motion.div 
+                key={app.id}
+                variants={itemVariants}
+                className="transform transition-all duration-300 hover:translate-y-[-5px] flex-shrink-0"
+              >
+                <FlipCard app={app} index={index} />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Call to Action */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-7xl mx-auto px-6 py-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="rounded-lg p-8 bg-gradient-to-r from-slate-100 to-white mb-10 shadow-md border border-indigo-100 relative overflow-hidden"
           >
-            {/* Hero Section */}
-            <motion.div 
-              initial={{ y: -20 }}
-              animate={{ y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="mb-20 text-center"
-            >
-              <p className="text-neon-blue text-xl md:text-2xl">
-                NEXT-GEN <span className="text-neon-yellow">CYBERNETIC</span> SOLUTIONS
+            {/* Decorative elements */}
+            <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-indigo-500 via-purple-500 to-indigo-400"></div>
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-indigo-500 via-purple-400 to-transparent"></div>
+            
+            <h2 className="text-xl font-medium text-slate-800 mb-3 pl-2">
+              {t('cta-title')}
+            </h2>
+            <div className="flex flex-wrap items-center justify-between">
+              <p className="text-slate-700 max-w-2xl mb-4 md:mb-0 pl-2">
+                {t('cta-description')}
               </p>
-            </motion.div>
-
+              <motion.a
+                href="/contact" 
+                className="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded 
+                  transition-colors duration-300 flex items-center group shadow-sm"
+                whileTap={{ scale: 0.98 }}
+              >
+                <span>{t('cta-button')}</span>
+                <span className="ml-2 transform transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </motion.a>
+            </div>
           </motion.div>
         </motion.main>
 

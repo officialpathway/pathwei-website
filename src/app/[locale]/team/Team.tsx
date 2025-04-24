@@ -4,8 +4,15 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Particles from "@/components/client/common/Particles";
 import { teamMembers } from "@/lib/constants";
+import { useTranslations } from 'next-intl';
 
 export function TeamSection() {
+  // Get the translator for the aihavenlabs namespace
+  const t = useTranslations('aihavenlabs');
+  
+  // Call the teamMembers function with the translator to get the array
+  const teamMembersArray = teamMembers(t);
+
   return (
     <section className="relative py-20 overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
@@ -16,17 +23,14 @@ export function TeamSection() {
 
         {/* Section header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white" data-text="NEURAL_CORE">
-            AI HAVEN LABS
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black/90" data-text="NEURAL_CORE">
+            AI HAVEN LABS & PATHWAY
           </h2>
-          <p className="text-neon-cyan text-lg">
-            {`> MEET THE ARCHITECTS OF TOMORROW`}
-          </p>
         </div>
 
         {/* Enhanced Team Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {teamMembers.map((member, index) => (
+          {teamMembersArray.map((member, index) => (
             <motion.div
               key={index}
               initial={{ y: 50, opacity: 0 }}
@@ -121,7 +125,7 @@ export function TeamSection() {
                       KEY CONTRIBUTIONS:
                     </h4>
                     <ul className="space-y-2">
-                      {(member.connections || []).map((connection, i) => (
+                      {(Array.isArray(member.connections) ? member.connections : []).map((connection, i) => (
                         <li key={i} className="flex items-start">
                           <span className={`mr-2`} style={{ color: getGlowColor(member.color, 0.8) }}>↳</span>
                           <span className="text-gray-400 text-sm">{connection}</span>

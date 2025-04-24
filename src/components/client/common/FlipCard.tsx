@@ -1,7 +1,9 @@
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface FlipCardProps {
   app: {
@@ -18,186 +20,273 @@ interface FlipCardProps {
 }
 
 export const FlipCard = ({ app, index }: FlipCardProps) => {
+  const t = useTranslations('Suite.Card');
   const [isDesktop, setIsDesktop] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  
-  // Smooth transformed values
-  const xSmooth = useTransform(x, [-1, 1], [-50, 50], {
-    clamp: true
-  });
-  const ySmooth = useTransform(y, [-1, 1], [-50, 50], {
-    clamp: true
-  });
+  const [isFlipped, setIsFlipped] = useState(false);
 
   useEffect(() => {
-    // Check if device is desktop
+    // Check if device is desktop - for flip functionality
     const checkDevice = () => {
-      setIsDesktop(window.innerWidth > 1024); // Disable for tablets and mobile
+      setIsDesktop(window.innerWidth > 1024);
     };
     
     checkDevice();
     window.addEventListener('resize', checkDevice);
-    return () => window.removeEventListener('resize', checkDevice);
+    
+    return () => {
+      window.removeEventListener('resize', checkDevice);
+    };
   }, []);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDesktop || !isHovered) return;
-    
-    const rect = e.currentTarget.getBoundingClientRect();
-    x.set((e.clientX - rect.left) / rect.width - 0.5);
-    y.set((e.clientY - rect.top) / rect.height - 0.5);
-  };
-
-  const handleMouseEnter = () => {
-    if (isDesktop) setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
+  const handleFlip = () => {
     if (isDesktop) {
-      setIsHovered(false);
-      x.set(0);
-      y.set(0);
+      setIsFlipped(!isFlipped);
     }
   };
 
-  // Dynamic color classes
-  const colorClasses = {
-    container: `border-${app.color}`,
-    header: `border-${app.color} bg-gradient-to-r from-black to-${app.color}/10`,
-    text: `text-${app.color}`,
-    badge: `bg-${app.color}/20 text-${app.color} border border-${app.color}`,
-    button: `text-${app.color} border border-${app.color} hover:bg-${app.color} hover:text-black`,
-    footer: `bg-${app.color}/10 border-t-2 border-${app.color}`
+  // Get appropriate color for each app
+  const getColorClass = (colorName: string) => {
+    const colorMap: Record<string, { bg: string, text: string, border: string, hover: string }> = {
+      'blue': {
+        bg: 'bg-cyan-900/20',
+        text: 'text-cyan-400',
+        border: 'border-cyan-500',
+        hover: 'hover:bg-cyan-500'
+      },
+      'purple': {
+        bg: 'bg-purple-900/20',
+        text: 'text-purple-400',
+        border: 'border-purple-500',
+        hover: 'hover:bg-purple-500'
+      },
+      'green': {
+        bg: 'bg-emerald-900/20',
+        text: 'text-emerald-400',
+        border: 'border-emerald-500',
+        hover: 'hover:bg-emerald-500'
+      },
+      'red': {
+        bg: 'bg-red-900/20',
+        text: 'text-red-400',
+        border: 'border-red-500',
+        hover: 'hover:bg-red-500'
+      },
+      'yellow': {
+        bg: 'bg-amber-900/20',
+        text: 'text-amber-400',
+        border: 'border-amber-500',
+        hover: 'hover:bg-amber-500'
+      },
+      'pink': {
+        bg: 'bg-pink-900/20',
+        text: 'text-pink-400',
+        border: 'border-pink-500',
+        hover: 'hover:bg-pink-500'
+      },
+      'neon-blue': {
+        bg: 'bg-blue-900/20',
+        text: 'text-blue-400',
+        border: 'border-blue-500',
+        hover: 'hover:bg-blue-500'
+      },
+      'neon-yellow': {
+        bg: 'bg-yellow-900/20',
+        text: 'text-yellow-400',
+        border: 'border-yellow-500',
+        hover: 'hover:bg-yellow-500'
+      }
+    };
+    
+    return colorMap[colorName] || colorMap['blue']; // Default to blue
   };
 
+  const colorClasses = getColorClass(app.color);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-      className="flip-card h-[800px] perspective-1000"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+    <div className="w-[280px] h-[380px] relative">
       <div 
-        className="flip-card-inner relative w-full h-full transition-transform duration-500 transform-style-3d"
-        onMouseMove={handleMouseMove}
+        className={`flip-card-container h-full w-full ${isDesktop ? 'cursor-pointer' : ''}`}
         style={{
-          transform: isHovered ? 'rotateY(180deg)' : 'rotateY(0deg)',
+          perspective: isDesktop ? '1000px' : 'none'
         }}
       >
-        {/* Front of the card */}
-        <div className={`flip-card-front absolute w-full h-full backface-hidden bg-black/50 border-2 rounded-lg overflow-hidden flex flex-col ${colorClasses.container}`}>
-          <div className={`p-6 ${colorClasses.header}`}>
-            <div className="flex justify-between items-start">
-              <div>
-                <h2 className={`${colorClasses.text} text-3xl font-bold mb-1`}>{app.title}</h2>
-                <p className="text-white/80 text-sm">{app.subtitle}</p>
-              </div>
-              <span className={`text-xs px-2 py-1 rounded-full ${colorClasses.badge}`}>
-                {app.status}
-              </span>
-            </div>
-          </div>
-
-          <div className="p-6 flex-grow">
-            <p className="text-gray-300 mb-6">{app.description}</p>
-            
-            <div className="mb-6">
-              <h3 className={`${colorClasses.text} text-sm font-mono mb-3`}>KEY FEATURES:</h3>
-              <ul className="space-y-2">
-                {app.features.map((feature, i) => (
-                  <li key={i} className="flex items-start">
-                    <span className={`${colorClasses.text} mr-2 mt-1`}>■</span>
-                    <span className="text-gray-400 text-sm">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mt-auto">
-              <h3 className={`${colorClasses.text} text-sm font-mono mb-2`}>TECH SPECS:</h3>
-              <div className="flex flex-wrap gap-2">
-                {app.keywords.map((keyword, i) => (
-                  <span key={i} className="text-xs px-2 py-1 rounded-full bg-gray-900 text-gray-300">
-                    {keyword}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className={`px-6 py-3 ${colorClasses.footer}`}>
-            <Link
-              href={app.status === 'ONLINE' ? `/suite/${app.id}` : '/contact'} 
-              className={`w-full py-2 ${colorClasses.button} transition-colors font-mono text-sm flex items-center justify-center`}
-            >
-              {app.status === 'ONLINE' ? (
-                <>
-                  ACCESS NETWORK
-                  <span className="ml-2 text-xs">↗</span>
-                </>
-              ) : (
-                <>
-                  REQUEST INVITE
-                  <span className="ml-2 text-xs animate-pulse">⌛</span>
-                </>
-              )}
-            </Link>
-          </div>
-        </div>
-
-        {/* Back of the card - Only render if desktop */}
-        {isDesktop && (
-          <div className={`flip-card-back absolute w-full h-full backface-hidden bg-black/50 border-2 rounded-lg overflow-hidden flex flex-col ${colorClasses.container}`}>
-            <div className="relative w-full h-full overflow-hidden flex-grow">
-              <motion.div 
-                className="absolute inset-0"
-                style={{
-                  x: xSmooth,
-                  y: ySmooth,
-                  scale: 1.5
-                }}
-              >
-                <Image
-                  src={`/images/suite/${app.id}.jpg`}
-                  alt={app.title}
-                  fill
-                  className="object-cover"
-                  priority={index < 3} // Only prioritize first few images
-                />
-              </motion.div>
-              <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                <h2 className={`${colorClasses.text} text-3xl font-bold text-center`}>
-                  {app.title}
-                </h2>
+        <div 
+          className="flip-card-inner relative w-full h-full transition-transform duration-500"
+          style={{
+            transformStyle: isDesktop ? 'preserve-3d' : 'flat',
+            transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
+          }}
+        >
+          {/* Front of the card */}
+          <div 
+            className={`flip-card-front absolute w-full h-full 
+              bg-black border ${colorClasses.border} rounded-lg overflow-hidden flex flex-col
+              shadow-lg`}
+            style={{ backfaceVisibility: 'hidden' }}
+            onClick={handleFlip}
+          >
+            {/* Card Header */}
+            <div className={`p-3 ${colorClasses.bg} border-b ${colorClasses.border}`}>
+              <div className="flex justify-between items-start">
+                <div>
+                  <h2 className={`${colorClasses.text} text-lg font-mono tracking-wide`}>
+                    {app.title}
+                  </h2>
+                </div>
+                <span className={`text-xs px-1.5 py-0.5 rounded-sm ${colorClasses.text} border ${colorClasses.border}`}>
+                  {app.status === 'ONLINE' ? t('status-online') : t('status-developing')}
+                </span>
               </div>
             </div>
 
-            <div className={`px-6 py-3 ${colorClasses.footer}`}>
+            {/* Content */}
+            <div className="p-3 flex-grow flex flex-col">
+              <p className="text-gray-300 text-xs mb-3 line-clamp-3">{app.description}</p>
+              
+              <div className="mb-3">
+                <h3 className={`${colorClasses.text} text-xs font-mono font-bold mb-1`}>
+                  {t('features')}:
+                </h3>
+                <ul className="space-y-0.5">
+                  {app.features.slice(0, 2).map((feature, i) => (
+                    <li key={i} className="flex items-start">
+                      <span className={`${colorClasses.text} mr-1 text-xs`}>■</span>
+                      <span className="text-gray-400 text-xs line-clamp-1">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-auto">
+                <div className="flex flex-wrap gap-1 mb-2">
+                  {app.keywords.slice(0, 3).map((keyword, i) => (
+                    <span key={i} className="text-xs px-1 py-0.5 rounded-sm bg-gray-800 text-gray-300 border border-gray-700">
+                      {keyword}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Footer with prominent CTA button */}
+            <div className={`px-3 py-2 ${colorClasses.bg} border-t ${colorClasses.border}`}>
               <Link
-                href={app.status === 'ONLINE' ? `/suite/${app.id}` : '/contact'} 
-                className={`w-full py-2 ${colorClasses.button} transition-colors font-mono text-sm flex items-center justify-center`}
+                href={app.status === 'ONLINE' ? `/suite/${app.id}` : '/suite/pathway'} 
+                className={`w-full py-1.5 ${colorClasses.text} bg-black border ${colorClasses.border} ${colorClasses.hover} 
+                  hover:text-black transition-colors font-mono text-xs flex items-center justify-center
+                  rounded-sm`}
               >
                 {app.status === 'ONLINE' ? (
                   <>
-                    ACCESS NETWORK
-                    <span className="ml-2 text-xs">↗</span>
+                    {t('access')}
+                    <span className="ml-1 inline-block">↗</span>
                   </>
                 ) : (
                   <>
-                    REQUEST INVITE
-                    <span className="ml-2 text-xs animate-pulse">⌛</span>
+                    {t('request')}
+                    <span className="ml-1 inline-block">⌛</span>
                   </>
                 )}
               </Link>
             </div>
+            
+            {/* Corner decorations - simplified */}
+            <div className={`absolute top-0 left-0 w-3 h-3 border-t border-l ${colorClasses.border}`}></div>
+            <div className={`absolute top-0 right-0 w-3 h-3 border-t border-r ${colorClasses.border}`}></div>
+            <div className={`absolute bottom-0 left-0 w-3 h-3 border-b border-l ${colorClasses.border}`}></div>
+            <div className={`absolute bottom-0 right-0 w-3 h-3 border-b border-r ${colorClasses.border}`}></div>
           </div>
-        )}
+
+          {/* Back of the card - Only rendered if desktop */}
+          {isDesktop && (
+            <div 
+              className={`flip-card-back absolute w-full h-full 
+                bg-black border ${colorClasses.border} rounded-lg overflow-hidden flex flex-col
+                shadow-lg`}
+              style={{ 
+                backfaceVisibility: 'hidden',
+                transform: 'rotateY(180deg)'
+              }}
+              onClick={handleFlip}
+            >
+              <div className="relative w-full h-full flex-grow overflow-hidden">
+                {/* Static image */}
+                <div className="absolute inset-0">
+                  <Image
+                    src={`/images/suite/${app.id}.jpg`}
+                    alt={app.title}
+                    fill
+                    className="object-cover brightness-75"
+                    priority={index < 3}
+                  />
+                </div>
+                
+                {/* Simple overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70"></div>
+                
+                {/* Center content */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+                  <h2 className={`${colorClasses.text} text-xl font-mono tracking-wide mb-2`}>
+                    {app.title}
+                  </h2>
+                </div>
+              </div>
+
+              {/* Footer with prominent CTA button */}
+              <div className={`px-3 py-2 ${colorClasses.bg} border-t ${colorClasses.border}`}>
+                <Link
+                  href={app.status === 'ONLINE' ? `/suite/${app.id}` : '/contact'} 
+                  className={`w-full py-1.5 ${colorClasses.text} bg-black border ${colorClasses.border} ${colorClasses.hover} 
+                    hover:text-black transition-colors font-mono text-xs flex items-center justify-center
+                    rounded-sm`}
+                >
+                  {app.status === 'ONLINE' ? (
+                    <>
+                      {t('access')}
+                      <span className="ml-1 inline-block">↗</span>
+                    </>
+                  ) : (
+                    <>
+                      {t('request')}
+                      <span className="ml-1 inline-block">⌛</span>
+                    </>
+                  )}
+                </Link>
+              </div>
+              
+              {/* Simplified flip indicator */}
+              <button 
+                className="absolute top-2 right-2 z-20 text-xs px-1.5 py-0.5 rounded-sm bg-black/70 text-white border border-gray-700"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleFlip();
+                }}
+                aria-label={t('flip')}
+              >
+                ↺
+              </button>
+              
+              {/* Corner decorations - simplified */}
+              <div className={`absolute top-0 left-0 w-3 h-3 border-t border-l ${colorClasses.border}`}></div>
+              <div className={`absolute top-0 right-0 w-3 h-3 border-t border-r ${colorClasses.border}`}></div>
+              <div className={`absolute bottom-0 left-0 w-3 h-3 border-b border-l ${colorClasses.border}`}></div>
+              <div className={`absolute bottom-0 right-0 w-3 h-3 border-b border-r ${colorClasses.border}`}></div>
+            </div>
+          )}
+        </div>
       </div>
-    </motion.div>
+      
+      {/* Flip button outside for desktop users (clearer affordance) */}
+      {isDesktop && !isFlipped && (
+        <button 
+          type='button'
+          className={`absolute top-2 right-2 z-20 text-xs px-1.5 py-0.5 rounded-sm ${colorClasses.text} bg-black/70 border border-gray-700`}
+          onClick={handleFlip}
+          aria-label={t('flip')}
+        >
+          ↺
+        </button>
+      )}
+    </div>
   );
 };

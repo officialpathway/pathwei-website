@@ -4,8 +4,15 @@
 import { motion } from 'framer-motion';
 import { ProductCard } from './ProductCard';
 import { products } from '@/lib/constants';
+import { useTranslations } from 'next-intl';
 
 export default function ProductGridSection() {
+  // Get the translator for the aihavenlabs namespace
+  const t = useTranslations('aihavenlabs');
+  
+  // Call the products function with the translator to get the array
+  const productsArray = products(t);
+
   return (
     <section className="relativepy-20 px-6 overflow-hidden">
       <div className="container mx-auto">
@@ -18,7 +25,7 @@ export default function ProductGridSection() {
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {products.map((product, index) => (
+          {productsArray.map((product, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}

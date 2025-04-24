@@ -1,135 +1,139 @@
-// components/Footer/CyberpunkFooter.tsx
+// components/Footer/FuturisticFooter.tsx
 'use client';
 
 import { motion } from 'framer-motion';
-import { TextScramble } from '../common/TextScramble';
 import Link from 'next/link';
-import Terminal from '../common/Terminal';
 
 const FooterContent = () => {
   return (
-    <div className="relative z-10 w-full bg-black backdrop-blur-sm border-t-2 border-neon-cyan">
-      {/* Big Title Section */}
-      <motion.div
-        initial={{ y: 50, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8 }}
-        className="w-full px-4 md:px-8 pt-20"
-      >
-        <h3 className="text-white text-start text-6xl sm:text-8xl md:text-[8rem] lg:text-[10rem] xl:text-[15rem] mb-16 leading-none">
-          Symbiosys
-        </h3>
-
-      </motion.div>
-
-      {/* Main Content Grid */}
-      <div className="w-full px-4 md:px-8 overflow-hidden">
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="relative w-full bg-slate-900 text-white overflow-hidden"
+    >
+      {/* Subtle background elements */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 to-slate-950"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.02)_0%,rgba(255,255,255,0)_60%)]"></div>
+      
+      {/* Top accent line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+      
+      <div className="relative z-10 container mx-auto px-6 py-12 sm:py-16">
+        {/* Main Title */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full min-h-[40vh] max-w-7xl mx-auto"
+          transition={{ duration: 0.7 }}
+          className="mb-16"
         >
-          {/* Left Group - 3 Columns (Centered) */}
-          <div className="grid grid-cols-3  gap-8 w-full h-full place-items-center">
-            {/* Explore Column */}
-            <div className="group flex flex-col items-center md:items-start text-center md:text-start justify-center h-full">
-              <h4 className="text-neon-green text-2xl md:text-3xl mb-4">
-                <TextScramble text="EXPLORE" />
-              </h4>
-              <ul className="space-y-2 md:space-y-3 text-lg">
-                <li className="text-white/80 hover:text-neon-green transition-colors cursor-pointer">
-                  <TextScramble text="> Showcase" />
-                </li>
-                <li className="text-white/80 hover:text-neon-green transition-colors cursor-pointer">
-                  <TextScramble text="> Research" />
-                </li>
-                <li className="text-white/80 hover:text-neon-green transition-colors cursor-pointer">
-                  <TextScramble text="> Roadmap" />
-                </li>
-              </ul>
-            </div>
-
-            {/* Products Column */}
-            <div className="group flex flex-col items-center md:items-start text-center md:text-start justify-center h-full">
-              <h4 className="text-neon-blue text-2xl md:text-3xl mb-4">
-                <TextScramble text="PRODUCTS" />
-              </h4>
-              <ul className="space-y-2 md:space-y-3 text-lg">
-                <li className="text-white/80 hover:text-neon-blue transition-colors cursor-pointer">
-                  <TextScramble text="> NeuroLink" />
-                </li>
-                <li className="text-white/80 hover:text-neon-blue transition-colors cursor-pointer">
-                  <TextScramble text="> BioChip" />
-                </li>
-                <li className="text-white/80 hover:text-neon-blue transition-colors cursor-pointer">
-                  <TextScramble text="> NanoMesh" />
-                </li>
-              </ul>
-            </div>
-
-            {/* Contact Column */}
-            <div className="group flex flex-col items-center md:items-start text-center md:text-start justify-center h-full">
-              <h4 className="text-neon-pink text-2xl md:text-3xl mb-4">
-                <TextScramble text="CONTACT" />
-              </h4>
-              <ul className="space-y-2 md:space-y-3 text-lg">
-                <li className="text-white/80 hover:text-neon-pink transition-colors cursor-pointer">
-                  <TextScramble text="> Support" />
-                </li>
-                <li className="text-white/80 hover:text-neon-pink transition-colors cursor-pointer">
-                  <TextScramble text="> Careers" />
-                </li>
-                <li className="text-white/80 hover:text-neon-pink transition-colors cursor-pointer">
-                  <TextScramble text="> Network" />
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Right Group - Terminal (Centered vertically) */}
-          <div className="w-full h-full flex items-center justify-center">
-            <Terminal
-              width="100%"
-              height="300px"
-              borderColor="var(--neon-cyan)"
-              accentColor="var(--neon-green)"
-              secondaryColor="var(--neon-pink)"
-              tertiaryColor="var(--neon-blue)"
-            />
-          </div>
+          <h2 className="text-5xl sm:text-6xl md:text-7xl font-light tracking-wide text-white/90">
+            SYMBIOSYS
+          </h2>
+          <div className="h-px w-24 bg-sky-400/80 mt-4"></div>
         </motion.div>
-      </div>
 
-      {/* Bottom Copyright Section */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1, delay: 0.2 }}
-        className="min-w-full px-4 py-8 border-t border-white/20"
-      >
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-white text-sm md:text-base">
-            <span className="text-neon-yellow">AI HAVEN LABS</span> © 2024 | ALL SYSTEMS OPERATIONAL
-          </p>
-          <div className="text-neon-pink mt-4 md:mt-0 cursor-pointer">
-            <Link href="/policy">
-              <TextScramble text=">_ PRIVACY POLICY" />
-            </Link>
+        {/* Two Column Layout */}
+        <div className="flex flex-col md:flex-row justify-between">
+          {/* Left Column - Navigation */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0 },
+              visible: i => ({
+                opacity: 1,
+                transition: {
+                  delay: i * 0.1,
+                }
+              })
+            }}
+            initial="hidden"
+            whileInView="visible"
+            custom={1}
+            viewport={{ once: true, margin: "-50px" }}
+            className="mb-10 md:mb-0"
+          >
+            <div className="flex flex-wrap gap-x-10 gap-y-4 md:gap-y-6">
+              <div>
+                <Link href="/" className="group block text-white/70 hover:text-white transition-colors py-1">
+                  <span className="inline-block">Home</span>
+                  <span className="block h-px w-0 bg-sky-400 transition-all duration-300 group-hover:w-full"></span>
+                </Link>
+              </div>
+              <div>
+                <Link href="/suite" className="group block text-white/70 hover:text-white transition-colors py-1">
+                  <span className="inline-block">Suite</span>
+                  <span className="block h-px w-0 bg-sky-400 transition-all duration-300 group-hover:w-full"></span>
+                </Link>
+              </div>
+              <div>
+                <Link href="/team" className="group block text-white/70 hover:text-white transition-colors py-1">
+                  <span className="inline-block">Team</span>
+                  <span className="block h-px w-0 bg-sky-400 transition-all duration-300 group-hover:w-full"></span>
+                </Link>
+              </div>
+              <div>
+                <Link href="/suite/pathway" className="group block text-white/70 hover:text-white transition-colors py-1">
+                  <span className="inline-block">Pathway</span>
+                  <span className="block h-px w-0 bg-sky-400 transition-all duration-300 group-hover:w-full"></span>
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Column - Logo */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            <div className="w-12 h-12 border border-white/10 rounded-full flex items-center justify-center relative">
+              <span className="text-xl font-light">S</span>
+              <div className="absolute inset-0 rounded-full border border-sky-400/20"></div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-16 pt-6 border-t border-white/10">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="text-white/50 text-sm"
+            >
+              © 2024 AI HAVEN LABS
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="mt-4 md:mt-0 flex items-center"
+            >
+              <Link href="/suite/pathway/policy" className="group block text-white/60 hover:text-sky-400 transition-colors duration-300 text-sm">
+                Privacy Policy
+                <span className="block h-px w-0 bg-sky-400 transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+            </motion.div>
           </div>
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   );
 };
 
-export const CyberpunkFooter = () => {
+export const FuturisticFooter = () => {
   return (
     <footer className="w-full">
       <FooterContent />
     </footer>
   );
 };
+
+// For backward compatibility with existing imports
+export const CyberpunkFooter = FuturisticFooter;
