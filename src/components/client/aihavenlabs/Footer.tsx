@@ -115,7 +115,7 @@ const FooterContent = () => {
               transition={{ duration: 0.7 }}
               className="mt-4 md:mt-0 flex items-center"
             >
-              <Link href="/policy" className="group block text-white/60 hover:text-sky-400 transition-colors duration-300 text-sm">
+              <Link href="/suite/pathway/policy" className="group block text-white/60 hover:text-sky-400 transition-colors duration-300 text-sm">
                 Privacy Policy
                 <span className="block h-px w-0 bg-sky-400 transition-all duration-300 group-hover:w-full"></span>
               </Link>
