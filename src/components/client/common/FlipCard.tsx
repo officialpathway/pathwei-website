@@ -235,7 +235,7 @@ export const FlipCard = ({ app, index }: FlipCardProps) => {
               {/* Footer with prominent CTA button */}
               <div className={`px-3 py-2 ${colorClasses.bg} border-t ${colorClasses.border}`}>
                 <Link
-                  href={app.status === 'ONLINE' ? `/suite/${app.id}` : '/contact'} 
+                  href={app.status === 'ONLINE' ? `/suite/${app.id}` : `/suite/${app.id}`} 
                   className={`w-full py-1.5 ${colorClasses.text} bg-black border ${colorClasses.border} ${colorClasses.hover} 
                     hover:text-black transition-colors font-mono text-xs flex items-center justify-center
                     rounded-sm`}

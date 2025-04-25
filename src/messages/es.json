@@ -1,5 +1,33 @@
 {
   "aihavenlabs": {
+    "landingPage": {
+      "maskTitle1": "El asistente que",
+      "maskTitle2": "nunca duerme.",
+      "maskSubtitle": "Siempre listo para ayudarte.",
+      "visionSection": {
+        "title": "HUMANOS 2.0",
+        "subtitle": "Aumentando el potencial humano a través de la IA simbiótica",
+        "quote": "No reemplazamos a los humanos - los mejoramos",
+        "quoteAuthor": "Álvaro Ríos, Director Ejecutivo",
+        "learnMoreButton": "Saber Más"
+      }
+    },
+    "productSection": {
+      "title": {
+        "our": "Nuestra",
+        "productSuite": "Suite de Productos"
+      },
+      "subtitle": "Herramientas de IA diseñadas para amplificar el potencial humano sin reemplazarlo",
+      "filters": {
+        "all": "Todos los Productos",
+        "neon-cyan": "Productividad",
+        "neon-pink": "Creatividad",
+        "neon-purple": "Inteligencia",
+        "neon-green": "Velocidad"
+      },
+      "viewAllLink": "Explorar todos los productos",
+      "exploreButton": "Explorar"
+    },
     "team": {
       "members": {
         "ceo": {
@@ -54,17 +82,17 @@
       "contentForge": {
         "name": "ContentForge",
         "description": "Suite creativa potenciada por IA que organiza y genera ideas de contenido",
-        "stats": "3.1x velocidad de producción | 40% mejor engagement"
+        "stats": "Próximamente"
       },
       "neuroLink": {
         "name": "NeuroLink",
         "description": "Próximamente: Interfaz neural para flujos de pensamiento a texto",
-        "stats": "Patente pendiente"
+        "stats": "Próximamente"
       },
       "chronos": {
         "name": "Chronos",
         "description": "Próximamente: Motor de optimización de tiempo para profesionales creativos",
-        "stats": "Pruebas beta Q3 2024"
+        "stats": "Próximamente"
       }
     },
     "features": {

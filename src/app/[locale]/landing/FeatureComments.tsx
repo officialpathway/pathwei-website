@@ -15,19 +15,23 @@ const Notification = ({ feature }: {
 }) => {
   return (
     <motion.div
-      className="absolute"
+      className="absolute z-10"
       style={{
         top: feature.top,
         left: feature.position === 'left' ? feature.left : undefined,
         right: feature.position === 'right' ? feature.right : undefined,
       }}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{
         margin: "-20% 0px -20% 0px",
         once: false,
       }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
+      transition={{ 
+        duration: 0.5, 
+        ease: "easeOut",
+        delay: 0.2
+      }}
     >
       <InfoMessage
         message={feature.message}
@@ -51,6 +55,7 @@ export const FeatureComments = () => {
       ref={containerRef}
       className="relative h-[300vh] w-full"
     >
+      {/* Container is not sticky, absolute positioning used within the 300vh tall container */}
       {featuresArray.map((feature) => (
         <Notification 
           key={feature.id} 

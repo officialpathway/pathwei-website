@@ -14,6 +14,7 @@ import ProductGridSection from "./Grid/ProductGridSection";
 import { FeatureComments } from "./FeatureComments";
 import VisionSection from './Vision/VisionSection';
 import { CyberpunkFooter } from "@/components/client/aihavenlabs/Footer";
+import { useTranslations } from 'next-intl';
 
 /**
  * MainSection - The primary scrolling container for the entire page
@@ -24,6 +25,8 @@ import { CyberpunkFooter } from "@/components/client/aihavenlabs/Footer";
  * - Mouse tracking for tilt effects (desktop only)
  */
 export default function MainSection() {
+  const t = useTranslations('aihavenlabs.landingPage');
+
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
   const videoTriggerRef = useRef<HTMLDivElement>(null);
@@ -156,14 +159,14 @@ export default function MainSection() {
         </div>
 
         {/* Products Section */}
-        <div id="apps-section" data-scroll-section className="py-10 md:py-20">
+        <div id="apps-section" data-scroll-section>
           <ProductGridSection />
         </div>
 
         <h2 className='text-white text-6xl text-center mt-40'>
-          The assistant that <span className='text-neon-cyan'>never sleeps</span>.
+          {t("maskTitle1")} <span className='text-neon-cyan'>{t("maskTitle2")}</span>
           <br />
-          <span className='text-neon-pink'>Always ready to assist you.</span>
+          <span className='text-neon-pink'>{t("maskSubtitle")}</span>
         </h2>
 
         {/* Video Section with Mask Animation */}

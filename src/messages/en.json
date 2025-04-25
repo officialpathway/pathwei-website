@@ -1,5 +1,33 @@
 {
   "aihavenlabs": {
+    "landingPage": {
+      "maskTitle1": "The assistant that",
+      "maskTitle2": "never sleeps.",
+      "maskSubtitle": "Always ready to assit you.",
+      "visionSection": {
+        "title": "HUMAN 2.0",
+        "subtitle": "Augmenting human potential through symbiotic AI",
+        "quote": "We don't replace humans - we upgrade them",
+        "quoteAuthor": "Alvaro Rios, Chief Executive Officer",
+        "learnMoreButton": "Learn More"
+      }
+    },
+    "productSection": {
+      "title": {
+        "our": "Our",
+        "productSuite": "Product Suite"
+      },
+      "subtitle": "AI tools designed to amplify human potential without replacement",
+      "filters": {
+        "all": "All Products",
+        "neon-cyan": "Augmentation",
+        "neon-pink": "Creativity",
+        "neon-purple": "Intelligence",
+        "neon-green": "Productivity"
+      },
+      "viewAllLink": "Explore all products",
+      "exploreButton": "Explore"
+    },
     "team": {
       "members": {
         "ceo": {
@@ -54,17 +82,17 @@
       "contentForge": {
         "name": "ContentForge",
         "description": "AI-powered creative suite that organizes and generates content ideas",
-        "stats": "3.1x output speed | 40% better engagement"
+        "stats": "Comming soon"
       },
       "neuroLink": {
         "name": "NeuroLink",
         "description": "Coming soon: Neural interface for thought-to-text workflows",
-        "stats": "Patent pending"
+        "stats": "Comming soon"
       },
       "chronos": {
         "name": "Chronos",
         "description": "Coming soon: Time optimization engine for creative professionals",
-        "stats": "Beta testing Q3 2024"
+        "stats": "Comming soon"
       }
     },
     "features": {
