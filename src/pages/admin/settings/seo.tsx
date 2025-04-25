@@ -21,7 +21,9 @@ import {
   Save, 
   Code,
   Info,
-  XCircle
+  XCircle,
+  Plus,
+  Trash2
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { Skeleton } from '@/components/server/ui/skeleton';
@@ -49,7 +51,7 @@ import {
 import { useAdminAuthGuard } from '@/hooks/api/useAdminAuthGuard';
 import { useSeoApi } from '@/lib/api/admin/adminApiClient';
 
-type SEOData = {
+export type SEOData = {
   title: string;
   description: string;
   keywords: string;
@@ -67,6 +69,17 @@ type SEOData = {
   robotsTxt: string;
   jsonLd: string;
   canonicalUrl: string;
+  // New fields
+  alternateLanguages: Record<string, string>;
+  favicon: string;
+  themeColor: string;
+  metaRobots: string;
+  twitterSite: string;
+  twitterCreator: string;
+  fbAppId: string;
+  ogLocale: string;
+  ogType: string;
+  ogSiteName: string;
 };
 
 export default function SEOSettings() { 
@@ -90,7 +103,18 @@ export default function SEOSettings() {
     sitemapPriority: '0.8',
     robotsTxt: '',
     jsonLd: '{\n  "@context": "https://schema.org",\n  "@type": "Organization",\n  "name": "AI Haven Labs",\n  "url": "https://aihavenlabs.com"\n}',
-    canonicalUrl: 'https://aihavenlabs.com'
+    canonicalUrl: 'https://aihavenlabs.com',
+    // Initialize new fields
+    alternateLanguages: {},
+    favicon: '/favicon.ico',
+    themeColor: '#ffffff',
+    metaRobots: 'index, follow',
+    twitterSite: '@aihavenlabs',
+    twitterCreator: '@aihavenlabs',
+    fbAppId: '',
+    ogLocale: 'en_US',
+    ogType: 'website',
+    ogSiteName: 'AI Haven Labs'
   });
   
   const [isLoading, setIsLoading] = useState(true);
@@ -101,16 +125,23 @@ export default function SEOSettings() {
   const [jsonLdDialogOpen, setJsonLdDialogOpen] = useState(false);
   const [tempJsonLd, setTempJsonLd] = useState('');
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+  const [alternateLanguageDialogOpen, setAlternateLanguageDialogOpen] = useState(false);
+  const [tempLanguageCode, setTempLanguageCode] = useState('');
+  const [tempLanguageUrl, setTempLanguageUrl] = useState('');
 
   useEffect(() => {
     async function loadData() {
       try {
         setIsLoading(true);
         const data = await seoApi.getSeoSettings();
-        setSeoData(data);
+        setSeoData({
+          ...seoData,
+          ...data,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          alternateLanguages: (data as any).alternateLanguages || {}
+        });
       } catch (error) {
         console.error('Error loading SEO settings:', error);
-        // Handle error
       } finally {
         setIsLoading(false);
       }
@@ -129,6 +160,10 @@ export default function SEOSettings() {
         return value.length > 160 ? 'Description should be 160 characters or less' : null;
       case 'keywords':
         return value.split(',').length > 10 ? 'Limit to 10 keywords or less' : null;
+      case 'ogTitle':
+        return value.length > 60 ? 'OG Title should be 60 characters or less' : null;
+      case 'ogDescription':
+        return value.length > 160 ? 'OG Description should be 160 characters or less' : null;
       default:
         return null;
     }
@@ -242,6 +277,35 @@ export default function SEOSettings() {
     }
   };
 
+  const addAlternateLanguage = () => {
+    if (!tempLanguageCode || !tempLanguageUrl) {
+      toast.error("Please enter both language code and URL");
+      return;
+    }
+
+    setSeoData(prev => ({
+      ...prev,
+      alternateLanguages: {
+        ...prev.alternateLanguages,
+        [tempLanguageCode]: tempLanguageUrl
+      }
+    }));
+
+    setTempLanguageCode('');
+    setTempLanguageUrl('');
+    setAlternateLanguageDialogOpen(false);
+    toast.success("Language variant added");
+  };
+
+  const removeAlternateLanguage = (langCode: string) => {
+    setSeoData(prev => {
+      const updated = { ...prev.alternateLanguages };
+      delete updated[langCode];
+      return { ...prev, alternateLanguages: updated };
+    });
+    toast.success("Language variant removed");
+  };
+
   // Loading skeleton
   if (isLoading) {
     return (
@@ -310,10 +374,11 @@ export default function SEOSettings() {
         </div>
 
         <Tabs defaultValue="general">
-          <TabsList className="grid w-full grid-cols-3 md:w-auto md:inline-grid">
+          <TabsList className="grid w-full grid-cols-4 md:w-auto md:inline-grid">
             <TabsTrigger value="general">General</TabsTrigger>
             <TabsTrigger value="social">Social Media</TabsTrigger>
             <TabsTrigger value="advanced">Advanced</TabsTrigger>
+            <TabsTrigger value="additional">Additional</TabsTrigger>
           </TabsList>
           
           <div className="mt-6">
@@ -406,6 +471,20 @@ export default function SEOSettings() {
                         />
                         <p className="text-sm text-muted-foreground">
                           Base URL used for canonical links (helps prevent duplicate content issues)
+                        </p>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="robots-meta">Meta Robots</Label>
+                        <Input
+                          id="robots-meta"
+                          name="metaRobots"
+                          value={seoData.metaRobots}
+                          onChange={handleInputChange}
+                          placeholder="index, follow"
+                        />
+                        <p className="text-sm text-muted-foreground">
+                          Fine-grained control over how search engines crawl your site
                         </p>
                       </div>
 
@@ -565,6 +644,66 @@ export default function SEOSettings() {
                       </div>
 
                       <div className="space-y-2">
+                        <Label htmlFor="og-site-name">OG Site Name</Label>
+                        <Input
+                          id="og-site-name"
+                          name="ogSiteName"
+                          value={seoData.ogSiteName}
+                          onChange={handleInputChange}
+                          placeholder="AI Haven Labs"
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="og-type">OG Type</Label>
+                        <Select 
+                          value={seoData.ogType} 
+                          onValueChange={(value) => handleSelectChange('ogType', value)}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select OG type" />
+                          </SelectTrigger>
+                          <SelectContent className='bg-white'>
+                            <SelectItem value="website">Website</SelectItem>
+                            <SelectItem value="article">Article</SelectItem>
+                            <SelectItem value="product">Product</SelectItem>
+                            <SelectItem value="profile">Profile</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <p className="text-sm text-muted-foreground">
+                          Defines the type of content you&apos;re sharing
+                        </p>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="og-locale">OG Locale</Label>
+                        <Input
+                          id="og-locale"
+                          name="ogLocale"
+                          value={seoData.ogLocale}
+                          onChange={handleInputChange}
+                          placeholder="en_US"
+                        />
+                        <p className="text-sm text-muted-foreground">
+                          Language and territory (e.g., en_US, fr_FR)
+                        </p>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="fb-app-id">Facebook App ID</Label>
+                        <Input
+                          id="fb-app-id"
+                          name="fbAppId"
+                          value={seoData.fbAppId}
+                          onChange={handleInputChange}
+                          placeholder="123456789012345"
+                        />
+                        <p className="text-sm text-muted-foreground">
+                          Connect your content with your Facebook page insights
+                        </p>
+                      </div>
+
+                      <div className="space-y-2">
                         <Label htmlFor="og-image">OG Image URL</Label>
                         <Input
                           id="og-image"
@@ -614,6 +753,35 @@ export default function SEOSettings() {
                             onChange={handleInputChange}
                             placeholder="@aihavenlabs"
                           />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                          <Label htmlFor="twitter-site">Site Twitter Handle</Label>
+                          <Input
+                            id="twitter-site"
+                            name="twitterSite"
+                            value={seoData.twitterSite}
+                            onChange={handleInputChange}
+                            placeholder="@aihavenlabs"
+                          />
+                          <p className="text-sm text-muted-foreground">
+                            The Twitter handle for your site
+                          </p>
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="twitter-creator">Creator Twitter Handle</Label>
+                          <Input
+                            id="twitter-creator"
+                            name="twitterCreator"
+                            value={seoData.twitterCreator}
+                            onChange={handleInputChange}
+                            placeholder="@yourusername"
+                          />
+                          <p className="text-sm text-muted-foreground">
+                            The Twitter handle for the content author
+                          </p>
                         </div>
                       </div>
 
@@ -677,6 +845,146 @@ export default function SEOSettings() {
                         <span className="text-xs text-muted-foreground">
                           This is an approximate preview
                         </span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="additional" className="space-y-6">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2 space-y-6">
+                  {/* Theme and Favicon */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Theme & Branding</CardTitle>
+                      <CardDescription>
+                        Configure visual elements and branding information
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                      <div className="space-y-2">
+                        <Label htmlFor="favicon-url">Favicon URL</Label>
+                        <Input
+                          id="favicon-url"
+                          name="favicon"
+                          value={seoData.favicon}
+                          onChange={handleInputChange}
+                          placeholder="/icons/pathway/favicon.ico"
+                        />
+                        <p className="text-sm text-muted-foreground">
+                          Path to your site favicon (usually /favicon.ico)
+                        </p>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="theme-color">Theme Color</Label>
+                        <div className="flex gap-3">
+                          <Input
+                            type="color"
+                            id="theme-color-picker"
+                            value={seoData.themeColor}
+                            onChange={(e) => handleSelectChange('themeColor', e.target.value)}
+                            className="w-12 h-10 p-1"
+                          />
+                          <Input
+                            id="theme-color"
+                            name="themeColor"
+                            value={seoData.themeColor}
+                            onChange={handleInputChange}
+                            placeholder="#ffffff"
+                          />
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          Color for browser UI when site is pinned on mobile devices
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Alternate Language */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Language Variants (hreflang)</CardTitle>
+                      <CardDescription>
+                        Help search engines show the right language version to users
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="flex justify-between items-center">
+                        <Label>Alternate Language URLs</Label>
+                        <Button 
+                          onClick={() => setAlternateLanguageDialogOpen(true)}
+                          variant="outline" 
+                          size="sm"
+                        >
+                          <Plus className="h-4 w-4 mr-2" />
+                          Add Language
+                        </Button>
+                      </div>
+                      
+                      {Object.keys(seoData.alternateLanguages).length === 0 ? (
+                        <div className="text-center py-8 text-muted-foreground">
+                          No alternate languages configured
+                        </div>
+                      ) : (
+                        <div className="space-y-3 mt-4">
+                          {Object.entries(seoData.alternateLanguages).map(([code, url]) => (
+                            <div key={code} className="flex items-center justify-between p-3 border rounded-md">
+                              <div>
+                                <div className="font-medium">{code}</div>
+                                <div className="text-sm text-muted-foreground truncate max-w-xs">{url}</div>
+                              </div>
+                              <Button 
+                                variant="ghost" 
+                                size="sm"
+                                onClick={() => removeAlternateLanguage(code)}
+                              >
+                                <Trash2 className="h-4 w-4 text-red-500" />
+                              </Button>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      
+                      <div className="text-sm bg-gray-50 p-3 rounded-md mt-4">
+                        <p className="font-medium mb-1">Tips:</p>
+                        <ul className="list-disc ml-5 text-muted-foreground space-y-1">
+                          <li>Use ISO language codes (e.g., &quot;en&quot; for English, &quot;es&quot; for Spanish)</li>
+                          <li>Include region codes for regional variants (e.g., &quot;en-US&quot;, &quot;es-ES&quot;)</li>
+                          <li>Use &quot;x-default&quot; for the default language version</li>
+                        </ul>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <div className="space-y-6">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Advice</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="space-y-2">
+                        <h3 className="font-medium">Multilingual SEO:</h3>
+                        <ul className="list-disc ml-5 text-sm text-muted-foreground space-y-1">
+                          <li>Use unique, translated content for each language</li>
+                          <li>Implement hreflang tags for all language versions</li>
+                          <li>Create separate URLs for each language version</li>
+                          <li>Maintain consistent URL structure across languages</li>
+                        </ul>
+                      </div>
+                      
+                      <Separator />
+                      
+                      <div className="space-y-2">
+                        <h3 className="font-medium">Theme Color Usage:</h3>
+                        <ul className="list-disc ml-5 text-sm text-muted-foreground space-y-1">
+                          <li>Choose a color that matches your brand</li>
+                          <li>Visible when users pin your site on mobile</li>
+                          <li>Consider using a slightly darker version of your primary brand color</li>
+                        </ul>
                       </div>
                     </CardContent>
                   </Card>
@@ -969,6 +1277,48 @@ export default function SEOSettings() {
           <DialogFooter>
             <Button className='bg-gray-200 cursor-pointer' variant="ghost" onClick={() => setJsonLdDialogOpen(false)}>Cancel</Button>
             <Button className='bg-gray-200 cursor-pointer' onClick={saveJsonLd}>Save Changes</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Alternate Language Dialog */}
+      <Dialog open={alternateLanguageDialogOpen} onOpenChange={setAlternateLanguageDialogOpen}>
+        <DialogContent className="max-w-md bg-white">
+          <DialogHeader>
+            <DialogTitle>Add Language Variant</DialogTitle>
+            <DialogDescription>
+              Specify language code and URL for an alternate language version
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 pt-4">
+            <div className="space-y-2">
+              <Label htmlFor="language-code">Language Code</Label>
+              <Input
+                id="language-code"
+                value={tempLanguageCode}
+                onChange={(e) => setTempLanguageCode(e.target.value)}
+                placeholder="e.g., fr, en-GB, x-default"
+              />
+              <p className="text-xs text-muted-foreground">
+                ISO language code, optionally with region (e.g., &quot;es&quot;, &quot;en-US&quot;)
+              </p>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="language-url">URL</Label>
+              <Input
+                id="language-url"
+                value={tempLanguageUrl}
+                onChange={(e) => setTempLanguageUrl(e.target.value)}
+                placeholder="https://example.com/fr/"
+              />
+              <p className="text-xs text-muted-foreground">
+                Full URL for this language version
+              </p>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button className='bg-gray-200 cursor-pointer' variant="ghost" onClick={() => setAlternateLanguageDialogOpen(false)}>Cancel</Button>
+            <Button className='bg-gray-200 cursor-pointer' onClick={addAlternateLanguage}>Add Language</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

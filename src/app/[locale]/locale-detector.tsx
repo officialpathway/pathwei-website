@@ -3,7 +3,7 @@ import { cookies, headers } from 'next/headers';
 
 const SUPPORTED_LOCALES = ['en', 'es'] as const;
 type SupportedLocale = typeof SUPPORTED_LOCALES[number];
-const DEFAULT_LOCALE: SupportedLocale = 'en';
+const DEFAULT_LOCALE: SupportedLocale = 'es';
 
 /**
  * Detects the user's preferred locale using multiple fallback methods

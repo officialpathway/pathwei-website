@@ -10,7 +10,7 @@ export default function LanguageSwitcher() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
-  const currentLocale = (pathname ?? '').split('/')[1] || 'en';
+  const currentLocale = (pathname ?? '').split('/')[1] || 'es';
 
   const switchLocale = (newLocale: string) => {
     const newPathname = (pathname ?? '').replace(/^\/[^\/]+/, `/${newLocale}`);

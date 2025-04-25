@@ -12,7 +12,7 @@ const PRICE_OPTIONS = [4.99, 7.49, 9.99];
 const LOCALES = ['en', 'es'];
 
 // Default locale for redirects and fallbacks
-const DEFAULT_LOCALE = 'en';
+const DEFAULT_LOCALE = 'es';
 
 // CORS configuration
 const ALLOWED_ORIGINS = [

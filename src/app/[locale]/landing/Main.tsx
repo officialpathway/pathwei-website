@@ -2,7 +2,7 @@
 "use client";
 
 import { motion, useScroll, useTransform, useMotionTemplate, useMotionValue } from 'framer-motion';
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Lenis from 'lenis';
 import { useWindowSize } from '@/hooks/client/useWindowSize';
 
@@ -19,9 +19,9 @@ import { CyberpunkFooter } from "@/components/client/aihavenlabs/Footer";
  * MainSection - The primary scrolling container for the entire page
  * Features:
  * - Smooth scrolling with Lenis
- * - Interactive 3D tilt effect on video section
+ * - Interactive 3D tilt effect on video section (desktop only)
  * - Dynamic mask animation on scroll
- * - Mouse tracking for tilt effects
+ * - Mouse tracking for tilt effects (desktop only)
  */
 export default function MainSection() {
   // Refs
@@ -30,6 +30,13 @@ export default function MainSection() {
   
   // Window dimensions
   const { height: windowHeight, width: windowWidth } = useWindowSize();
+  
+  // Check if device is desktop (screen width > 1024px)
+  const [isDesktop, setIsDesktop] = useState(false);
+  
+  useEffect(() => {
+    setIsDesktop(windowWidth > 1024);
+  }, [windowWidth]);
 
   // Animation constants
   const TILT_INTENSITY = 20; // Max degrees of tilt from cursor movement
@@ -64,7 +71,7 @@ export default function MainSection() {
   const shouldTilt = useTransform(
     scrollYProgress,
     [0, 0.3], // Range where tilt is active
-    [1, 0],   // Output values
+    [isDesktop ? 1 : 0, 0],   // Only enable tilt on desktop
     { clamp: true } // Prevent values outside 0-1
   );
 
@@ -95,8 +102,11 @@ export default function MainSection() {
   const opacity = useTransform(scrollYProgress, [0.6, 1], [0, 0.75]);
 
   /* ========== EFFECTS ========== */
-  // Track mouse movement for tilt effect
+  // Track mouse movement for tilt effect - only on desktop
   useEffect(() => {
+    // Only add mouse tracking on desktop devices
+    if (!isDesktop) return;
+    
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
@@ -104,7 +114,7 @@ export default function MainSection() {
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [isDesktop]);
 
   // Initialize smooth scrolling with Lenis
   useEffect(() => {
@@ -160,7 +170,7 @@ export default function MainSection() {
       <div className="relative z-30 w-full h-[250vh]" ref={videoTriggerRef} data-scroll-section>
         <div 
           className="sticky top-0 h-screen overflow-hidden m-0 p-0"
-          style={{ perspective: "1000px" }}
+          style={{ perspective: isDesktop ? "1000px" : "none" }}
         >
           <motion.div
             style={{
@@ -171,8 +181,8 @@ export default function MainSection() {
               WebkitMaskRepeat: 'no-repeat',
               maskRepeat: 'no-repeat',
               transform: "translateZ(0)",
-              rotateX,
-              rotateY,
+              rotateX: isDesktop ? rotateX : 0,
+              rotateY: isDesktop ? rotateY : 0,
               transformOrigin: "center center",
               position: 'relative',
             }}
