@@ -8,8 +8,11 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { TextScramble } from '../common/TextScramble';
 import { useMediaQuery } from 'react-responsive';
 import LanguageSwitcher from '@/components/locales/LanguageSwitcher';
+import { useTranslations } from 'next-intl';
 
 export const CyberpunkHeader = () => {
+  const t = useTranslations('aihavenlabs.header');
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -53,10 +56,11 @@ export const CyberpunkHeader = () => {
 
   // Navigation items memoized to prevent re-rendering
   const navItems = useMemo(() => [
-    { name: 'Suite', href: '/suite' },
-    { name: 'Team', href: '/team' },
+    { name: `${t('menu.suite')}`, href: '/suite' },
+    { name: `${t('menu.team')}`, href: '/team' },
+    { name: `${t('menu.contact')}`, href: '#contact' },
     //{ name: 'Sign in', href: '/sign-in' },
-  ], []);
+  ], [t]);
 
   // Calculate logo size based on screen size
   const logoSize = isDesktop ? 40 : 30;
@@ -156,7 +160,7 @@ export const CyberpunkHeader = () => {
           <Link href="/" className="flex items-center">
             <Image 
               src="/images/logo.png" 
-              alt="AI Haven Labs Logo" 
+              alt={t('logo')} 
               width={logoSize}
               height={logoSize}
               className="hover:drop-shadow-neon transition-all duration-300"

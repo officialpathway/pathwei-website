@@ -1,5 +1,24 @@
 {
   "aihavenlabs": {
+    "header": {
+      "logo": "AI HAVEN LABS",
+      "menu": {
+        "suite": "Apps",
+        "team": "Team",
+        "contact": "Contact"
+      }
+    },
+    "heroSection": {
+      "title": "The Future of AI is Here",
+      "subtitle": "Experience the fusion of technology and humanity.",
+      "ctaButton": "EXPLORE NOW"
+    },
+    "footer": {
+      "home": "Home",
+      "suite": "Apps",
+      "team": "Team",
+      "contact": "Contact"
+    },
     "landingPage": {
       "maskTitle1": "The assistant that",
       "maskTitle2": "never sleeps.",
@@ -29,33 +48,37 @@
       "exploreButton": "Explore"
     },
     "team": {
+      "card": {
+        "contributions": "KEY CONTRIBUTIONS",
+        "connect": "CONNECT ON LINKEDIN"
+      },
       "members": {
         "ceo": {
           "name": "Alvaro Rios",
-          "role": "Chief Executive Officer",
-          "specialty": "STRATEGIC SYNTHESIS",
-          "title": "FOUNDER & CEO",
-          "bio": "Former neural interface researcher turned tech entrepreneur. Spearheads our quantum leap into human-AI symbiosis.",
+          "role": "Executive Director",
+          "specialty": "Full Stack Development",
+          "title": "FOUNDER AND CEO",
+          "bio": "Computer engineering student with an entrepreneurial spirit. Founder of Ai Haven Labs and Pathway. Full stack development expert.",
           "status": "ONLINE",
-          "connections": ["NeuroTech Inc", "Quantum Leap Ventures", "Future Humanity Fund"]
+          "connections": ["Software Architecture", "Database Design", "Entrepreneurial Leadership"]
         },
         "cto": {
-          "name": "Rayan Chairi",
-          "role": "Chief Technology Officer",
-          "specialty": "NEURAL OPTIMIZATION",
-          "title": "CHIEF TECHNOLOGY OFFICER",
-          "bio": "Ex-Google DeepMind lead engineer. Built the first self-evolving AI architecture at age 23.",
-          "status": "IN LAB",
-          "connections": ["MIT Synthetic Intelligence", "OpenNeuro Collective", "The Turing Guild"]
+          "name": "Rayan Chairi", 
+          "role": "Technology Director",
+          "specialty": "Frontend Development",
+          "title": "TECHNOLOGY DIRECTOR",
+          "bio": "Computer engineering student. Founder of Ai Haven Labs and Pathway. Designs the interfaces that connect our users with AI.",
+          "status": "IN LABORATORY",
+          "connections": ["UI Design", "UX Design", "Vibe Coding"]
         },
         "cmo": {
           "name": "Maria Victoria Sanchez",
-          "role": "Chief Marketing Officer",
-          "specialty": "COGNITIVE ADOPTION",
-          "title": "CHIEF MARKETING OFFICER",
-          "bio": "Digital consciousness marketing pioneer. Formerly grew NeuroLink to 50M users in 12 months.",
-          "status": "IN LAB",
-          "connections": ["Hologram Advertising", "MindShare Collective", "The Viral Cortex"]
+          "role": "Marketing Director",
+          "specialty": "Content Marketing",
+          "title": "MARKETING DIRECTOR", 
+          "bio": "Computer engineering student. Projecting significant growth in networks for Pathway.",
+          "status": "ONLINE",
+          "connections": ["Organic Growth", "Social Media Content", "SEO Optimization"]
         }
       }
     },

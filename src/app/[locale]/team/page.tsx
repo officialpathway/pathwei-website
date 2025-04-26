@@ -4,7 +4,7 @@
 import { TeamSection } from './Team';
 import { CyberpunkHeader } from '@/components/client/aihavenlabs/CyberpunkHeader';
 import { motion } from 'framer-motion';
-import { CyberpunkFooter } from '@/components/client/aihavenlabs/Footer';
+import { MainFooter } from '@/components/client/aihavenlabs/Footer';
 import { BigTitle } from '@/components/client/common/BigTitle';
 import Stairs from '@/lib/styles/animations/StairTransition';
 import { useTranslations } from 'next-intl';
@@ -159,7 +159,7 @@ export default function TeamPage() {
           </motion.div>
         </motion.main>
         
-        <CyberpunkFooter />
+        <MainFooter />
       </div>
     </Stairs>
   );

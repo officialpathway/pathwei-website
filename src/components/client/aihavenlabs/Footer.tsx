@@ -1,12 +1,12 @@
-// components/Footer/FuturisticFooter.tsx
+// components/Footer/MainFooter.tsx
 'use client';
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 const FooterContent = () => {
-  const [popupLink, setPopupLink] = useState<string | null>(null);
+  const t = useTranslations('aihavenlabs.footer');
   
   // Animation variants for better organization
   const containerVariants = {
@@ -37,42 +37,60 @@ const FooterContent = () => {
   interface NavLink {
     href: string;
     label: string;
-    showPopup?: boolean;
   }
   
   const navLinks: NavLink[] = [
-    { href: "/", label: "Home" },
-    { href: "/suite", label: "Suite" },
-    { href: "/team", label: "Team" },
-    { href: "/suite/pathway", label: "Pathway" },
-    { href: "/contact", label: "Contact", showPopup: true }
+    { href: "/", label: `${t("home")}` },
+    { href: "/suite", label: `${t("suite")}` },
+    { href: "/team", label: `${t("team")}` },
+    { href: "/suite/pathway", label: "Pathway" }
+  ];
+
+  // Social media links data
+  interface SocialLink {
+    platform: string;
+    handle: string;
+    href: string;
+  }
+
+  const socialLinks: SocialLink[] = [
+    { platform: "TikTok", handle: "@pathwayapp", href: "https://www.tiktok.com/@pathwayapp" },
+    { platform: "Instagram", handle: "@pathway.app", href: "https://www.instagram.com/pathway.app" },
+    { platform: "LinkedIn", handle: "Pathway", href: "https://www.linkedin.com/company/pathway-ai-haven-labs" },
+    { platform: "Email", handle: "officialpathwayapp@gmail.com", href: "mailto:officialpathwayapp@gmail.com" }
   ];
 
   // Simple link renderer with proper TypeScript types
-  const renderNavLink = (link: NavLink) => {
-    const handleClick = (e: React.MouseEvent) => {
-      if (link.showPopup) {
-        e.preventDefault();
-        setPopupLink(link.label);
-        
-        // Hide popup after 2 seconds
-        setTimeout(() => {
-          setPopupLink(null);
-        }, 2000);
-      }
-    };
-    
+  const renderNavLink = (link: NavLink) => {    
     return (
       <div key={link.label} className="px-4 md:px-6 py-2">
         <Link 
           href={link.href} 
           className="group block text-white/70 hover:text-white transition-colors py-1"
-          onClick={link.showPopup ? handleClick : undefined}
         >
           <span className="inline-block">{link.label}</span>
           <span className="block h-0.5 w-0 bg-sky-400 transition-all duration-300 group-hover:w-full"></span>
         </Link>
       </div>
+    );
+  };
+
+  // Social link renderer
+  const renderSocialLink = (link: SocialLink) => {
+    return (
+      <motion.div 
+        key={link.platform}
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="flex items-center mb-3"
+      >
+        <span className="text-sky-400 text-sm mr-2">{link.platform}:</span>
+        <a href={link.href} className="text-white/70 hover:text-white transition-colors">
+          {link.handle}
+        </a>
+      </motion.div>
     );
   };
 
@@ -118,19 +136,23 @@ const FooterContent = () => {
           </div>
         </div>
         
-        {/* Popup notification */}
-        {popupLink && (
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 5 }}
-            className="fixed bottom-10 left-1/2 transform -translate-x-1/2 z-50
-                      px-6 py-3 rounded-md bg-black/80 backdrop-blur-md text-white 
-                      border border-sky-500/20 shadow-lg shadow-sky-500/10"
-          >
-            {popupLink} is not available yet
-          </motion.div>
-        )}
+        {/* Social Media Section - NEW */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-16"
+        >
+          <h3 className="text-xl font-light text-white mb-6 flex items-center">
+            <span className="mr-3">CONNECT WITH US</span>
+            <div className="flex-grow h-px bg-gradient-to-r from-sky-400/30 to-transparent"></div>
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+            {socialLinks.map(renderSocialLink)}
+          </div>
+        </motion.div>
 
         {/* Bottom Bar with enhanced styling */}
         <div className="mt-12 pt-8 border-t border-white/10">
@@ -173,13 +195,10 @@ const FooterContent = () => {
   );
 };
 
-export const FuturisticFooter = () => {
+export const MainFooter = () => {
   return (
     <footer className="w-full">
       <FooterContent />
     </footer>
   );
 };
-
-// For backward compatibility with existing imports
-export const CyberpunkFooter = FuturisticFooter;

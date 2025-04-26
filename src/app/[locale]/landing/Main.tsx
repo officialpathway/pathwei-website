@@ -13,7 +13,7 @@ import Hero from "./Hero/Hero";
 import ProductGridSection from "./Grid/ProductGridSection";
 import { FeatureComments } from "./FeatureComments";
 import VisionSection from './Vision/VisionSection';
-import { CyberpunkFooter } from "@/components/client/aihavenlabs/Footer";
+import { MainFooter } from "@/components/client/aihavenlabs/Footer";
 import { useTranslations } from 'next-intl';
 
 /**
@@ -218,7 +218,7 @@ export default function MainSection() {
 
         {/* Footer */}
         <div>
-          <CyberpunkFooter />
+          <MainFooter />
         </div>
       </div>
     </main>

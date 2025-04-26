@@ -2,18 +2,23 @@
 
 import { motion } from 'framer-motion';
 import { TextScramble } from '@/components/client/common/TextScramble';
+import { useTranslations } from 'next-intl';
 
 export default function Hero() {
+
+  const t = useTranslations('aihavenlabs.heroSection');
+  const title = t("title");
+
   return (
     <section className="px-4 md:px-0"> {/* Added horizontal padding for mobile */}
       <div className="flex flex-col items-center justify-center h-[90vh] md:h-screen px-4"> {/* Adjusted height and padding */}
         <TextScramble 
-          text="The Future of AI" 
+          text={title}
           className='text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center' 
           scrambleOnHover 
         />
         <p className="mt-3 md:mt-4 text-base md:text-lg text-gray-400 text-center max-w-md md:max-w-lg px-4">
-          Experience the fusion of technology and humanity.
+          {t("subtitle")}
         </p>
         
         <motion.button
@@ -31,7 +36,7 @@ export default function Hero() {
         >
           {/* Button text */}
           <span className="relative z-10 text-lg md:text-xl tracking-wider">
-            EXPLORE NOW
+            {t("ctaButton")}
           </span>
           
           {/* Animated background */}

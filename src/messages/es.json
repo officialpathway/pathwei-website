@@ -1,5 +1,24 @@
 {
   "aihavenlabs": {
+    "header": {
+      "logo": "AI HAVEN LABS",
+      "menu": {
+        "suite": "Apps",
+        "team": "Equipo",
+        "contact": "Contacto"
+      }
+    },
+    "heroSection": {
+      "title": "El Futuro de la IA está aquí",
+      "subtitle": "Experimenta la fusión de la tecnología y la humanidad.",
+      "ctaButton": "EXPLORA AHORA"
+    },
+    "footer": {
+      "home": "Inicio",
+      "suite": "Apps",
+      "team": "Equipo",
+      "contact": "Contacto"
+    },
     "landingPage": {
       "maskTitle1": "El asistente que",
       "maskTitle2": "nunca duerme.",
@@ -29,33 +48,37 @@
       "exploreButton": "Explorar"
     },
     "team": {
+      "card": {
+        "contributions": "CONTRIBUCIONES CLAVE",
+        "connect": "CONECTAR EN LINKEDIN"
+      },
       "members": {
         "ceo": {
           "name": "Alvaro Rios",
           "role": "Director Ejecutivo",
-          "specialty": "SÍNTESIS ESTRATÉGICA",
+          "specialty": "Desarrollo Full Stack",
           "title": "FUNDADOR Y CEO",
-          "bio": "Ex investigador de interfaces neurales convertido en emprendedor tecnológico. Lidera nuestro salto cuántico hacia la simbiosis humano-IA.",
+          "bio": "Estudiante de ingeniería informática con espíritu emprendedor. Fundador de Ai Haven Labs y Pathway. Experto en desarrolo full stack.",
           "status": "EN LÍNEA",
-          "connections": ["NeuroTech Inc", "Quantum Leap Ventures", "Future Humanity Fund"]
+          "connections": ["Arquitectura del Software", "Diseño de Base de Datos", "Liderazgo emprendedor"]
         },
         "cto": {
           "name": "Rayan Chairi",
           "role": "Director de Tecnología",
-          "specialty": "OPTIMIZACIÓN NEURAL",
+          "specialty": "Desarollo Frontend",
           "title": "DIRECTOR DE TECNOLOGÍA",
-          "bio": "Ex ingeniero líder de Google DeepMind. Construyó la primera arquitectura de IA auto-evolutiva a los 23 años.",
+          "bio": "Estudiante de ingeniería informática. Fundador de Ai Haven Labs y Pathway. Diseña las interfaces que conectan nuestros usuarios con la IA.",
           "status": "EN LABORATORIO",
-          "connections": ["MIT Synthetic Intelligence", "OpenNeuro Collective", "The Turing Guild"]
+          "connections": ["Diseño de UI", "Diseño de UX", "Vibe Coding"]
         },
         "cmo": {
           "name": "Maria Victoria Sanchez",
           "role": "Directora de Marketing",
-          "specialty": "ADOPCIÓN COGNITIVA",
+          "specialty": "Maketing de Contenido",
           "title": "DIRECTORA DE MARKETING",
-          "bio": "Pionera en marketing de conciencia digital. Anteriormente hizo crecer NeuroLink a 50M de usuarios en 12 meses.",
-          "status": "EN LABORATORIO",
-          "connections": ["Hologram Advertising", "MindShare Collective", "The Viral Cortex"]
+          "bio": "Estudiante de ingeniería informática. Proyecta un gran crecimiento en redes para Pathway.",
+          "status": "EN LÍNEA",
+          "connections": ["Crecimiento orgánico", "Contenido en redes", "Optimización de SEO"]
         }
       }
     },

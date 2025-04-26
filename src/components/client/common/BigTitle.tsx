@@ -26,7 +26,7 @@ export function BigTitle({
       className={`${className} w-full text-center`} // Ensure width is applied
     >
       <div className="inline-block">
-        <h1 className="text-5xl sm:text-6xl md:text-9xl font-bold tracking-tighter leading-none">
+        <h1 className="text-5xl sm:text-6xl md:text-9xl font-bold leading-none">
           {text.split(' ').map((word, i) => (
             <span 
               key={i}

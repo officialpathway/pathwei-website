@@ -2,7 +2,7 @@
 
 import Stairs from '@/lib/styles/animations/StairTransition';
 import { BigTitle } from '@/components/client/common/BigTitle';
-import { CyberpunkFooter } from '@/components/client/aihavenlabs/Footer';
+import { MainFooter } from '@/components/client/aihavenlabs/Footer';
 import { CyberpunkHeader } from '@/components/client/aihavenlabs/CyberpunkHeader';
 import { motion } from 'framer-motion';
 
@@ -402,7 +402,7 @@ export default function PrivacyPolicy() {
           </motion.div>
         </motion.main>
 
-        <CyberpunkFooter />
+        <MainFooter />
       </div>
     </Stairs>
   );

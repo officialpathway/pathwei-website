@@ -6,12 +6,31 @@ import Particles from "@/components/client/common/Particles";
 import { teamMembers } from "@/lib/constants";
 import { useTranslations } from 'next-intl';
 
+// Define a type for team member
+type TeamMember = {
+  name: string;
+  role: string;
+  color: string;
+  imgSrc: string;
+  status?: string;
+  specialty?: string;
+  bio: string;
+  connections?: string[];
+};
+
 export function TeamSection() {
   // Get the translator for the aihavenlabs namespace
   const t = useTranslations('aihavenlabs');
   
   // Call the teamMembers function with the translator to get the array
   const teamMembersArray = teamMembers(t);
+
+  // Define social links with proper typing
+  const socialLinks: Record<string, string> = {
+    'Alvaro Rios': 'https://www.linkedin.com/in/%C3%A1lvaro-r%C3%ADos-rodr%C3%ADguez-0a3ab6260/',
+    'Rayan Chairi': 'https://www.linkedin.com/in/rayan-chairi-ben-yamna-boulaich-026605293/',
+    'Maria Victoria Sanchez': 'https://www.linkedin.com/in/mar%C3%ADa-victoria-s%C3%A1nchez-738b71339/'
+  };
 
   return (
     <section className="relative py-20 overflow-hidden">
@@ -30,7 +49,7 @@ export function TeamSection() {
 
         {/* Enhanced Team Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {teamMembersArray.map((member, index) => (
+          {teamMembersArray.map((member: TeamMember, index: number) => (
             <motion.div
               key={index}
               initial={{ y: 50, opacity: 0 }}
@@ -122,7 +141,7 @@ export function TeamSection() {
                 {member.connections && (
                   <div className="mt-6">
                     <h4 className={`text-white text-sm font-medium mb-3 tracking-wider`}>
-                      KEY CONTRIBUTIONS:
+                      {t("team.card.contributions")}:
                     </h4>
                     <ul className="space-y-2">
                       {(Array.isArray(member.connections) ? member.connections : []).map((connection, i) => (
@@ -141,13 +160,15 @@ export function TeamSection() {
                 className={`px-6 py-3 bg-black/50 border-t text-center`}
                 style={{ borderColor: getGlowColor(member.color, 0.3) }}
               >
-                <button 
-                  type='button' 
-                  className={`text-white text-xs font-medium tracking-wider hover:opacity-80 transition-opacity`}
+                <a 
+                  href={socialLinks[member.name] || '#'} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={`text-white text-xs font-medium tracking-wider hover:opacity-80 transition-opacity inline-block w-full`}
                   style={{ color: getGlowColor(member.color, 0.9) }}
                 >
-                  CONNECT ON LINKEDIN
-                </button>
+                  {t('team.card.connect')}
+                </a>
               </div>
             </motion.div>
           ))}

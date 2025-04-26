@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { CyberpunkHeader } from '@/components/client/aihavenlabs/CyberpunkHeader';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BigTitle } from '@/components/client/common/BigTitle';
-import { CyberpunkFooter } from '@/components/client/aihavenlabs/Footer';
+import { MainFooter } from '@/components/client/aihavenlabs/Footer';
 import Stairs from '@/lib/styles/animations/StairTransition';
 import { apps } from '@/lib/constants';
 import { FlipCard } from '@/components/client/common/FlipCard';
@@ -162,7 +162,7 @@ export default function SuitePage() {
           </motion.div>
         </motion.main>
 
-        <CyberpunkFooter />
+        <MainFooter />
         
         {/* Popup Component */}
         <AnimatePresence>
