@@ -82,26 +82,44 @@ export const TextScramble = ({
     };
   }, []);
 
+  // Process the text to create words for better wrapping
+  const processTextForDisplay = () => {
+    // Split text into array of words and preserve spaces
+    const words = displayText.split(/(\s+)/);
+    
+    return words.map((word, wordIndex) => {
+      // If it's whitespace, return it as a span
+      if (/^\s+$/.test(word)) {
+        return <span key={`space-${wordIndex}`}>{word}</span>;
+      }
+      
+      // Otherwise render each character in the word
+      return (
+        <span key={`word-${wordIndex}`} className="inline-flex flex-wrap">
+          {word.split('').map((char, charIndex) => (
+            <span 
+              key={`char-${wordIndex}-${charIndex}`} 
+              className="scramble-character inline-block"
+              style={{ 
+                minWidth: '0.6em',
+                textAlign: 'center'
+              }}
+            >
+              {char}
+            </span>
+          ))}
+        </span>
+      );
+    });
+  };
+
   return (
     <span 
-      className={`inline-block font-mono ${className}`}
-      style={{ whiteSpace: 'pre' }} // Preserve spacing
+      className={`inline-block font-mono ${className} break-words whitespace-normal`}
       onMouseEnter={() => scrambleOnHover && scramble(text)}
       onMouseLeave={() => scrambleOnHover && scramble(text)}
     >
-      {displayText.split('').map((char, i) => (
-        <span 
-          key={i} 
-          className="scramble-character"
-          style={{ 
-            display: 'inline-block',
-            minWidth: '0.6em',
-            textAlign: 'center'
-          }}
-        >
-          {char}
-        </span>
-      ))}
+      {processTextForDisplay()}
     </span>
   );
 };
