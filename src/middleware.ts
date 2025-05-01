@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
+import { createServerClient } from '@supabase/ssr';
+import { isAdmin } from '@/lib/new/admin';
 
 /**
  * Configuration constants
@@ -29,7 +31,14 @@ const ALLOWED_ORIGINS = [
 const intlMiddleware = createMiddleware({
   locales: LOCALES,
   defaultLocale: DEFAULT_LOCALE,
-  localePrefix: 'always' // Always show locale in URL, e.g., /en/about
+  localePrefix: 'always', // Always show locale in URL, e.g., /en/about
+  pathnames: {
+    // Define paths to exclude from locale prefixing
+    '/admin': {
+      exclude: 'true'
+    },
+    // Add other admin routes
+  }
 });
 
 /**
@@ -86,19 +95,82 @@ export default async function middleware(request: NextRequest) {
   }
 
   /**
-   * 2. Handle requests to the root path
+   * 2. Handle admin authentication for admin routes
+   * 
+   * When using (admin) route group, the actual URLs will be:
+   * - /login (not /(admin)/login)
+   * - /dashboard (not /(admin)/dashboard)
+   */
+  // Check if this is an admin route - checking for actual URL patterns, not file structure
+  const adminRoutes = ['/login', '/dashboard', '/users', '/settings', '/profile', '/content', '/forgot-password', '/reset-password', '/activity', '/analytics', '/manage-users', '/system-logs'];
+  const isAdminRoute = adminRoutes.some(route => pathname === route || pathname.startsWith(`${route}/`));
+                     
+  if (isAdminRoute) {
+    // Skip authentication check for login page and password recovery pages
+    if (pathname === '/login' || pathname === '/forgot-password' || pathname === '/reset-password') {
+      return NextResponse.next();
+    }
+
+    // Create a Supabase client for the middleware
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          get: (name) => request.cookies.get(name)?.value,
+          set: () => {}, // No-op in middleware
+          remove: () => {}, // No-op in middleware
+        },
+      }
+    );
+
+    const { data: { session } } = await supabase.auth.getSession();
+
+    // Redirect to login if no session
+    if (!session) {
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
+
+    // Check if user has admin dashboard access
+    const userId = session.user.id;
+    const hasAccess = await isAdmin(userId);
+
+    if (!hasAccess) {
+      // Redirect non-authorized users to homepage with appropriate locale
+      const homePath = `/${DEFAULT_LOCALE}`;
+      return NextResponse.redirect(new URL(homePath, request.url));
+    }
+
+    // Update the last_active timestamp
+    try {
+      await supabase
+        .from('users')
+        .update({ last_active: new Date().toISOString() })
+        .eq('id', userId);
+    } catch (error) {
+      // Non-critical error, can proceed without updating last_active
+      console.error('Failed to update last_active timestamp', error);
+    }
+
+    // Continue with the request for authenticated authorized users
+    return NextResponse.next();
+  }
+
+  /**
+   * 3. Handle requests to the root path
    */
   if (pathname === '/') {
     return NextResponse.redirect(new URL(`/${DEFAULT_LOCALE}`, request.url));
   }
 
   /**
-   * 3. Apply internationalization middleware
+   * 4. Apply internationalization middleware
+   * Only for non-admin routes
    */
   let response = intlMiddleware(request);
   
   /**
-   * 4. Handle price A/B testing
+   * 5. Handle price A/B testing
    */
   const priceCookie = request.cookies.get('selected_price');
   if (!priceCookie?.value) {
@@ -112,7 +184,7 @@ export default async function middleware(request: NextRequest) {
   }
 
   /**
-   * 5. Apply CORS headers
+   * 6. Apply CORS headers
    */
   response = handleCORS(request, response);
 
@@ -129,5 +201,27 @@ export const config = {
     '/((?!api|_next|_vercel|.*\\..*).*)',
     // Match API routes for CORS handling
     '/api/:path*',
+    // Match admin routes directly (the actual URL patterns)
+    '/login',
+    '/forgot-password',
+    '/reset-password',
+    '/dashboard',
+    '/dashboard/:path*',
+    '/users',
+    '/users/:path*',
+    '/settings',
+    '/settings/:path*',
+    '/profile',
+    '/profile/:path*',
+    '/content',
+    '/content/:path*',
+    '/activity',
+    '/activity/:path*',
+    '/analytics',
+    '/analytics/:path*',
+    '/manage-users',
+    '/manage-users/:path*',
+    '/system-logs',
+    '/system-logs/:path*'
   ]
 };
