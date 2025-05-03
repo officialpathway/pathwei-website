@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
-import { createServerClient } from '@supabase/ssr';
-import { isAdmin } from '@/lib/new/admin';
+import { updateSession } from '@/lib/utils/supabase/middleware';
 
 /**
  * Configuration constants
@@ -84,7 +83,7 @@ function handleCORS(request: NextRequest, response: NextResponse) {
  * @param {NextRequest} request The incoming request object
  * @returns {NextResponse} The modified response
  */
-export default async function middleware(request: NextRequest) {
+export default async function middleware(request: NextRequest): Promise<NextResponse<unknown>> {
   const pathname = request.nextUrl.pathname;
 
   /**
@@ -93,84 +92,50 @@ export default async function middleware(request: NextRequest) {
   if (pathname.includes('.') || pathname.startsWith('/_next')) {
     return NextResponse.next();
   }
-
+  
   /**
-   * 2. Handle admin authentication for admin routes
-   * 
-   * When using (admin) route group, the actual URLs will be:
-   * - /login (not /(admin)/login)
-   * - /dashboard (not /(admin)/dashboard)
+   * 3. Handle admin routes - check both direct admin routes and localized admin routes
    */
-  // Check if this is an admin route - checking for actual URL patterns, not file structure
-  const adminRoutes = ['/login', '/dashboard', '/users', '/settings', '/profile', '/content', '/forgot-password', '/reset-password', '/activity', '/analytics', '/manage-users', '/system-logs'];
-  const isAdminRoute = adminRoutes.some(route => pathname === route || pathname.startsWith(`${route}/`));
-                     
-  if (isAdminRoute) {
-    // Skip authentication check for login page and password recovery pages
-    if (pathname === '/login' || pathname === '/forgot-password' || pathname === '/reset-password') {
+  const adminPaths = ['/login', '/dashboard', '/users', '/settings', '/profile', '/content', 
+    '/forgot-password', '/reset-password', '/activity', '/analytics', '/manage-users', '/system-logs'];
+  
+  // Check if this is a direct admin route
+  const isDirectAdminRoute = adminPaths.some(route => 
+    pathname === route || pathname.startsWith(`${route}/`)
+  );
+  
+  // Check if this is a localized admin route
+  const isLocalizedAdminRoute = LOCALES.some(locale => 
+    adminPaths.some(route => 
+      pathname === `/${locale}${route}` || pathname.startsWith(`/${locale}${route}/`)
+    )
+  );
+  
+  // Handle admin authentication
+  if (isDirectAdminRoute || isLocalizedAdminRoute) {
+    // Skip authentication for login and password recovery pages
+    if (pathname.endsWith('/login') || pathname.endsWith('/forgot-password') || pathname.endsWith('/reset-password')) {
       return NextResponse.next();
     }
-
-    // Create a Supabase client for the middleware
-    const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        cookies: {
-          get: (name) => request.cookies.get(name)?.value,
-          set: () => {}, // No-op in middleware
-          remove: () => {}, // No-op in middleware
-        },
-      }
-    );
-
-    const { data: { session } } = await supabase.auth.getSession();
-
-    // Redirect to login if no session
-    if (!session) {
-      return NextResponse.redirect(new URL('/login', request.url));
-    }
-
-    // Check if user has admin dashboard access
-    const userId = session.user.id;
-    const hasAccess = await isAdmin(userId);
-
-    if (!hasAccess) {
-      // Redirect non-authorized users to homepage with appropriate locale
-      const homePath = `/${DEFAULT_LOCALE}`;
-      return NextResponse.redirect(new URL(homePath, request.url));
-    }
-
-    // Update the last_active timestamp
-    try {
-      await supabase
-        .from('users')
-        .update({ last_active: new Date().toISOString() })
-        .eq('id', userId);
-    } catch (error) {
-      // Non-critical error, can proceed without updating last_active
-      console.error('Failed to update last_active timestamp', error);
-    }
-
-    // Continue with the request for authenticated authorized users
-    return NextResponse.next();
+    
+    // Process authentication
+    return await updateSession(request);
   }
 
   /**
-   * 3. Handle requests to the root path
+   * 4. Handle requests to the root path
    */
   if (pathname === '/') {
     return NextResponse.redirect(new URL(`/${DEFAULT_LOCALE}`, request.url));
   }
 
   /**
-   * 4. Apply internationalization middleware
-   * Only for non-admin routes
+   * 5. Apply internationalization middleware for non-admin routes
    */
   let response = intlMiddleware(request);
   
   /**
-   * 5. Handle price A/B testing
+   * 6. Handle price A/B testing
    */
   const priceCookie = request.cookies.get('selected_price');
   if (!priceCookie?.value) {
@@ -184,7 +149,7 @@ export default async function middleware(request: NextRequest) {
   }
 
   /**
-   * 6. Apply CORS headers
+   * 7. Apply CORS headers
    */
   response = handleCORS(request, response);
 
@@ -222,6 +187,28 @@ export const config = {
     '/manage-users',
     '/manage-users/:path*',
     '/system-logs',
-    '/system-logs/:path*'
+    '/system-logs/:path*',
+    // Match localized admin routes
+    '/:locale/login',
+    '/:locale/forgot-password',
+    '/:locale/reset-password',
+    '/:locale/dashboard',
+    '/:locale/dashboard/:path*',
+    '/:locale/users',
+    '/:locale/users/:path*',
+    '/:locale/settings',
+    '/:locale/settings/:path*',
+    '/:locale/profile',
+    '/:locale/profile/:path*',
+    '/:locale/content',
+    '/:locale/content/:path*',
+    '/:locale/activity',
+    '/:locale/activity/:path*',
+    '/:locale/analytics',
+    '/:locale/analytics/:path*',
+    '/:locale/manage-users',
+    '/:locale/manage-users/:path*',
+    '/:locale/system-logs',
+    '/:locale/system-logs/:path*'
   ]
 };

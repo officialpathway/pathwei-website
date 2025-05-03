@@ -1,17 +1,19 @@
 'use client';
 
+import { redirect } from 'next/navigation';
+import { createClient } from '@/lib/utils/supabase/client';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/server/ui/button';
+import { Button } from '@/components/ui/button';
 import { 
   Card, 
   CardContent, 
   CardHeader, 
   CardTitle, 
   CardDescription 
-} from '@/components/server/ui/card';
-import { Alert, AlertDescription, AlertTitle } from '@/components/server/ui/alert';
-import { getUser, signOut } from '@/lib/new/auth';
+} from '@/components/ui/card';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { signOut } from '@/lib/new/auth';
 import { getAdminUser, hasRole } from '@/lib/new/admin';
 import { 
   Users, Settings, FileText, 
@@ -47,22 +49,23 @@ export default function AdminDashboard() {
     async function fetchUserData() {
       try {
         setLoading(true);
-        // Get basic user info
-        const currentUser = await getUser();
-        
-        if (!currentUser) {
-          router.push('/admin/login');
-          return;
+        const supabase = createClient()
+
+        const { data, error } = await supabase.auth.getUser()
+        if (error || !data?.user) {
+          redirect('/admin/login')
         }
-        
-        setUser(currentUser);
-        
-        // Get admin-specific data
-        const adminUserData = await getAdminUser(currentUser.id);
+
+        console.log('[AdminDashboard] User:', data.user)
+        setUser(data.user);
+
+        const adminUserData = await getAdminUser(data.user.id);
         if (!adminUserData) {
           setError('You do not have admin privileges');
           return;
         }
+
+        console.log('[AdminDashboard] Admin User Data:', adminUserData)
         
         setAdminData({
           ...adminUserData,
@@ -70,7 +73,8 @@ export default function AdminDashboard() {
         });
         
         // Check permissions based on role
-        const canManage = await hasRole(currentUser.id, ['admin']);
+        const canManage = await hasRole(data.user.id, ['admin']);
+        console.log('[AdminDashboard] Can Manage Users:', canManage)
         setCanManageUsers(canManage);
       } catch (err) {
         setError('Error fetching user data');
@@ -344,7 +348,7 @@ export default function AdminDashboard() {
               <Button 
                 variant="default"
                 className="w-full justify-start bg-indigo-600 hover:bg-indigo-700 text-white"
-                onClick={() => router.push('/admin/manage-users')}
+                onClick={() => router.push('/admin/users')}
               >
                 <Users className="mr-2 h-4 w-4" />
                 Manage Users

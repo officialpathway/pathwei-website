@@ -44,6 +44,7 @@ export async function isAdmin(userId: string): Promise<boolean> {
     }
     
     // Any role (admin, editor, viewer) has access to the dashboard
+    console.log('User role:', data.role);
     return true;
   } catch (error) {
     console.error('Error verifying admin status:', error);

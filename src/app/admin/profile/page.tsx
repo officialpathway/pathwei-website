@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/server/ui/button';
+import { Button } from '@/components/ui/button';
 import { 
   Card, 
   CardContent, 
@@ -10,18 +10,10 @@ import {
   CardHeader, 
   CardTitle, 
   CardDescription 
-} from '@/components/server/ui/card';
-import { Input } from '@/components/server/ui/input';
-import { Label } from '@/components/server/ui/label';
-import { 
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/server/ui/select';
-import { Textarea } from '@/components/server/ui/textarea';
-import { Alert, AlertDescription, AlertTitle } from '@/components/server/ui/alert';
+} from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { getUser, signOut } from '@/lib/new/auth';
 import { getAdminUser, updateAdminUser } from '@/lib/new/admin';
 import { 
@@ -40,16 +32,7 @@ export default function AdminProfile() {
     email: '',
     role: '',
     status: '',
-    bio: '',
-    phone: '',
-    location: '',
-    timezone: '',
     avatarUrl: '',
-    notifications: {
-      email: true,
-      push: false,
-      sms: false
-    }
   });
   
   const [loading, setLoading] = useState(true);
@@ -87,16 +70,7 @@ export default function AdminProfile() {
           email: adminUserData.email || '',
           role: adminUserData.role || '',
           status: adminUserData.status || 'active',
-          bio: adminUserData.bio || '',
-          phone: adminUserData.phone || '',
-          location: adminUserData.location || '',
-          timezone: adminUserData.timezone || 'UTC',
           avatarUrl: adminUserData.avatarUrl || '',
-          notifications: adminUserData.notifications || {
-            email: true,
-            push: false,
-            sms: false
-          }
         });
       } catch (err) {
         setError('Error fetching user data');
@@ -114,23 +88,6 @@ export default function AdminProfile() {
     setProfileData(prev => ({
       ...prev,
       [name]: value
-    }));
-  };
-
-  const handleSelectChange = (name: string, value: string) => {
-    setProfileData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleNotificationChange = (type: 'email' | 'push' | 'sms', checked: boolean) => {
-    setProfileData(prev => ({
-      ...prev,
-      notifications: {
-        ...prev.notifications,
-        [type]: checked
-      }
     }));
   };
 
@@ -346,33 +303,7 @@ export default function AdminProfile() {
                 <CardTitle className="text-white">Profile Information</CardTitle>
                 <CardDescription className="text-gray-400">Update your personal details</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="phone" className="text-gray-300">Phone Number</Label>
-                    <Input 
-                      id="phone" 
-                      name="phone"
-                      value={profileData.phone}
-                      onChange={handleInputChange}
-                      placeholder="+1 (555) 123-4567"
-                      className="bg-gray-800 border-gray-700 text-gray-200"
-                    />
-                  </div>
-                  
-                  <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="location" className="text-gray-300">Location</Label>
-                    <Input 
-                      id="location" 
-                      name="location"
-                      value={profileData.location}
-                      onChange={handleInputChange}
-                      placeholder="City, Country"
-                      className="bg-gray-800 border-gray-700 text-gray-200"
-                    />
-                  </div>
-                </div>
-                
+              <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex flex-col space-y-1.5">
                     <Label htmlFor="role" className="text-gray-300">Role</Label>
@@ -384,86 +315,6 @@ export default function AdminProfile() {
                       disabled
                     />
                     <p className="text-xs text-gray-400 mt-1">Role can only be changed by super admin</p>
-                  </div>
-                  
-                  <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="timezone" className="text-gray-300">Timezone</Label>
-                    <Select 
-                      value={profileData.timezone} 
-                      onValueChange={(value) => handleSelectChange('timezone', value)}
-                    >
-                      <SelectTrigger className="bg-gray-800 border-gray-700 text-gray-200">
-                        <SelectValue placeholder="Select timezone" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-gray-800 border-gray-700 text-gray-200">
-                        <SelectItem value="UTC">UTC (Coordinated Universal Time)</SelectItem>
-                        <SelectItem value="EST">EST (Eastern Standard Time)</SelectItem>
-                        <SelectItem value="CST">CST (Central Standard Time)</SelectItem>
-                        <SelectItem value="MST">MST (Mountain Standard Time)</SelectItem>
-                        <SelectItem value="PST">PST (Pacific Standard Time)</SelectItem>
-                        <SelectItem value="IST">IST (Indian Standard Time)</SelectItem>
-                        <SelectItem value="JST">JST (Japan Standard Time)</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-                
-                <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="bio" className="text-gray-300">Bio</Label>
-                  <Textarea 
-                    id="bio" 
-                    name="bio"
-                    value={profileData.bio}
-                    onChange={handleInputChange}
-                    placeholder="Write a short bio about yourself"
-                    className="h-32 bg-gray-800 border-gray-700 text-gray-200"
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <h3 className="text-gray-300 font-medium">Notification Preferences</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="flex items-center space-x-2">
-                      <input
-                        title="Email Notifications"
-                        type="checkbox"
-                        id="email-notifications"
-                        checked={profileData.notifications.email}
-                        onChange={(e) => handleNotificationChange('email', e.target.checked)}
-                        className="h-4 w-4 rounded border-gray-700 bg-gray-800 text-indigo-600"
-                      />
-                      <Label htmlFor="email-notifications" className="text-gray-300">
-                        Email Notifications
-                      </Label>
-                    </div>
-                    
-                    <div className="flex items-center space-x-2">
-                      <input
-                        title="Push Notifications"
-                        type="checkbox"
-                        id="push-notifications"
-                        checked={profileData.notifications.push}
-                        onChange={(e) => handleNotificationChange('push', e.target.checked)}
-                        className="h-4 w-4 rounded border-gray-700 bg-gray-800 text-indigo-600"
-                      />
-                      <Label htmlFor="push-notifications" className="text-gray-300">
-                        Push Notifications
-                      </Label>
-                    </div>
-                    
-                    <div className="flex items-center space-x-2">
-                      <input
-                        title="SMS Notifications"
-                        type="checkbox"
-                        id="sms-notifications"
-                        checked={profileData.notifications.sms}
-                        onChange={(e) => handleNotificationChange('sms', e.target.checked)}
-                        className="h-4 w-4 rounded border-gray-700 bg-gray-800 text-indigo-600"
-                      />
-                      <Label htmlFor="sms-notifications" className="text-gray-300">
-                        SMS Notifications
-                      </Label>
-                    </div>
                   </div>
                 </div>
               </CardContent>

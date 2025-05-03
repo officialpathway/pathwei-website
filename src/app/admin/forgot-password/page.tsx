@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/server/ui/button';
-import { Input } from '@/components/server/ui/input';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/server/ui/card';
-import { Alert, AlertDescription } from '@/components/server/ui/alert';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { requestPasswordReset } from '@/lib/new/auth';
