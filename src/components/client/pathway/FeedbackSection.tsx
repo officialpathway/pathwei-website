@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import { FaStar, FaQuoteRight } from "react-icons/fa";
 import { useTranslations } from 'next-intl';
-import { getPathwayConstants } from "../../../lib/constants/pathway-constants";
+import { getPathwayConstants } from "@/lib/constants/pathway-constants";
 
 const FeedbackSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);

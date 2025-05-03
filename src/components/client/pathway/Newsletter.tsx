@@ -29,7 +29,7 @@ const Newsletter = () => {
     setMessage("");
 
     try {
-      const response = await fetch("/api/public/subscribe", {
+      const response = await fetch("/api/public/newsletter", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

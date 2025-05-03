@@ -3,16 +3,15 @@
 
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import AdminLayout from '../layout';
-import { Button } from '@/components/server/ui/button';
-import { Input } from '@/components/server/ui/input';
-import { Textarea } from '@/components/server/ui/textarea';
-import { Switch } from '@/components/server/ui/switch';
-import { Label } from '@/components/server/ui/label';
-import { Badge } from '@/components/server/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/server/ui/card';
-import { Separator } from '@/components/server/ui/separator';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/server/ui/tabs';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
   CheckCircle2, 
   AlertCircle, 
@@ -26,7 +25,7 @@ import {
   Trash2
 } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { Skeleton } from '@/components/server/ui/skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
 import {
   Dialog,
   DialogContent,
@@ -34,20 +33,20 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/server/ui/dialog";
+} from "@/components/ui/dialog";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/server/ui/select";
+} from "@/components/ui/select";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/server/ui/tooltip";
+} from "@/components/ui/tooltip";
 import { useAdminAuthGuard } from '@/hooks/api/useAdminAuthGuard';
 import { useSeoApi } from '@/lib/api/admin/adminApiClient';
 
@@ -309,46 +308,44 @@ export default function SEOSettings() {
   // Loading skeleton
   if (isLoading) {
     return (
-      <AdminLayout>
-        <div className="space-y-6">
-          <div className="flex justify-between items-center mb-6">
-            <Skeleton className="h-8 w-64" />
-            <Skeleton className="h-10 w-32" />
+      <div className="space-y-6">
+        <div className="flex justify-between items-center mb-6">
+          <Skeleton className="h-8 w-64" />
+          <Skeleton className="h-10 w-32" />
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 space-y-6">
+            <Card>
+              <CardHeader>
+                <Skeleton className="h-6 w-48" />
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {Array(4).fill(0).map((_, i) => (
+                  <div key={i} className="space-y-2">
+                    <Skeleton className="h-4 w-24" />
+                    <Skeleton className="h-10 w-full" />
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 space-y-6">
-              <Card>
-                <CardHeader>
-                  <Skeleton className="h-6 w-48" />
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  {Array(4).fill(0).map((_, i) => (
-                    <div key={i} className="space-y-2">
-                      <Skeleton className="h-4 w-24" />
-                      <Skeleton className="h-10 w-full" />
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            </div>
-            <div className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <Skeleton className="h-6 w-32" />
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <Skeleton className="h-20 w-full" />
-                </CardContent>
-              </Card>
-            </div>
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <Skeleton className="h-6 w-32" />
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <Skeleton className="h-20 w-full" />
+              </CardContent>
+            </Card>
           </div>
         </div>
-      </AdminLayout>
+      </div>
     );
   }
 
   return (
-    <AdminLayout>
+    <div>
       <div className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
           <div>
@@ -1322,6 +1319,6 @@ export default function SEOSettings() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </AdminLayout>
+    </div>
   );
 }

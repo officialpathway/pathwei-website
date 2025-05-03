@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { getPathwayConstants } from "../../../../lib/constants/pathway-constants";
+import { getPathwayConstants } from "@/lib/constants/pathway-constants";
 
 export default function InfiniteGoalAnimation() {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
