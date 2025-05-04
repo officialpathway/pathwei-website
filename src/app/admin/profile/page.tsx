@@ -1,32 +1,33 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { 
-  Card, 
-  CardContent, 
-  CardFooter, 
-  CardHeader, 
-  CardTitle, 
-  CardDescription 
-} from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { getUser, signOut } from '@/lib/new/auth';
-import { getAdminUser, updateAdminUser } from '@/lib/new/admin';
+import { signOut } from '@/lib/new/auth';
+import { updateAdminUser } from '@/lib/new/admin';
 import { 
   ArrowLeft, 
-  LogOut, 
   Save,
-  Loader2
+  Loader2,
+  User,
+  Camera,
+  Shield
 } from 'lucide-react';
 import Image from 'next/image';
-import { User } from '@supabase/supabase-js';
+import { useAdminAuth } from '@/hooks/use-admin-auth';
+import Sidebar from '@/components/client/admin/sidebar';
+import { 
+  WidgetGrid, 
+  Widget
+} from '@/components/client/admin/widget';
 
 export default function AdminProfile() {
-  const [user, setUser] = useState<User | null>(null);
+  const { adminData, loading, error } = useAdminAuth();
+  const router = useRouter();
+
   const [profileData, setProfileData] = useState({
     name: '',
     email: '',
@@ -35,53 +36,24 @@ export default function AdminProfile() {
     avatarUrl: '',
   });
   
-  const [loading, setLoading] = useState(true);
+  // Initialize profileData from adminData when it becomes available
+  useEffect(() => {
+    if (adminData) {
+      setProfileData({
+        name: adminData.name || '',
+        email: adminData.email || '',
+        role: adminData.role || '',
+        status: adminData.status || '',
+        avatarUrl: adminData.avatarUrl || '',
+      });
+    }
+  }, [adminData]);
+  
   const [saving, setSaving] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [updateError, setUpdateError] = useState<string | null>(null);
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
-  
-  const router = useRouter();
-
-  useEffect(() => {
-    async function fetchUserData() {
-      try {
-        setLoading(true);
-        // Get basic user info
-        const currentUser = await getUser();
-        
-        if (!currentUser) {
-          router.push('/admin/login');
-          return;
-        }
-        
-        setUser(currentUser);
-        
-        // Get admin-specific data
-        const adminUserData = await getAdminUser(currentUser.id);
-        if (!adminUserData) {
-          setError('You do not have admin privileges');
-          return;
-        }
-        
-        setProfileData({
-          name: adminUserData.name || '',
-          email: adminUserData.email || '',
-          role: adminUserData.role || '',
-          status: adminUserData.status || 'active',
-          avatarUrl: adminUserData.avatarUrl || '',
-        });
-      } catch (err) {
-        setError('Error fetching user data');
-        console.error('Error fetching user data:', err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchUserData();
-  }, [router]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -104,7 +76,7 @@ export default function AdminProfile() {
       reader.readAsDataURL(file);
     }
   };
-
+  
   async function handleSignOut() {
     await signOut();
     router.push('/admin/login');
@@ -116,42 +88,38 @@ export default function AdminProfile() {
     try {
       setSaving(true);
       setSuccess(null);
-      setError(null);
+      setUpdateError(null);
       
-      if (!user) {
-        setError('User not authenticated');
+      if (!adminData) {
+        setUpdateError('No user data available');
         return;
       }
       
       // Here you would typically upload the avatar if changed
       // and get the new URL, then update the user profile
-      // This is a simplified version without actual file upload
       let avatarUrlToSave = profileData.avatarUrl;
       
       if (avatarFile) {
         // Simulate file upload - in real implementation you would upload to storage
         // and get back the URL
         avatarUrlToSave = avatarPreview || profileData.avatarUrl;
-        // Example: avatarUrlToSave = await uploadAvatar(user.id, avatarFile);
+        // Example: avatarUrlToSave = await uploadAvatar(adminData.id, avatarFile);
       }
       
-      await updateAdminUser(user.id, {
-        
+      // Update the user profile with the new data
+      await updateAdminUser(adminData.name, {
+        name: profileData.name,
+        avatar_id: avatarUrlToSave,
+        // Add other fields that should be updatable
       });
       
       setSuccess('Profile updated successfully');
-      
-      // Update the current profile data
-      setProfileData(prev => ({
-        ...prev,
-        avatarUrl: avatarUrlToSave
-      }));
       
       // Clear the file input
       setAvatarFile(null);
     } catch (err) {
       console.error('Error updating profile:', err);
-      setError('Failed to update profile');
+      setUpdateError('Failed to update profile. Please try again.');
     } finally {
       setSaving(false);
     }
@@ -162,13 +130,13 @@ export default function AdminProfile() {
       <div className="flex justify-center items-center min-h-screen bg-gray-950 text-gray-200">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500 mx-auto"></div>
-          <p className="mt-4">Loading profile...</p>
+          <p className="mt-4">Loading...</p>
         </div>
       </div>
     );
   }
 
-  if (error && !profileData.name) {
+  if (error && !adminData) {
     return (
       <div className="p-8 bg-gray-950 text-gray-200">
         <Alert variant="destructive">
@@ -186,30 +154,28 @@ export default function AdminProfile() {
   }
 
   return (
-    <div className="p-4 md:p-8 bg-gray-950 text-gray-200 min-h-screen">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <div className="flex items-center space-x-2">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => router.push('/admin')}
-              className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
-            >
-              <ArrowLeft className="h-4 w-4" />
-            </Button>
-            <h1 className="text-2xl font-bold text-white">Edit Profile</h1>
-          </div>
-          
+    <div className="flex h-screen bg-gray-950">
+      {/* Include Sidebar with adminData */}
+      {adminData && (
+        <Sidebar user={{ ...adminData, avatarUrl: adminData.avatarUrl ?? undefined }} />
+      )}
+      
+      {/* Main Content */}
+      <main className="flex-1 overflow-x-hidden overflow-y-auto p-4 md:p-6 lg:p-8">
+        <div className="mb-6 flex items-center gap-2">
           <Button 
             variant="outline"
             size="icon"
-            onClick={handleSignOut}
-            title="Sign Out"
+            onClick={() => router.push('/admin')}
+            title="Back to Dashboard"
             className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
           >
-            <LogOut className="h-4 w-4" />
+            <ArrowLeft className="h-4 w-4" />
           </Button>
+          <div>
+            <h1 className="text-2xl md:text-3xl font-bold text-white">Edit Profile</h1>
+            <p className="text-gray-400">Update your personal information</p>
+          </div>
         </div>
         
         {success && (
@@ -219,23 +185,24 @@ export default function AdminProfile() {
           </Alert>
         )}
         
-        {error && (
+        {(error || updateError) && (
           <Alert variant="destructive" className="mb-6">
             <AlertTitle>Error</AlertTitle>
-            <AlertDescription>{error}</AlertDescription>
+            <AlertDescription>{error || updateError}</AlertDescription>
           </Alert>
         )}
         
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Avatar and basic info */}
-            <Card className="md:col-span-1 bg-gray-900 border-gray-800 shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-white">Profile Picture</CardTitle>
-                <CardDescription className="text-gray-400">Update your profile image</CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-col items-center">
-                <div className="mb-6">
+          <WidgetGrid columns={3}>
+            {/* Profile Picture Widget */}
+            <Widget 
+              title="Profile Picture" 
+              description="Update your profile image"
+              size="1x2"
+              icon={Camera}
+            >
+              <div className="flex flex-col items-center space-y-6">
+                <div>
                   {avatarPreview || profileData.avatarUrl ? (
                     <div className="h-32 w-32 overflow-hidden rounded-full mx-auto">
                       <Image 
@@ -265,9 +232,18 @@ export default function AdminProfile() {
                     />
                   </div>
                 </div>
-              </CardContent>
-              <CardFooter className="flex flex-col space-y-4">
-                <div className="flex flex-col space-y-1.5 w-full">
+              </div>
+            </Widget>
+            
+            {/* Personal Details Widget */}
+            <Widget 
+              title="Personal Details" 
+              description="Update your basic information"
+              size="2x1"
+              icon={User}
+            >
+              <div className="space-y-4">
+                <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="name" className="text-gray-300">Full Name</Label>
                   <Input 
                     id="name" 
@@ -280,7 +256,7 @@ export default function AdminProfile() {
                   />
                 </div>
                 
-                <div className="flex flex-col space-y-1.5 w-full">
+                <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="email" className="text-gray-300">Email</Label>
                   <Input 
                     id="email" 
@@ -294,61 +270,99 @@ export default function AdminProfile() {
                   />
                   <p className="text-xs text-gray-400 mt-1">Email cannot be changed</p>
                 </div>
-              </CardFooter>
-            </Card>
+              </div>
+            </Widget>
             
-            {/* Main profile information */}
-            <Card className="md:col-span-2 bg-gray-900 border-gray-800 shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-white">Profile Information</CardTitle>
-                <CardDescription className="text-gray-400">Update your personal details</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="role" className="text-gray-300">Role</Label>
-                    <Input 
-                      id="role" 
-                      name="role"
-                      value={profileData.role}
-                      className="bg-gray-800 border-gray-700 text-gray-200"
-                      disabled
-                    />
-                    <p className="text-xs text-gray-400 mt-1">Role can only be changed by super admin</p>
-                  </div>
+            {/* Account Role Widget */}
+            <Widget 
+              title="Account Role" 
+              description="Your system permissions"
+              size="2x1"
+              icon={Shield}
+            >
+              <div className="space-y-4">
+                <div className="flex flex-col space-y-1.5">
+                  <Label htmlFor="role" className="text-gray-300">Role</Label>
+                  <Input 
+                    id="role" 
+                    name="role"
+                    value={profileData.role}
+                    className="bg-gray-800 border-gray-700 text-gray-200"
+                    disabled
+                  />
+                  <p className="text-xs text-gray-400 mt-1">Role can only be changed by super admin</p>
                 </div>
-              </CardContent>
-              <CardFooter className="flex justify-between pt-4">
-                <Button 
-                  type="button"
-                  variant="outline" 
-                  onClick={() => router.push('/admin')}
-                  className="border-gray-700 text-gray-300 hover:bg-gray-800"
-                >
-                  Cancel
-                </Button>
-                <Button 
-                  type="submit"
-                  disabled={saving}
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white"
-                >
-                  {saving ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Saving...
-                    </>
-                  ) : (
-                    <>
-                      <Save className="mr-2 h-4 w-4" />
-                      Save Changes
-                    </>
-                  )}
-                </Button>
-              </CardFooter>
-            </Card>
-          </div>
+                
+                <div className="flex flex-col space-y-1.5">
+                  <Label htmlFor="status" className="text-gray-300">Status</Label>
+                  <Input 
+                    id="status" 
+                    name="status"
+                    value={profileData.status}
+                    className="bg-gray-800 border-gray-700 text-gray-200 capitalize"
+                    disabled
+                  />
+                </div>
+              </div>
+            </Widget>
+            
+            {/* Actions Widget */}
+            <Widget 
+              title="Actions" 
+              description="Save or cancel changes"
+              size="3x1"
+              icon={Save}
+              footerAction={
+                <div className="flex justify-between w-full">
+                  <Button 
+                    type="button"
+                    variant="outline" 
+                    onClick={() => router.push('/admin')}
+                    className="border-gray-700 text-gray-300 hover:bg-gray-800"
+                  >
+                    Cancel
+                  </Button>
+                  <Button 
+                    type="submit"
+                    disabled={saving}
+                    className="bg-indigo-600 hover:bg-indigo-700 text-white"
+                  >
+                    {saving ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Saving...
+                      </>
+                    ) : (
+                      <>
+                        <Save className="mr-2 h-4 w-4" />
+                        Save Changes
+                      </>
+                    )}
+                  </Button>
+                </div>
+              }
+            >
+              <div className="space-y-3">
+                <p className="text-gray-400">
+                  Review your changes before saving. Your profile information will be visible to other system administrators.
+                </p>
+                <div className="bg-gray-800/50 p-3 rounded border-l-2 border-yellow-500">
+                  <p className="text-sm text-gray-300">
+                    Note: Some information can only be changed by users with higher permission levels.
+                  </p>
+                </div>
+                
+                {/* Security details - you could expand this in a real app */}
+                <div className="bg-gray-800/50 p-3 rounded border-l-2 border-green-500">
+                  <p className="text-sm text-gray-300">
+                    Last login: {new Date().toLocaleString()}
+                  </p>
+                </div>
+              </div>
+            </Widget>
+          </WidgetGrid>
         </form>
-      </div>
+      </main>
     </div>
   );
 }

@@ -96,7 +96,7 @@ export default async function middleware(request: NextRequest): Promise<NextResp
   /**
    * 3. Handle admin routes - check both direct admin routes and localized admin routes
    */
-  const adminPaths = ['/login', '/dashboard', '/users', '/settings', '/profile', '/content', 
+  const adminPaths = ['/login', '/', '/users', '/settings', '/profile', '/content', 
     '/forgot-password', '/reset-password', '/activity', '/analytics', '/manage-users', '/system-logs'];
   
   // Check if this is a direct admin route
@@ -170,8 +170,6 @@ export const config = {
     '/login',
     '/forgot-password',
     '/reset-password',
-    '/dashboard',
-    '/dashboard/:path*',
     '/users',
     '/users/:path*',
     '/settings',
@@ -192,8 +190,6 @@ export const config = {
     '/:locale/login',
     '/:locale/forgot-password',
     '/:locale/reset-password',
-    '/:locale/dashboard',
-    '/:locale/dashboard/:path*',
     '/:locale/users',
     '/:locale/users/:path*',
     '/:locale/settings',
