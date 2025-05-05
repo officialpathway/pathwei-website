@@ -1,7 +1,6 @@
-// src/pages/api/admin/price-A-B/track-price.ts
+// src/app/api/admin/price-A-B/track-price/route.ts
 import { put, head } from "@vercel/blob";
-import type { NextApiRequest, NextApiResponse } from "next";
-import { withAdminAuth } from "@/lib/api/middleware/adminApiMiddleware";
+import { NextRequest, NextResponse } from "next/server";
 
 const BLOB_KEY = "price-tracking/stats.json";
 
@@ -58,59 +57,72 @@ function transformStatsForFrontend(rawStats: PriceStats): Array<{
   });
 }
 
-async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export async function GET() {
+  console.log(`[GET /api/admin/price-A-B/track-price] Request received`);
+  
   try {
-    // GET request to fetch stats
-    if (req.method === "GET") {
-      const rawStats = await getStatsFromBlob();
-      const formattedStats = transformStatsForFrontend(rawStats);
-      
-      // Sort by price
-      formattedStats.sort((a, b) => a.price - b.price);
-      
-      return res.status(200).json(formattedStats);
-    }
+    const rawStats = await getStatsFromBlob();
+    const formattedStats = transformStatsForFrontend(rawStats);
     
-    // POST request to update stats
-    else if (req.method === "POST") {
-      const { price, isConversion = false } = req.body;
-      
-      if (typeof price !== "number") {
-        return res.status(400).json({ error: "Invalid input: price must be a number" });
-      }
-
-      const stats = await getStatsFromBlob();
-
-      const priceKey = price.toFixed(2);
-      stats[priceKey] = {
-        clicks: (stats[priceKey]?.clicks || 0) + (isConversion ? 0 : 1),
-        conversions: (stats[priceKey]?.conversions || 0) + (isConversion ? 1 : 0),
-        lastUpdated: new Date().toISOString()
-      };
-
-      await put(BLOB_KEY, JSON.stringify(stats), {
-        access: "public",
-        token: process.env.BLOB_READ_WRITE_TOKEN,
-        contentType: "application/json",
-        addRandomSuffix: false,
-        allowOverwrite: true
-      });
-
-      return res.status(200).json({ success: true });
-    }
-
-    return res.status(405).json({ error: "Method not allowed" });
+    // Sort by price
+    formattedStats.sort((a, b) => a.price - b.price);
+    
+    console.log(`[GET /api/admin/price-A-B/track-price] Stats retrieved successfully`);
+    return NextResponse.json(formattedStats);
   } catch (error) {
-    console.error("Error:", error);
-    return res.status(500).json({ 
-      error: "Internal server error",
-      details: error instanceof Error ? error.message : "Unknown error"
-    });
+    console.error(`[GET /api/admin/price-A-B/track-price] Error fetching stats:`, error);
+    return NextResponse.json(
+      { 
+        error: "Internal server error",
+        details: error instanceof Error ? error.message : "Unknown error"
+      }, 
+      { status: 500 }
+    );
   }
 }
 
-// Export with admin auth middleware
-export default withAdminAuth(handler);
+export async function POST(request: NextRequest) {
+  console.log(`[POST /api/admin/price-A-B/track-price] Request received`);
+  
+  try {
+    const body = await request.json();
+    const { price, isConversion = false } = body;
+    
+    if (typeof price !== "number") {
+      console.error(`[POST /api/admin/price-A-B/track-price] Invalid input: price must be a number`);
+      return NextResponse.json(
+        { error: "Invalid input: price must be a number" }, 
+        { status: 400 }
+      );
+    }
+
+    const stats = await getStatsFromBlob();
+
+    const priceKey = price.toFixed(2);
+    stats[priceKey] = {
+      clicks: (stats[priceKey]?.clicks || 0) + (isConversion ? 0 : 1),
+      conversions: (stats[priceKey]?.conversions || 0) + (isConversion ? 1 : 0),
+      lastUpdated: new Date().toISOString()
+    };
+
+    await put(BLOB_KEY, JSON.stringify(stats), {
+      access: "public",
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+      contentType: "application/json",
+      addRandomSuffix: false,
+      allowOverwrite: true
+    });
+
+    console.log(`[POST /api/admin/price-A-B/track-price] Stats updated successfully`);
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error(`[POST /api/admin/price-A-B/track-price] Error updating stats:`, error);
+    return NextResponse.json(
+      { 
+        error: "Internal server error",
+        details: error instanceof Error ? error.message : "Unknown error"
+      }, 
+      { status: 500 }
+    );
+  }
+}

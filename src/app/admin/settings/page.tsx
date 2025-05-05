@@ -13,10 +13,11 @@ import {
 import { useAdminAuth } from '@/hooks/use-admin-auth';
 import Sidebar from '@/components/client/admin/sidebar';
 import { 
-  WidgetGrid, 
-  Widget,
-  ActivityWidget
-} from '@/components/client/admin/widget';
+  WidgetGrid,
+  NavigationWidget,
+  ActivityWidget,
+  StatusWidget
+} from '@/components/widgets/index';
 
 export default function AdminSettings() {
   const { adminData, loading, error } = useAdminAuth();
@@ -79,6 +80,56 @@ export default function AdminSettings() {
     }
   ];
 
+  // Navigation items for Site Settings
+  const siteSettingsItems = [
+    {
+      icon: Sliders,
+      label: 'General Settings',
+      path: '/admin/settings/general'
+    },
+    {
+      icon: Globe,
+      label: 'SEO Settings',
+      path: '/admin/settings/seo'
+    },
+    {
+      icon: Shield,
+      label: 'Security Settings',
+      path: '/admin/settings/security'
+    }
+  ];
+
+  // Navigation items for Advanced Settings
+  const advancedSettingsItems = [
+    {
+      icon: Users,
+      label: 'Role Management',
+      path: '/admin/settings/roles'
+    },
+    {
+      icon: Database,
+      label: 'Database Settings',
+      path: '/admin/settings/database'
+    },
+    {
+      icon: Settings,
+      label: 'System Configuration',
+      path: '/admin/settings/system'
+    }
+  ];
+
+  // Actions for settings backup
+  const backupActions = [
+    {
+      label: 'Backup Now',
+      onClick: () => console.log('Backup triggered')
+    },
+    {
+      label: 'Restore Settings',
+      onClick: () => console.log('Restore dialog opened')
+    }
+  ];
+
   return (
     <div className="flex h-screen bg-gray-950">
       {/* Include Sidebar with adminData */}
@@ -106,84 +157,22 @@ export default function AdminSettings() {
         
         <WidgetGrid>
           {/* Site Settings Widget */}
-          <Widget 
+          <NavigationWidget 
             title="Site Settings" 
             description="Manage website configuration"
-            size="1x2"
+            size="1x1"
             icon={Settings}
-          >
-            <div className="space-y-2">
-              <Button 
-                variant="outline"
-                className="w-full justify-start border-gray-700 text-gray-200 hover:bg-gray-800"
-                onClick={() => router.push('/admin/settings/general')}
-              >
-                <Sliders className="mr-2 h-4 w-4" />
-                General Settings
-              </Button>
-              
-              <Button 
-                variant="outline"
-                className="w-full justify-start border-gray-700 text-gray-200 hover:bg-gray-800"
-                onClick={() => router.push('/admin/settings/seo')}
-              >
-                <Globe className="mr-2 h-4 w-4" />
-                SEO Settings
-              </Button>
-              
-              <Button 
-                variant="outline"
-                className="w-full justify-start border-gray-700 text-gray-200 hover:bg-gray-800"
-                onClick={() => router.push('/admin/settings/security')}
-              >
-                <Shield className="mr-2 h-4 w-4" />
-                Security Settings
-              </Button>
-            </div>
-          </Widget>
-          {/* Advanced Settings Widget */}
-          <Widget 
-            title="Advanced Settings" 
-            description="System configuration and maintenance"
-            size="1x2"
-            icon={Sliders}
-          >
-            <div className="space-y-2">
-              <Button 
-                variant="outline"
-                className="w-full justify-start border-gray-700 text-gray-200 hover:bg-gray-800"
-                onClick={() => router.push('/admin/settings/roles')}
-              >
-                <Users className="mr-2 h-4 w-4" />
-                Role Management
-              </Button>
-              
-              <Button 
-                variant="outline"
-                className="w-full justify-start border-gray-700 text-gray-200 hover:bg-gray-800"
-                onClick={() => router.push('/admin/settings/database')}
-              >
-                <Database className="mr-2 h-4 w-4" />
-                Database Settings
-              </Button>
-              
-              <Button 
-                variant="outline"
-                className="w-full justify-start border-gray-700 text-gray-200 hover:bg-gray-800"
-                onClick={() => router.push('/admin/settings/system')}
-              >
-                <Settings className="mr-2 h-4 w-4" />
-                System Configuration
-              </Button>
-            </div>
-          </Widget>
+            items={siteSettingsItems}
+            requiredRole="editor"
+            userRole={adminData?.role || 'viewer'}
+          />
 
           {/* Recent Changes Activity Widget */}
           <ActivityWidget 
             title="Recent Settings Changes"
             description="Latest configuration updates"
             activities={recentChanges}
-            size="3x1"
+            size="3x2"
             icon={History}
             footerAction={
               <Button 
@@ -195,38 +184,36 @@ export default function AdminSettings() {
                 View All Settings History
               </Button>
             }
+            requiredRole="viewer"
+            userRole={adminData?.role || 'viewer'}
+          />
+
+          {/* Advanced Settings Widget */}
+          <NavigationWidget 
+            title="Advanced Settings" 
+            description="System configuration and maintenance"
+            size="1x1"
+            icon={Sliders}
+            items={advancedSettingsItems}
+            requiredRole="admin"
+            userRole={adminData?.role || 'viewer'}
           />
           
           {/* System Status Summary Widget */}
-          <Widget 
+          <StatusWidget 
             title="Settings Backup" 
             description="Configuration backup status"
-            size="3x1"
+            size="4x1"
             icon={Database}
-          >
-            <div className="space-y-4">
-              <div className="bg-gray-800/50 p-3 rounded border-l-2 border-green-500">
-                <div className="font-medium text-white">Last Backup</div>
-                <div className="text-sm text-gray-400">Today at 02:00 AM • Automatic • Successful</div>
-              </div>
-              
-              <div className="flex space-x-2">
-                <Button 
-                  variant="outline"
-                  className="flex-1 justify-center border-gray-700 text-gray-200 hover:bg-gray-800"
-                >
-                  Backup Now
-                </Button>
-                
-                <Button 
-                  variant="outline"
-                  className="flex-1 justify-center border-gray-700 text-gray-200 hover:bg-gray-800"
-                >
-                  Restore Settings
-                </Button>
-              </div>
-            </div>
-          </Widget>
+            statusInfo={{
+              title: 'Last Backup',
+              details: 'Today at 02:00 AM • Automatic • Successful',
+              status: 'success'
+            }}
+            actions={backupActions}
+            requiredRole="manager"
+            userRole={adminData?.role || 'viewer'}
+          />
         </WidgetGrid>
       </main>
     </div>

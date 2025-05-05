@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useEffect, Suspense } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { signOut } from '@/lib/new/auth';
@@ -40,6 +40,7 @@ import { Input } from '@/components/ui/input';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { format } from 'date-fns';
 import React from 'react';
+import { useSearchParams } from 'next/navigation';
 
 // Define activity types
 type ActivityType = 'content' | 'user' | 'settings' | 'product' | 'system';
@@ -247,8 +248,20 @@ const activityTypeIcons: Record<ActivityType, LucideIcon> = {
   system: Activity
 };
 
-export default function AdminActivity(): React.ReactNode {
-  const { adminData, loading, error } = useAdminAuth();
+// Component that uses searchParams - placed inside Suspense boundary
+interface ActivityContentProps {
+  adminData: {
+    name: string;
+    email: string;
+    role: string;
+    status: string;
+    last_active: string;
+    avatarUrl: string | null;
+  } | null;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function ActivityContent({ adminData }: ActivityContentProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   
@@ -402,6 +415,240 @@ export default function AdminActivity(): React.ReactNode {
       setActiveTab(initialFilter as ActivityTab);
     }
   }, [initialFilter]);
+  
+  const filteredActivities = getFilteredActivities();
+  const activitySummary = getActivitySummary();
+
+  return (
+    <main className="flex-1 overflow-x-hidden overflow-y-auto p-4 md:p-6 lg:p-8">
+      <div className="mb-6 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Button 
+            variant="outline"
+            size="icon"
+            onClick={() => router.push('/admin')}
+            title="Back to Dashboard"
+            className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
+          >
+            <ArrowLeft className="h-4 w-4" />
+          </Button>
+          <div>
+            <h1 className="text-2xl md:text-3xl font-bold text-white">Activity Log</h1>
+            <p className="text-gray-400">System activity and audit trail</p>
+          </div>
+        </div>
+        
+        <div className="flex items-center gap-2">
+          <Button 
+            variant="outline"
+            size="icon"
+            onClick={handleRefresh}
+            title="Refresh"
+            className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
+            disabled={refreshing}
+          >
+            <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
+          </Button>
+        </div>
+      </div>
+      
+      <WidgetGrid>
+        {/* Activity Summary Widget - Shows counts by category */}
+        <Widget 
+          title="Activity Summary" 
+          description={`As of ${format(new Date(), 'PPP')}`}
+          size="4x1"
+          icon={Clock}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            {activitySummary.map((item, index) => (
+              <div 
+                key={index} 
+                className="bg-gray-800 rounded-lg p-4"
+              >
+                <div className="flex justify-between items-start">
+                  <div>
+                    <p className="text-gray-400 text-sm">{item.title}</p>
+                    <p className="text-2xl font-bold text-white mt-1">{item.value}</p>
+                  </div>
+                  <div className={`p-2 rounded-full ${item.color}`}>
+                    <item.icon className="h-5 w-5 text-white" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Widget>
+        
+        {/* Activity Filters Widget */}
+        <Widget 
+          title="Filters" 
+          description="Refine activity display"
+          size="4x1"
+          icon={Filter}
+        >
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex-1">
+              <Tabs 
+                defaultValue={activeTab} 
+                onValueChange={(value) => setActiveTab(value as ActivityTab)}
+                className="w-full"
+              >
+                <TabsList className="grid grid-cols-5 text-white bg-gray-800">
+                  <TabsTrigger value="all">All</TabsTrigger>
+                  <TabsTrigger value="content">Content</TabsTrigger>
+                  <TabsTrigger value="user">Users</TabsTrigger>
+                  <TabsTrigger value="settings">Settings</TabsTrigger>
+                  <TabsTrigger value="system">System</TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+            
+            <div className="flex gap-2 flex-wrap md:flex-nowrap">
+              <div className="w-full md:w-48">
+                <Select 
+                  value={timeFilter} 
+                  onValueChange={(value) => setTimeFilter(value as TimeFilter)}
+                >
+                  <SelectTrigger className="bg-gray-800 border-gray-700 text-gray-200">
+                    <SelectValue placeholder="Time Period" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-gray-800 text-white border-gray-700">
+                    <SelectItem value="all-time">All Time</SelectItem>
+                    <SelectItem value="today">Today</SelectItem>
+                    <SelectItem value="this-week">This Week</SelectItem>
+                    <SelectItem value="this-month">This Month</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div className="flex-1">
+                <div className="relative">
+                  <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-400" />
+                  <Input
+                    type="text"
+                    placeholder="Search activities..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="bg-gray-800 border-gray-700 text-gray-200 pl-8"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </Widget>
+        
+        {/* Recent Activity List Widget */}
+        <ActivityWidget 
+          title="Recent Activity" 
+          description={`${filteredActivities.length} events found`}
+          activities={formatActivitiesForWidget(filteredActivities.slice(0, 5))}
+          size="2x2"
+          icon={Activity}
+          footerAction={
+            filteredActivities.length > 5 ? (
+              <Button 
+                variant="outline" 
+                className="w-full border-gray-700 text-gray-200 hover:bg-gray-800"
+                onClick={() => {
+                  // Scroll to detailed view
+                  const element = document.getElementById('detailed-activity');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                View All {filteredActivities.length} Activities
+              </Button>
+            ) : null
+          }
+        />
+        
+        {/* Activity Timeline Widget */}
+        <Widget 
+          title="Activity Timeline" 
+          description="Recent system events by time"
+          size="2x2"
+          icon={Calendar}
+        >
+          <div className="space-y-4 overflow-y-auto max-h-full">
+            {filteredActivities.slice(0, 7).map((activity, index) => {
+              // Determine color based on activity type
+              const colorMap: Record<ActivityType, string> = {
+                content: 'border-blue-500',
+                user: 'border-green-500',
+                settings: 'border-purple-500',
+                system: 'border-orange-500',
+                product: 'border-pink-500'
+              };
+              
+              const borderColor = colorMap[activity.type] || 'border-gray-500';
+              
+              return (
+                <div 
+                  key={activity.id} 
+                  className={`relative pl-6 pb-4 ${
+                    index !== filteredActivities.slice(0, 7).length - 1 ? 'border-l-2 border-gray-700' : ''
+                  }`}
+                >
+                  <div className={`absolute left-[-5px] top-0 h-3 w-3 rounded-full ${borderColor.replace('border', 'bg')}`} />
+                  <div className="bg-gray-800/50 p-2 rounded">
+                    <div className="font-medium text-white">{activity.title}</div>
+                    <div className="text-xs text-gray-400">{activity.time}</div>
+                    <div className="text-sm text-gray-300 mt-1">{activity.description}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </Widget>
+        
+        {/* Detailed Activity Table Widget */}
+        <TableWidget
+          title="Detailed Activity Log"
+          description={`Complete audit trail - ${filteredActivities.length} records`}
+          columns={getActivityColumns()}
+          data={filteredActivities}
+          emptyMessage="No activities match your filters"
+          size="4x2"
+          icon={Database}
+        />
+      </WidgetGrid>
+    </main>
+  );
+}
+
+// Fallback for Suspense boundary
+function ActivityLoadingSkeleton() {
+  return (
+    <main className="flex-1 overflow-x-hidden overflow-y-auto p-4 md:p-6 lg:p-8">
+      <div className="mb-6 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 bg-gray-800 rounded animate-pulse"></div>
+          <div>
+            <div className="h-8 w-40 bg-gray-800 rounded animate-pulse"></div>
+            <div className="h-4 w-60 bg-gray-800 rounded animate-pulse mt-2"></div>
+          </div>
+        </div>
+        <div className="w-8 h-8 bg-gray-800 rounded animate-pulse"></div>
+      </div>
+      
+      <div className="grid grid-cols-1 gap-6">
+        <div className="h-40 bg-gray-800 rounded animate-pulse"></div>
+        <div className="h-20 bg-gray-800 rounded animate-pulse"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="h-80 bg-gray-800 rounded animate-pulse"></div>
+          <div className="h-80 bg-gray-800 rounded animate-pulse"></div>
+        </div>
+        <div className="h-80 bg-gray-800 rounded animate-pulse"></div>
+      </div>
+    </main>
+  );
+}
+
+export default function AdminActivity(): React.ReactNode {
+  const { adminData, loading, error } = useAdminAuth();
+  const router = useRouter();
 
   async function handleSignOut(): Promise<void> {
     await signOut();
@@ -435,9 +682,6 @@ export default function AdminActivity(): React.ReactNode {
       </div>
     );
   }
-  
-  const filteredActivities = getFilteredActivities();
-  const activitySummary = getActivitySummary();
 
   return (
     <div className="flex h-screen bg-gray-950">
@@ -446,202 +690,10 @@ export default function AdminActivity(): React.ReactNode {
         <Sidebar user={{ ...adminData, avatarUrl: adminData.avatarUrl ?? undefined }} />
       )}
       
-      {/* Main Content */}
-      <main className="flex-1 overflow-x-hidden overflow-y-auto p-4 md:p-6 lg:p-8">
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Button 
-              variant="outline"
-              size="icon"
-              onClick={() => router.push('/admin')}
-              title="Back to Dashboard"
-              className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
-            >
-              <ArrowLeft className="h-4 w-4" />
-            </Button>
-            <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-white">Activity Log</h1>
-              <p className="text-gray-400">System activity and audit trail</p>
-            </div>
-          </div>
-          
-          <div className="flex items-center gap-2">
-            <Button 
-              variant="outline"
-              size="icon"
-              onClick={handleRefresh}
-              title="Refresh"
-              className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
-              disabled={refreshing}
-            >
-              <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
-            </Button>
-          </div>
-        </div>
-        
-        <WidgetGrid>
-          {/* Activity Summary Widget - Shows counts by category */}
-          <Widget 
-            title="Activity Summary" 
-            description={`As of ${format(new Date(), 'PPP')}`}
-            size="4x1"
-            icon={Clock}
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-              {activitySummary.map((item, index) => (
-                <div 
-                  key={index} 
-                  className="bg-gray-800 rounded-lg p-4"
-                >
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <p className="text-gray-400 text-sm">{item.title}</p>
-                      <p className="text-2xl font-bold text-white mt-1">{item.value}</p>
-                    </div>
-                    <div className={`p-2 rounded-full ${item.color}`}>
-                      <item.icon className="h-5 w-5 text-white" />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Widget>
-          
-          {/* Activity Filters Widget */}
-          <Widget 
-            title="Filters" 
-            description="Refine activity display"
-            size="4x1"
-            icon={Filter}
-          >
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-1">
-                <Tabs 
-                  defaultValue={activeTab} 
-                  onValueChange={(value) => setActiveTab(value as ActivityTab)}
-                  className="w-full"
-                >
-                  <TabsList className="grid grid-cols-5 text-white bg-gray-800">
-                    <TabsTrigger value="all">All</TabsTrigger>
-                    <TabsTrigger value="content">Content</TabsTrigger>
-                    <TabsTrigger value="user">Users</TabsTrigger>
-                    <TabsTrigger value="settings">Settings</TabsTrigger>
-                    <TabsTrigger value="system">System</TabsTrigger>
-                  </TabsList>
-                </Tabs>
-              </div>
-              
-              <div className="flex gap-2 flex-wrap md:flex-nowrap">
-                <div className="w-full md:w-48">
-                  <Select 
-                    value={timeFilter} 
-                    onValueChange={(value) => setTimeFilter(value as TimeFilter)}
-                  >
-                    <SelectTrigger className="bg-gray-800 border-gray-700 text-gray-200">
-                      <SelectValue placeholder="Time Period" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-gray-800 text-white border-gray-700">
-                      <SelectItem value="all-time">All Time</SelectItem>
-                      <SelectItem value="today">Today</SelectItem>
-                      <SelectItem value="this-week">This Week</SelectItem>
-                      <SelectItem value="this-month">This Month</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div className="flex-1">
-                  <div className="relative">
-                    <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-400" />
-                    <Input
-                      type="text"
-                      placeholder="Search activities..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="bg-gray-800 border-gray-700 text-gray-200 pl-8"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Widget>
-          
-          {/* Recent Activity List Widget */}
-          <ActivityWidget 
-            title="Recent Activity" 
-            description={`${filteredActivities.length} events found`}
-            activities={formatActivitiesForWidget(filteredActivities.slice(0, 5))}
-            size="2x2"
-            icon={Activity}
-            footerAction={
-              filteredActivities.length > 5 ? (
-                <Button 
-                  variant="outline" 
-                  className="w-full border-gray-700 text-gray-200 hover:bg-gray-800"
-                  onClick={() => {
-                    // Scroll to detailed view
-                    const element = document.getElementById('detailed-activity');
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                >
-                  View All {filteredActivities.length} Activities
-                </Button>
-              ) : null
-            }
-          />
-          
-          {/* Activity Timeline Widget */}
-          <Widget 
-            title="Activity Timeline" 
-            description="Recent system events by time"
-            size="2x2"
-            icon={Calendar}
-          >
-            <div className="space-y-4 overflow-y-auto max-h-full">
-              {filteredActivities.slice(0, 7).map((activity, index) => {
-                // Determine color based on activity type
-                const colorMap: Record<ActivityType, string> = {
-                  content: 'border-blue-500',
-                  user: 'border-green-500',
-                  settings: 'border-purple-500',
-                  system: 'border-orange-500',
-                  product: 'border-pink-500'
-                };
-                
-                const borderColor = colorMap[activity.type] || 'border-gray-500';
-                
-                return (
-                  <div 
-                    key={activity.id} 
-                    className={`relative pl-6 pb-4 ${
-                      index !== filteredActivities.slice(0, 7).length - 1 ? 'border-l-2 border-gray-700' : ''
-                    }`}
-                  >
-                    <div className={`absolute left-[-5px] top-0 h-3 w-3 rounded-full ${borderColor.replace('border', 'bg')}`} />
-                    <div className="bg-gray-800/50 p-2 rounded">
-                      <div className="font-medium text-white">{activity.title}</div>
-                      <div className="text-xs text-gray-400">{activity.time}</div>
-                      <div className="text-sm text-gray-300 mt-1">{activity.description}</div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </Widget>
-          
-          {/* Detailed Activity Table Widget */}
-          <TableWidget
-            title="Detailed Activity Log"
-            description={`Complete audit trail - ${filteredActivities.length} records`}
-            columns={getActivityColumns()}
-            data={filteredActivities}
-            emptyMessage="No activities match your filters"
-            size="4x2"
-            icon={Database}
-          />
-        </WidgetGrid>
-      </main>
+      {/* Wrap the component using searchParams in Suspense */}
+      <Suspense fallback={<ActivityLoadingSkeleton />}>
+        <ActivityContent adminData={adminData} />
+      </Suspense>
     </div>
   );
 }

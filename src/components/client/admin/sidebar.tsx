@@ -18,7 +18,7 @@ const navItems = [
   { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
   { name: 'Users', href: '/admin/users', icon: Users },
   { name: 'Content', href: '/admin/content', icon: FileText },
-  { name: 'Analytics', href: '/admin/price-stats', icon: BarChart },
+  { name: 'Analytics', href: '/admin/analytics', icon: BarChart },
   { name: 'Activity', href: '/admin/activity', icon: Activity },
   { name: 'Schedule', href: '/admin/schedule', icon: Calendar },
   { name: 'Settings', href: '/admin/settings', icon: Settings },

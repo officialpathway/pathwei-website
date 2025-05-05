@@ -6,9 +6,10 @@ import { createAdminClient } from '@/lib/utils/supabase/admin';
 
 export async function GET(
   request: NextRequest,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  const userId = context.params.id;
+  // Await the params Promise to get the actual ID
+  const { id: userId } = await context.params;
   console.log(`[GET /api/admin/users/${userId}] Request received`);
   
   const supabase = await createClient();
@@ -39,9 +40,10 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  const userId = context.params.id;
+  // Await the params Promise to get the actual ID
+  const { id: userId } = await context.params;
   console.log(`[PUT /api/admin/users/${userId}] Request received`);
   
   const supabase = await createClient();
@@ -100,9 +102,10 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  const userId = context.params.id;
+  // Await the params Promise to get the actual ID
+  const { id: userId } = await context.params;
   console.log(`[DELETE /api/admin/users/${userId}] Request received`);
   
   const supabase = await createClient();

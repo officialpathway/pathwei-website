@@ -25,7 +25,6 @@ const nextConfig: NextConfig = {
       // Add new rewrites for admin routes in app router
       // ... add similar rewrites for other admin routes
       
-      // Keep existing rewrites for pages router admin
       {
         source: '/:locale/admin/:path*',
         destination: '/admin/:path*',

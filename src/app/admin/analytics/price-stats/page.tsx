@@ -3,14 +3,14 @@
 import { useState, useEffect } from 'react';
 import {
   WidgetGrid,
-  Widget,
-  TableWidget,
   StatsWidget,
-} from '@/components/client/admin/widget';
+  TableWidget,
+  BestPriceWidget,
+  PriceDistributionChartWidget
+} from '@/components/widgets/index';
 import {
   BarChart,
   TrendingUp,
-  DollarSign,
   Eye,
   CheckCircle,
   RefreshCw,
@@ -19,7 +19,6 @@ import {
   Award
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
 import Sidebar from '@/components/client/admin/sidebar';
 import { useAdminAuth } from '@/hooks/use-admin-auth';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
@@ -33,7 +32,15 @@ import {
   DialogHeader,
   DialogTitle
 } from '@/components/ui/dialog';
-import { usePriceStatsApi, PriceStatData } from '@/lib/api/admin/priceStatsApi';
+
+// Define the PriceStatData type to match what's returned from the API
+interface PriceStatData {
+  price: number;
+  clicks: number;
+  conversions: number;
+  conversion_rate: number;
+  last_updated: string;
+}
 
 export default function PriceStats() {
   const { adminData, loading, error } = useAdminAuth();
@@ -44,13 +51,30 @@ export default function PriceStats() {
   const [statsError, setStatsError] = useState<string | null>(null);
   const [showResetModal, setShowResetModal] = useState(false);
   const [resetLoading, setResetLoading] = useState(false);
-  
-  // Get the price stats API client
-  const priceStatsApi = usePriceStatsApi();
 
   async function handleSignOut() {
     await signOut();
     router.push('/admin/login');
+  }
+
+  // Helper function to get the correct API path
+  function getApiPath(endpoint: string): string {
+    // If we're in development, we need to handle the locale differently
+    if (process.env.NODE_ENV === 'development') {
+      // Remove the locale from the pathname if it exists
+      // Get the current pathname from window.location
+      const currentPath = window.location.pathname;
+      // Check if the path starts with a locale (e.g., /es/, /en/)
+      const localeMatch = currentPath.match(/^\/([a-z]{2})\//);
+      
+      if (localeMatch) {
+        // If there's a locale prefix, we need to ensure it's excluded from API calls
+        return endpoint; // The rewrite rule should handle this
+      }
+    }
+    
+    // Default case - just use the endpoint directly
+    return endpoint;
   }
 
   async function fetchStats() {
@@ -59,7 +83,21 @@ export default function PriceStats() {
       setStatsError(null);
       
       console.log('Fetching price stats...');
-      const data = await priceStatsApi.getStats();
+      const apiPath = getApiPath('/api/admin/price-A-B/track-price');
+      console.log('Using API path:', apiPath);
+      
+      const response = await fetch(apiPath, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Error fetching stats: ${response.status} ${response.statusText}`);
+      }
+      
+      const data = await response.json();
       console.log('Successfully fetched price stats:', data);
       setStats(data);
     } catch (error) {
@@ -83,7 +121,20 @@ export default function PriceStats() {
       setResetLoading(true);
       console.log("Resetting stats...");
       
-      await priceStatsApi.resetStats();
+      const apiPath = getApiPath('/api/admin/price-A-B/reset-stats');
+      console.log('Using API path:', apiPath);
+      
+      const response = await fetch(apiPath, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Error resetting stats: ${response.status} ${response.statusText}`);
+      }
+      
       console.log("Reset successful, fetching updated stats");
       
       await fetchStats();
@@ -102,7 +153,21 @@ export default function PriceStats() {
       setDownloadLoading(true);
       console.log("Getting download URL...");
       
-      const data = await priceStatsApi.getDownloadUrl();
+      const apiPath = getApiPath('/api/admin/price-A-B/get-download-url');
+      console.log('Using API path:', apiPath);
+      
+      const response = await fetch(apiPath, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Error getting download URL: ${response.status} ${response.statusText}`);
+      }
+      
+      const data = await response.json();
       console.log("Got download URL:", data);
       
       // Create a temporary link element and click it to trigger download
@@ -357,6 +422,16 @@ export default function PriceStats() {
             iconClassName="bg-purple-500/20"
             size="1x1"
           />
+
+          {/* Best Price Card */}
+          <BestPriceWidget
+            bestPrice={bestPrice}
+            title="Best Performing Price"
+            description="Price point with highest conversion rate"
+            size="1x2"
+            icon={Award}
+            iconClassName="bg-amber-500/20"
+          />
           
           {/* Price Performance Table */}
           <TableWidget
@@ -370,91 +445,16 @@ export default function PriceStats() {
             emptyMessage="No price statistics available"
           />
           
-          {/* Best Price Card */}
-          {bestPrice && (
-            <Widget
-              title="Best Performing Price"
-              description="Price point with highest conversion rate"
-              size="1x2"
-              icon={Award}
-              iconClassName="bg-amber-500/20"
-            >
-              <div className="h-full flex flex-col">
-                <div className="flex items-center justify-center my-4">
-                  <div className="h-20 w-20 rounded-full bg-blue-900/30 border-2 border-blue-500 flex items-center justify-center">
-                    <DollarSign className="h-10 w-10 text-blue-400" />
-                  </div>
-                </div>
-                
-                <div className="text-center">
-                  <h3 className="text-3xl font-bold text-white">${bestPrice.price.toFixed(2)}</h3>
-                  <p className="text-gray-400 mt-1">Optimal price point</p>
-                </div>
-                
-                <div className="mt-6 space-y-4">
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Conversion Rate</span>
-                      <span className="font-medium text-white">{bestPrice.conversion_rate.toFixed(2)}%</span>
-                    </div>
-                    <Progress 
-                      value={Math.min(100, bestPrice.conversion_rate * 2)} 
-                      className="h-2 bg-gray-700" 
-                      indicatorClassName="bg-blue-500" 
-                    />
-                  </div>
-                  
-                  <div className="flex flex-col space-y-3 pt-4 mt-auto">
-                    <div className="bg-gray-800/50 p-3 rounded-lg">
-                      <div className="text-xs text-gray-400 mb-1">Clicks</div>
-                      <div className="font-bold text-white">{bestPrice.clicks.toLocaleString()}</div>
-                    </div>
-                    
-                    <div className="bg-gray-800/50 p-3 rounded-lg">
-                      <div className="text-xs text-gray-400 mb-1">Conversions</div>
-                      <div className="font-bold text-white">{bestPrice.conversions.toLocaleString()}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Widget>
-          )}
-          
           {/* Price Distribution Chart */}
-          <Widget
+          <PriceDistributionChartWidget
+            data={stats}
+            bestPrice={bestPrice}
             title="Conversion Rate by Price"
             description="Visual comparison of all price points"
             size="4x1"
             icon={BarChart}
             iconClassName="bg-green-500/20"
-          >
-            <div className="flex h-full items-end justify-between space-x-2 px-2">
-              {stats.map((stat, index) => {
-                const heightPercentage = bestPrice 
-                  ? (stat.conversion_rate / bestPrice.conversion_rate) * 100 
-                  : 0;
-                
-                const isBest = bestPrice && stat.price === bestPrice.price;
-                
-                return (
-                  <div key={index} className="flex flex-col items-center flex-1">
-                    <div 
-                      className={`w-full rounded-t-sm ${isBest ? 'bg-blue-500' : 'bg-gray-600'}`} 
-                      style={{ height: `${heightPercentage}%` }}
-                    ></div>
-                    <div className="mt-2 text-center">
-                      <div className={`text-xs ${isBest ? 'text-blue-400' : 'text-gray-400'}`}>
-                        ${stat.price.toFixed(2)}
-                      </div>
-                      <div className={`text-xs font-bold ${isBest ? 'text-blue-300' : 'text-gray-300'}`}>
-                        {stat.conversion_rate.toFixed(1)}%
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </Widget>
+          />
         </WidgetGrid>
       </main>
     </div>

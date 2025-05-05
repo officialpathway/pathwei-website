@@ -1,18 +1,24 @@
-// src/pages/api/admin/price-A-B/reset-stats.ts
+// src/app/api/admin/price-A-B/reset-stats/route.ts
 import { put } from "@vercel/blob";
-import type { NextApiRequest, NextApiResponse } from "next";
-import { withAdminAuth } from "@/lib/api/middleware/adminApiMiddleware";
+import { NextResponse } from "next/server";
+import { redirect } from "next/navigation";
+import { createClient } from '@/lib/utils/supabase/server';
 
 const BLOB_KEY = "price-tracking/stats.json";
 
-async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+export async function POST() {
+  console.log(`[POST /api/admin/price-A-B/reset-stats] Request received`);
+  
+  const supabase = await createClient();
+
+  const { data, error } = await supabase.auth.getUser();
+  if (error || !data?.user) {
+    redirect('/admin/login');
   }
 
+  console.log(data);
+  console.log(`[POST /api/admin/price-A-B/reset-stats] Admin authentication successful. User ID:`, data.user.id);
+  
   try {
     // Reset stats by writing an empty object
     await put(BLOB_KEY, JSON.stringify({}), {
@@ -23,15 +29,13 @@ async function handler(
       allowOverwrite: true
     });
     
-    return res.status(200).json({ success: true, message: "Stats reset successfully" });
+    console.log(`[POST /api/admin/price-A-B/reset-stats] Stats reset successfully`);
+    return NextResponse.json({ success: true, message: "Stats reset successfully" });
   } catch (error) {
-    console.error("Error resetting stats:", error);
-    return res.status(500).json({ 
+    console.error(`[POST /api/admin/price-A-B/reset-stats] Error resetting stats:`, error);
+    return NextResponse.json({ 
       error: "Failed to reset stats",
       details: error instanceof Error ? error.message : "Unknown error"
-    });
+    }, { status: 500 });
   }
 }
-
-// Export with admin auth middleware
-export default withAdminAuth(handler);
