@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { getPathwayConstants } from "@/lib/constants/pathway-constants";
+import { getPathwayConstants } from "@/lib/constants/constants";
 
 export default function InfiniteGoalAnimation() {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
@@ -14,6 +14,7 @@ export default function InfiniteGoalAnimation() {
   const [pathSteps, setPathSteps] = useState<string[]>([]);
 
   const t = useTranslations("Pathway");
+  const goalAnimationT = useTranslations("Pathway.core_features.animation.phrases")
   const constants = getPathwayConstants(t);
   
   const activeCategory = constants.CATEGORIES[activeCategoryIndex];
@@ -119,10 +120,7 @@ export default function InfiniteGoalAnimation() {
   }
   
   return (
-    <div className="h-[80vh] md:h-[60vh] max-w-[700px] mx-auto bg-gray-50 rounded-xl shadow-lg p-6 overflow-hidden relative">
-      {/* Background gradient */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${activeCategory.color} opacity-10`} />
-      
+    <div className="h-[80vh] md:h-[60vh] mx-auto overflow-hidden relative">      
       {/* Floating particles */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         {particles}
@@ -147,7 +145,7 @@ export default function InfiniteGoalAnimation() {
       
       {/* Goal */}
       <div className="text-center relative z-10">
-        <h3 className="text-gray-500 mb-1 text-sm">{t("animation-objective")}</h3>
+        <h3 className="text-gray-500 mb-1 text-sm">{goalAnimationT("objective")}</h3>
         <AnimatePresence mode="wait">
           <motion.div 
             key={`${activeCategoryIndex}-${activeGoalIndex}`} 
@@ -185,7 +183,7 @@ export default function InfiniteGoalAnimation() {
                 />
               </div>
               <div className="flex items-center">
-                <span className="text-gray-600">{t("animation-creating-route")}</span>
+                <span className="text-gray-600">{goalAnimationT("creating_route")}</span>
                 <motion.div 
                   className="ml-2 flex space-x-1"
                   animate={{ opacity: [0.4, 1, 0.4] }}
@@ -212,7 +210,7 @@ export default function InfiniteGoalAnimation() {
             className="mt-6 max-w-md mx-auto relative z-10"
           >
             <div className="bg-white rounded-lg shadow-md p-4">
-              <h3 className={`font-medium mb-3 ${activeCategory.textColor}`}>{t("animation-path-success")}</h3>
+              <h3 className={`font-medium mb-3 ${activeCategory.textColor}`}>{goalAnimationT("path_success")}</h3>
               
               <div className="space-y-4">
                 {pathSteps.map((step, index) => (
@@ -294,7 +292,7 @@ export default function InfiniteGoalAnimation() {
                   transition={{ type: "spring" }}
                 >
                   <div className={`inline-block px-4 py-1 rounded-full ${activeCategory.textColor} bg-opacity-20 font-medium text-sm`}>
-                    {t("animation-goal-achieved")} 🎉
+                    {goalAnimationT("goal_achieved")} 🎉
                   </div>
                 </motion.div>
               )}
@@ -315,5 +313,5 @@ function getStepText(t: ReturnType<typeof useTranslations>, category: string, go
          constants.STEPS[category][goal] && 
          constants.STEPS[category][goal][stepIndex] 
     ? constants.STEPS[category][goal][stepIndex]
-    : `${t("animation-step")} ${stepIndex + 1} ${t("animation-for")} ${goal}`;
+    : `${t("core_features.animation.phrases.step")} ${stepIndex + 1} ${t("core_features.animation.phrases.for")} ${goal}`;
 }

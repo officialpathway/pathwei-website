@@ -61,7 +61,7 @@ export const Header = () => {
       >
         <div className="container mx-auto px-4 h-full flex justify-between items-center">
           {/* Logo */}
-          <Link href="/suite/pathway">
+          <Link href="/">
             <div className="flex items-center">
               <Image 
                 src="/images/pathway/logo.png"
@@ -77,9 +77,7 @@ export const Header = () => {
           {!isMobile && (
             <nav className="flex space-x-6 items-center">
               {[
-                { label: `${t("header-suite")}`, href: '/suite' },
-                { label: `${t("header-team")}`, href: '/team' },
-                //{ label: `${t("header-signin")}`, href: '#signin' }
+                { label: `${t("ui.header.team")}`, href: '/team' },
               ].map((item) => (
                 <a 
                   key={item.label} 
@@ -148,9 +146,7 @@ export const Header = () => {
         >
           <div className="container mx-auto px-4 py-2 flex flex-col">
             {[
-              { label: t("header-suite"), href: '/suite' },
               { label: t("header-team"), href: '/team' },
-              /* { label: t("header-signin"), href: '#signin' } */ // Commented out as per original
             ].map((item) => (
               <a
                 key={item.label}

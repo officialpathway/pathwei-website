@@ -1,16 +1,15 @@
 // src/app/sitemap.ts
 import { MetadataRoute } from 'next';
-import pathwaySitemap from './suite/pathway/sitemap';
 
 const locales = ['en', 'es']; // Supported locales
-const baseUrl = 'https://aihavenlabs.com';
+const baseUrl = 'https://www.mypathwayapp.com';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const basePages = [
     { url: '/', changefreq: 'weekly', priority: 1.0 },
-    { url: '/suite', changefreq: 'monthly', priority: 0.8 },
-    { url: '/team', changefreq: 'yearly', priority: 0.5 },
+    { url: '/team', changefreq: 'monthly', priority: 0.5 },
     { url: '/privacy', changefreq: 'yearly', priority: 0.3 },
+    { url: '/terms', changefreq: 'yearly', priority: 0.3 },
   ];
 
   // Generate localized URLs
@@ -23,5 +22,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   );
 
-  return [...localizedUrls, ...pathwaySitemap()];
+  return [...localizedUrls];
 }

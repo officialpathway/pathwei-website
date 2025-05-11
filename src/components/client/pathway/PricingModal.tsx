@@ -69,7 +69,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, price, trackClick }) => 
                     }}
                     className="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                   >
-                    Comprar ahora
+                    Aún no disponible
                   </button>
                 </div>
               </div>

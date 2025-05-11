@@ -1,29 +1,30 @@
 "use client";
-
 import React, { useEffect } from "react";
 import Image from "next/image";
 import Newsletter from "./Newsletter";
 import { useTranslations } from 'next-intl';
 import Link from "next/link";
+import { FaTiktok, FaInstagram, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const Footer = () => {
-  const t = useTranslations("Pathway");
-
-  // Social media links
+  const t = useTranslations("Pathway.ui.footer");
+  
+  // Social links with enhanced metadata for accessibility
   const socialLinks = [
-    { platform: "TikTok", handle: "@pathwayapp", href: "https://www.tiktok.com/@pathwayapp" },
-    { platform: "Instagram", handle: "@pathway.app", href: "https://www.instagram.com/pathway.app" },
-    { platform: "LinkedIn", handle: "Pathway", href: "https://www.linkedin.com/company/pathway-ai-haven-labs" },
-    { platform: "Email", handle: "officialpathwayapp@gmail.com", href: "mailto:officialpathwayapp@gmail.com" }
+    { href: "https://www.tiktok.com/@pathwayapp", icon: FaTiktok, label: "TikTok" },
+    { href: "https://www.instagram.com/pathway.app", icon: FaInstagram, label: "Instagram" },
+    { href: "https://www.linkedin.com/company/pathway-ai-haven-labs", icon: FaLinkedin, label: "LinkedIn" },
+    { href: "mailto:officialpathwayapp@gmail.com", icon: FaEnvelope, label: "Email" }
   ];
 
+  // Dynamic flame effect on scroll
   useEffect(() => {
     const handleScroll = () => {
       const footer = document.getElementById("footer");
       if (footer) {
         const footerTop = footer.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
-
+        // Add illumination class when footer comes into view
         if (footerTop <= windowHeight) {
           document.body.classList.add("illuminated");
         } else {
@@ -31,7 +32,7 @@ const Footer = () => {
         }
       }
     };
-
+    
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -39,69 +40,93 @@ const Footer = () => {
   return (
     <footer
       id="footer"
-      className="bg-secondary text-white py-10 relative overflow-hidden"
-    >
-      <Newsletter />
-  
-      {/* Content container with higher z-index */}
-      <div className="relative z-30 flex flex-col w-full min-h-[120px] px-6">
-        {/* Image container with black background */}
-        <Image
-          className="block bg-black/10 my-4"
-          src="/images/pathway/COF.png"
-          alt="Footer image"
-          width={500}
-          height={120}
-        />
-
-        {/* Social Media Links */}
-        <div className="flex flex-col md:flex-row justify-between px-8 mb-6">
-          <div className="flex flex-col md:flex-row gap-4 mb-3 md:mb-0">
-            <a 
-              href={socialLinks[0].href}
-              className="flex items-center text-sm hover:text-gray-300 transition-colors duration-300"
-            >
-              <span className="font-medium mr-1">{socialLinks[0].platform}:</span>
-              <span>{socialLinks[0].handle}</span>
-            </a>
-            <a 
-              href={socialLinks[1].href}
-              className="flex items-center text-sm hover:text-gray-300 transition-colors duration-300"
-            >
-              <span className="font-medium mr-1">{socialLinks[1].platform}:</span>
-              <span>{socialLinks[1].handle}</span>
-            </a>
+      className="bg-black text-white relative overflow-hidden"
+    >      
+      {/* Newsletter section */}
+      <div className="relative z-30">
+        <Newsletter />
+      </div>
+      
+      {/* Main footer content */}
+      <div className="container mx-auto px-6 py-12 relative z-30">
+        {/* COF Banner prominently displayed */}
+        <div className="flex justify-center mb-12">
+          <Image
+            src="/images/pathway/COF.png"
+            alt="COF Sponsors"
+            width={600}
+            height={120}
+            className="max-w-full"
+            style={{ objectFit: "contain" }}
+            priority
+          />
+        </div>
+        
+        {/* Footer navigation and social links */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+          {/* Company Info */}
+          <div className="flex flex-col items-center lg:items-start">
+            <h3 className="text-xl font-bold mb-4 border-b border-gray-700 pb-2">{t("about_pathway")}</h3>
+            <p className="text-gray-300 text-center lg:text-left">
+              {t("description")}
+            </p>
           </div>
-          <div className="flex flex-col md:flex-row gap-4">
-            <a 
-              href={socialLinks[2].href}
-              className="flex items-center text-sm hover:text-gray-300 transition-colors duration-300"
-            >
-              <span className="font-medium mr-1">{socialLinks[2].platform}:</span>
-              <span>{socialLinks[2].handle}</span>
-            </a>
-            <a 
-              href={socialLinks[3].href}
-              className="flex items-center text-sm hover:text-gray-300 transition-colors duration-300"
-            >
-              <span className="font-medium mr-1">{socialLinks[3].platform}:</span>
-              <span>{socialLinks[3].handle}</span>
-            </a>
+          
+          {/* Quick Links */}
+          <div className="flex flex-col items-center">
+            <h3 className="text-xl font-bold mb-4 border-b border-gray-700 pb-2">{t("quick_links")}</h3>
+            <nav className="flex flex-col items-center gap-3">
+              <Link href="/" className="hover:text-gray-300 transition-colors">
+                {t("links.home")}
+              </Link>
+              <Link href="/team" className="hover:text-gray-300 transition-colors">
+                {t("links.team")}
+              </Link>
+            </nav>
+          </div>
+          
+          {/* Social Links */}
+          <div className="flex flex-col items-center lg:items-end">
+            <h3 className="text-xl font-bold mb-4 border-b border-gray-700 pb-2">Connect With Us</h3>
+            <div className="flex gap-6 mt-2">
+              {socialLinks.map((social, index) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="transition-transform hover:scale-110 hover:text-gray-300"
+                  >
+                    <Icon size={28} />
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </div>
-
-        {/* Footer text */}
-        <div className="flex flex-col md:flex-row justify-between px-8">
-          <p className="text-xs mb-2">{t("footer-rights")}</p>
-          <Link href="/suite/pathway/policy" className="underline text-xs font-medium hover:text-gray-300 transition-colors duration-300">
-            {t("footer-privacy-policy")}
-          </Link>
+        
+        {/* Bottom bar with copyright and policies */}
+        <div className="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm text-gray-400 mb-3 md:mb-0">{t("rights")}</p>
+          <div className="flex gap-6">
+            <Link
+              href="/policy"
+              className="text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              {t("privacy_policy")}
+            </Link>
+            <Link
+              href="/terms"
+              className="text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              {t("terms_conditions")}
+            </Link>
+          </div>
         </div>
       </div>
-  
-      {/* Glowing Flame - behind content */}
-      <div className="z-20 absolute bottom-0 left-1/2 transform -translate-x-1/2 w-48 h-48 bg-red-500 rounded-full filter blur-3xl opacity-75 animate-pulse"></div>
-      <div className="z-20 absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-32 bg-yellow-300 rounded-full filter blur-xl opacity-90 animate-flicker"></div>
     </footer>
   );
 };

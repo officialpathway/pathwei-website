@@ -1,622 +1,620 @@
 {
-  "aihavenlabs": {
-    "header": {
-      "logo": "AI HAVEN LABS",
-      "menu": {
-        "suite": "Apps",
-        "team": "Team",
-        "contact": "Contact"
-      }
-    },
-    "heroSection": {
-      "title": "The Future of AI is Here",
-      "subtitle": "Experience the fusion of technology and humanity.",
-      "ctaButton": "EXPLORE NOW"
-    },
-    "footer": {
-      "home": "Home",
-      "suite": "Apps",
-      "team": "Team",
-      "contact": "Contact"
-    },
-    "landingPage": {
-      "maskTitle1": "The assistant that",
-      "maskTitle2": "never sleeps.",
-      "maskSubtitle": "Always ready to assit you.",
-      "visionSection": {
-        "title": "HUMAN 2.0",
-        "subtitle": "Augmenting human potential through symbiotic AI",
-        "quote": "We don't replace humans - we upgrade them",
-        "quoteAuthor": "Alvaro Rios, Chief Executive Officer",
-        "learnMoreButton": "Learn More"
-      }
-    },
-    "productSection": {
-      "title": {
-        "our": "Our",
-        "productSuite": "Product Suite"
-      },
-      "subtitle": "AI tools designed to amplify human potential without replacement",
-      "filters": {
-        "all": "All Products",
-        "neon-cyan": "Augmentation",
-        "neon-pink": "Creativity",
-        "neon-purple": "Intelligence",
-        "neon-green": "Productivity"
-      },
-      "viewAllLink": "Explore all products",
-      "exploreButton": "Explore"
-    },
-    "team": {
-      "card": {
-        "contributions": "KEY CONTRIBUTIONS",
-        "connect": "CONNECT ON LINKEDIN"
-      },
-      "members": {
-        "ceo": {
-          "name": "Alvaro Rios",
-          "role": "Executive Director",
-          "specialty": "Full Stack Development",
-          "title": "FOUNDER AND CEO",
-          "bio": "Computer engineering student with an entrepreneurial spirit. Founder of Ai Haven Labs and Pathway. Full stack development expert.",
-          "status": "ONLINE",
-          "connections": ["Software Architecture", "Database Design", "Entrepreneurial Leadership"]
-        },
-        "cto": {
-          "name": "Rayan Chairi", 
-          "role": "Technology Director",
-          "specialty": "Frontend Development",
-          "title": "TECHNOLOGY DIRECTOR",
-          "bio": "Computer engineering student. Founder of Ai Haven Labs and Pathway. Designs the interfaces that connect our users with AI.",
-          "status": "IN LABORATORY",
-          "connections": ["UI Design", "UX Design", "Vibe Coding"]
-        },
-        "cmo": {
-          "name": "Maria Victoria Sanchez",
-          "role": "Marketing Director",
-          "specialty": "Content Marketing",
-          "title": "MARKETING DIRECTOR", 
-          "bio": "Computer engineering student. Projecting significant growth in networks for Pathway.",
-          "status": "ONLINE",
-          "connections": ["Organic Growth", "Social Media Content", "SEO Optimization"]
-        }
-      }
-    },
-    "app": {
-      "name": "pathway",
-      "subtitle": "Your Progress Partner",
-      "description": "Track and achieve your goals with Pathway, the productivity neural-net designed to optimize your human potential.",
-      "keywords": ["productivity", "goals", "progress", "social web", "self-improvement"],
-      "features": [
-        "Neural goal tracking",
-        "Social accountability networks",
-        "AI-powered progress predictions",
-        "Biometric integration",
-        "Blockchain achievement tokens"
-      ],
-      "status": "IN DEVELOPMENT"
-    },
-    "products": {
-      "pathway": {
-        "name": "Pathway",
-        "description": "Productivity companion that enhances focus while protecting digital wellbeing",
-        "stats": "↑ 89% task completion | ↓ 62% screen fatigue"
-      },
-      "contentForge": {
-        "name": "ContentForge",
-        "description": "AI-powered creative suite that organizes and generates content ideas",
-        "stats": "Comming soon"
-      },
-      "neuroLink": {
-        "name": "NeuroLink",
-        "description": "Coming soon: Neural interface for thought-to-text workflows",
-        "stats": "Comming soon"
-      },
-      "chronos": {
-        "name": "Chronos",
-        "description": "Coming soon: Time optimization engine for creative professionals",
-        "stats": "Comming soon"
-      }
-    },
-    "features": {
-      "1": {
-        "message": "YOUR GOALS, POWERED BY AI",
-        "subMessage": "We built this because we watched dreams get buried under busywork. Our AI maps personalized paths to success—helping 530K+ users stay focused on what matters."
-      },
-      "2": {
-        "message": "HUMANS FIRST, ALWAYS",
-        "subMessage": "Unlike tools that replace you, ours amplify you. 84% of users report achieving goals faster while feeling *more* creative and in control."
-      },
-      "3": {
-        "message": "THE FUTURE OF WORK IS HERE",
-        "subMessage": "We saw the demand for AI that adapts to *you*—not the other way around. Our tech learns your habits, predicts blockers, and course-corrects in real time."
-      },
-      "4": {
-        "message": "PROVEN TO WORK",
-        "subMessage": "Users complete 3.2x more weekly priorities. Founders credit us for hitting milestones 6 months early. Therapists use it to help clients build life-changing habits."
-      },
-      "5": {
-        "message": "ETHICS BUILT IN",
-        "subMessage": "We reject surveillance-style productivity. Your data trains *your* AI—never sold or used to manipulate you. (Certified compliant with GDPR and CCPA.)"
-      },
-      "6": {
-        "message": "JOIN THE MOVEMENT",
-        "subMessage": "Over 2,000 teams now use our tools to align work with purpose. From indie creators to Fortune 500s, we're rewriting how humans and AI collaborate."
-      },
-      "7": {
-        "message": "WHAT'S NEXT?",
-        "subMessage": "We're prototyping AI co-pilots that sense burnout before you do, and tools that turn procrastination patterns into productivity breakthroughs."
-      }
-    }
-  },
-
-  "teamPage": {
-    "title": "NEURAL NETWORK",
-    "subtitle": "THE MINDS POWERING AI HAVEN LABS",
-    "highlightWords": ["NETWORK"],
-    "highlightColor": "neon-pink",
-    "teamSection": {
-      "header": "AI HAVEN LABS",
-      "subtitle": "> MEET THE ARCHITECTS OF TOMORROW",
-      "keyContributions": "KEY CONTRIBUTIONS:",
-      "connectButton": "CONNECT ON LINKEDIN"
-    },
-    "investorsSection": {
-      "title": "INVESTORS",
-      "emoji": "🚀",
-      "heading": "Looking for Strategic Investors",
-      "description": "We're currently bootstrapping our vision but are open to conversations with forward-thinking investors who believe in the future of AI-powered productivity."
-    },
-    "partnersSection": {
-      "title": "PARTNERS",
-      "emoji": "🤝",
-      "heading": "Future Collaboration Opportunities",
-      "description": "We're actively seeking partnerships with innovative companies in the AI and productivity space. Let's explore how we can create synergies together."
-    },
-    "joinCTA": {
-      "preHighlight": "READY TO ",
-      "highlight": "JOIN",
-      "postHighlight": " THE NETWORK?",
-      "description": "We're looking for talented individuals to join our growing team.",
-      "buttonText": "EXPLORE CAREER OPPORTUNITIES"
-    }
-  },
-
-  "Suite": {
-    "page-title": "AI HAVEN SUITE",
-    "subtitle-1": "NEXT-GEN",
-    "subtitle-2": "CYBERNETIC",
-    "subtitle-3": "SOLUTIONS",
-    "cta-title": "Access Premium Cybernetic Solutions",
-    "cta-description": "Join our network to get exclusive early access to our most advanced technologies before public release.",
-    "cta-button": "Request Access",
-    "Card": {
-      "status-online": "ONLINE",
-      "status-developing": "IN DEVELOPMENT",
-      "features": "KEY FEATURES",
-      "tech": "TECH SPECS",
-      "access": "ACCESS NETWORK",
-      "request": "REQUEST INVITE",
-      "flip": "Flip"
-    }
-  },
-
   "Pathway": {
-    "app": {
+    "meta": {
       "name": "Pathway",
       "description": "Transform your productivity with AI, gamification and social networks."
     },
+    
+    "ui": {
+      "header": {
+        "team": "Team"
+      },
+      
+      "hero": {
+        "heading": {
+          "part1": "Supercharge Your",
+          "part2": "Productivity With AI"
+        },
+        "subheading": "The first platform that combines artificial intelligence with gamification and proven learning techniques for extraordinary results.",
+        "cta": "Start for only",
+        "demo_cta": "Watch Demo",
+        "price": "€4.99/month",
+        "scroll_down": "Scroll down for more"
+      },
+      
+      "subhero": {
+        "heading": {
+          "part1": "THE",
+          "part2": "REVOLUTION",
+          "part3": "STARTS WITH YOU!"
+        },
+        "subheading": {
+          "part1": "Take",
+          "part2": "control",
+          "part3": "of your",
+          "part4":"goals",
+          "part5": "and boost your",
+          "part6": "productivity."
+        }
+      },
+      
+      "sections": {
+        "first": {
+          "heading": "FROM INSPIRATION TO MASTERY",
+          "subheading": "We transform your ideas into concrete skills, step by step"
+        },
+        "second": {
+          "heading": "MASTER YOUR PROGRESS",
+          "subheading": "Test your knowledge and reinforce your learning"
+        },
+        "third": {
+          "heading": "HUMAN POTENTIAL WITH ARTIFICIAL INTELLIGENCE",
+          "subheading": "Technology that adapts to your way of learning"
+        },
+        "feedback": {
+          "heading": "We Listen to People",
+          "text": "We understand that opinions on gamification, productivity apps, and social media sharing are key. We've taken their insights into account to design an experience that combines the best of everything."
+        }
+      },
+      
+      "newsletter": {
+        "heading": "Don't Miss Out!",
+        "subheading": "Subscribe to receive a notification when the app is available.",
+        "email_placeholder": "Your email address",
+        "buttons": {
+          "sending": "Sending...",
+          "subscribe": "Subscribe"
+        },
+        "messages": {
+          "provide_valid_email": "Please enter a valid email address",
+          "subscription_success": "Thank you for subscribing",
+          "subscription_failed": "There was an error subscribing you. Please try again.",
+          "success_checker": "Thank you"
+        },
+        "terms": {
+          "agreement": "By subscribing, I agree to the",
+          "link": "Terms and Conditions",
+          "agree_message": "Please agree to the terms and conditions to continue."
+        }
+      },
+      
+      "footer": {
+        "quick_links": "Quick Links",
+        "links": {
+          "home": "Home",
+          "team": "Team"
+        },
+        "description": "Innovative AI solutions for tomorrow&apos;s challenges.",
+        "connect": "Connect with us",
+        "about_pathway": "About Pathway",
+        "rights": "© 2025 Pathway. All rights reserved.",
+        "privacy_policy": "Our privacy policy.",
+        "terms_conditions": "Terms and conditions."
+      },
+      
+      "loading": "Loading..."
+    },
+    
+    "core_features": {
+      "ai": {
+        "elements": [
+          "Artificial Intelligence",
+          "Knowledge",
+          "User"
+        ],
+        "footer": "Empowering human goals"
+      },
+      
+      "animation": {
+        "phrases": {
+          "objective": "I want to:",
+          "step": "Step",
+          "for": "for",
+          "creating_route": "Creating a path",
+          "goal_achieved": "Goal achieved!",
+          "path_success": "Your path to success:"
+        }
+      },
+      
+      "testing": {
+        "ui": {
+          "use": "We use tests to measure progress",
+          "title": "Learning Test:",
+          "start_message": "Click on \"Start\" to see the sample animation",
+          "buttons": {
+            "start": "Start",
+            "reset": "Reset",
+            "complete": "Complete Test"
+          },
+          "labels": {
+            "questions": "Questions",
+            "question": "Question",
+            "evaluation": "Evaluating responses...",
+            "results": "Correct answers",
+            "revision": "Final Review",
+            "your_answer": "Your answer:",
+            "answer": "Correct answer:",
+            "answer_content": "Sustains the notes (Sustain pedal)",
+            "passed": "Passed!",
+            "failed": "Failed"
+          }
+        },
+        
+        "explanation": {
+          "tracking_progress": "Track Progress With Tests",
+          "how_tests_work": {
+            "title": "How Our Tests Help You Learn",
+            "description": "Our intelligent testing system adapts to your learning journey, providing personalized feedback and tracking your progress over time."
+          },
+          
+          "section1": {
+            "title": "Answer Questions At Your Own Pace",
+            "descriptions": [
+              "Our tests are designed to be taken at your convenience. Each test is tailored to measure your understanding of specific objectives.",
+              "You'll answer a series of questions related to your learning goals, helping you identify areas where you excel and where you might need additional practice."
+            ],
+            "benefits": [
+              "Immediate feedback on your answers",
+              "Tests aligned with your learning objectives",
+              "Answer at your own pace with no time pressure"
+            ],
+            "sample_questions": {
+              "title": "Your Test Questions",
+              "q1": {
+                "question": "What is the first step in the learning process?",
+                "answer": "Establishing clear objectives"
+              },
+              "q2": {
+                "question": "How often should you review material?",
+                "answer": "At regular intervals based on retention studies"
+              },
+              "q3": {
+                "question": "Which technique improves long-term retention?",
+                "answer": "Spaced repetition with active recall"
+              },
+              "submit_button": "Submit Answers"
+            }
+          },
+          
+          "section2": {
+            "title": "Smart Evaluation Process",
+            "descriptions": [
+              "When you submit your test, our system goes to work analyzing your answers against learning objectives.",
+              "We don't just count right and wrong answers - we look for patterns in your responses to provide meaningful insights about your learning progress."
+            ],
+            "processing": {
+              "title": "Processing Your Answers",
+              "steps": [
+                {
+                  "title": "Analyzing Responses",
+                  "description": "Your answers are evaluated against learning objectives"
+                },
+                {
+                  "title": "Identifying Patterns",
+                  "description": "We detect your strengths and areas for improvement"
+                },
+                {
+                  "title": "Preparing Feedback",
+                  "description": "Creating personalized recommendations for next steps"
+                }
+              ]
+            }
+          },
+          
+          "section3": {
+            "title": "Track Your Progress Over Time",
+            "descriptions": [
+              "After evaluation, you'll receive a clear breakdown of your results with specific feedback on each question.",
+              "Your performance is tracked over time, allowing you to see how you're progressing toward mastery of your learning objectives."
+            ],
+            "insight": {
+              "title": "Learning Insights",
+              "content": "Tests help identify knowledge gaps and reinforce learning through the testing effect - the act of retrieving information strengthens memory."
+            },
+            "sample_results": {
+              "title": "Test Results",
+              "passed": "Test Passed",
+              "correct": "questions correct",
+              "q1": {
+                "question": "What technique improves memory retention?",
+                "answer": "Spaced repetition"
+              },
+              "q2": {
+                "question": "How many review sessions are optimal?",
+                "answer": "Two sessions"
+              },
+              "your_answer": "Your answer",
+              "continue_button": "Continue Learning"
+            },
+            "tags": [
+              "Progress Tracking",
+              "Personalized Feedback",
+              "Active Learning"
+            ]
+          },
+          
+          "cta": {
+            "title": "Ready to Track Your Progress?",
+            "description": "Start testing your knowledge and see how you're advancing toward your learning goals.",
+            "button": "Begin Your Learning Journey"
+          }
+        }
+      }
+    },
+    
+    "content": {
+      "categories": {
+        "exercise": {
+          "name": "Exercise",
+          "goals": {
+            "marathon": "Run a marathon",
+            "yoga": "Master yoga"
+          }
+        },
+        "learning": {
+          "name": "Learning",
+          "goals": {
+            "data_science": "Master data science",
+            "japanese": "Speak Japanese"
+          }
+        },
+        "career": {
+          "name": "Career",
+          "goals": {
+            "business": "Start a business",
+            "public_speaking": "Improve public speaking"
+          }
+        },
+        "creativity": {
+          "name": "Creativity",
+          "goals": {
+            "novel": "Write a novel",
+            "digital_art": "Learn digital painting",
+            "web_design": "Design a website"
+          }
+        },
+        "wellness": {
+          "name": "Wellness",
+          "goals": {
+            "meditation": "Practice meditation",
+            "stress": "Reduce stress",
+            "habits": "Develop healthy habits"
+          }
+        }
+      },
+      
+      "steps": {
+        "exercise": {
+          "marathon": [
+            "Start with a 5K training plan",
+            "Build endurance with weekly long runs",
+            "Practice proper nutrition and hydration",
+            "Complete a half marathon",
+            "Run your first full marathon"
+          ],
+          "yoga": [
+            "Learn basic poses and breathing",
+            "Practice daily for 30 minutes",
+            "Study different yoga styles",
+            "Master intermediate poses",
+            "Attend an advanced yoga retreat"
+          ]
+        },
+        "learning": {
+          "data_science": [
+            "Learn Python programming basics",
+            "Study statistics and probability",
+            "Practice data visualization",
+            "Work with machine learning libraries",
+            "Complete a capstone project"
+          ],
+          "japanese": [
+            "Master hiragana and katakana",
+            "Learn basic greetings and phrases",
+            "Study kanji radicals",
+            "Practice conversational Japanese",
+            "Pass JLPT N5 certification"
+          ],
+          "piano": {
+            "questions": {
+              "symbol": {
+                "question": "What does the 'p' symbol mean in sheet music?",
+                "answer": "Play softly (piano)"
+              },
+              "keys": {
+                "question": "How many white keys does a standard piano have?",
+                "answer": "52"
+              },
+              "chord": {
+                "question": "Which notes make up a C major chord?",
+                "answer": "C, E, G"
+              },
+              "position": {
+                "question": "What's the correct finger position for a C scale?",
+                "answer": "Thumb on C, index on D, middle on E"
+              },
+              "pedal": {
+                "question": "What does the right pedal do?",
+                "answer": "Sustains the notes (wrong: makes sound louder)"
+              }
+            }
+          }
+        },
+        "career": {
+          "business": [
+            "Validate your business idea",
+            "Create a detailed business plan",
+            "Secure initial funding",
+            "Launch minimum viable product",
+            "Scale your operations"
+          ],
+          "public_speaking": [
+            "Join Toastmasters or similar group",
+            "Practice impromptu speeches",
+            "Master nonverbal communication",
+            "Record and analyze your speeches",
+            "Speak at major events"
+          ]
+        },
+        "creativity": {
+          "novel": [
+            "Develop characters and plot outline",
+            "Write first draft (1,000 words/day)",
+            "Complete manuscript",
+            "Edit and revise",
+            "Submit to publishers"
+          ],
+          "digital_art": [
+            "Learn basic tools and brushes",
+            "Study color theory",
+            "Practice daily sketches",
+            "Create complete illustrations",
+            "Develop personal style"
+          ],
+          "web_design": [
+            "Learn HTML/CSS basics",
+            "Study UI/UX principles",
+            "Create wireframes",
+            "Build responsive prototypes",
+            "Launch live website"
+          ]
+        },
+        "wellness": {
+          "meditation": [
+            "Start with 5-minute daily sessions",
+            "Try different techniques",
+            "Progress to 20-minute sessions",
+            "Incorporate mindfulness",
+            "Maintain consistent practice"
+          ],
+          "stress": [
+            "Identify stress triggers",
+            "Practice relaxation techniques",
+            "Implement time management",
+            "Establish boundaries",
+            "Maintain stress journal"
+          ],
+          "habits": [
+            "Track current habits",
+            "Set specific habit goals",
+            "Create environmental triggers",
+            "Build consistency for 30 days",
+            "Automate positive habits"
+          ]
+        }
+      }
+    },
+    
     "feedback": {
-      "gamification": {
-        "title": "Opinion on Gamification",
-        "content": "Gamification systems have changed how I achieve my goals. But sometimes the competition can be overwhelming.",
-        "user": "GameMaster92"
-      },
-      "productivity": {
-        "title": "Opinion on Productivity Apps",
-        "content": "Apps have helped me stay organized, but I find some difficult to use.",
-        "user": "TaskWizard88"
-      },
-      "social": {
-        "title": "Opinion on Social Networks",
-        "content": "Sharing my achievements on social media motivates me, though I don't want my privacy compromised.",
-        "user": "SocialStar07"
-      },
-      "general": {
-        "title": "General Opinion",
-        "content": "A combination of gamification, productivity and social networks is ideal, but should be balanced and easy to use.",
-        "user": "BalancedGuru"
+      "user_opinions": {
+        "gamification": {
+          "title": "Opinion on Gamification",
+          "content": "Gamification systems have changed how I achieve my goals. But sometimes the competition can be overwhelming.",
+          "user": "GameMaster92"
+        },
+        "productivity": {
+          "title": "Opinion on Productivity Apps",
+          "content": "Apps have helped me stay organized, but I find some difficult to use.",
+          "user": "TaskWizard88"
+        },
+        "social": {
+          "title": "Opinion on Social Networks",
+          "content": "Sharing my achievements on social media motivates me, though I don't want my privacy compromised.",
+          "user": "SocialStar07"
+        },
+        "general": {
+          "title": "General Opinion",
+          "content": "A combination of gamification, productivity and social networks is ideal, but should be balanced and easy to use.",
+          "user": "BalancedGuru"
+        }
       }
     },
     
-    "categories": {
-      "exercise": {
-        "name": "Exercise",
-        "goals": {
-          "marathon": "Run a marathon",
-          "yoga": "Master yoga",
-          "strength": "Build muscle strength",
-          "flexibility": "Improve flexibility",
-          "kickboxing": "Learn kickboxing"
-        }
+    "legal": {
+      "terms": {
+        "page_title": "Terms and Conditions",
+        "last_updated": "Last updated: {date}",
+        "update_date": "April 22, 2025",
+        
+        "intro_paragraph": "Welcome to our application. These Terms and Conditions govern your use of our newsletter service and outline the rules for subscribing to our communications.",
+        "acceptance_paragraph": "By subscribing to our newsletter, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not subscribe to our newsletter.",
+        
+        "sections": {
+          "newsletter": {
+            "title": "Newsletter Service Description",
+            "description": "Our newsletter is designed to keep subscribers informed about our application and services. By subscribing, you will receive emails related to:",
+            "purposes": [
+              "Commercial offers, promotions, and discount opportunities related to our application",
+              "Invitations to participate in beta testing of new application features and functionalities",
+              "Polls and surveys regarding potential new features and your preferences",
+              "Launch announcements for new features, services, and application updates"
+            ]
+          },
+          
+          "subscription": {
+            "title": "Subscription Terms",
+            "paragraphs": [
+              "To subscribe to our newsletter, you must provide a valid email address. You are responsible for ensuring the accuracy of the information you provide.",
+              "The frequency of our communications may vary based on our release schedule, promotions, and other factors. We aim to send relevant content and avoid excessive communications."
+            ]
+          },
+          
+          "privacy": {
+            "title": "Privacy and Data Usage",
+            "paragraphs": [
+              "When you subscribe to our newsletter, we collect your email address and any other information you voluntarily provide. This information is used to send you the newsletter and to personalize content based on your preferences.",
+              "We may use tracking technologies to monitor how subscribers interact with our emails, including open rates and click-through rates. This data helps us improve our communications and services.",
+              "Your personal information will be handled in accordance with our Privacy Policy. We will not sell or rent your email address to third parties, although we may share anonymized, aggregated data for analytical purposes."
+            ]
+          },
+          
+          "unsubscribe": {
+            "title": "Unsubscribing",
+            "paragraph": "You may unsubscribe from our newsletter at any time by clicking the 'Unsubscribe' link included in every email we send, or by contacting us directly. Upon unsubscribing, we will promptly remove your email address from our distribution list for marketing communications, though we may retain certain information as required for legal or legitimate business purposes."
+          },
+          
+          "content": {
+            "title": "Newsletter Content",
+            "paragraphs": [
+              "While we strive to ensure the accuracy of the information contained in our newsletters, we do not warrant that all content will be error-free. Promotional offers may be subject to additional terms and conditions, which will be clearly communicated.",
+              "We reserve the right to determine the content, timing, and recipients of our newsletters. Beta testing invitations and feature polls may be sent to selected segments of our subscriber base based on usage patterns, previous feedback, or other criteria."
+            ]
+          },
+          
+          "changes": {
+            "title": "Changes to Terms",
+            "paragraph": "We reserve the right to modify these Terms and Conditions at any time. We will notify subscribers of any material changes via email. Your continued subscription to our newsletter following such notification constitutes your acceptance of the revised terms."
+          },
+          
+          "contact": {
+            "title": "Contact Us",
+            "paragraph": "If you have questions or concerns about these Terms and Conditions or our newsletter service, please contact our support team. We are committed to addressing your inquiries promptly and thoroughly."
+          }
+        },
+        
+        "back_to_home": "Back to Home"
       },
-      "learning": {
-        "name": "Learning",
-        "goals": {
-          "piano": "Learn piano",
-          "data_science": "Master data science",
-          "japanese": "Speak Japanese",
-          "physics": "Understand quantum physics",
-          "art_history": "Study art history"
-        }
-      },
-      "career": {
-        "name": "Career",
-        "goals": {
-          "business": "Start a business",
-          "promotion": "Get a promotion",
-          "change": "Change careers",
-          "public_speaking": "Improve public speaking",
-          "networking": "Build professional network"
-        }
-      },
-      "creativity": {
-        "name": "Creativity",
-        "goals": {
-          "novel": "Write a novel",
-          "digital_art": "Learn digital painting",
-          "short_film": "Create a short film",
-          "web_design": "Design a website",
-          "photography": "Master photography"
-        }
-      },
-      "wellness": {
-        "name": "Wellness",
-        "goals": {
-          "meditation": "Practice meditation",
-          "sleep": "Improve sleep quality",
-          "stress": "Reduce stress",
-          "habits": "Develop healthy habits",
-          "balance": "Find work-life balance"
-        }
+      
+      "privacy": {
+        "page_title": "Privacy Policy",
+        "last_updated": "Last updated: {date}",
+        "update_date": "April 22, 2025",
+        
+        "intro_paragraph": "This Privacy Policy explains how we collect, use, and protect information when you use our application and services. We are committed to ensuring the privacy and security of all our users.",
+        "scope_paragraph": "By using our application, subscribing to our newsletter, or interacting with our services, you consent to the practices described in this Privacy Policy.",
+        
+        "sections": {
+          "collection": {
+            "title": "Information We Collect",
+            "paragraph": "We collect minimal information necessary to provide and improve our services. This may include:",
+            "items": [
+              "Email address (when subscribing to our newsletter)",
+              "Anonymous usage data (such as interaction patterns and feature usage)",
+              "Voluntary feedback and survey responses"
+            ]
+          },
+          
+          "ai": {
+            "title": "Artificial Intelligence Usage",
+            "paragraphs": [
+              "Our application utilizes artificial intelligence (AI) technologies to enhance user experience. Our AI systems operate without collecting or processing personal data.",
+              "All AI functionality is designed with privacy by design principles, ensuring that no personally identifiable information is required for the AI features to function effectively.",
+              "Our AI systems are used primarily for:"
+            ],
+            "uses": [
+              "Generating personalized recommendations based on anonymized usage patterns",
+              "Creating and optimizing content within the application",
+              "Providing automated support responses based on common queries"
+            ]
+          },
+          
+          "no_personal_data": {
+            "title": "No Collection of Personal Data",
+            "paragraphs": [
+              "Our AI systems are specifically designed to function without collecting, storing, or processing personal data. They operate on anonymized and aggregated data patterns that cannot be traced back to individual users.",
+              "When interacting with AI features in our application, your inputs are processed in real-time and are not stored or used to build user profiles."
+            ]
+          },
+          
+          "cookies": {
+            "title": "Cookies and Similar Technologies",
+            "paragraphs": [
+              "We use essential cookies to ensure the proper functioning of our application. These cookies do not track your browsing activity on other websites or collect personal information.",
+              "You can configure your browser to refuse cookies, although this may limit your ability to use certain features of our application."
+            ]
+          },
+          
+          "security": {
+            "title": "Data Security",
+            "paragraph": "We implement appropriate technical and organizational measures to protect the information we collect and process. However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security."
+          },
+          
+          "third_party": {
+            "title": "Third-Party Services",
+            "paragraph": "Our application may integrate with third-party services for specific functionalities. These services have their own privacy policies, and we encourage you to review them. We do not share your information with third parties for marketing purposes."
+          },
+          
+          "rights": {
+            "title": "Your Rights",
+            "paragraph": "You have certain rights regarding your information. These include:",
+            "items": [
+              "The right to access any information we have about you",
+              "The right to request deletion of your email address from our newsletter subscription list",
+              "The right to object to processing of your information"
+            ]
+          },
+          
+          "changes": {
+            "title": "Changes to This Policy",
+            "paragraph": "We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify users of any material changes via email or through the application."
+          },
+          
+          "contact": {
+            "title": "Contact Us",
+            "paragraph": "If you have questions or concerns about this Privacy Policy or our data practices, please contact our support team. We are committed to addressing your inquiries promptly and thoroughly."
+          }
+        },
+        
+        "back_to_home": "Back to Home"
       }
     },
-
-    "steps": {
-      "exercise": {
-        "marathon": [
-          "Start with a 5K training plan",
-          "Build endurance with weekly long runs",
-          "Practice proper nutrition and hydration",
-          "Complete a half marathon",
-          "Run your first full marathon"
-        ],
-        "yoga": [
-          "Learn basic poses and breathing",
-          "Practice daily for 30 minutes",
-          "Study different yoga styles",
-          "Master intermediate poses",
-          "Attend an advanced yoga retreat"
-        ]
-      },
-      "learning": {
-        "data_science": [
-          "Learn Python programming basics",
-          "Study statistics and probability",
-          "Practice data visualization",
-          "Work with machine learning libraries",
-          "Complete a capstone project"
-        ],
-        "japanese": [
-          "Master hiragana and katakana",
-          "Learn basic greetings and phrases",
-          "Study kanji radicals",
-          "Practice conversational Japanese",
-          "Pass JLPT N5 certification"
-        ]
-      },
-      "career": {
-        "business": [
-          "Validate your business idea",
-          "Create a detailed business plan",
-          "Secure initial funding",
-          "Launch minimum viable product",
-          "Scale your operations"
-        ],
-        "public_speaking": [
-          "Join Toastmasters or similar group",
-          "Practice impromptu speeches",
-          "Master nonverbal communication",
-          "Record and analyze your speeches",
-          "Speak at major events"
-        ]
-      },
-      "creativity": {
-        "novel": [
-          "Develop characters and plot outline",
-          "Write first draft (1,000 words/day)",
-          "Complete manuscript",
-          "Edit and revise",
-          "Submit to publishers"
-        ],
-        "digital_art": [
-          "Learn basic tools and brushes",
-          "Study color theory",
-          "Practice daily sketches",
-          "Create complete illustrations",
-          "Develop personal style"
-        ],
-        "web_design": [
-          "Learn HTML/CSS basics",
-          "Study UI/UX principles",
-          "Create wireframes",
-          "Build responsive prototypes",
-          "Launch live website"
-        ]
-      },
-      "wellness": {
-        "meditation": [
-          "Start with 5-minute daily sessions",
-          "Try different techniques",
-          "Progress to 20-minute sessions",
-          "Incorporate mindfulness",
-          "Maintain consistent practice"
-        ],
-        "stress": [
-          "Identify stress triggers",
-          "Practice relaxation techniques",
-          "Implement time management",
-          "Establish boundaries",
-          "Maintain stress journal"
-        ],
-        "habits": [
-          "Track current habits",
-          "Set specific habit goals",
-          "Create environmental triggers",
-          "Build consistency for 30 days",
-          "Automate positive habits"
-        ]
-      }
-    },
-
-    "TestExplanation": {
-      "tracking-progress": "Track Progress With Tests",
-      "how-tests-work-title": "How Our Tests Help You Learn",
-      "how-tests-work-description": "Our intelligent testing system adapts to your learning journey, providing personalized feedback and tracking your progress over time.",
-      
-      "section1-title": "Answer Questions At Your Own Pace",
-      "section1-description1": "Our tests are designed to be taken at your convenience. Each test is tailored to measure your understanding of specific objectives.",
-      "section1-description2": "You'll answer a series of questions related to your learning goals, helping you identify areas where you excel and where you might need additional practice.",
-      "section1-benefit1": "Immediate feedback on your answers",
-      "section1-benefit2": "Tests aligned with your learning objectives",
-      "section1-benefit3": "Answer at your own pace with no time pressure",
-      "section1-question-title": "Your Test Questions",
-      "section1-question1": "What is the first step in the learning process?",
-      "section1-answer1": "Establishing clear objectives",
-      "section1-question2": "How often should you review material?",
-      "section1-answer2": "At regular intervals based on retention studies",
-      "section1-question3": "Which technique improves long-term retention?",
-      "section1-answer3": "Spaced repetition with active recall",
-      "section1-submit-button": "Submit Answers",
-      
-      "section2-title": "Smart Evaluation Process",
-      "section2-description1": "When you submit your test, our system goes to work analyzing your answers against learning objectives.",
-      "section2-description2": "We don't just count right and wrong answers - we look for patterns in your responses to provide meaningful insights about your learning progress.",
-      "section2-processing-title": "Processing Your Answers",
-      "section2-step1-title": "Analyzing Responses",
-      "section2-step1-description": "Your answers are evaluated against learning objectives",
-      "section2-step2-title": "Identifying Patterns",
-      "section2-step2-description": "We detect your strengths and areas for improvement",
-      "section2-step3-title": "Preparing Feedback",
-      "section2-step3-description": "Creating personalized recommendations for next steps",
-      
-      "section3-title": "Track Your Progress Over Time",
-      "section3-description1": "After evaluation, you'll receive a clear breakdown of your results with specific feedback on each question.",
-      "section3-description2": "Your performance is tracked over time, allowing you to see how you're progressing toward mastery of your learning objectives.",
-      "section3-insight-title": "Learning Insights",
-      "section3-insight-content": "Tests help identify knowledge gaps and reinforce learning through the testing effect - the act of retrieving information strengthens memory.",
-      "section3-review-title": "Test Results",
-      "section3-passed": "Test Passed",
-      "section3-correct": "questions correct",
-      "section3-question1": "What technique improves memory retention?",
-      "section3-answer1": "Spaced repetition",
-      "section3-question2": "How many review sessions are optimal?",
-      "section3-answer2": "Two sessions",
-      "section3-your-answer": "Your answer",
-      "section3-continue-button": "Continue Learning",
-      "section3-tag1": "Progress Tracking",
-      "section3-tag2": "Personalized Feedback",
-      "section3-tag3": "Active Learning",
-      
-      "cta-title": "Ready to Track Your Progress?",
-      "cta-description": "Start testing your knowledge and see how you're advancing toward your learning goals.",
-      "cta-button": "Begin Your Learning Journey"
-    },
-
-    "animation-objective": "I want to:",
-    "animation-step": "Step",
-    "animation-for": "for",
-    "animation-creating-route": "Creating a path",
-    "animation-goal-achieved": "Goal achieved!",
-    "animation-path-success": "Your path to success:",
-
-    "test-use": "We use tests to measure progress",
-    "test-title": "Learning Test:",
-    "test-start-message": "Click on \"Start\" to see the sample animation",
-    "test-start": "Start",
-    "test-reset": "Reset",
-    "test-questions": "Questions",
-    "test-question": "Question",
-    "test-complete": "Complete Test",
-    "test-evaluation": "Evaluating responses...",
-    "test-results": "Correct answers",
-    "test-revision": "Final Review",
-    "test-your-answer": "Your answer:",
-    "test-answer": "Correct answer:",
-    "test-answer-content": "Sustains the notes (Sustain pedal)",
-    "test-passed": "Passed!",
-    "test-failed": "Failed",
-
-    "ai-1": "Artificial Intelligence",
-    "ai-2": "Knowledge",
-    "ai-3": "User",
-    "ai-footer": "Empowering human goals",
     
-    "header-suite": "Apps",
-    "header-team": "Team",
-    "header-signin": "Sign In",
-
-    "cta": "Start for only",
-    "demo-cta": "Watch Demo",
-    "price": "€4.99/month",
-    "hero-heading-1": "Supercharge Your",
-    "hero-heading-2": "Learning With AI",
-    "hero-subheading": "The first platform that combines artificial intelligence with gamification and proven learning techniques for extraordinary results.",
-    
-    "under-hero-heading-1": "THE",
-    "under-hero-heading-2": "REVOLUTION",
-    "under-hero-heading-3": "STARTS WITH YOU!",
-    "under-hero-subheading-1": "Take",
-    "under-hero-subheading-2": "control",
-    "under-hero-subheading-3": "of your",
-    "under-hero-subheading-4": "goals",
-    "under-hero-subheading-5": "and boost your",
-    "under-hero-subheading-6": "productivity.",
-
-    "first-section-heading": "FROM INSPIRATION TO MASTERY",
-    "first-section-subheading": "We transform your ideas into concrete skills, step by step",
-
-    "second-section-heading": "MASTER YOUR PROGRESS",
-    "second-section-subheading": "Test your knowledge and reinforce your learning",
-
-    "third-section-heading": "HUMAN POTENTIAL WITH ARTIFICIAL INTELLIGENCE",
-    "third-section-subheading": "Technology that adapts to your way of learning",
-
-    "feedback-heading": "We Listen to People",
-    "feedback-text": "We understand that opinions on gamification, productivity apps, and social media sharing are key. We've taken their insights into account to design an experience that combines the best of everything.",
-
-    "newsletter-heading": "Don't Miss Out!",
-    "newsletter-subheading": "Subscribe to receive a notification when the app is available.",
-    "email-placeholder": "Your email address",
-    "sending": "Sending...",
-    "subscribe": "Subscribe",
-    "provide-valid-email": "Please enter a valid email address",
-    "subscription-success": "Thank you for subscribing",
-    "subscription-failed": "There was an error subscribing you. Please try again.",
-    "success-checker": "Thank you",
-    "terms-agreement": "By subscribing, I agree to the",
-    "terms-link": "Terms and Conditions",
-    "agree-to-terms": "Please agree to the terms and conditions to continue.",
-
-    "footer-rights": "© 2025 Pathway. All rights reserved.",
-    "footer-privacy-policy": "Our privacy policy.",
-
-    "loading": "Loading...",
-
-    "questions": {
-      "piano": {
-        "symbol": "What does the 'p' symbol mean in sheet music?",
-        "answer_soft": "Play softly (piano)",
-        "keys": "How many white keys does a standard piano have?",
-        "answer_keys": "52",
-        "chord": "Which notes make up a C major chord?",
-        "answer_chord": "C, E, G",
-        "position": "What's the correct finger position for a C scale?",
-        "answer_position": "Thumb on C, index on D, middle on E",
-        "pedal": "What does the right pedal do?",
-        "answer_pedal": "Sustains the notes (wrong: makes sound louder)"
+    "team": {
+      "page": {
+        "title": "NEURAL NETWORK",
+        "subtitle": "THE MINDS POWERING AI HAVEN LABS",
+        "highlight_words": ["NETWORK"],
+        "highlight_color": "neon-pink",
+        
+        "team_section": {
+          "header": "AI HAVEN LABS",
+          "subtitle": "> MEET THE ARCHITECTS OF TOMORROW",
+          "key_contributions": "KEY CONTRIBUTIONS:",
+          "connect_button": "CONNECT ON LINKEDIN"
+        },
+        
+        "investors_section": {
+          "title": "INVESTORS",
+          "emoji": "🚀",
+          "heading": "Looking for Strategic Investors",
+          "description": "We're currently bootstrapping our vision but are open to conversations with forward-thinking investors who believe in the future of AI-powered productivity."
+        },
+        
+        "partners_section": {
+          "title": "PARTNERS",
+          "emoji": "🤝",
+          "heading": "Future Collaboration Opportunities",
+          "description": "We're actively seeking partnerships with innovative companies in the AI and productivity space. Let's explore how we can create synergies together."
+        },
+        
+        "join_cta": {
+          "pre_highlight": "READY TO ",
+          "highlight": "JOIN",
+          "post_highlight": " THE NETWORK?",
+          "description": "We're looking for talented individuals to join our growing team.",
+          "button_text": "EXPLORE CAREER OPPORTUNITIES"
+        }
       }
-    },
-
-    "Terms": {
-      "page-title": "Terms and Conditions",
-      "last-updated": "Last updated: {date}",
-      "update-date": "April 22, 2025",
-      
-      "intro-paragraph": "Welcome to our application. These Terms and Conditions govern your use of our newsletter service and outline the rules for subscribing to our communications.",
-      "acceptance-paragraph": "By subscribing to our newsletter, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not subscribe to our newsletter.",
-      
-      "newsletter-section-title": "Newsletter Service Description",
-      "newsletter-description": "Our newsletter is designed to keep subscribers informed about our application and services. By subscribing, you will receive emails related to:",
-      "newsletter-purpose-commercial": "Commercial offers, promotions, and discount opportunities related to our application",
-      "newsletter-purpose-beta": "Invitations to participate in beta testing of new application features and functionalities",
-      "newsletter-purpose-features": "Polls and surveys regarding potential new features and your preferences",
-      "newsletter-purpose-announcements": "Launch announcements for new features, services, and application updates",
-      
-      "subscription-section-title": "Subscription Terms",
-      "subscription-paragraph-1": "To subscribe to our newsletter, you must provide a valid email address. You are responsible for ensuring the accuracy of the information you provide.",
-      "subscription-paragraph-2": "The frequency of our communications may vary based on our release schedule, promotions, and other factors. We aim to send relevant content and avoid excessive communications.",
-      
-      "privacy-section-title": "Privacy and Data Usage",
-      "privacy-paragraph-1": "When you subscribe to our newsletter, we collect your email address and any other information you voluntarily provide. This information is used to send you the newsletter and to personalize content based on your preferences.",
-      "privacy-paragraph-2": "We may use tracking technologies to monitor how subscribers interact with our emails, including open rates and click-through rates. This data helps us improve our communications and services.",
-      "privacy-paragraph-3": "Your personal information will be handled in accordance with our Privacy Policy. We will not sell or rent your email address to third parties, although we may share anonymized, aggregated data for analytical purposes.",
-
-      "unsubscribe-section-title": "Unsubscribing",
-      "unsubscribe-paragraph": "You may unsubscribe from our newsletter at any time by clicking the 'Unsubscribe' link included in every email we send, or by contacting us directly. Upon unsubscribing, we will promptly remove your email address from our distribution list for marketing communications, though we may retain certain information as required for legal or legitimate business purposes.",
-      
-      "content-section-title": "Newsletter Content",
-      "content-paragraph-1": "While we strive to ensure the accuracy of the information contained in our newsletters, we do not warrant that all content will be error-free. Promotional offers may be subject to additional terms and conditions, which will be clearly communicated.",
-      "content-paragraph-2": "We reserve the right to determine the content, timing, and recipients of our newsletters. Beta testing invitations and feature polls may be sent to selected segments of our subscriber base based on usage patterns, previous feedback, or other criteria.",
-      
-      "changes-section-title": "Changes to Terms",
-      "changes-paragraph": "We reserve the right to modify these Terms and Conditions at any time. We will notify subscribers of any material changes via email. Your continued subscription to our newsletter following such notification constitutes your acceptance of the revised terms.",
-      
-      "contact-section-title": "Contact Us",
-      "contact-paragraph": "If you have questions or concerns about these Terms and Conditions or our newsletter service, please contact our support team. We are committed to addressing your inquiries promptly and thoroughly.",
-      
-      "back-to-home": "Back to Home"
-    },
-
-    "Privacy": {
-      "page-title": "Privacy Policy",
-      "last-updated": "Last updated: {date}",
-      "update-date": "April 22, 2025",
-      
-      "intro-paragraph": "This Privacy Policy explains how we collect, use, and protect information when you use our application and services. We are committed to ensuring the privacy and security of all our users.",
-      "scope-paragraph": "By using our application, subscribing to our newsletter, or interacting with our services, you consent to the practices described in this Privacy Policy.",
-      
-      "collection-section-title": "Information We Collect",
-      "collection-paragraph": "We collect minimal information necessary to provide and improve our services. This may include:",
-      "collection-email": "Email address (when subscribing to our newsletter)",
-      "collection-usage": "Anonymous usage data (such as interaction patterns and feature usage)",
-      "collection-feedback": "Voluntary feedback and survey responses",
-      
-      "ai-section-title": "Artificial Intelligence Usage",
-      "ai-paragraph-1": "Our application utilizes artificial intelligence (AI) technologies to enhance user experience. Our AI systems operate without collecting or processing personal data.",
-      "ai-paragraph-2": "All AI functionality is designed with privacy by design principles, ensuring that no personally identifiable information is required for the AI features to function effectively.",
-      "ai-paragraph-3": "Our AI systems are used primarily for:",
-      "ai-use-recommendations": "Generating personalized recommendations based on anonymized usage patterns",
-      "ai-use-content": "Creating and optimizing content within the application",
-      "ai-use-support": "Providing automated support responses based on common queries",
-      
-      "no-personal-data-title": "No Collection of Personal Data",
-      "no-personal-data-paragraph-1": "Our AI systems are specifically designed to function without collecting, storing, or processing personal data. They operate on anonymized and aggregated data patterns that cannot be traced back to individual users.",
-      "no-personal-data-paragraph-2": "When interacting with AI features in our application, your inputs are processed in real-time and are not stored or used to build user profiles.",
-      
-      "cookies-section-title": "Cookies and Similar Technologies",
-      "cookies-paragraph-1": "We use essential cookies to ensure the proper functioning of our application. These cookies do not track your browsing activity on other websites or collect personal information.",
-      "cookies-paragraph-2": "You can configure your browser to refuse cookies, although this may limit your ability to use certain features of our application.",
-      
-      "security-section-title": "Data Security",
-      "security-paragraph": "We implement appropriate technical and organizational measures to protect the information we collect and process. However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.",
-      
-      "third-party-section-title": "Third-Party Services",
-      "third-party-paragraph": "Our application may integrate with third-party services for specific functionalities. These services have their own privacy policies, and we encourage you to review them. We do not share your information with third parties for marketing purposes.",
-      
-      "rights-section-title": "Your Rights",
-      "rights-paragraph": "You have certain rights regarding your information. These include:",
-      "rights-access": "The right to access any information we have about you",
-      "rights-delete": "The right to request deletion of your email address from our newsletter subscription list",
-      "rights-object": "The right to object to processing of your information",
-      
-      "changes-section-title": "Changes to This Policy",
-      "changes-paragraph": "We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify users of any material changes via email or through the application.",
-      
-      "contact-section-title": "Contact Us",
-      "contact-paragraph": "If you have questions or concerns about this Privacy Policy or our data practices, please contact our support team. We are committed to addressing your inquiries promptly and thoroughly.",
-      
-      "back-to-home": "Back to Home"
     }
   }
 }

@@ -1,623 +1,620 @@
 {
-  "aihavenlabs": {
-    "header": {
-      "logo": "AI HAVEN LABS",
-      "menu": {
-        "suite": "Apps",
-        "team": "Equipo",
-        "contact": "Contacto"
-      }
-    },
-    "heroSection": {
-      "title": "El Futuro de la IA está aquí",
-      "subtitle": "Experimenta la fusión de la tecnología y la humanidad.",
-      "ctaButton": "EXPLORA AHORA"
-    },
-    "footer": {
-      "home": "Inicio",
-      "suite": "Apps",
-      "team": "Equipo",
-      "contact": "Contacto"
-    },
-    "landingPage": {
-      "maskTitle1": "El asistente que",
-      "maskTitle2": "nunca duerme.",
-      "maskSubtitle": "Siempre listo para ayudarte.",
-      "visionSection": {
-        "title": "HUMANOS 2.0",
-        "subtitle": "Aumentando el potencial humano a través de la IA simbiótica",
-        "quote": "No reemplazamos a los humanos - los mejoramos",
-        "quoteAuthor": "Álvaro Ríos, Director Ejecutivo",
-        "learnMoreButton": "Saber Más"
-      }
-    },
-    "productSection": {
-      "title": {
-        "our": "Nuestra",
-        "productSuite": "Suite de Productos"
-      },
-      "subtitle": "Herramientas de IA diseñadas para amplificar el potencial humano sin reemplazarlo",
-      "filters": {
-        "all": "Todos los Productos",
-        "neon-cyan": "Productividad",
-        "neon-pink": "Creatividad",
-        "neon-purple": "Inteligencia",
-        "neon-green": "Velocidad"
-      },
-      "viewAllLink": "Explorar todos los productos",
-      "exploreButton": "Explorar"
-    },
-    "team": {
-      "card": {
-        "contributions": "CONTRIBUCIONES CLAVE",
-        "connect": "CONECTAR EN LINKEDIN"
-      },
-      "members": {
-        "ceo": {
-          "name": "Alvaro Rios",
-          "role": "Director Ejecutivo",
-          "specialty": "Desarrollo Full Stack",
-          "title": "FUNDADOR Y CEO",
-          "bio": "Estudiante de ingeniería informática con espíritu emprendedor. Fundador de Ai Haven Labs y Pathway. Experto en desarrolo full stack.",
-          "status": "EN LÍNEA",
-          "connections": ["Arquitectura del Software", "Diseño de Base de Datos", "Liderazgo emprendedor"]
-        },
-        "cto": {
-          "name": "Rayan Chairi",
-          "role": "Director de Tecnología",
-          "specialty": "Desarollo Frontend",
-          "title": "DIRECTOR DE TECNOLOGÍA",
-          "bio": "Estudiante de ingeniería informática. Fundador de Ai Haven Labs y Pathway. Diseña las interfaces que conectan nuestros usuarios con la IA.",
-          "status": "EN LABORATORIO",
-          "connections": ["Diseño de UI", "Diseño de UX", "Vibe Coding"]
-        },
-        "cmo": {
-          "name": "Maria Victoria Sanchez",
-          "role": "Directora de Marketing",
-          "specialty": "Maketing de Contenido",
-          "title": "DIRECTORA DE MARKETING",
-          "bio": "Estudiante de ingeniería informática. Proyecta un gran crecimiento en redes para Pathway.",
-          "status": "EN LÍNEA",
-          "connections": ["Crecimiento orgánico", "Contenido en redes", "Optimización de SEO"]
-        }
-      }
-    },
-    "app": {
-      "name": "pathway",
-      "subtitle": "Tu Compañero de Progreso",
-      "description": "Rastrea y alcanza tus metas con Pathway, la red neural de productividad diseñada para optimizar tu potencial humano.",
-      "keywords": ["productividad", "metas", "progreso", "red social", "superación personal"],
-      "features": [
-        "Seguimiento neural de objetivos",
-        "Redes de responsabilidad social",
-        "Predicciones de progreso impulsadas por IA",
-        "Integración biométrica",
-        "Tokens de logros en blockchain"
-      ],
-      "status": "EN LÍNEA"
-    },
-    "products": {
-      "pathway": {
-        "name": "Pathway",
-        "description": "Compañero de productividad que mejora la concentración mientras protege el bienestar digital",
-        "stats": "↑ 89% de tareas completadas | ↓ 62% de fatiga por pantalla"
-      },
-      "contentForge": {
-        "name": "ContentForge",
-        "description": "Suite creativa potenciada por IA que organiza y genera ideas de contenido",
-        "stats": "Próximamente"
-      },
-      "neuroLink": {
-        "name": "NeuroLink",
-        "description": "Próximamente: Interfaz neural para flujos de pensamiento a texto",
-        "stats": "Próximamente"
-      },
-      "chronos": {
-        "name": "Chronos",
-        "description": "Próximamente: Motor de optimización de tiempo para profesionales creativos",
-        "stats": "Próximamente"
-      }
-    },
-    "features": {
-      "1": {
-        "message": "TUS METAS, IMPULSADAS POR IA",
-        "subMessage": "Creamos esto porque vimos cómo los sueños quedaban sepultados bajo el trabajo rutinario. Nuestra IA traza caminos personalizados hacia el éxito, ayudando a más de 530 mil usuarios a mantenerse enfocados en lo importante."
-      },
-      "2": {
-        "message": "HUMANOS PRIMERO, SIEMPRE",
-        "subMessage": "A diferencia de las herramientas que te reemplazan, las nuestras te amplifican. El 84% de los usuarios reportan alcanzar metas más rápido mientras se sienten *más* creativos y en control."
-      },
-      "3": {
-        "message": "EL FUTURO DEL TRABAJO ESTÁ AQUÍ",
-        "subMessage": "Vimos la demanda de IA que se adapta a *ti*, no al revés. Nuestra tecnología aprende tus hábitos, predice obstáculos y corrige el rumbo en tiempo real."
-      },
-      "4": {
-        "message": "COMPROBADO QUE FUNCIONA",
-        "subMessage": "Los usuarios completan 3.2 veces más prioridades semanales. Los fundadores nos atribuyen haber alcanzado hitos con 6 meses de anticipación. Los terapeutas lo usan para ayudar a sus clientes a desarrollar hábitos transformadores."
-      },
-      "5": {
-        "message": "ÉTICA INCORPORADA",
-        "subMessage": "Rechazamos la productividad basada en vigilancia. Tus datos entrenan *tu* IA, nunca son vendidos ni utilizados para manipularte. (Certificado en cumplimiento con GDPR y CCPA.)"
-      },
-      "6": {
-        "message": "ÚNETE AL MOVIMIENTO",
-        "subMessage": "Más de 2,000 equipos ahora usan nuestras herramientas para alinear el trabajo con el propósito. Desde creadores independientes hasta empresas Fortune 500, estamos reescribiendo cómo colaboran humanos e IA."
-      },
-      "7": {
-        "message": "¿QUÉ SIGUE?",
-        "subMessage": "Estamos prototipando copilotos de IA que detectan el agotamiento antes que tú, y herramientas que convierten los patrones de procrastinación en avances de productividad."
-      }
-    }
-  },
-
-  "teamPage": {
-    "title": "RED NEURAL",
-    "subtitle": "LAS MENTES DETRÁS DE AI HAVEN LABS",
-    "highlightWords": ["RED"],
-    "highlightColor": "neon-pink",
-    "teamSection": {
-      "header": "AI HAVEN LABS",
-      "subtitle": "> CONOCE A LOS ARQUITECTOS DEL MAÑANA",
-      "keyContributions": "CONTRIBUCIONES CLAVE:",
-      "connectButton": "CONECTAR EN LINKEDIN"
-    },
-    "investorsSection": {
-      "title": "INVERSORES",
-      "emoji": "🚀",
-      "heading": "Buscando Inversores Estratégicos",
-      "description": "Actualmente estamos financiando nuestra visión por cuenta propia, pero estamos abiertos a conversaciones con inversores visionarios que crean en el futuro de la productividad impulsada por IA."
-    },
-    "partnersSection": {
-      "title": "SOCIOS",
-      "emoji": "🤝",
-      "heading": "Oportunidades de Colaboración Futura",
-      "description": "Estamos buscando activamente asociaciones con empresas innovadoras en el espacio de IA y productividad. Exploremos cómo podemos crear sinergias juntos."
-    },
-    "joinCTA": {
-      "preHighlight": "¿LISTO PARA ",
-      "highlight": "UNIRTE",
-      "postHighlight": " A LA RED?",
-      "description": "Estamos buscando personas talentosas para unirse a nuestro creciente equipo.",
-      "buttonText": "EXPLORAR OPORTUNIDADES PROFESIONALES"
-    }
-  },
-
-  "Suite": {
-    "page-title": "SUITE DE AI HAVEN LABS",
-    "subtitle-1": "SOLUCIONES",
-    "subtitle-2": "CIBERNÉTICAS",
-    "subtitle-3": "DE ÚLTIMA GENERACIÓN",
-    "cta-title": "Accede a Soluciones Cibernéticas Premium",
-    "cta-description": "Únete a nuestra red para obtener acceso exclusivo anticipado a nuestras tecnologías más avanzadas antes de su lanzamiento público.",
-    "cta-button": "Solicitar Acceso",
-    "Card": {
-      "status-online": "EN LÍNEA",
-      "status-developing": "EN DESARROLLO",
-      "features": "CARACTERÍSTICAS",
-      "tech": "ESPECIFICACIONES",
-      "access": "ACCEDER A LA RED",
-      "request": "SOLICITAR INVITACIÓN",
-      "flip": "Voltear"
-    }
-  },
-  
-
   "Pathway": {
-    "app": {
+    "meta": {
       "name": "Pathway",
       "description": "Transforma tu productividad con IA, gamificación y redes sociales."
     },
+    
+    "ui": {
+      "header": {
+        "team": "Equipo"
+      },
+      
+      "hero": {
+        "heading": {
+          "part1": "Potencia Tu",
+          "part2": "Productividad Con IA"
+        },
+        "subheading": "La primera plataforma que combina inteligencia artificial con gamificación y técnicas de aprendizaje probadas para resultados extraordinarios.",
+        "cta": "Comienza por solo",
+        "demo_cta": "Ver Demo",
+        "price": "€4.99/mes",
+        "scroll_down": "Baja para ver maś"
+      },
+      
+      "subhero": {
+        "heading": {
+          "part1": "LA",
+          "part2": "REVOLUCIÓN",
+          "part3": "COMIENZA CONTIGO!"
+        },
+        "subheading": {
+          "part1": "Toma",
+          "part2": "control",
+          "part3": "de tus",
+          "part4":"metas",
+          "part5": "y aumenta tu",
+          "part6": "productividad."
+        }
+      },
+      
+      "sections": {
+        "first": {
+          "heading": "DE LA INSPIRACIÓN AL DOMINIO",
+          "subheading": "Transformamos tus ideas en habilidades concretas, paso a paso"
+        },
+        "second": {
+          "heading": "DOMINA TU PROGRESO",
+          "subheading": "Prueba tus conocimientos y refuerza tu aprendizaje"
+        },
+        "third": {
+          "heading": "POTENCIAL HUMANO CON INTELIGENCIA ARTIFICIAL",
+          "subheading": "Tecnología que se adapta a tu forma de aprender"
+        },
+        "feedback": {
+          "heading": "Escuchamos a las Personas",
+          "text": "Entendemos que las opiniones sobre gamificación, aplicaciones de productividad y compartir en redes sociales son clave. Hemos tenido en cuenta sus opiniones para diseñar una experiencia que combina lo mejor de todo."
+        }
+      },
+      
+      "newsletter": {
+        "heading": "¡No Te Lo Pierdas!",
+        "subheading": "Suscríbete para recibir una notificación cuando la aplicación esté disponible.",
+        "email_placeholder": "Tu dirección de correo electrónico",
+        "buttons": {
+          "sending": "Enviando...",
+          "subscribe": "Suscribirse"
+        },
+        "messages": {
+          "provide_valid_email": "Por favor, introduce una dirección de correo electrónico válida",
+          "subscription_success": "Gracias por suscribirte",
+          "subscription_failed": "Hubo un error al suscribirte. Por favor, inténtalo de nuevo.",
+          "success_checker": "Gracias"
+        },
+        "terms": {
+          "agreement": "Al suscribirme, acepto los",
+          "link": "Términos y Condiciones",
+          "agree_message": "Por favor, acepta los términos y condiciones para continuar."
+        }
+      },
+      
+      "footer": {
+        "quick_links": "Enlaces Rápidos",
+        "links": {
+          "home": "Inicio",
+          "team": "Equipo"
+        },
+        "description": "Soluciones innovadoras de IA para los desafíos del mañana.",
+        "connect": "Conéctate con nosotros",
+        "about_pathway": "Acerca de Pathway",
+        "rights": "© 2025 Pathway. Todos los derechos reservados.",
+        "privacy_policy": "Nuestra política de privacidad.",
+        "terms_conditions": "Términos y condiciones."
+      },
+      
+      "loading": "Cargando..."
+    },
+    
+    "core_features": {
+      "ai": {
+        "elements": [
+          "Inteligencia Artificial",
+          "Conocimiento",
+          "Usuario"
+        ],
+        "footer": "Potenciando metas humanas"
+      },
+      
+      "animation": {
+        "phrases": {
+          "objective": "Quiero:",
+          "step": "Paso",
+          "for": "para",
+          "creating_route": "Creando una ruta",
+          "goal_achieved": "¡Meta lograda!",
+          "path_success": "Tu camino hacia el éxito:"
+        }
+      },
+      
+      "testing": {
+        "ui": {
+          "use": "Usamos pruebas para medir el progreso",
+          "title": "Prueba de Aprendizaje:",
+          "start_message": "Haz clic en \"Comenzar\" para ver la animación de muestra",
+          "buttons": {
+            "start": "Comenzar",
+            "reset": "Reiniciar",
+            "complete": "Completar Prueba"
+          },
+          "labels": {
+            "questions": "Preguntas",
+            "question": "Pregunta",
+            "evaluation": "Evaluando respuestas...",
+            "results": "Respuestas correctas",
+            "revision": "Revisión Final",
+            "your_answer": "Tu respuesta:",
+            "answer": "Respuesta correcta:",
+            "answer_content": "Sostiene las notas (Pedal de sostenido)",
+            "passed": "¡Aprobado!",
+            "failed": "Fallido"
+          }
+        },
+        
+        "explanation": {
+          "tracking_progress": "Seguimiento del Progreso Con Pruebas",
+          "how_tests_work": {
+            "title": "Cómo Nuestras Pruebas Te Ayudan a Aprender",
+            "description": "Nuestro sistema de pruebas inteligente se adapta a tu viaje de aprendizaje, proporcionando retroalimentación personalizada y siguiendo tu progreso a lo largo del tiempo."
+          },
+          
+          "section1": {
+            "title": "Responde Preguntas a Tu Propio Ritmo",
+            "descriptions": [
+              "Nuestras pruebas están diseñadas para ser realizadas a tu conveniencia. Cada prueba está adaptada para medir tu comprensión de objetivos específicos.",
+              "Responderás a una serie de preguntas relacionadas con tus metas de aprendizaje, ayudándote a identificar áreas donde sobresales y donde podrías necesitar práctica adicional."
+            ],
+            "benefits": [
+              "Retroalimentación inmediata sobre tus respuestas",
+              "Pruebas alineadas con tus objetivos de aprendizaje",
+              "Responde a tu propio ritmo sin presión de tiempo"
+            ],
+            "sample_questions": {
+              "title": "Tus Preguntas de Prueba",
+              "q1": {
+                "question": "¿Cuál es el primer paso en el proceso de aprendizaje?",
+                "answer": "Establecer objetivos claros"
+              },
+              "q2": {
+                "question": "¿Con qué frecuencia deberías revisar el material?",
+                "answer": "A intervalos regulares basados en estudios de retención"
+              },
+              "q3": {
+                "question": "¿Qué técnica mejora la retención a largo plazo?",
+                "answer": "Repetición espaciada con recuerdo activo"
+              },
+              "submit_button": "Enviar Respuestas"
+            }
+          },
+          
+          "section2": {
+            "title": "Proceso de Evaluación Inteligente",
+            "descriptions": [
+              "Cuando envías tu prueba, nuestro sistema se pone a trabajar analizando tus respuestas contra los objetivos de aprendizaje.",
+              "No solo contamos respuestas correctas e incorrectas - buscamos patrones en tus respuestas para proporcionar perspectivas significativas sobre tu progreso de aprendizaje."
+            ],
+            "processing": {
+              "title": "Procesando Tus Respuestas",
+              "steps": [
+                {
+                  "title": "Analizando Respuestas",
+                  "description": "Tus respuestas son evaluadas contra objetivos de aprendizaje"
+                },
+                {
+                  "title": "Identificando Patrones",
+                  "description": "Detectamos tus fortalezas y áreas de mejora"
+                },
+                {
+                  "title": "Preparando Retroalimentación",
+                  "description": "Creando recomendaciones personalizadas para los siguientes pasos"
+                }
+              ]
+            }
+          },
+          
+          "section3": {
+            "title": "Sigue Tu Progreso a lo Largo del Tiempo",
+            "descriptions": [
+              "Después de la evaluación, recibirás un desglose claro de tus resultados con retroalimentación específica sobre cada pregunta.",
+              "Tu rendimiento es seguido a lo largo del tiempo, permitiéndote ver cómo estás progresando hacia el dominio de tus objetivos de aprendizaje."
+            ],
+            "insight": {
+              "title": "Perspectivas de Aprendizaje",
+              "content": "Las pruebas ayudan a identificar vacíos de conocimiento y reforzar el aprendizaje a través del efecto de prueba - el acto de recuperar información fortalece la memoria."
+            },
+            "sample_results": {
+              "title": "Resultados de la Prueba",
+              "passed": "Prueba Aprobada",
+              "correct": "preguntas correctas",
+              "q1": {
+                "question": "¿Qué técnica mejora la retención de memoria?",
+                "answer": "Repetición espaciada"
+              },
+              "q2": {
+                "question": "¿Cuántas sesiones de revisión son óptimas?",
+                "answer": "Dos sesiones"
+              },
+              "your_answer": "Tu respuesta",
+              "continue_button": "Continuar Aprendiendo"
+            },
+            "tags": [
+              "Seguimiento del Progreso",
+              "Retroalimentación Personalizada",
+              "Aprendizaje Activo"
+            ]
+          },
+          
+          "cta": {
+            "title": "¿Listo para Seguir Tu Progreso?",
+            "description": "Comienza a probar tus conocimientos y observa cómo estás avanzando hacia tus metas de aprendizaje.",
+            "button": "Inicia Tu Viaje de Aprendizaje"
+          }
+        }
+      }
+    },
+    
+    "content": {
+      "categories": {
+        "exercise": {
+          "name": "Ejercicio",
+          "goals": {
+            "marathon": "Correr un maratón",
+            "yoga": "Dominar yoga"
+          }
+        },
+        "learning": {
+          "name": "Aprendizaje",
+          "goals": {
+            "data_science": "Dominar ciencia de datos",
+            "japanese": "Hablar japonés"
+          }
+        },
+        "career": {
+          "name": "Carrera",
+          "goals": {
+            "business": "Iniciar un negocio",
+            "public_speaking": "Mejorar hablar en público"
+          }
+        },
+        "creativity": {
+          "name": "Creatividad",
+          "goals": {
+            "novel": "Escribir una novela",
+            "digital_art": "Aprender pintura digital",
+            "web_design": "Diseñar un sitio web"
+          }
+        },
+        "wellness": {
+          "name": "Bienestar",
+          "goals": {
+            "meditation": "Practicar meditación",
+            "stress": "Reducir estrés",
+            "habits": "Desarrollar hábitos saludables"
+          }
+        }
+      },
+      
+      "steps": {
+        "exercise": {
+          "marathon": [
+            "Comenzar con un plan de entrenamiento de 5K",
+            "Desarrollar resistencia con carreras largas semanales",
+            "Practicar nutrición e hidratación adecuadas",
+            "Completar medio maratón",
+            "Correr tu primer maratón completo"
+          ],
+          "yoga": [
+            "Aprender posturas básicas y respiración",
+            "Practicar diariamente durante 30 minutos",
+            "Estudiar diferentes estilos de yoga",
+            "Dominar posturas intermedias",
+            "Asistir a un retiro avanzado de yoga"
+          ]
+        },
+        "learning": {
+          "data_science": [
+            "Aprender fundamentos de programación en Python",
+            "Estudiar estadística y probabilidad",
+            "Practicar visualización de datos",
+            "Trabajar con bibliotecas de aprendizaje automático",
+            "Completar un proyecto final"
+          ],
+          "japanese": [
+            "Dominar hiragana y katakana",
+            "Aprender saludos y frases básicas",
+            "Estudiar radicales kanji",
+            "Practicar japonés conversacional",
+            "Aprobar certificación JLPT N5"
+          ],
+          "piano": {
+            "questions": {
+              "symbol": {
+                "question": "¿Qué significa el símbolo 'p' en la partitura?",
+                "answer": "Tocar suavemente (piano)"
+              },
+              "keys": {
+                "question": "¿Cuántas teclas blancas tiene un piano estándar?",
+                "answer": "52"
+              },
+              "chord": {
+                "question": "¿Qué notas forman un acorde de Do mayor?",
+                "answer": "Do, Mi, Sol"
+              },
+              "position": {
+                "question": "¿Cuál es la posición correcta de los dedos para una escala de Do?",
+                "answer": "Pulgar en Do, índice en Re, medio en Mi"
+              },
+              "pedal": {
+                "question": "¿Qué hace el pedal derecho?",
+                "answer": "Sostiene las notas (incorrecto: hace que el sonido sea más fuerte)"
+              }
+            }
+          }
+        },
+        "career": {
+          "business": [
+            "Validar tu idea de negocio",
+            "Crear un plan de negocio detallado",
+            "Asegurar financiación inicial",
+            "Lanzar producto mínimo viable",
+            "Escalar tus operaciones"
+          ],
+          "public_speaking": [
+            "Unirse a Toastmasters o grupo similar",
+            "Practicar discursos improvisados",
+            "Dominar comunicación no verbal",
+            "Grabar y analizar tus discursos",
+            "Hablar en eventos importantes"
+          ]
+        },
+        "creativity": {
+          "novel": [
+            "Desarrollar personajes y esquema de trama",
+            "Escribir primer borrador (1,000 palabras/día)",
+            "Completar manuscrito",
+            "Editar y revisar",
+            "Enviar a editoriales"
+          ],
+          "digital_art": [
+            "Aprender herramientas y pinceles básicos",
+            "Estudiar teoría del color",
+            "Practicar bocetos diarios",
+            "Crear ilustraciones completas",
+            "Desarrollar estilo personal"
+          ],
+          "web_design": [
+            "Aprender fundamentos de HTML/CSS",
+            "Estudiar principios de UI/UX",
+            "Crear wireframes",
+            "Construir prototipos responsivos",
+            "Lanzar sitio web en vivo"
+          ]
+        },
+        "wellness": {
+          "meditation": [
+            "Comenzar con sesiones diarias de 5 minutos",
+            "Probar diferentes técnicas",
+            "Progresar a sesiones de 20 minutos",
+            "Incorporar mindfulness",
+            "Mantener práctica constante"
+          ],
+          "stress": [
+            "Identificar desencadenantes de estrés",
+            "Practicar técnicas de relajación",
+            "Implementar gestión del tiempo",
+            "Establecer límites",
+            "Mantener diario de estrés"
+          ],
+          "habits": [
+            "Rastrear hábitos actuales",
+            "Establecer metas específicas de hábitos",
+            "Crear desencadenantes ambientales",
+            "Desarrollar consistencia durante 30 días",
+            "Automatizar hábitos positivos"
+          ]
+        }
+      }
+    },
+    
     "feedback": {
-      "gamification": {
-        "title": "Opinión sobre Gamificación",
-        "content": "Los sistemas de gamificación han cambiado la forma en la que alcanzo mis metas. Pero a veces la competencia puede ser abrumadora.",
-        "user": "GameMaster92"
-      },
-      "productivity": {
-        "title": "Opinión sobre Aplicaciones de Productividad",
-        "content": "Las aplicaciones me han ayudado a mantenerme organizado, pero encuentro que algunas son difíciles de usar.",
-        "user": "TaskWizard88"
-      },
-      "social": {
-        "title": "Opinión sobre Redes Sociales",
-        "content": "Compartir mis logros en redes sociales me motiva, aunque no quiero que mi privacidad se vea comprometida.",
-        "user": "SocialStar07"
-      },
-      "general": {
-        "title": "Opinión General",
-        "content": "Una combinación de gamificación, productividad y redes sociales es ideal, pero debe ser equilibrada y fácil de usar.",
-        "user": "BalancedGuru"
-      }
-    },
-
-    "categories": {
-      "exercise": {
-        "name": "Ejercicio",
-        "goals": {
-          "marathon": "Correr un maratón",
-          "yoga": "Dominar el yoga",
-          "strength": "Desarrollar fuerza muscular",
-          "flexibility": "Mejorar la flexibilidad",
-          "kickboxing": "Aprender kickboxing"
-        }
-      },
-      "learning": {
-        "name": "Aprendizaje",
-        "goals": {
-          "piano": "Aprender piano",
-          "data_science": "Dominar ciencia de datos",
-          "japanese": "Hablar japonés",
-          "physics": "Comprender física cuántica",
-          "art_history": "Estudiar historia del arte"
-        }
-      },
-      "career": {
-        "name": "Carrera",
-        "goals": {
-          "business": "Empezar un negocio",
-          "promotion": "Obtener un ascenso",
-          "change": "Cambiar de carrera",
-          "public_speaking": "Mejorar habilidades de oratoria",
-          "networking": "Construir una red profesional"
-        }
-      },
-      "creativity": {
-        "name": "Creatividad",
-        "goals": {
-          "novel": "Escribir una novela",
-          "digital_art": "Aprender pintura digital",
-          "short_film": "Crear un cortometraje",
-          "web_design": "Diseñar un sitio web",
-          "photography": "Dominar la fotografía"
-        }
-      },
-      "wellness": {
-        "name": "Bienestar",
-        "goals": {
-          "meditation": "Practicar meditación",
-          "sleep": "Mejorar la calidad del sueño",
-          "stress": "Reducir el estrés",
-          "habits": "Desarrollar hábitos saludables",
-          "balance": "Encontrar equilibrio entre trabajo y vida"
+      "user_opinions": {
+        "gamification": {
+          "title": "Opinión sobre Gamificación",
+          "content": "Los sistemas de gamificación han cambiado cómo logro mis metas. Pero a veces la competencia puede ser abrumadora.",
+          "user": "GameMaster92"
+        },
+        "productivity": {
+          "title": "Opinión sobre Aplicaciones de Productividad",
+          "content": "Las aplicaciones me han ayudado a mantenerme organizado, pero encuentro algunas difíciles de usar.",
+          "user": "TaskWizard88"
+        },
+        "social": {
+          "title": "Opinión sobre Redes Sociales",
+          "content": "Compartir mis logros en redes sociales me motiva, aunque no quiero que mi privacidad se vea comprometida.",
+          "user": "SocialStar07"
+        },
+        "general": {
+          "title": "Opinión General",
+          "content": "Una combinación de gamificación, productividad y redes sociales es ideal, pero debe ser equilibrada y fácil de usar.",
+          "user": "BalancedGuru"
         }
       }
     },
-
-    "steps": {
-      "exercise": {
-        "marathon": [
-          "Comienza con un plan de entrenamiento para 5K",
-          "Construye resistencia con carreras largas semanales",
-          "Practica nutrición e hidratación adecuadas",
-          "Completa un medio maratón",
-          "Corre tu primer maratón completo"
-        ],
-        "yoga": [
-          "Aprende posturas y respiración básicas",
-          "Practica diariamente 30 minutos",
-          "Estudia diferentes estilos de yoga",
-          "Domina posturas intermedias",
-          "Participa en un retiro avanzado de yoga"
-        ]
-      },
-      "learning": {
-        "data_science": [
-          "Aprende conceptos básicos de Python",
-          "Estudia estadística y probabilidad",
-          "Practica visualización de datos",
-          "Trabaja con bibliotecas de machine learning",
-          "Completa un proyecto final"
-        ],
-        "japanese": [
-          "Domina hiragana y katakana",
-          "Aprende saludos y frases básicas",
-          "Estudia radicales kanji",
-          "Practica conversación en japonés",
-          "Aprueba certificación JLPT N5"
-        ]
-      },
-      "career": {
-        "business": [
-          "Valida tu idea de negocio",
-          "Crea un plan de negocios detallado",
-          "Consigue financiación inicial",
-          "Lanza producto mínimo viable",
-          "Expande tus operaciones"
-        ],
-        "public_speaking": [
-          "Únete a Toastmasters o grupo similar",
-          "Practica discursos improvisados",
-          "Domina comunicación no verbal",
-          "Graba y analiza tus discursos",
-          "Habla en eventos importantes"
-        ]
-      },
-      "creativity": {
-        "novel": [
-          "Desarrolla personajes y esquema de trama",
-          "Escribe primer borrador (1,000 palabras/día)",
-          "Completa manuscrito",
-          "Edita y revisa",
-          "Envía a editoriales"
-        ],
-        "digital_art": [
-          "Aprende herramientas y pinceles básicos",
-          "Estudia teoría del color",
-          "Practica bocetos diarios",
-          "Crea ilustraciones completas",
-          "Desarrolla estilo personal"
-        ],
-        "web_design": [
-          "Aprende conceptos básicos de HTML/CSS",
-          "Estudia principios de UI/UX",
-          "Crea wireframes",
-          "Construye prototipos responsivos",
-          "Lanza sitio web en vivo"
-        ]
-      },
-      "wellness": {
-        "meditation": [
-          "Empieza con sesiones diarias de 5 minutos",
-          "Prueba diferentes técnicas",
-          "Progresa a sesiones de 20 minutos",
-          "Incorpora atención plena",
-          "Mantén práctica consistente"
-        ],
-        "stress": [
-          "Identifica desencadenantes de estrés",
-          "Practica técnicas de relajación",
-          "Implementa gestión de tiempo",
-          "Establece límites",
-          "Mantén diario de estrés"
-        ],
-        "habits": [
-          "Registra hábitos actuales",
-          "Establece metas de hábitos específicas",
-          "Crea disparadores ambientales",
-          "Mantén consistencia por 30 días",
-          "Automatiza hábitos positivos"
-        ]
-      }
-    },
-
-    "TestExplanation": {
-      "tracking-progress": "Seguimiento del progreso con pruebas",
-      "how-tests-work-title": "Cómo nuestras pruebas te ayudan a aprender",
-      "how-tests-work-description": "Nuestro sistema de pruebas inteligente se adapta a tu trayectoria de aprendizaje, proporcionando retroalimentación personalizada y haciendo un seguimiento de tu progreso a lo largo del tiempo.",
-      
-      "section1-title": "Responde preguntas a tu propio ritmo",
-      "section1-description1": "Nuestras pruebas están diseñadas para que las realices a tu conveniencia. Cada prueba está adaptada para medir tu comprensión de objetivos específicos.",
-      "section1-description2": "Responderás una serie de preguntas relacionadas con tus objetivos de aprendizaje, ayudándote a identificar áreas en las que destacas y donde podrías necesitar práctica adicional.",
-      "section1-benefit1": "Retroalimentación inmediata sobre tus respuestas",
-      "section1-benefit2": "Pruebas alineadas con tus objetivos de aprendizaje",
-      "section1-benefit3": "Responde a tu propio ritmo sin presión de tiempo",
-      "section1-question-title": "Tus preguntas de prueba",
-      "section1-question1": "¿Cuál es el primer paso en el proceso de aprendizaje?",
-      "section1-answer1": "Establecer objetivos claros",
-      "section1-question2": "¿Con qué frecuencia deberías revisar el material?",
-      "section1-answer2": "En intervalos regulares basados en estudios de retención",
-      "section1-question3": "¿Qué técnica mejora la retención a largo plazo?",
-      "section1-answer3": "Repetición espaciada con recuperación activa",
-      "section1-submit-button": "Enviar respuestas",
-      
-      "section2-title": "Proceso de evaluación inteligente",
-      "section2-description1": "Cuando envías tu prueba, nuestro sistema analiza tus respuestas en función de los objetivos de aprendizaje.",
-      "section2-description2": "No solo contamos respuestas correctas e incorrectas: buscamos patrones en tus respuestas para proporcionar conocimientos significativos sobre tu progreso de aprendizaje.",
-      "section2-processing-title": "Procesando tus respuestas",
-      "section2-step1-title": "Analizando respuestas",
-      "section2-step1-description": "Tus respuestas se evalúan en función de los objetivos de aprendizaje",
-      "section2-step2-title": "Identificando patrones",
-      "section2-step2-description": "Detectamos tus fortalezas y áreas de mejora",
-      "section2-step3-title": "Preparando retroalimentación",
-      "section2-step3-description": "Creando recomendaciones personalizadas para los siguientes pasos",
-      
-      "section3-title": "Haz seguimiento de tu progreso a lo largo del tiempo",
-      "section3-description1": "Después de la evaluación, recibirás un desglose claro de tus resultados con comentarios específicos sobre cada pregunta.",
-      "section3-description2": "Tu rendimiento se realiza un seguimiento a lo largo del tiempo, lo que te permite ver cómo avanzas hacia el dominio de tus objetivos de aprendizaje.",
-      "section3-insight-title": "Perspectivas de aprendizaje",
-      "section3-insight-content": "Las pruebas ayudan a identificar lagunas de conocimiento y refuerzan el aprendizaje mediante el efecto de prueba: el acto de recuperar información fortalece la memoria.",
-      "section3-review-title": "Resultados de la prueba",
-      "section3-passed": "Prueba aprobada",
-      "section3-correct": "preguntas correctas",
-      "section3-question1": "¿Qué técnica mejora la retención de la memoria?",
-      "section3-answer1": "Repetición espaciada",
-      "section3-question2": "¿Cuántas sesiones de repaso son óptimas?",
-      "section3-answer2": "Dos sesiones",
-      "section3-your-answer": "Tu respuesta",
-      "section3-continue-button": "Continuar aprendiendo",
-      "section3-tag1": "Seguimiento del progreso",
-      "section3-tag2": "Retroalimentación personalizada",
-      "section3-tag3": "Aprendizaje activo",
-      
-      "cta-title": "¿Listo para seguir tu progreso?",
-      "cta-description": "Comienza a probar tus conocimientos y ve cómo avanzas hacia tus objetivos de aprendizaje.",
-      "cta-button": "Comienza tu camino de aprendizaje"
-    },
-
-    "animation-objective": "Quiero:",
-    "animation-step": "Paso",
-    "animation-for": "para",
-    "animation-creating-route": "Creando un camino",
-    "animation-goal-achieved": "¡Meta alcanzada!",
-    "animation-path-success": "Tu camino al éxito:",
-
-    "test-use": "Usamos tests para medir el progreso",
-    "test-title": "Prueba de aprendizaje:",
-    "test-start-message": "Click en \"Comenzar\" para ver la animación de ejemplo",
-    "test-start": "Comenzar",
-    "test-reset": "Reiniciar",
-    "test-questions": "Preguntas",
-    "test-question": "Pregunta",
-    "test-complete": "Completar test",
-    "test-evaluation": "Evaluando respuestas...",
-    "test-results": "respuestas correctas",
-    "test-revision": "Revisión final",
-    "test-your-answer": "Tu respuesta:",
-    "test-answer": "Respuesta correcta:",
-    "test-answer-content": "Sostiene las notas (Pedal de resonancia)",
-    "test-passed": "¡Aprobado!",
-    "test-failed": "Suspenso",
-
-    "ai-1": "Inteligencia Artificial",
-    "ai-2": "Conocimiento",
-    "ai-3": "Usuario",
-    "ai-footer": "Potenciando los objetivos humanos",
     
-    "header-suite": "Apps",
-    "header-team": "Equipo",
-    "header-signin": "Iniciar sesión",
-
-    "cta": "Empieza por solo",
-    "demo-cta": "Ver Demo",
-    "price": "4.99€/mes",
-    "hero-heading-1": "Potencia Tu",
-    "hero-heading-2": "Aprendizaje Con IA",
-    "hero-subheading": "La primera plataforma que combina inteligencia artificial con gamificación y técnicas de aprendizaje probadas para resultados extraordinarios.",
-    
-    "under-hero-heading-1": "¡LA",
-    "under-hero-heading-2": "REVOLUCIÓN",
-    "under-hero-heading-3": "COMIENZA CONTIGO!",
-    "under-hero-subheading-1": "Take",
-    "under-hero-subheading-2": "control",
-    "under-hero-subheading-3": "of your",
-    "under-hero-subheading-4": "goals",
-    "under-hero-subheading-5": "and boost your",
-    "under-hero-subheading-6": "productivity.",
-
-    "first-section-heading": "DE LA INSPIRACIÓN A LA MAESTRÍA",
-    "first-section-subheading": "Transformamos tus ideas en habilidades concretas paso a paso",
-
-    "second-section-heading": "DOMINA TU PROGRESO",
-    "second-section-subheading": "Pon a prueba tu conocimiento y refuerza tu aprendizaje",
-
-    "third-section-heading": "POTENCIAL HUMANO CON INTELIGENCIA ARTIFICIAL",
-    "third-section-subheading": "Tecnología que se adapta a tu forma de aprender",
-
-    "feedback-heading": "Escuchamos a las personas",
-    "feedback-text": "Entendemos que las opiniones sobre gamificación, aplicaciones de productividad y el uso compartido en redes sociales son clave. Hemos tomado en cuenta lo que dijeron para diseñar una experiencia que combina lo mejor de todo.",
-
-    "newsletter-heading": "¡No te lo pierdas!",
-    "newsletter-subheading": "Suscríbete para recibir una notificación cuando la aplicación esté disponible.",
-    "email-placeholder": "Tu correo electronico",
-    "sending": "Enviando...",
-    "subscribe": "Suscribirse",
-    "provide-valid-email": "Por favor introduce una dirección de correo válido",
-    "subscription-success": "Gracias por suscribirte",
-    "subscription-failed": "Hubo un error al suscribirte. Por favor inténtalo de nuevo.",
-    "success-checker": "Gracias",
-    "terms-agreement": "Al suscribirme, acepto los",
-    "terms-link": "Términos y Condiciones",
-    "agree-to-terms": "Por favor acepta los términos y condiciones antes de continuar.",
-
-    "footer-rights": "© 2025 Pathway. Todos los derechos reservados.",
-    "footer-privacy-policy": "Política de privacidad.",
-
-    "loading": "Cargando...",
-
-    "questions": {
-      "piano": {
-        "symbol": "¿Qué significa el símbolo 'p' en una partitura?",
-        "answer_soft": "Tocar suavemente (piano)",
-        "keys": "¿Cuántas teclas blancas tiene un piano estándar?",
-        "answer_keys": "52",
-        "chord": "¿Qué notas componen un acorde de Do mayor?",
-        "answer_chord": "Do, Mi, Sol",
-        "position": "¿Cuál es la posición correcta de los dedos para una escala de Do?",
-        "answer_position": "Pulgar en Do, índice en Re, medio en Mi",
-        "pedal": "¿Qué hace el pedal de la derecha?",
-        "answer_pedal": "Mantiene las notas (incorrecto: hace el sonido más fuerte)"
+    "legal": {
+      "terms": {
+        "page_title": "Términos y Condiciones",
+        "last_updated": "Última actualización: {date}",
+        "update_date": "22 de abril de 2025",
+        
+        "intro_paragraph": "Bienvenido a nuestra aplicación. Estos Términos y Condiciones rigen tu uso de nuestro servicio de boletín y describen las reglas para suscribirte a nuestras comunicaciones.",
+        "acceptance_paragraph": "Al suscribirte a nuestro boletín, reconoces que has leído, entendido y aceptas estar sujeto a estos Términos y Condiciones. Si no estás de acuerdo con cualquier parte de estos términos, por favor no te suscribas a nuestro boletín.",
+        
+        "sections": {
+          "newsletter": {
+            "title": "Descripción del Servicio de Boletín",
+            "description": "Nuestro boletín está diseñado para mantener a los suscriptores informados sobre nuestra aplicación y servicios. Al suscribirte, recibirás correos electrónicos relacionados con:",
+            "purposes": [
+              "Ofertas comerciales, promociones y oportunidades de descuento relacionadas con nuestra aplicación",
+              "Invitaciones para participar en pruebas beta de nuevas características y funcionalidades de la aplicación",
+              "Encuestas y sondeos sobre posibles nuevas características y tus preferencias",
+              "Anuncios de lanzamiento de nuevas características, servicios y actualizaciones de la aplicación"
+            ]
+          },
+          
+          "subscription": {
+            "title": "Términos de Suscripción",
+            "paragraphs": [
+              "Para suscribirte a nuestro boletín, debes proporcionar una dirección de correo electrónico válida. Eres responsable de asegurar la precisión de la información que proporcionas.",
+              "La frecuencia de nuestras comunicaciones puede variar según nuestro calendario de lanzamientos, promociones y otros factores. Nos esforzamos por enviar contenido relevante y evitar comunicaciones excesivas."
+            ]
+          },
+          
+          "privacy": {
+            "title": "Privacidad y Uso de Datos",
+            "paragraphs": [
+              "Cuando te suscribes a nuestro boletín, recopilamos tu dirección de correo electrónico y cualquier otra información que proporciones voluntariamente. Esta información se utiliza para enviarte el boletín y personalizar el contenido según tus preferencias.",
+              "Podemos utilizar tecnologías de seguimiento para monitorear cómo los suscriptores interactúan con nuestros correos electrónicos, incluidas las tasas de apertura y clics. Estos datos nos ayudan a mejorar nuestras comunicaciones y servicios.",
+              "Tu información personal será manejada de acuerdo con nuestra Política de Privacidad. No venderemos ni alquilaremos tu dirección de correo electrónico a terceros, aunque podemos compartir datos agregados anonimizados con fines analíticos."
+            ]
+          },
+          
+          "unsubscribe": {
+            "title": "Cancelación de Suscripción",
+            "paragraph": "Puedes cancelar tu suscripción a nuestro boletín en cualquier momento haciendo clic en el enlace 'Cancelar suscripción' incluido en cada correo electrónico que enviamos, o contactándonos directamente. Al cancelar la suscripción, eliminaremos rápidamente tu dirección de correo electrónico de nuestra lista de distribución para comunicaciones de marketing, aunque podemos conservar cierta información según lo requieran fines legales o comerciales legítimos."
+          },
+          
+          "content": {
+            "title": "Contenido del Boletín",
+            "paragraphs": [
+              "Si bien nos esforzamos por garantizar la precisión de la información contenida en nuestros boletines, no garantizamos que todo el contenido esté libre de errores. Las ofertas promocionales pueden estar sujetas a términos y condiciones adicionales, que se comunicarán claramente.",
+              "Nos reservamos el derecho de determinar el contenido, el momento y los destinatarios de nuestros boletines. Las invitaciones a pruebas beta y encuestas de características pueden enviarse a segmentos seleccionados de nuestra base de suscriptores según patrones de uso, comentarios anteriores u otros criterios."
+            ]
+          },
+          
+          "changes": {
+            "title": "Cambios en los Términos",
+            "paragraph": "Nos reservamos el derecho de modificar estos Términos y Condiciones en cualquier momento. Notificaremos a los suscriptores de cualquier cambio material por correo electrónico. Tu continua suscripción a nuestro boletín después de dicha notificación constituye tu aceptación de los términos revisados."
+          },
+          
+          "contact": {
+            "title": "Contáctanos",
+            "paragraph": "Si tienes preguntas o inquietudes sobre estos Términos y Condiciones o nuestro servicio de boletín, por favor contacta a nuestro equipo de soporte. Estamos comprometidos a abordar tus consultas de manera rápida y exhaustiva."
+          }
+        },
+        
+        "back_to_home": "Volver a Inicio"
+      },
+      
+      "privacy": {
+        "page_title": "Política de Privacidad",
+        "last_updated": "Última actualización: {date}",
+        "update_date": "22 de abril de 2025",
+        
+        "intro_paragraph": "Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos la información cuando utilizas nuestra aplicación y servicios. Estamos comprometidos a garantizar la privacidad y seguridad de todos nuestros usuarios.",
+        "scope_paragraph": "Al usar nuestra aplicación, suscribirte a nuestro boletín o interactuar con nuestros servicios, consientes las prácticas descritas en esta Política de Privacidad.",
+        
+        "sections": {
+          "collection": {
+            "title": "Información Que Recopilamos",
+            "paragraph": "Recopilamos la información mínima necesaria para proporcionar y mejorar nuestros servicios. Esto puede incluir:",
+            "items": [
+              "Dirección de correo electrónico (al suscribirte a nuestro boletín)",
+              "Datos de uso anónimos (como patrones de interacción y uso de características)",
+              "Comentarios voluntarios y respuestas a encuestas"
+            ]
+          },
+          
+          "ai": {
+            "title": "Uso de Inteligencia Artificial",
+            "paragraphs": [
+              "Nuestra aplicación utiliza tecnologías de inteligencia artificial (IA) para mejorar la experiencia del usuario. Nuestros sistemas de IA operan sin recopilar ni procesar datos personales.",
+              "Toda la funcionalidad de IA está diseñada con principios de privacidad por diseño, asegurando que no se requiera información personalmente identificable para que las características de IA funcionen eficazmente.",
+              "Nuestros sistemas de IA se utilizan principalmente para:"
+            ],
+            "uses": [
+              "Generar recomendaciones personalizadas basadas en patrones de uso anonimizados",
+              "Crear y optimizar contenido dentro de la aplicación",
+              "Proporcionar respuestas de soporte automatizadas basadas en consultas comunes"
+            ]
+          },
+          
+          "no_personal_data": {
+            "title": "Sin Recopilación de Datos Personales",
+            "paragraphs": [
+              "Nuestros sistemas de IA están específicamente diseñados para funcionar sin recopilar, almacenar o procesar datos personales. Operan en patrones de datos anonimizados y agregados que no pueden ser rastreados hasta usuarios individuales.",
+              "Al interactuar con las características de IA en nuestra aplicación, tus entradas se procesan en tiempo real y no se almacenan ni se utilizan para crear perfiles de usuario."
+            ]
+          },
+          
+          "cookies": {
+            "title": "Cookies y Tecnologías Similares",
+            "paragraphs": [
+              "Utilizamos cookies esenciales para garantizar el funcionamiento adecuado de nuestra aplicación. Estas cookies no rastrean tu actividad de navegación en otros sitios web ni recopilan información personal.",
+              "Puedes configurar tu navegador para rechazar cookies, aunque esto puede limitar tu capacidad para usar ciertas características de nuestra aplicación."
+            ]
+          },
+          
+          "security": {
+            "title": "Seguridad de Datos",
+            "paragraph": "Implementamos medidas técnicas y organizativas apropiadas para proteger la información que recopilamos y procesamos. Sin embargo, ningún método de transmisión por Internet o almacenamiento electrónico es 100% seguro, y no podemos garantizar la seguridad absoluta."
+          },
+          
+          "third_party": {
+            "title": "Servicios de Terceros",
+            "paragraph": "Nuestra aplicación puede integrarse con servicios de terceros para funcionalidades específicas. Estos servicios tienen sus propias políticas de privacidad, y te animamos a revisarlas. No compartimos tu información con terceros con fines de marketing."
+          },
+          
+          "rights": {
+            "title": "Tus Derechos",
+            "paragraph": "Tienes ciertos derechos con respecto a tu información. Estos incluyen:",
+            "items": [
+              "El derecho a acceder a cualquier información que tengamos sobre ti",
+              "El derecho a solicitar la eliminación de tu dirección de correo electrónico de nuestra lista de suscripción al boletín",
+              "El derecho a oponerte al procesamiento de tu información"
+            ]
+          },
+          
+          "changes": {
+            "title": "Cambios en Esta Política",
+            "paragraph": "Podemos actualizar esta Política de Privacidad de vez en cuando para reflejar cambios en nuestras prácticas o por otras razones operativas, legales o regulatorias. Notificaremos a los usuarios de cualquier cambio material por correo electrónico o a través de la aplicación."
+          },
+          
+          "contact": {
+            "title": "Contáctanos",
+            "paragraph": "Si tienes preguntas o inquietudes sobre esta Política de Privacidad o nuestras prácticas de datos, por favor contacta a nuestro equipo de soporte. Estamos comprometidos a abordar tus consultas de manera rápida y exhaustiva."
+          }
+        },
+        
+        "back_to_home": "Volver a Inicio"
       }
     },
-
-    "Terms": {
-      "page-title": "Terminos y Condiciones",
-      "last-updated": "Última actualización: {date}",
-      "update-date": "22 de abril de 2025",
-      
-      "intro-paragraph": "Bienvenido a nuestra aplicación. Estos Términos y Condiciones regulan el uso de nuestro servicio de boletines informativos y describen las reglas para suscribirse a nuestras comunicaciones.",
-      "acceptance-paragraph": "Al suscribirse a nuestro boletín informativo, usted reconoce que ha leído, entendido y acepta estar sujeto a estos Términos y Condiciones. Si no está de acuerdo con alguna parte de estos términos, por favor no se suscriba a nuestro boletín.",
-      
-      "newsletter-section-title": "Descripción del Servicio de Boletines",
-      "newsletter-description": "Nuestro boletín está diseñado para mantener a los suscriptores informados sobre nuestra aplicación y servicios. Al suscribirse, recibirá correos electrónicos relacionados con:",
-      "newsletter-purpose-commercial": "Ofertas comerciales, promociones y oportunidades de descuento relacionadas con nuestra aplicación",
-      "newsletter-purpose-beta": "Invitaciones para participar en pruebas beta de nuevas funcionalidades y características de la aplicación",
-      "newsletter-purpose-features": "Encuestas y sondeos sobre posibles nuevas características y sus preferencias",
-      "newsletter-purpose-announcements": "Anuncios de lanzamiento de nuevas funciones, servicios y actualizaciones de la aplicación",
-      
-      "subscription-section-title": "Términos de Suscripción",
-      "subscription-paragraph-1": "Para suscribirse a nuestro boletín, debe proporcionar una dirección de correo electrónico válida. Usted es responsable de garantizar la precisión de la información proporcionada.",
-      "subscription-paragraph-2": "La frecuencia de nuestras comunicaciones puede variar según nuestro calendario de lanzamientos, promociones y otros factores. Nuestro objetivo es enviar contenido relevante y evitar comunicaciones excesivas.",
-      
-      "privacy-section-title": "Privacidad y Uso de Datos",
-      "privacy-paragraph-1": "Al suscribirse a nuestro boletín, recopilamos su dirección de correo electrónico y cualquier otra información que usted proporcione voluntariamente. Esta información se utiliza para enviarle el boletín y personalizar el contenido según sus preferencias.",
-      "privacy-paragraph-2": "Podemos utilizar tecnologías de seguimiento para monitorizar cómo los suscriptores interactúan con nuestros correos electrónicos, incluyendo tasas de apertura y clics. Estos datos nos ayudan a mejorar nuestras comunicaciones y servicios.",
-      "privacy-paragraph-3": "Su información personal será tratada de acuerdo con nuestra Política de Privacidad. No venderemos ni alquilaremos su dirección de correo electrónico a terceros, aunque podemos compartir datos anonimizados y agregados con fines analíticos.",
-      
-      "unsubscribe-section-title": "Cancelación de Suscripción",
-      "unsubscribe-paragraph": "Puede cancelar su suscripción al boletín en cualquier momento haciendo clic en el enlace 'Cancelar suscripción' incluido en cada correo electrónico que enviamos, o contactándonos directamente. Al cancelar su suscripción, eliminaremos de inmediato su dirección de correo electrónico de nuestra lista de distribución para comunicaciones de marketing, aunque podremos conservar cierta información según lo requiera la ley o fines comerciales legítimos.",
-      
-      "content-section-title": "Contenido del Boletín",
-      "content-paragraph-1": "Aunque nos esforzamos por garantizar la precisión de la información contenida en nuestros boletines, no garantizamos que todo el contenido esté libre de errores. Las ofertas promocionales pueden estar sujetas a términos y condiciones adicionales, que se comunicarán claramente.",
-      "content-paragraph-2": "Nos reservamos el derecho de determinar el contenido, la programación y los destinatarios de nuestros boletines. Las invitaciones para pruebas beta y encuestas de características pueden enviarse a segmentos seleccionados de nuestra base de suscriptores según patrones de uso, comentarios previos u otros criterios.",
-      
-      "changes-section-title": "Cambios en los Términos",
-      "changes-paragraph": "Nos reservamos el derecho de modificar estos Términos y Condiciones en cualquier momento. Notificaremos a los suscriptores sobre cualquier cambio material por correo electrónico. Su suscripción continua a nuestro boletín después de dicha notificación constituye su aceptación de los términos revisados.",
-      
-      "contact-section-title": "Contáctenos",
-      "contact-paragraph": "Si tiene preguntas o inquietudes sobre estos Términos y Condiciones o nuestro servicio de boletín informativo, por favor contacte a nuestro equipo de soporte. Estamos comprometidos a atender sus consultas de manera pronta y completa.",
-      
-      "back-to-home": "Volver al Inicio"
-    },
-
-    "Privacy": {
-      "page-title": "Politica de Privacidad",
-      "last-updated": "Última actualización: {date}",
-      "update-date": "22 de abril de 2025",
-      
-      "intro-paragraph": "Esta Política de Privacidad explica cómo recopilamos, utilizamos y protegemos la información cuando utilizas nuestra aplicación y servicios. Estamos comprometidos a garantizar la privacidad y seguridad de todos nuestros usuarios.",
-      "scope-paragraph": "Al utilizar nuestra aplicación, suscribirte a nuestro boletín o interactuar con nuestros servicios, consientes las prácticas descritas en esta Política de Privacidad.",
-      
-      "collection-section-title": "Información que Recopilamos",
-      "collection-paragraph": "Recopilamos la información mínima necesaria para proporcionar y mejorar nuestros servicios. Esto puede incluir:",
-      "collection-email": "Dirección de correo electrónico (al suscribirte a nuestro boletín)",
-      "collection-usage": "Datos de uso anónimos (como patrones de interacción y uso de funciones)",
-      "collection-feedback": "Comentarios voluntarios y respuestas a encuestas",
-      
-      "ai-section-title": "Uso de Inteligencia Artificial",
-      "ai-paragraph-1": "Nuestra aplicación utiliza tecnologías de inteligencia artificial (IA) para mejorar la experiencia del usuario. Nuestros sistemas de IA operan sin recopilar ni procesar datos personales.",
-      "ai-paragraph-2": "Toda la funcionalidad de IA está diseñada con principios de privacidad desde el diseño, asegurando que no se requiera información de identificación personal para que las funciones de IA funcionen eficazmente.",
-      "ai-paragraph-3": "Nuestros sistemas de IA se utilizan principalmente para:",
-      "ai-use-recommendations": "Generar recomendaciones personalizadas basadas en patrones de uso anonimizados",
-      "ai-use-content": "Crear y optimizar contenido dentro de la aplicación",
-      "ai-use-support": "Proporcionar respuestas de soporte automatizadas basadas en consultas comunes",
-      
-      "no-personal-data-title": "Sin Recopilación de Datos Personales",
-      "no-personal-data-paragraph-1": "Nuestros sistemas de IA están específicamente diseñados para funcionar sin recopilar, almacenar o procesar datos personales. Operan con patrones de datos anonimizados y agregados que no pueden rastrearse hasta usuarios individuales.",
-      "no-personal-data-paragraph-2": "Al interactuar con las funciones de IA en nuestra aplicación, tus entradas se procesan en tiempo real y no se almacenan ni se utilizan para crear perfiles de usuario.",
-      
-      "cookies-section-title": "Cookies y Tecnologías Similares",
-      "cookies-paragraph-1": "Utilizamos cookies esenciales para garantizar el correcto funcionamiento de nuestra aplicación. Estas cookies no rastrean tu actividad de navegación en otros sitios web ni recopilan información personal.",
-      "cookies-paragraph-2": "Puedes configurar tu navegador para rechazar cookies, aunque esto puede limitar tu capacidad para utilizar ciertas funciones de nuestra aplicación.",
-      
-      "security-section-title": "Seguridad de Datos",
-      "security-paragraph": "Implementamos medidas técnicas y organizativas apropiadas para proteger la información que recopilamos y procesamos. Sin embargo, ningún método de transmisión por Internet o almacenamiento electrónico es 100% seguro, y no podemos garantizar una seguridad absoluta.",
-      
-      "third-party-section-title": "Servicios de Terceros",
-      "third-party-paragraph": "Nuestra aplicación puede integrarse con servicios de terceros para funcionalidades específicas. Estos servicios tienen sus propias políticas de privacidad, y te animamos a revisarlas. No compartimos tu información con terceros con fines de marketing.",
-      
-      "rights-section-title": "Tus Derechos",
-      "rights-paragraph": "Tienes ciertos derechos con respecto a tu información. Estos incluyen:",
-      "rights-access": "El derecho a acceder a cualquier información que tengamos sobre ti",
-      "rights-delete": "El derecho a solicitar la eliminación de tu dirección de correo electrónico de nuestra lista de suscripción al boletín",
-      "rights-object": "El derecho a oponerte al procesamiento de tu información",
-      
-      "changes-section-title": "Cambios en Esta Política",
-      "changes-paragraph": "Podemos actualizar esta Política de Privacidad de vez en cuando para reflejar cambios en nuestras prácticas o por otras razones operativas, legales o regulatorias. Notificaremos a los usuarios sobre cualquier cambio material por correo electrónico o a través de la aplicación.",
-      
-      "contact-section-title": "Contáctanos",
-      "contact-paragraph": "Si tienes preguntas o inquietudes sobre esta Política de Privacidad o nuestras prácticas de datos, por favor contacta a nuestro equipo de soporte. Estamos comprometidos a responder a tus consultas con prontitud y minuciosidad.",
-      
-      "back-to-home": "Volver al Inicio"
+    
+    "team": {
+      "page": {
+        "title": "RED NEURONAL",
+        "subtitle": "LAS MENTES DETRÁS DE AI HAVEN LABS",
+        "highlight_words": ["RED"],
+        "highlight_color": "neon-pink",
+        
+        "team_section": {
+          "header": "AI HAVEN LABS",
+          "subtitle": "> CONOCE A LOS ARQUITECTOS DEL MAÑANA",
+          "key_contributions": "CONTRIBUCIONES CLAVE:",
+          "connect_button": "CONECTAR EN LINKEDIN"
+        },
+        
+        "investors_section": {
+          "title": "INVERSORES",
+          "emoji": "🚀",
+          "heading": "Buscando Inversores Estratégicos",
+          "description": "Actualmente estamos financiando nuestra visión con recursos propios, pero estamos abiertos a conversaciones con inversores visionarios que crean en el futuro de la productividad impulsada por IA."
+        },
+        
+        "partners_section": {
+          "title": "SOCIOS",
+          "emoji": "🤝",
+          "heading": "Oportunidades de Colaboración Futura",
+          "description": "Estamos buscando activamente asociaciones con empresas innovadoras en el espacio de IA y productividad. Exploremos cómo podemos crear sinergias juntos."
+        },
+        
+        "join_cta": {
+          "pre_highlight": "¿LISTO PARA ",
+          "highlight": "UNIRTE",
+          "post_highlight": " A LA RED?",
+          "description": "Estamos buscando personas talentosas para unirse a nuestro equipo en crecimiento.",
+          "button_text": "EXPLORAR OPORTUNIDADES DE CARRERA"
+        }
+      }
     }
   }
 }

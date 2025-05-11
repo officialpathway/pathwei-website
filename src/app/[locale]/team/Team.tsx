@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Particles from "@/components/client/common/Particles";
 import { teamMembers } from "@/lib/constants";
 import { useTranslations } from 'next-intl';
 
@@ -33,21 +32,21 @@ export function TeamSection() {
   };
 
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section className="relative w-full py-16">
       <div className="container mx-auto px-4 relative z-10">
-        {/* Particles Background */}
-        <div className="absolute inset-0 z-0">
-          <Particles color="#ffffff" />
-        </div>
-
-        {/* Section header */}
+        {/* Section header with animated gradient text */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black/90" data-text="NEURAL_CORE">
-            AI HAVEN LABS & PATHWAY
+          <h2 className="text-5xl md:text-6xl font-bold mb-4 leading-tight">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-orange-500">
+              {t('team.title')}
+            </span>
           </h2>
+          <p className="text-xl text-white max-w-3xl mx-auto">
+            {t('team.description')}
+          </p>
         </div>
 
-        {/* Enhanced Team Cards */}
+        {/* Team Cards Grid - Improved readability */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {teamMembersArray.map((member: TeamMember, index: number) => (
             <motion.div
@@ -57,97 +56,57 @@ export function TeamSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{
-                scale: 1.05,
-                zIndex: 10,
-                boxShadow: `0 0 25px ${getGlowColor(member.color, 0.8)}`,
-                transition: { 
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 20,
-                  duration: 0.2
-                }
+                scale: 1.03,
+                boxShadow: `0 0 20px ${getGlowColor(member.color, 0.5)}`,
               }}
-              className={`relative group rounded-xl overflow-hidden bg-black/70 backdrop-blur-sm border-2 border-transparent`}
+              className="bg-purple-950/40 backdrop-blur-sm rounded-xl overflow-hidden border border-white/20"
               style={{
-                boxShadow: `0 0 15px ${getGlowColor(member.color, 0.3)}`,
-                borderColor: getGlowColor(member.color, 0.5),
-                willChange: 'transform'
+                boxShadow: `0 0 10px ${getGlowColor(member.color, 0.2)}`,
               }}
             >
-              {/* Simplified Holographic Effects */}
-              <div 
-                className="absolute inset-0 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity duration-200"
-                style={{
-                  background: `radial-gradient(circle at 50% 50%, 
-                    ${getGlowColor(member.color, 0.8)} 0%, 
-                    transparent 70%)`,
-                }}
-              />
-              
-              {/* Grid pattern with reduced opacity */}
-              <div 
-                className="absolute inset-0 pointer-events-none opacity-5 group-hover:opacity-10 transition-opacity duration-200"
-                style={{
-                  backgroundImage: `linear-gradient(${getGlowColor(member.color, 0.3)} 1px, transparent 1px),
-                    linear-gradient(90deg, ${getGlowColor(member.color, 0.3)} 1px, transparent 1px)`,
-                  backgroundSize: '20px 20px',
-                }}
-              />
-
-              {/* Member Image with improved contrast */}
-              <div className="h-64 bg-gray-900 relative overflow-hidden">
+              {/* Member Image */}
+              <div className="h-56 bg-gray-900 relative overflow-hidden">
                 <Image
                   src={member.imgSrc}
                   alt={member.name}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="object-cover hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   priority={index < 3}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-950 to-transparent" />
+                
+                {/* Status badge */}
+                <span className="absolute top-4 right-4 text-xs px-2 py-1 rounded-full bg-orange-500/80 text-white font-medium shadow-md">
+                  {member.status || 'Founder'}
+                </span>
               </div>
               
-              {/* Header with better contrast */}
-              <div 
-                className={`p-6 bg-gradient-to-r from-black/90 to-${member.color}/20 border-b`}
-                style={{ borderColor: getGlowColor(member.color, 0.3) }}
-              >
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className={`text-white text-2xl font-bold mb-1`}>{member.name}</h3>
-                    <p className="text-white/90 text-sm font-medium">{member.role}</p>
-                  </div>
-                  <span 
-                    className={`text-xs px-2 py-1 rounded-full bg-black/50 text-white border`}
-                    style={{ 
-                      borderColor: getGlowColor(member.color, 0.5),
-                      color: getGlowColor(member.color, 0.9)
-                    }}
-                  >
-                    {member.status || 'Founder'}
-                  </span>
-                </div>
-              </div>
-
-              {/* Body with improved readability */}
-              <div className="p-6 bg-gradient-to-b from-black/70 to-black/90">
-                <p className={`text-white font-medium text-sm mb-3 tracking-wide`}>
-                  {member.specialty || member.role}
+              {/* Content - Improved for readability */}
+              <div className="p-6 bg-purple-950/40">
+                <h3 className="text-white text-xl font-bold mb-1">
+                  {member.name}
+                </h3>
+                <p className="text-orange-300 text-sm font-medium mb-4">
+                  {member.role}
                 </p>
-                <p className="text-gray-300 mb-6 text-sm leading-relaxed">
+                <p className="text-white/90 text-sm mb-6 leading-relaxed">
                   {member.bio}
                 </p>
                 
+                {/* Contributions list - Improved contrast */}
                 {member.connections && (
-                  <div className="mt-6">
-                    <h4 className={`text-white text-sm font-medium mb-3 tracking-wider`}>
+                  <div className="mt-4 bg-purple-900/30 p-3 rounded-lg">
+                    <h4 className="text-orange-300 text-sm font-medium mb-2">
                       {t("team.card.contributions")}:
                     </h4>
                     <ul className="space-y-2">
                       {(Array.isArray(member.connections) ? member.connections : []).map((connection, i) => (
                         <li key={i} className="flex items-start">
-                          <span className={`mr-2`} style={{ color: getGlowColor(member.color, 0.8) }}>↳</span>
-                          <span className="text-gray-400 text-sm">{connection}</span>
+                          <span className="mr-2 text-orange-400 font-bold">→</span>
+                          <span className="text-white/90 text-sm">
+                            {connection}
+                          </span>
                         </li>
                       ))}
                     </ul>
@@ -155,17 +114,13 @@ export function TeamSection() {
                 )}
               </div>
 
-              {/* Footer with subtle hover effect */}
-              <div 
-                className={`px-6 py-3 bg-black/50 border-t text-center`}
-                style={{ borderColor: getGlowColor(member.color, 0.3) }}
-              >
+              {/* Footer - Improved contrast */}
+              <div className="px-6 py-3 border-t border-white/10 bg-orange-500/10 text-center">
                 <a 
                   href={socialLinks[member.name] || '#'} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className={`text-white text-xs font-medium tracking-wider hover:opacity-80 transition-opacity inline-block w-full`}
-                  style={{ color: getGlowColor(member.color, 0.9) }}
+                  className="inline-block w-full py-2 text-sm font-medium text-orange-300 hover:text-orange-200 transition-colors"
                 >
                   {t('team.card.connect')}
                 </a>
@@ -178,15 +133,16 @@ export function TeamSection() {
   );
 }
 
-// Helper function for glow colors
+// Helper function for glow colors using orange tones
+// Reduced purple glow and enhanced orange/amber
 function getGlowColor(color: string, opacity: number = 1) {
   const colors: Record<string, string> = {
-    cyan: `rgba(0, 200, 255, ${opacity})`,
-    pink: `rgba(255, 0, 200, ${opacity})`,
-    purple: `rgba(180, 0, 255, ${opacity})`,
-    green: `rgba(0, 255, 100, ${opacity})`,
-    blue: `rgba(0, 100, 255, ${opacity})`,
-    yellow: `rgba(255, 200, 0, ${opacity})`
+    cyan: `rgba(255, 156, 0, ${opacity})`,     // Orange
+    pink: `rgba(255, 128, 0, ${opacity})`,     // Darker orange
+    purple: `rgba(245, 158, 11, ${opacity})`,  // Amber
+    green: `rgba(255, 175, 25, ${opacity})`,   // Light orange
+    blue: `rgba(249, 115, 22, ${opacity})`,    // Deep orange
+    yellow: `rgba(255, 190, 0, ${opacity})`    // Golden yellow
   };
   return colors[color] || colors.cyan;
 }

@@ -8,12 +8,9 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: [
           '/',
-          '/suite',
-          '/suite/pathway',
-          '/suite/pathway/terms',
-          '/suite/pathway/privacy',
+          '/terms',
+          '/privacy',
           '/team',
-          '/privacy'
         ],
         disallow: [
           '/admin',               // No /pages/ needed in App Router
@@ -35,6 +32,6 @@ export default function robots(): MetadataRoute.Robots {
         ]
       }
     ],
-    sitemap: 'https://aihavenlabs.com/sitemap.xml'
+    sitemap: 'https://mypathwayapp.com/sitemap.xml'
   }
 }

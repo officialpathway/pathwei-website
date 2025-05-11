@@ -4,13 +4,15 @@ import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import { FaStar, FaQuoteRight } from "react-icons/fa";
 import { useTranslations } from 'next-intl';
-import { getPathwayConstants } from "@/lib/constants/pathway-constants";
+import { getPathwayConstants } from "@/lib/constants/constants";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const FeedbackSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState<boolean>(false);
-
   const t = useTranslations("Pathway");
+  const feedbackT = useTranslations("Pathway.ui.sections.feedback")
   const constants = getPathwayConstants(t);
 
   useEffect(() => {
@@ -62,11 +64,11 @@ const FeedbackSection = () => {
   );
 
   return (
-    <section id="feedback" className="py-20 bg-background text-white">
+    <section id="feedback" className="py-20 bg-black text-white">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-6">{t("feedback-heading")}</h2>
+        <h2 className="text-3xl font-bold text-center mb-6">{feedbackT("heading")}</h2>
         <p className="text-lg text-center mb-12">
-          {t("feedback-text")}
+          {feedbackT("text")}
         </p>
 
         {/* Móvil: Slider manual con flechas */}

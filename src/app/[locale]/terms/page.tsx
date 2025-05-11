@@ -3,15 +3,15 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import TermsAndConditionsPage from './TermsAndConditionsPage';
-import { detectLocale } from '../../../locale-detector';
+import { detectLocale } from '../locale-detector';
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await detectLocale();
-  const t = await getTranslations({ locale, namespace: 'Pathway.Terms' });
+  const t = await getTranslations({ locale, namespace: 'Pathway.legal.terms' });
   
   return {
-    title: t('page-title'),
-    description: t('intro-paragraph'),
+    title: t('page_title'),
+    description: t('intro_paragraph'),
   };
 }
 

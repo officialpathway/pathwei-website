@@ -68,9 +68,9 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              <span className="block mb-2">{t("hero-heading-1")}</span>
+              <span className="block mb-2">{t("ui.hero.heading.part1")}</span>
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-orange-500">
-                {t("hero-heading-2")}
+                {t("ui.hero.heading.part2")}
               </span>
             </motion.h1>
 
@@ -80,7 +80,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
-              {t("hero-subheading")}
+              {t("ui.hero.subheading")}
             </motion.p>
 
             {/* CTA Buttons */}
@@ -101,7 +101,7 @@ const Hero = () => {
                 }}
               >
                 <span className="relative z-10">
-                  {priceLoaded ? `${t("cta")} $${price.toFixed(2)}` : `${t("loading")}`}
+                  {priceLoaded ? `${t("ui.hero.cta")} $${price.toFixed(2)}` : `${t("ui.loading")}`}
                 </span>
                 <span className="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </button>
@@ -127,7 +127,7 @@ const Hero = () => {
                   }
                 }}
               >
-                <span>{t("demo-cta")}</span>
+                <span>{t("ui.hero.demo_cta")}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
@@ -135,29 +135,40 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Floating Phone Mockup (Optional) */}
+          {/* Scroll Down Indicator */}
           <motion.div 
-            className="mt-16 hidden lg:block"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
+            className="flex flex-col items-center mt-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5, duration: 0.8 }}
           >
-            <div className="relative mx-auto w-64 h-auto">
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl blur-xl opacity-20 animate-pulse"></div>
-              <div className="relative bg-gray-900 border border-gray-700 rounded-3xl p-2 shadow-2xl">
-                <div className="bg-gray-800 rounded-2xl overflow-hidden h-96 flex items-center justify-center">
-                  <div className="text-center p-4">
-                    <div className="w-16 h-16 bg-gradient-to-r from-amber-400 to-orange-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                      </svg>
-                    </div>
-                    <h3 className="text-white font-medium mb-1">App Demo</h3>
-                    <p className="text-gray-400 text-sm">Explora las funciones</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <p className="text-gray-300 mb-2 text-sm font-medium">
+              {t("ui.hero.scroll_down") || "Scroll down for more"}
+            </p>
+            <motion.div
+              animate={{ 
+                y: [0, 10, 0],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                repeatType: "loop"
+              }}
+              className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center pt-2"
+            >
+              <motion.div 
+                animate={{ 
+                  y: [0, 6, 0],
+                  opacity: [1, 0.3, 1]
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  repeatType: "loop"
+                }}
+                className="w-1 h-2 bg-gray-300 rounded-full"
+              />
+            </motion.div>
           </motion.div>
         </div>
       </section>

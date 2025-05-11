@@ -16,12 +16,12 @@ const Newsletter = () => {
     e.preventDefault();
 
     if (!email || !email.includes("@")) {
-      setMessage(`${t("provide-valid-email")}`);
+      setMessage(`${t("ui.newsletter.provide_valid_email")}`);
       return;
     }
 
     if (!termsAgreed) {
-      setMessage(`${t("agree-to-terms")}`);
+      setMessage(`${t("ui.newsletter.agree_message")}`);
       return;
     }
 
@@ -40,11 +40,11 @@ const Newsletter = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage(`${t("subscription-success")}`);
+        setMessage(`${t("ui.newsletter.messages.subscription_success")}`);
         setEmail(""); // Clear the input
         setTermsAgreed(false); // Reset checkbox
       } else {
-        setMessage(data.error || `${t("subscription-failed")}`);
+        setMessage(data.error || `${t("ui.newsletter.messages.subscription_failed")}`);
       }
     } catch (error) {
       setMessage("An error occurred. Please try again.");
@@ -59,12 +59,12 @@ const Newsletter = () => {
       <div className="container mx-auto px-4 sm:px-6 text-center">
         {/* Heading */}
         <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">
-          {t("newsletter-heading")}
+          {t("ui.newsletter.heading")}
         </h2>
 
         {/* Subtext */}
         <p className="text-base sm:text-xl mb-6 sm:mb-8">
-          {t("newsletter-subheading")}
+          {t("ui.newsletter.subheading")}
         </p>
 
         {/* Form */}
@@ -75,7 +75,7 @@ const Newsletter = () => {
           <div className="flex flex-col sm:flex-row justify-center items-stretch w-full gap-2 sm:gap-0">
             <input
               type="email"
-              placeholder={t("email-placeholder")}
+              placeholder={t("ui.newsletter.email_placeholder")}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="flex-grow px-4 sm:px-6 py-3 sm:py-4 border-2 border-white bg-transparent text-white placeholder-gray-300 rounded-lg sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
@@ -94,10 +94,10 @@ const Newsletter = () => {
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                  {t("sending")}
+                  {t("ui.newsletter.buttons.sending")}
                 </span>
               ) : (
-                `${t("subscribe")}`
+                `${t("ui.newsletter.buttons.subscribe")}`
               )}
             </button>
           </div>
@@ -113,9 +113,9 @@ const Newsletter = () => {
                 required
               />
               <span className="text-sm">
-                {t("terms-agreement")}{" "}
-                <Link href="/suite/pathway/terms" className="underline font-medium hover:text-gray-300 transition-colors duration-300">
-                  {t("terms-link")}
+                {t("ui.newsletter.terms.agreement")}{" "}
+                <Link href="/terms" className="underline font-medium hover:text-gray-300 transition-colors duration-300">
+                  {t("ui.newsletter.terms.link")}
                 </Link>
               </span>
             </label>
@@ -123,7 +123,7 @@ const Newsletter = () => {
 
           {/* Feedback Message */}
           {message && (
-            <p className={`mt-2 text-sm ${message.includes(`${t("success-checker")}`) ? "text-green-400" : "text-red-400"}`}>
+            <p className={`mt-2 text-sm ${message.includes(`${t("ui.newsletter.messages.success_checker")}`) ? "text-green-400" : "text-red-400"}`}>
               {message}
             </p>
           )}

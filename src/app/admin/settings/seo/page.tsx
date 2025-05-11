@@ -48,94 +48,9 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { signOut } from '@/lib/new/auth';
-import { useAdminAuth } from '@/hooks/use-admin-auth'; // Corrected import path
-
-// Mock SEO API client since implementation might be missing
-const useSeoApi = () => {
-  return {
-    getSeoSettings: async () => {
-      // Simulate API call with delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Return mock data
-      return {
-        title: 'AI Haven Labs',
-        description: 'AI solutions and research for enterprises and developers',
-        keywords: 'AI, machine learning, neural networks, artificial intelligence',
-        allowIndexing: true,
-        ogTitle: 'AI Haven Labs',
-        ogDescription: 'Leading the future of AI development and research',
-        ogImage: '/images/og-image.jpg',
-        twitterCard: 'summary_large_image',
-        twitterImage: '/images/twitter-card.jpg',
-        twitterHandle: '@aihavenlabs',
-        sitemapLastGenerated: '2025-04-30T10:15:00Z',
-        sitemapStatus: 'active',
-        sitemapFrequency: 'weekly',
-        sitemapPriority: '0.8',
-        robotsTxt: 'User-agent: *\nAllow: /\nDisallow: /admin/\nSitemap: https://aihavenlabs.com/sitemap.xml',
-        jsonLd: '{\n  "@context": "https://schema.org",\n  "@type": "Organization",\n  "name": "AI Haven Labs",\n  "url": "https://aihavenlabs.com"\n}',
-        canonicalUrl: 'https://aihavenlabs.com',
-        alternateLanguages: {
-          'es': 'https://aihavenlabs.com/es',
-          'fr': 'https://aihavenlabs.com/fr'
-        },
-        favicon: '/favicon.ico',
-        themeColor: '#4f46e5',
-        metaRobots: 'index, follow',
-        twitterSite: '@aihavenlabs',
-        twitterCreator: '@aihavenlabs',
-        fbAppId: '123456789',
-        ogLocale: 'en_US',
-        ogType: 'website',
-        ogSiteName: 'AI Haven Labs'
-      };
-    },
-    saveSeoSettings: async (data: SEOData) => {
-      // Simulate API call with delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      console.log('Saving SEO settings:', data);
-      return { success: true };
-    },
-    generateSitemap: async (options: { frequency: string; priority: string }) => {
-      // Simulate API call with delay
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      console.log('Generating sitemap with options:', options);
-      return { success: true };
-    }
-  };
-};
-
-export type SEOData = {
-  title: string;
-  description: string;
-  keywords: string;
-  allowIndexing: boolean;
-  ogTitle: string;
-  ogDescription: string;
-  ogImage: string;
-  twitterCard: string;
-  twitterImage: string;
-  twitterHandle: string;
-  sitemapLastGenerated: string;
-  sitemapStatus: string;
-  sitemapFrequency: string;
-  sitemapPriority: string;
-  robotsTxt: string;
-  jsonLd: string;
-  canonicalUrl: string;
-  // New fields
-  alternateLanguages: Record<string, string>;
-  favicon: string;
-  themeColor: string;
-  metaRobots: string;
-  twitterSite: string;
-  twitterCreator: string;
-  fbAppId: string;
-  ogLocale: string;
-  ogType: string;
-  ogSiteName: string;
-};
+import { useAdminAuth } from '@/hooks/use-admin-auth';
+import { fetchSeoSettings, saveSeoSettings } from '@/lib/api/seo';
+import { SEOData } from '@/types/seo';
 
 // Simple Toast implementation if react-hot-toast isn't available
 const toast = {
@@ -152,8 +67,6 @@ const toast = {
 export default function SEOSettings() { 
   const { adminData, loading } = useAdminAuth();
   const router = useRouter();
-
-  const seoApi = useSeoApi();
   
   const [seoData, setSeoData] = useState<SEOData>({
     title: '',
@@ -171,24 +84,22 @@ export default function SEOSettings() {
     sitemapFrequency: 'weekly',
     sitemapPriority: '0.8',
     robotsTxt: '',
-    jsonLd: '{\n  "@context": "https://schema.org",\n  "@type": "Organization",\n  "name": "AI Haven Labs",\n  "url": "https://aihavenlabs.com"\n}',
-    canonicalUrl: 'https://aihavenlabs.com',
-    // Initialize new fields
+    jsonLd: '{\n  "@context": "https://schema.org",\n  "@type": "Organization",\n  "name": "AI Haven Labs",\n  "url": "https://www.mypathwayapp.com"\n}',
+    canonicalUrl: 'https://www.mypathwayapp.com',
     alternateLanguages: {},
     favicon: '/favicon.ico',
     themeColor: '#ffffff',
     metaRobots: 'index, follow',
-    twitterSite: '@aihavenlabs',
-    twitterCreator: '@aihavenlabs',
+    twitterSite: '@pathwayapp',
+    twitterCreator: '@pathwayapp',
     fbAppId: '',
-    ogLocale: 'en_US',
+    ogLocale: 'es_ES',
     ogType: 'website',
-    ogSiteName: 'AI Haven Labs'
+    ogSiteName: 'Pathway'
   });
   
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
-  const [isGeneratingSitemap, setIsGeneratingSitemap] = useState(false);
   const [robotsDialogOpen, setRobotsDialogOpen] = useState(false);
   const [tempRobotsTxt, setTempRobotsTxt] = useState('');
   const [jsonLdDialogOpen, setJsonLdDialogOpen] = useState(false);
@@ -202,21 +113,17 @@ export default function SEOSettings() {
     async function loadData() {
       try {
         setIsLoading(true);
-        const data = await seoApi.getSeoSettings();
-        setSeoData({
-          ...seoData,
-          ...data,
-          alternateLanguages: data.alternateLanguages || {}
-        });
+        const data = await fetchSeoSettings();
+        setSeoData(data);
       } catch (error) {
         console.error('Error loading SEO settings:', error);
+        toast.error("Failed to load SEO settings. Please try again later.");
       } finally {
         setIsLoading(false);
       }
     }
     
     loadData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
   // Validate input based on SEO best practices
@@ -275,8 +182,8 @@ export default function SEOSettings() {
         throw new Error('Validation failed');
       }
   
-      // Use the API client instead of direct fetch
-      await seoApi.saveSeoSettings(seoData);
+      // Save settings to Postgres via API
+      await saveSeoSettings(seoData);
       toast.success("Settings saved. Your SEO settings have been updated successfully.");
     } catch (error) {
       console.error("Failed to save settings", error);
@@ -287,33 +194,6 @@ export default function SEOSettings() {
       );
     } finally {
       setIsSaving(false);
-    }
-  };
-
-  const generateSitemap = async () => {
-    setIsGeneratingSitemap(true);
-    try {
-      // Use the API client instead of direct fetch
-      await seoApi.generateSitemap({
-        frequency: seoData.sitemapFrequency,
-        priority: seoData.sitemapPriority
-      });
-      
-      // Update last generated time
-      setSeoData(prev => ({
-        ...prev,
-        sitemapLastGenerated: new Date().toISOString(),
-        sitemapStatus: "active"
-      }));
-      
-      toast.success("Sitemap generated. Your sitemap has been successfully generated.");
-    } catch (error) {
-      console.error("Failed to generate sitemap", error);
-      setSeoData(prev => ({ ...prev, sitemapStatus: "error" }));
-      
-      toast.error("Sitemap generation failed. Could not generate sitemap. Please try again later.");
-    } finally {
-      setIsGeneratingSitemap(false);
     }
   };
 
@@ -1143,143 +1023,6 @@ export default function SEOSettings() {
                         <span className="text-xs text-muted-foreground">
                           Located at {seoData.canonicalUrl}/robots.txt
                         </span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                {/* Sitemap Settings */}
-                <div className="space-y-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Sitemap</CardTitle>
-                      <CardDescription>
-                        Help search engines discover your content
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          {seoData.sitemapStatus === 'active' ? (
-                            <CheckCircle2 className="h-5 w-5 text-green-500" />
-                          ) : (
-                            <AlertCircle className="h-5 w-5 text-yellow-500" />
-                          )}
-                          <span>Status: <Badge variant={seoData.sitemapStatus === 'active' ? "default" : "secondary"}>
-                            {seoData.sitemapStatus}
-                          </Badge></span>
-                        </div>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={generateSitemap}
-                          disabled={isGeneratingSitemap}
-                        >
-                          {isGeneratingSitemap ? (
-                            <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
-                          ) : null}
-                          Regenerate
-                        </Button>
-                      </div>
-
-                      <Separator />
-
-                      <div className="space-y-1">
-                        <Label>Last Generated</Label>
-                        <p className="text-sm">
-                          {seoData.sitemapLastGenerated 
-                            ? new Date(seoData.sitemapLastGenerated).toLocaleString() 
-                            : "Never generated"}
-                        </p>
-                      </div>
-
-                      <div className="space-y-3">
-                        <Label>Sitemap Configuration</Label>
-                        
-                        <div className="space-y-2">
-                          <div className="flex justify-between items-center">
-                            <Label htmlFor="sitemap-frequency" className="text-sm">Change Frequency</Label>
-                            <Select 
-                              value={seoData.sitemapFrequency} 
-                              onValueChange={(value) => handleSelectChange('sitemapFrequency', value)}
-                            >
-                              <SelectTrigger className="w-32">
-                                <SelectValue placeholder="Select frequency" />
-                              </SelectTrigger>
-                              <SelectContent className='bg-white'>
-                                <SelectItem value="always">Always</SelectItem>
-                                <SelectItem value="hourly">Hourly</SelectItem>
-                                <SelectItem value="daily">Daily</SelectItem>
-                                <SelectItem value="weekly">Weekly</SelectItem>
-                                <SelectItem value="monthly">Monthly</SelectItem>
-                                <SelectItem value="yearly">Yearly</SelectItem>
-                                <SelectItem value="never">Never</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          
-                          <div className="flex justify-between items-center">
-                            <Label htmlFor="sitemap-priority" className="text-sm">Default Priority</Label>
-                            <Select 
-                              value={seoData.sitemapPriority} 
-                              onValueChange={(value) => handleSelectChange('sitemapPriority', value)}
-                            >
-                              <SelectTrigger className="w-32">
-                                <SelectValue placeholder="Select priority" />
-                              </SelectTrigger>
-                              <SelectContent className='bg-white'>
-                                <SelectItem value="0.1">0.1</SelectItem>
-                                <SelectItem value="0.3">0.3</SelectItem>
-                                <SelectItem value="0.5">0.5</SelectItem>
-                                <SelectItem value="0.7">0.7</SelectItem>
-                                <SelectItem value="0.8">0.8</SelectItem>
-                                <SelectItem value="1.0">1.0</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="space-y-1">
-                        <Label>Sitemap URL</Label>
-                        <div className="flex items-center space-x-2">
-                          <Input 
-                            value={`${seoData.canonicalUrl}/sitemap.xml`}
-                            readOnly
-                            className="text-sm font-mono"
-                          />
-                          <Button variant="outline" size="icon" title="Copy URL">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-copy"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c0-1.1.9-2 2-2h2"/><path d="M4 12c0-1.1.9-2 2-2h2"/><path d="M4 8c0-1.1.9-2 2-2h2"/></svg>
-                          </Button>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>SEO Tools</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span>Ping Search Engines</span>
-                        <Button variant="outline" size="sm">
-                          Submit Sitemap
-                        </Button>
-                      </div>
-                      <Separator />
-                      <div className="flex items-center justify-between">
-                        <span>Cache Cleanup</span>
-                        <Button variant="outline" size="sm">
-                          Clear Cache
-                        </Button>
-                      </div>
-                      <Separator />
-                      <div className="flex items-center justify-between">
-                        <span>Metadata Audit</span>
-                        <Button variant="outline" size="sm">
-                          Run Audit
-                        </Button>
                       </div>
                     </CardContent>
                   </Card>

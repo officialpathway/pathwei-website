@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslations } from 'next-intl';
@@ -10,28 +9,27 @@ const SloganSection = () => {
     target: ref,
     offset: ["start end", "end start"],
   });
-
+  
   const t = useTranslations("Pathway");
-
+  
   // Smooth scroll-driven animations
   const y1 = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const opacity = useTransform(scrollYProgress, [0.2, 0.8], [0, 1]);
-
+  const opacity = useTransform(scrollYProgress, [0.1, 0.6], [0, 1]);
+  
   return (
     <section
       ref={ref}
-      className="relative h-[100vh] w-full overflow-hidden bg-transparent"
+      className="relative h-[70vh] w-full overflow-hidden bg-transparent" 
     >
-
       {/* Glowing Grid Overlay */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0 bg-[length:100px_100px]"></div>
       </div>
-
-      {/* Animated Content */}
+      
+      {/* Animated Content - Moved higher with flex alignment */}
       <motion.div
-        className="h-full flex flex-col justify-center px-8 sm:px-16 lg:px-32"
+        className="h-full flex flex-col justify-start pt-16 sm:pt-24 px-8 sm:px-16 lg:px-32"
         style={{ opacity }}
       >
         <motion.div style={{ y: y1 }} className="space-y-6">
@@ -39,33 +37,19 @@ const SloganSection = () => {
           <motion.h3
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8 }}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight"
           >
-            <span className="block mb-2">{t("under-hero-heading-1")}</span>
+            <span className="block mb-2">{t("ui.subhero.heading.part1")}</span>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-orange-500">
-            {t("under-hero-heading-2")}
+              {t("ui.subhero.heading.part2")}
             </span>
-            <span className="block">{t("under-hero-heading-3")}</span>
+            <span className="block">{t("ui.subhero.heading.part3")}</span>
           </motion.h3>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-xl sm:text-2xl md:text-3xl text-white/80 max-w-2xl"
-          >
-            <span className="text-white/60">{t("under-hero-subheading-1")}</span>{" "}
-            <span className="font-semibold text-white">{t("under-hero-subheading-2")}</span>{" "}
-            <span className="text-white/60">{t("under-hero-subheading-3")}</span>{" "}
-            <span className="font-bold text-amber-300">{t("under-hero-subheading-4")}</span>{" "}
-            <span className="text-white/60">{t("under-hero-subheading-5")}</span>{" "}
-            <span className="italic text-purple-300">{t("under-hero-subheading-6")}</span>
-          </motion.p>
         </motion.div>
       </motion.div>
-
+      
       {/* Floating Decorative Elements */}
       <motion.div
         style={{ y: y2 }}
