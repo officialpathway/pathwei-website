@@ -67,6 +67,21 @@ const intlMiddleware = createMiddleware({
     '/admin/users': {
       exclude: 'true'
     },
+    '/admin/activity': {
+      exclude: 'true'
+    },
+    '/admin/analytics': {
+      exclude: 'true'
+    },
+    '/admin/profile': {
+      exclude: 'true'
+    },
+    '/admin/settings': {
+      exclude: 'true'
+    },
+    '/admin/schedule': {
+      exclude: 'true'
+    },
   }
 });
 

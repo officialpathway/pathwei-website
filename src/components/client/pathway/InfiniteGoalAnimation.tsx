@@ -12,13 +12,44 @@ export default function InfiniteGoalAnimation() {
   const [aiThinking, setAiThinking] = useState(false);
   const [showPathReveal, setShowPathReveal] = useState(false);
   const [pathSteps, setPathSteps] = useState<string[]>([]);
+  type Particle = {
+    key: number;
+    delay: number;
+    size: string;
+    speed: number;
+    angle: number;
+    color: string;
+  };
+  const [particles, setParticles] = useState<Particle[]>([]);
 
   const t = useTranslations("Pathway");
-  const goalAnimationT = useTranslations("Pathway.core_features.animation.phrases")
+  const goalAnimationT = useTranslations("Pathway.core_features.animation.phrases");
   const constants = getPathwayConstants(t);
   
   const activeCategory = constants.CATEGORIES[activeCategoryIndex];
   const activeGoal = activeCategory.goals[activeGoalIndex];
+  
+  // Generate particles only on client-side
+  useEffect(() => {
+    const newParticles = [];
+    for (let i = 0; i < 15; i++) {
+      const angle = (i / 15) * Math.PI * 2;
+      const size = `${Math.random() * 10 + 5}px`;
+      
+      newParticles.push({
+        key: i,
+        delay: i * 0.2,
+        size: size,
+        speed: Math.random() * 3 + 6,
+        angle: angle,
+        color: i % 5 === 0 ? "bg-blue-400" : 
+               i % 5 === 1 ? "bg-purple-400" : 
+               i % 5 === 2 ? "bg-amber-400" : 
+               i % 5 === 3 ? "bg-green-400" : "bg-red-400"
+      });
+    }
+    setParticles(newParticles);
+  }, []);
   
   // Reset animation states when changing category or goal
   useEffect(() => {
@@ -75,55 +106,32 @@ export default function InfiniteGoalAnimation() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeGoalIndex, activeCategoryIndex]);
   
-  // Orbit animation for particles
-  const Particle = ({ delay, size, speed, angle, color }: { delay: number, size: number, speed: number, angle: number, color: string }) => {
-    return (
-      <motion.div
-        className={`absolute rounded-full ${color} opacity-70`}
-        style={{
-          width: size,
-          height: size,
-        }}
-        animate={{
-          x: [0, Math.cos(angle) * 120, 0],
-          y: [0, Math.sin(angle) * 120, 0],
-          opacity: [0.2, 0.8, 0.2],
-          scale: [1, 1.2, 1]
-        }}
-        transition={{
-          duration: speed,
-          repeat: Infinity,
-          delay: delay,
-          ease: "easeInOut"
-        }}
-      />
-    );
-  };
-  
-  // Generate multiple particles
-  const particles = [];
-  for (let i = 0; i < 15; i++) {
-    const angle = (i / 15) * Math.PI * 2;
-    particles.push(
-      <Particle 
-        key={i}
-        delay={i * 0.2} 
-        size={Math.random() * 10 + 5} 
-        speed={Math.random() * 3 + 6}
-        angle={angle}
-        color={i % 5 === 0 ? "bg-blue-400" : 
-               i % 5 === 1 ? "bg-purple-400" : 
-               i % 5 === 2 ? "bg-amber-400" : 
-               i % 5 === 3 ? "bg-green-400" : "bg-red-400"}
-      />
-    );
-  }
-  
   return (
     <div className="h-[80vh] md:h-[60vh] mx-auto overflow-hidden relative">      
       {/* Floating particles */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        {particles}
+        {particles.map((particle) => (
+          <motion.div
+            key={particle.key}
+            className={`absolute rounded-full ${particle.color} opacity-70`}
+            style={{
+              width: particle.size,
+              height: particle.size,
+            }}
+            animate={{
+              x: [0, Math.cos(particle.angle) * 120, 0],
+              y: [0, Math.sin(particle.angle) * 120, 0],
+              opacity: [0.2, 0.8, 0.2],
+              scale: [1, 1.2, 1]
+            }}
+            transition={{
+              duration: particle.speed,
+              repeat: Infinity,
+              delay: particle.delay,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
       </div>
       
       {/* Category indicator */}
@@ -305,7 +313,12 @@ export default function InfiniteGoalAnimation() {
 }
 
 // Helper function to generate sensible step text based on the category and goal
-function getStepText(t: ReturnType<typeof useTranslations>, category: string, goal: string, stepIndex: number) {
+function getStepText(
+  t: ReturnType<typeof useTranslations>,
+  category: string,
+  goal: string,
+  stepIndex: number
+) {
   const constants = getPathwayConstants(t);
 
   // Return the step text if it exists, otherwise a generic step

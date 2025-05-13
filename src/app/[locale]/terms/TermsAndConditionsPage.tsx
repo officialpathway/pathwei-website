@@ -31,7 +31,7 @@ const TermsAndConditionsPage = () => {
   ];
 
   return (
-    <div className="bg-white text-gray-800">
+    <div className="bg-white text-gray-800 mb-20">
       <div className="container mx-auto px-4 pt-30 pb-16 max-w-4xl">
         {/* Header */}
         <div className="mb-12 text-center">

@@ -56,6 +56,82 @@
           "text": "Entendemos que las opiniones sobre gamificación, aplicaciones de productividad y compartir en redes sociales son clave. Hemos tenido en cuenta sus opiniones para diseñar una experiencia que combina lo mejor de todo."
         }
       },
+
+      "features": {
+        "transform_heading": "Transforma tu Camino de Aprendizaje",
+        "transform_subheading": "Establece metas, monitoriza tu progreso y alcanza el dominio con nuestra plataforma de aprendizaje adaptativo",
+        "goal_setting": {
+          "title": "Establecimiento Inteligente de Objetivos",
+          "descriptions": [
+            "Nuestra plataforma te ayuda a definir objetivos de aprendizaje claros y alcanzables, adaptados a tus necesidades y aspiraciones.",
+            "Ya sea que estés aprendiendo un nuevo idioma, dominando una habilidad o preparándote para un examen, te guiamos a través de todo el proceso."
+          ],
+          "button": "Crea tu Primer Objetivo",
+          "benefits": [
+            "Ruta de aprendizaje personalizada basada en tus necesidades específicas",
+            "Recomendaciones impulsadas por IA para optimizar tu progreso",
+            "Ajustes automáticos basados en tu rendimiento",
+            "Retroalimentación continua para mantenerte motivado"
+          ]
+        },
+        "adaptive_testing": {
+          "title": "Evaluación Adaptativa",
+          "descriptions": [
+            "Nuestro sistema de evaluación inteligente se adapta a tu nivel de conocimiento, centrándose en las áreas donde más necesitas mejorar.",
+            "Las pruebas regulares refuerzan tu aprendizaje y proporcionan retroalimentación instantánea para mantenerte en el camino correcto."
+          ],
+          "quiz_progress": "Progreso del Cuestionario",
+          "progress_percentage": "75%",
+          "continue_button": "Continuar Aprendiendo",
+          "your_answer": "Tu respuesta:",
+          "quiz_questions": [
+            {
+              "question": "¿Cuál es el principal beneficio de la repetición espaciada?",
+              "answer": "Mejorar la retención de memoria a largo plazo",
+              "correct": true
+            },
+            {
+              "question": "¿Cuántas repeticiones se necesitan para memorizar algo?",
+              "answer": "Siempre exactamente 3 repeticiones",
+              "correct": false
+            }
+          ],
+          "benefits": [
+            {
+              "title": "Pruebas Personalizadas",
+              "description": "Las preguntas se adaptan a tu nivel de conocimiento para un desafío óptimo"
+            },
+            {
+              "title": "Repetición Espaciada",
+              "description": "Repasa conceptos en intervalos científicamente optimizados para la retención"
+            },
+            {
+              "title": "Retroalimentación Detallada",
+              "description": "Comprende por qué las respuestas son correctas o incorrectas para un mejor aprendizaje"
+            }
+          ]
+        },
+        "progress_analytics": {
+          "title": "Análisis de Progreso",
+          "descriptions": [
+            "Monitorea tu camino de aprendizaje con análisis completos que destacan tus fortalezas y áreas de mejora.",
+            "Visualiza tu progreso a lo largo del tiempo y obtén información sobre tus patrones de aprendizaje para optimizar tus hábitos de estudio."
+          ],
+          "weekly_progress": "Progreso Semanal",
+          "weeks": ["S1", "S2", "S3", "S4", "S5", "S6", "S7"],
+          "progress_values": [40, 65, 45, 80, 60, 75, 90],
+          "progress_label": "Progreso",
+          "metrics": [
+            "Tasa de Finalización",
+            "Retención de Conocimiento",
+            "Nivel de Dominio"
+          ],
+          "key_insight": {
+            "title": "Perspectiva Clave",
+            "description": "Tu tasa de retención mejora significativamente cuando estudias por la mañana y repasas conceptos antes de acostarte. Intenta mantener este patrón para una eficiencia de aprendizaje óptima."
+          }
+        }
+      },
       
       "newsletter": {
         "heading": "¡No Te Lo Pierdas!",

@@ -56,6 +56,82 @@
           "text": "We understand that opinions on gamification, productivity apps, and social media sharing are key. We've taken their insights into account to design an experience that combines the best of everything."
         }
       },
+
+      "features": {
+        "transform_heading": "Transform Your Learning Journey",
+        "transform_subheading": "Set goals, track progress, and achieve mastery with our adaptive learning platform",
+        "goal_setting": {
+          "title": "Smart Goal Setting",
+          "descriptions": [
+            "Our platform helps you define clear, achievable learning goals tailored to your needs and aspirations.",
+            "Whether you're learning a new language, mastering a skill, or preparing for an exam, we guide you through the entire process."
+          ],
+          "button": "Create Your First Goal",
+          "benefits": [
+            "Personalized learning path based on your specific needs",
+            "AI-powered recommendations to optimize your progress",
+            "Automatic adjustments based on your performance",
+            "Continuous feedback to keep you motivated"
+          ]
+        },
+        "adaptive_testing": {
+          "title": "Adaptive Testing",
+          "descriptions": [
+            "Our intelligent assessment system adapts to your knowledge level, focusing on areas where you need the most improvement.",
+            "Regular tests reinforce your learning and provide instant feedback to keep you on the right track."
+          ],
+          "quiz_progress": "Quiz Progress",
+          "progress_percentage": "75%",
+          "continue_button": "Continue Learning",
+          "quiz_questions": [
+            {
+              "question": "What is the primary benefit of spaced repetition?",
+              "answer": "Improving long-term memory retention",
+              "correct": true
+            },
+            {
+              "question": "How many repetitions are needed to commit something to memory?",
+              "answer": "Always exactly 3 repetitions",
+              "correct": false
+            }
+          ],
+          "your_answer": "Your answer:",
+          "benefits": [
+            {
+              "title": "Personalized Testing",
+              "description": "Questions adapt to your knowledge level for optimal challenge"
+            },
+            {
+              "title": "Spaced Repetition",
+              "description": "Review concepts at scientifically-optimized intervals for retention"
+            },
+            {
+              "title": "Detailed Feedback",
+              "description": "Understand why answers are correct or incorrect for better learning"
+            }
+          ]
+        },
+        "progress_analytics": {
+          "title": "Progress Analytics",
+          "descriptions": [
+            "Track your learning journey with comprehensive analytics that highlight your strengths and areas for improvement.",
+            "Visualize your progress over time and gain insights into your learning patterns to optimize your study habits."
+          ],
+          "weekly_progress": "Weekly Progress",
+          "weeks": ["W1", "W2", "W3", "W4", "W5", "W6", "W7"],
+          "progress_values": [40, 65, 45, 80, 60, 75, 90],
+          "progress_label": "Progress",
+          "metrics": [
+            "Completion Rate",
+            "Knowledge Retention",
+            "Mastery Level"
+          ],
+          "key_insight": {
+            "title": "Key Insight",
+            "description": "Your retention rate improves significantly when you study in the morning and review concepts before bedtime. Try to maintain this pattern for optimal learning efficiency."
+          }
+        }
+      },
       
       "newsletter": {
         "heading": "Don't Miss Out!",

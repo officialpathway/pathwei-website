@@ -16,7 +16,7 @@ import Script from "next/script";
 const STATIC_SEO = {
   title: 'Pathway - App de Productividad Social con IA',
   description: 'Maximiza tu productividad y motivación con Pathway, la app gamificada que usa inteligencia artificial para ayudarte a alcanzar tus metas diarias. Descarga ahora.',
-  keywords: 'productividad, app de productividad, gamificación, inteligencia artificial, organización, hábitos, metas, motivación, gestión del tiempo, productividad social',
+  keywords: 'productividad, app de productividad, gamificación, inteligencia artificial, organización, hábitos, metas, motivación, gestión del tiempo, productividad social, aprendizaje, saludable',
   allowIndexing: true,
   ogTitle: 'Pathway - Productividad Social Gamificada con IA',
   ogDescription: 'Convierte tus metas en juegos, conéctate con amigos y deja que la IA te ayude a lograr más cada día con Pathway.',
@@ -45,8 +45,8 @@ const STATIC_SEO = {
     "operatingSystem": "iOS, ANDROID",
     "offers": {
       "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
+      "price": "4,99",
+      "priceCurrency": "EUR"
     },
     "description": "Maximiza tu productividad y motivación con Pathway, la app gamificada que usa inteligencia artificial para ayudarte a alcanzar tus metas diarias.",
     "aggregateRating": {
@@ -145,7 +145,7 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
-  const locale = await detectLocale(); // Detección personalizada de idioma
+  const locale = await detectLocale();
   const messages = await getMessages({ locale });
   
   // Usar datos SEO estáticos - sin llamadas a base de datos
