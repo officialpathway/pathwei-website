@@ -3,9 +3,9 @@
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import LanguageSwitcher from '@/components/locales/LanguageSwitcher';
-import Link from 'next/link';
+import Link from 'next/link'; // Switched back to next/link for direct URL control
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,12 +15,22 @@ export const Header = () => {
   const { scrollY } = useScroll();
 
   const t = useTranslations("Pathway");
+  const locale = useLocale();
 
   // Mobile detection without resize listeners
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
   }, []);
+
+  // Redirect to localized home page when on root
+  useEffect(() => {
+    // Check if we're on the root path (/)
+    if (typeof window !== 'undefined' && window.location.pathname === '/') {
+      // Redirect to the localized version
+      window.location.replace(`/${locale}`);
+    }
+  }, [locale]);
 
   // Optimized scroll handler
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -60,8 +70,8 @@ export const Header = () => {
         }}
       >
         <div className="container mx-auto px-4 h-full flex justify-between items-center">
-          {/* Logo */}
-          <Link href="/">
+          {/* Logo - hardcoding locale in the URL */}
+          <Link href={`/${locale}`}>
             <div className="flex items-center">
               <Image 
                 src="/images/pathway/logo.png"
@@ -81,7 +91,7 @@ export const Header = () => {
               ].map((item) => (
                 <a 
                   key={item.label} 
-                  href={item.href}
+                  href={`/${locale}${item.href}`}
                   className="text-white/80 hover:text-white text-sm transition-colors"
                 >
                   {item.label}
@@ -150,7 +160,7 @@ export const Header = () => {
             ].map((item) => (
               <a
                 key={item.label}
-                href={item.href}
+                href={`/${locale}${item.href}`}
                 className="py-3 text-white/80 hover:text-white border-b border-white/10 text-sm"
                 onClick={() => setMenuOpen(false)}
               >

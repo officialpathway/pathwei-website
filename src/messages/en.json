@@ -58,77 +58,96 @@
       },
 
       "features": {
-        "transform_heading": "Transform Your Learning Journey",
-        "transform_subheading": "Set goals, track progress, and achieve mastery with our adaptive learning platform",
+        "transform_heading": "Transform Your College Experience",
+        "transform_subheading": "Set goals, track progress, and achieve the perfect balance between academics, social life, and personal growth with our holistic development platform",
         "goal_setting": {
-          "title": "Smart Goal Setting",
+          "title": "Strategic Skills Development",
           "descriptions": [
-            "Our platform helps you define clear, achievable learning goals tailored to your needs and aspirations.",
-            "Whether you're learning a new language, mastering a skill, or preparing for an exam, we guide you through the entire process."
+            "Our platform helps you map essential skills for your major and charts practical learning paths to master them step by step.",
+            "Whether you need to enhance your research abilities, communication, data analysis, time management, or leadership skills, we monitor your progress toward competency."
           ],
-          "button": "Create Your First Goal",
+          "button": "Map Your Skills",
           "benefits": [
-            "Personalized learning path based on your specific needs",
-            "AI-powered recommendations to optimize your progress",
-            "Automatic adjustments based on your performance",
-            "Continuous feedback to keep you motivated"
+            "Identification of critical skills specific to your field of study",
+            "Personalized learning paths with resources, exercises, and practical projects",
+            "Visual tracking of progressive mastery for each competency",
+            "Validation of acquired skills through real-world application projects"
           ]
         },
-        "adaptive_testing": {
-          "title": "Adaptive Testing",
+        "college_organization": {
+          "title": "College Life, Perfectly Organized",
           "descriptions": [
-            "Our intelligent assessment system adapts to your knowledge level, focusing on areas where you need the most improvement.",
-            "Regular tests reinforce your learning and provide instant feedback to keep you on the right track."
+            "Balance academics, fitness, nutrition, and social life with our smart scheduling system designed specifically for busy college students."
           ],
-          "quiz_progress": "Quiz Progress",
-          "progress_percentage": "75%",
-          "continue_button": "Continue Learning",
-          "quiz_questions": [
+          "calendar": {
+            "title": "May 2025",
+            "days_of_week_0": "S",
+            "days_of_week_1": "M",
+            "days_of_week_2": "T",
+            "days_of_week_3": "W",
+            "days_of_week_4": "T",
+            "days_of_week_5": "F",
+            "days_of_week_6": "S",
+            "today_label": "Today · May 13",
+            "activities_count": "4 Activities"
+          },
+          "daily_schedule": [
             {
-              "question": "What is the primary benefit of spaced repetition?",
-              "answer": "Improving long-term memory retention",
-              "correct": true
+              "time": "7:00",
+              "activity": "Morning Workout",
+              "category": "fitness"
             },
             {
-              "question": "How many repetitions are needed to commit something to memory?",
-              "answer": "Always exactly 3 repetitions",
-              "correct": false
+              "time": "10:30",
+              "activity": "Data Structures",
+              "category": "academic"
+            },
+            {
+              "time": "1:00",
+              "activity": "Meal Prep",
+              "category": "nutrition"
+            },
+            {
+              "time": "5:30",
+              "activity": "Study Group",
+              "category": "academic"
             }
           ],
-          "your_answer": "Your answer:",
-          "benefits": [
+          "features": [
             {
-              "title": "Personalized Testing",
-              "description": "Questions adapt to your knowledge level for optimal challenge"
+              "title": "Balance Study & Life",
+              "description": "Smart scheduling that integrates classes, workouts, meals, and relaxation."
             },
             {
-              "title": "Spaced Repetition",
-              "description": "Review concepts at scientifically-optimized intervals for retention"
+              "title": "Health & Fitness Tracking",
+              "description": "Never miss workouts or meals with built-in reminders and habit tracking."
             },
             {
-              "title": "Detailed Feedback",
-              "description": "Understand why answers are correct or incorrect for better learning"
+              "title": "Campus Life Integration",
+              "description": "Sync with campus events, class schedules, and study groups automatically."
             }
           ]
         },
         "progress_analytics": {
-          "title": "Progress Analytics",
+          "title": "College Progress Analytics",
           "descriptions": [
-            "Track your learning journey with comprehensive analytics that highlight your strengths and areas for improvement.",
-            "Visualize your progress over time and gain insights into your learning patterns to optimize your study habits."
+            "Monitor your college balance with comprehensive analytics highlighting your achievements and areas for improvement across academics, physical fitness, and social life.",
+            "Visualize your progress throughout the semester and gain insights into your daily patterns to optimize your college routine."
           ],
           "weekly_progress": "Weekly Progress",
-          "weeks": ["W1", "W2", "W3", "W4", "W5", "W6", "W7"],
-          "progress_values": [40, 65, 45, 80, 60, 75, 90],
-          "progress_label": "Progress",
+          "weeks": ["M", "T", "W", "T", "F", "S", "S"],
+          "progress_values": [65, 70, 55, 75, 60, 85, 40],
+          "progress_label": "Balance",
           "metrics": [
-            "Completion Rate",
-            "Knowledge Retention",
-            "Mastery Level"
+            "Academic Performance",
+            "Physical Wellbeing",
+            "Skills Development",
+            "Social Life",
+            "Nutrition"
           ],
           "key_insight": {
             "title": "Key Insight",
-            "description": "Your retention rate improves significantly when you study in the morning and review concepts before bedtime. Try to maintain this pattern for optimal learning efficiency."
+            "description": "Peak performance achieved when combining morning exercise, proper nutrition, and focused study."
           }
         }
       },
@@ -656,41 +675,30 @@
     },
     
     "team": {
-      "page": {
-        "title": "NEURAL NETWORK",
-        "subtitle": "THE MINDS POWERING AI HAVEN LABS",
-        "highlight_words": ["NETWORK"],
-        "highlight_color": "neon-pink",
-        
-        "team_section": {
-          "header": "AI HAVEN LABS",
-          "subtitle": "> MEET THE ARCHITECTS OF TOMORROW",
-          "key_contributions": "KEY CONTRIBUTIONS:",
-          "connect_button": "CONNECT ON LINKEDIN"
+      "title": "Our Team",
+      "subtitle": "Meet the brilliant minds behind our success",
+      "view_profile": "View Profile",
+      "connect": "Connect",
+      "members": [
+        {
+          "name": "Alvaro Rios Rodriguez",
+          "role": "Chief Executive Officer",
+          "description": "Former Google executive with over 15 years of experience in educational technology.",
+          "linkedin": "LinkedIn"
         },
-        
-        "investors_section": {
-          "title": "INVESTORS",
-          "emoji": "🚀",
-          "heading": "Looking for Strategic Investors",
-          "description": "We're currently bootstrapping our vision but are open to conversations with forward-thinking investors who believe in the future of AI-powered productivity."
+        {
+          "name": "Rayan Chairi Ben Yamna Boulaich",
+          "role": "Chief Technology Officer",
+          "description": "AI researcher and full-stack developer passionate about leveraging technology for education.",
+          "linkedin": "LinkedIn"
         },
-        
-        "partners_section": {
-          "title": "PARTNERS",
-          "emoji": "🤝",
-          "heading": "Future Collaboration Opportunities",
-          "description": "We're actively seeking partnerships with innovative companies in the AI and productivity space. Let's explore how we can create synergies together."
-        },
-        
-        "join_cta": {
-          "pre_highlight": "READY TO ",
-          "highlight": "JOIN",
-          "post_highlight": " THE NETWORK?",
-          "description": "We're looking for talented individuals to join our growing team.",
-          "button_text": "EXPLORE CAREER OPPORTUNITIES"
+        {
+          "name": "Maria Victoria Sanchez Serrano",
+          "role": "Chief Marketing Officer",
+          "description": "Former university dean with extensive knowledge in curriculum development.",
+          "linkedin": "LinkedIn"
         }
-      }
+      ]
     }
   }
 }

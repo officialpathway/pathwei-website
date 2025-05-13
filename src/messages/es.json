@@ -15,7 +15,7 @@
           "part1": "Potencia Tu",
           "part2": "Productividad Con IA"
         },
-        "subheading": "La primera plataforma que combina inteligencia artificial con gamificación y técnicas de aprendizaje probadas para resultados extraordinarios.",
+        "subheading": "La primera plataforma que combina inteligencia artificial con gamificación y rutinas probadas para resultados extraordinarios.",
         "cta": "Comienza por solo",
         "demo_cta": "Ver Demo",
         "price": "€4.99/mes",
@@ -24,7 +24,7 @@
       
       "subhero": {
         "heading": {
-          "part1": "LA",
+          "part1": "¡LA",
           "part2": "REVOLUCIÓN",
           "part3": "COMIENZA CONTIGO!"
         },
@@ -58,77 +58,96 @@
       },
 
       "features": {
-        "transform_heading": "Transforma tu Camino de Aprendizaje",
-        "transform_subheading": "Establece metas, monitoriza tu progreso y alcanza el dominio con nuestra plataforma de aprendizaje adaptativo",
+        "transform_heading": "Transforma tu Experiencia Universitaria",
+        "transform_subheading": "Establece metas, monitoriza tu progreso y alcanza el equilibrio perfecto entre lo académico, social y personal con nuestra plataforma de desarrollo integral",
         "goal_setting": {
-          "title": "Establecimiento Inteligente de Objetivos",
+          "title": "Desarrollo Estratégico de Habilidades",
           "descriptions": [
-            "Nuestra plataforma te ayuda a definir objetivos de aprendizaje claros y alcanzables, adaptados a tus necesidades y aspiraciones.",
-            "Ya sea que estés aprendiendo un nuevo idioma, dominando una habilidad o preparándote para un examen, te guiamos a través de todo el proceso."
+            "Nuestra plataforma te ayuda a mapear las habilidades esenciales para tu carrera y traza rutas de aprendizaje prácticas para dominarlas paso a paso.",
+            "Ya sea que necesites mejorar tus habilidades de investigación, comunicación, análisis de datos, gestión del tiempo o liderazgo, monitorizamos tu progreso hacia la competencia."
           ],
-          "button": "Crea tu Primer Objetivo",
+          "button": "Mapea tus Habilidades",
           "benefits": [
-            "Ruta de aprendizaje personalizada basada en tus necesidades específicas",
-            "Recomendaciones impulsadas por IA para optimizar tu progreso",
-            "Ajustes automáticos basados en tu rendimiento",
-            "Retroalimentación continua para mantenerte motivado"
+            "Identificación de habilidades críticas específicas para tu campo de estudio",
+            "Rutas de aprendizaje personalizadas con recursos, ejercicios y proyectos prácticos",
+            "Seguimiento visual del dominio progresivo de cada competencia",
+            "Validación de habilidades adquiridas mediante proyectos de aplicación real"
           ]
         },
-        "adaptive_testing": {
-          "title": "Evaluación Adaptativa",
+        "college_organization": {
+          "title": "Vida Universitaria, Perfectamente Organizada",
           "descriptions": [
-            "Nuestro sistema de evaluación inteligente se adapta a tu nivel de conocimiento, centrándose en las áreas donde más necesitas mejorar.",
-            "Las pruebas regulares refuerzan tu aprendizaje y proporcionan retroalimentación instantánea para mantenerte en el camino correcto."
+            "Equilibra lo académico, fitness, nutrición y vida social con nuestro sistema de planificación inteligente diseñado específicamente para estudiantes universitarios ocupados."
           ],
-          "quiz_progress": "Progreso del Cuestionario",
-          "progress_percentage": "75%",
-          "continue_button": "Continuar Aprendiendo",
-          "your_answer": "Tu respuesta:",
-          "quiz_questions": [
+          "calendar": {
+            "title": "Mayo 2025",
+            "days_of_week_0": "D",
+            "days_of_week_1": "L",
+            "days_of_week_2": "M",
+            "days_of_week_3": "X",
+            "days_of_week_4": "J",
+            "days_of_week_5": "V",
+            "days_of_week_6": "S",
+            "today_label": "Hoy · 13 de Mayo",
+            "activities_count": "4 Actividades"
+          },
+          "daily_schedule": [
             {
-              "question": "¿Cuál es el principal beneficio de la repetición espaciada?",
-              "answer": "Mejorar la retención de memoria a largo plazo",
-              "correct": true
+              "time": "7:00",
+              "activity": "Entrenamiento Matutino",
+              "category": "fitness"
             },
             {
-              "question": "¿Cuántas repeticiones se necesitan para memorizar algo?",
-              "answer": "Siempre exactamente 3 repeticiones",
-              "correct": false
+              "time": "10:30",
+              "activity": "Estructuras de Datos",
+              "category": "academic"
+            },
+            {
+              "time": "13:00",
+              "activity": "Preparación de Comida",
+              "category": "nutrition"
+            },
+            {
+              "time": "17:30",
+              "activity": "Grupo de Estudio",
+              "category": "academic"
             }
           ],
-          "benefits": [
+          "features": [
             {
-              "title": "Pruebas Personalizadas",
-              "description": "Las preguntas se adaptan a tu nivel de conocimiento para un desafío óptimo"
+              "title": "Equilibra Estudio y Vida",
+              "description": "Planificación inteligente que integra clases, entrenamientos, comidas y relajación."
             },
             {
-              "title": "Repetición Espaciada",
-              "description": "Repasa conceptos en intervalos científicamente optimizados para la retención"
+              "title": "Seguimiento de Salud y Fitness",
+              "description": "Nunca te pierdas entrenamientos o comidas con recordatorios integrados y seguimiento de hábitos."
             },
             {
-              "title": "Retroalimentación Detallada",
-              "description": "Comprende por qué las respuestas son correctas o incorrectas para un mejor aprendizaje"
+              "title": "Integración con la Vida Universitaria",
+              "description": "Sincronización automática con eventos del campus, horarios de clases y grupos de estudio."
             }
           ]
         },
         "progress_analytics": {
-          "title": "Análisis de Progreso",
+          "title": "Análisis de Progreso Universitario",
           "descriptions": [
-            "Monitorea tu camino de aprendizaje con análisis completos que destacan tus fortalezas y áreas de mejora.",
-            "Visualiza tu progreso a lo largo del tiempo y obtén información sobre tus patrones de aprendizaje para optimizar tus hábitos de estudio."
+            "Monitorea tu equilibrio universitario con análisis completos que destacan tus logros y áreas de mejora en lo académico, físico y social.",
+            "Visualiza tu progreso a lo largo del semestre y obtén información sobre tus patrones diarios para optimizar tu rutina universitaria."
           ],
           "weekly_progress": "Progreso Semanal",
-          "weeks": ["S1", "S2", "S3", "S4", "S5", "S6", "S7"],
-          "progress_values": [40, 65, 45, 80, 60, 75, 90],
-          "progress_label": "Progreso",
+          "weeks": ["L", "M", "X", "J", "V", "S", "D"],
+          "progress_values": [65, 70, 55, 75, 60, 85, 40],
+          "progress_label": "Equilibrio",
           "metrics": [
-            "Tasa de Finalización",
-            "Retención de Conocimiento",
-            "Nivel de Dominio"
+            "Rendimiento Académico",
+            "Bienestar Físico",
+            "Desarrollo de Habilidades",
+            "Vida Social",
+            "Nutrición"
           ],
           "key_insight": {
             "title": "Perspectiva Clave",
-            "description": "Tu tasa de retención mejora significativamente cuando estudias por la mañana y repasas conceptos antes de acostarte. Intenta mantener este patrón para una eficiencia de aprendizaje óptima."
+            "description": "Mejor rendimiento cuando combinas ejercicio matutino, nutrición adecuada y estudio enfocado."
           }
         }
       },
@@ -656,41 +675,30 @@
     },
     
     "team": {
-      "page": {
-        "title": "RED NEURONAL",
-        "subtitle": "LAS MENTES DETRÁS DE AI HAVEN LABS",
-        "highlight_words": ["RED"],
-        "highlight_color": "neon-pink",
-        
-        "team_section": {
-          "header": "AI HAVEN LABS",
-          "subtitle": "> CONOCE A LOS ARQUITECTOS DEL MAÑANA",
-          "key_contributions": "CONTRIBUCIONES CLAVE:",
-          "connect_button": "CONECTAR EN LINKEDIN"
+      "title": "Nuestro Equipo",
+      "subtitle": "Conoce a las mentes brillantes detrás de nuestro éxito",
+      "view_profile": "Ver Perfil",
+      "connect": "Conectar",
+      "members": [
+        {
+          "name": "Alvaro Rios Rodriguez",
+          "role": "Directora Ejecutivo",
+          "description": "Ex ejecutiva de Google con más de 15 años de experiencia en tecnología educativa.",
+          "linkedin": "LinkedIn"
         },
-        
-        "investors_section": {
-          "title": "INVERSORES",
-          "emoji": "🚀",
-          "heading": "Buscando Inversores Estratégicos",
-          "description": "Actualmente estamos financiando nuestra visión con recursos propios, pero estamos abiertos a conversaciones con inversores visionarios que crean en el futuro de la productividad impulsada por IA."
+        {
+          "name": "Rayan Chairi Ben Yamna Boulaich",
+          "role": "Director de Tecnología",
+          "description": "Investigador de IA y desarrollador full-stack apasionado por aprovechar la tecnología para la educación.",
+          "linkedin": "LinkedIn"
         },
-        
-        "partners_section": {
-          "title": "SOCIOS",
-          "emoji": "🤝",
-          "heading": "Oportunidades de Colaboración Futura",
-          "description": "Estamos buscando activamente asociaciones con empresas innovadoras en el espacio de IA y productividad. Exploremos cómo podemos crear sinergias juntos."
-        },
-        
-        "join_cta": {
-          "pre_highlight": "¿LISTO PARA ",
-          "highlight": "UNIRTE",
-          "post_highlight": " A LA RED?",
-          "description": "Estamos buscando personas talentosas para unirse a nuestro equipo en crecimiento.",
-          "button_text": "EXPLORAR OPORTUNIDADES DE CARRERA"
+        {
+          "name": "Maria Victoria Sanchez Serrano",
+          "role": "Directora de Marketing",
+          "description": "Ex decana universitaria con amplio conocimiento en desarrollo curricular.",
+          "linkedin": "LinkedIn"
         }
-      }
+      ]
     }
   }
 }

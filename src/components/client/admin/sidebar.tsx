@@ -17,10 +17,10 @@ import { useRouter } from 'next/navigation';
 const navItems = [
   { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
   { name: 'Users', href: '/admin/users', icon: Users },
-  { name: 'Content', href: '/admin/content', icon: FileText },
+  { name: 'Content', href: '/admin/maintenance', icon: FileText },
   { name: 'Analytics', href: '/admin/analytics', icon: BarChart },
-  { name: 'Activity', href: '/admin/activity', icon: Activity },
-  { name: 'Schedule', href: '/admin/schedule', icon: Calendar },
+  { name: 'Activity', href: '/admin/maintenance', icon: Activity },
+  { name: 'Schedule', href: '/admin/maintenance', icon: Calendar },
   { name: 'Settings', href: '/admin/settings', icon: Settings },
   { name: 'Profile', href: '/admin/profile', icon: User },
 ];

@@ -5,13 +5,17 @@ import FeedbackSection from '@/components/client/pathway/FeedbackSection';
 import DotFollower from '@/components/client/pathway/DotFollower';
 import { NeonFuturismBackground } from '@/components/client/pathway/NeonBackground';
 import CurvedBorder, { GameCurvedBorder } from '@/components/client/pathway/CurvedBorder';
+import { useTranslations } from 'next-intl';
 
 // Import our section components
 import GoalSettingSection from '@/components/client/pathway/GoalSettingSection';
-import AdaptiveTestingSection from '@/components/client/pathway/AdaptiveTestingSection';
 import ProgressAnalyticsSection from '@/components/client/pathway/ProgressAnalyticsSection';
+import CollegeLifeOrganizationSection from '@/components/client/pathway/CollegeLifeOrganizationSection';
 
 export default function Home() {
+
+  const t = useTranslations('Pathway.ui.features');
+
   return (
     <div className="flex flex-col min-h-screen bg-white overflow-x-hidden w-full">
       <DotFollower />
@@ -29,19 +33,19 @@ export default function Home() {
             <div className="space-y-8">
               <h2 className="text-5xl md:text-6xl font-bold text-white leading-tight">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-orange-500 pt-4">
-                  Transform Your Learning Journey
+                  {t("transform_heading")}
                 </span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Set goals, track progress, and achieve mastery with our adaptive learning platform
+                {t("transform_subheading")}
               </p>
             </div>
           </div>
           
           {/* Content Sections */}
           <div className="w-full max-w-8xl mx-auto">
+            <CollegeLifeOrganizationSection />
             <GoalSettingSection />
-            <AdaptiveTestingSection />
             <ProgressAnalyticsSection />
           </div>
           

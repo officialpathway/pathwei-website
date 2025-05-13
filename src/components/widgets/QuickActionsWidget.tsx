@@ -38,7 +38,7 @@ export function QuickActionsWidget({
     {
       title: 'Manage Content',
       icon: FileText,
-      url: '/admin/content'
+      url: '/admin/maintenance'
     },
     {
       title: 'Manage Users',

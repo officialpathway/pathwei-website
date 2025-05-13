@@ -1,5 +1,5 @@
 {
-  "name": "Pathway - AI Productivity Partner",
+  "name": "Pathway - AI Productivity",
   "short_name": "Pathway",
   "description": "AI-driven goal tracking with social gamification to boost your productivity",
   "start_url": "/suite/pathway?source=pwa",
@@ -39,12 +39,6 @@
       "sizes": "1920x1080",
       "type": "image/png"
     }
-  ],
-  "features": [
-    "Cross Platform",
-    "AI Goal Suggestions",
-    "Progress Tracking",
-    "Social Features"
   ],
   "categories": ["productivity", "social"],
   "shortcuts": [

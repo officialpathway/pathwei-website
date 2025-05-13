@@ -14,17 +14,26 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'mypathwayapp.com'
+      },
+      {
+        protocol: 'https',
         hostname: 'zfourrtiscdrogzcwxde.supabase.co',
       }
     ],
+  },
+  webpack: (config, { dev }) => {
+    // Improve source maps in development mode
+    if (dev) {
+      config.devtool = 'eval-source-map';
+    }
+    
+    return config;
   },
   reactStrictMode: true,
   
   async rewrites() {
     return [
-      // Add new rewrites for admin routes in app router
-      // ... add similar rewrites for other admin routes
-      
       {
         source: '/:locale/admin/:path*',
         destination: '/admin/:path*',

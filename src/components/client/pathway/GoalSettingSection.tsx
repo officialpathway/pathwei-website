@@ -14,8 +14,8 @@ const GoalSettingSection = () => {
   return (
     <ContentSection
       title={t("title")}
-      descriptions={[t("descriptions.0"), t("descriptions.1")]}
-      textSide="left"
+      descriptions={[t("descriptions.1")]}
+      textSide="right"
       bgGradient="from-amber-50 to-orange-50"
       animationVariant="slide"
       visual={
