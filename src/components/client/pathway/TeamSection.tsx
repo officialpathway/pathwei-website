@@ -61,6 +61,7 @@ const TeamSection = () => {
                 name={member.name}
                 role={member.role}
                 description={member.description}
+                linkedinUrl={member.linkedinUrl}
               />
             ))}
           </div>
