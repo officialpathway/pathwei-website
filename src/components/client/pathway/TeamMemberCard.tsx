@@ -1,4 +1,3 @@
-// components/client/pathway/TeamMemberCard.jsx
 "use client";
 
 import React, { useState } from 'react';
@@ -10,9 +9,16 @@ interface TeamMemberCardProps {
   name: string;
   role: string;
   description: string;
+  linkedinUrl?: string; // Added LinkedIn URL as an optional prop
 }
 
-const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ imgSrc, name, role, description }) => {
+const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ 
+  imgSrc, 
+  name, 
+  role, 
+  description, 
+  linkedinUrl = "#" // Default to "#" if no URL provided
+}) => {
   const t = useTranslations('Pathway.team');
   const [isHovered, setIsHovered] = useState(false);
   
@@ -26,11 +32,8 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ imgSrc, name, role, des
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Gradient overlay that appears on hover */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-t from-indigo-900/90 to-transparent opacity-0 transition-opacity duration-300 z-10"
-        style={{ opacity: isHovered ? 1 : 0 }}
-      />
+      {/* Gradient overlay that appears on hover - reduced opacity for better visibility */}
+
       
       {/* Team member image */}
       <div className="aspect-[3/4] relative overflow-hidden">
@@ -43,11 +46,11 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ imgSrc, name, role, des
         />
       </div>
       
-      {/* Content overlay */}
+      {/* Content overlay - added semi-transparent background to improve text visibility */}
       <div className="absolute bottom-0 left-0 right-0 p-4 transition-all duration-300"
         style={{ 
           transform: isHovered ? 'translateY(0)' : 'translateY(calc(100% - 80px))',
-          background: isHovered ? 'transparent' : 'rgba(255, 255, 255, 0.9)'
+          background: isHovered ? 'rgba(30, 27, 75, 0.7)' : 'rgba(255, 255, 255, 0.9)'
         }}
       >
         <h3 className={`font-semibold text-lg mb-1 transition-colors duration-300 ${isHovered ? 'text-white' : 'text-gray-800'}`}>
@@ -57,7 +60,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ imgSrc, name, role, des
           {role}
         </p>
         
-        {/* Description and buttons that appear on hover */}
+        {/* Description and button that appear on hover */}
         <div className="transition-all duration-300" 
           style={{ 
             opacity: isHovered ? 1 : 0,
@@ -65,17 +68,27 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ imgSrc, name, role, des
             pointerEvents: isHovered ? 'auto' : 'none'
           }}
         >
-          <p className="mt-3 text-sm text-white/90 mb-4">
+          <p className="mt-3 text-sm text-white mb-4">
             {description}
           </p>
           
-          <div className="flex space-x-2">
-            <button className="px-3 py-1.5 text-xs rounded-full bg-white text-indigo-700 font-medium hover:bg-indigo-50 transition-colors">
-              {t('view_profile')}
-            </button>
-            <button className="px-3 py-1.5 text-xs rounded-full bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors">
+          <div className="flex">
+            <a 
+              href={linkedinUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="px-4 py-2 text-sm rounded-full bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors flex items-center"
+            >
               {t('connect')}
-            </button>
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="h-4 w-4 ml-2" 
+                fill="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path d="M19 0h-14c-2.8 0-5 2.2-5 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5v-14c0-2.8-2.2-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.3c-1 0-1.8-.8-1.8-1.8s.8-1.8 1.8-1.8 1.8.8 1.8 1.8-.8 1.8-1.8 1.8zm13.5 12.3h-3v-5.6c0-1.1 0-2.5-1.5-2.5s-1.8 1.2-1.8 2.5v5.6h-3v-11h2.8v1.3h.1c.4-.8 1.4-1.5 2.8-1.5 3 0 3.6 2 3.6 4.5v6.7z" />
+              </svg>
+            </a>
           </div>
         </div>
       </div>

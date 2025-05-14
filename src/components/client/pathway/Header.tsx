@@ -32,15 +32,22 @@ export const Header = () => {
     }
   }, [locale]);
 
-  // Optimized scroll handler
+  // Optimized scroll handler - now also closes menu when scrolling down
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (!ticking.current) {
       requestAnimationFrame(() => {
+        // Close menu when scrolling down (any amount)
+        if (latest > lastScrollY.current && menuOpen) {
+          setMenuOpen(false);
+        }
+        
+        // Handle header visibility
         if (latest > lastScrollY.current && latest > 50) {
           setHidden(true);
         } else {
           setHidden(false);
         }
+        
         lastScrollY.current = latest;
         ticking.current = false;
       });
@@ -149,14 +156,14 @@ export const Header = () => {
             display: menuOpen ? 'block' : 'none'
           }}
           transition={{ duration: 0.2 }}
-          className="fixed top-16 left-0 w-full z-40 bg-black/95"
+          className="fixed top-16 left-0 w-full z-40 bg-black/50 backdrop-blur-sm"
           style={{
             pointerEvents: menuOpen ? 'auto' : 'none'
           }}
         >
           <div className="container mx-auto px-4 py-2 flex flex-col">
             {[
-              { label: t("header-team"), href: '/team' },
+              { label: t("ui.header.team"), href: '/team' },
             ].map((item) => (
               <a
                 key={item.label}

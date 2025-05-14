@@ -16,5 +16,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function TermsPage() {
-  return <TermsAndConditionsPage />;
+  return (
+    <main>
+      <TermsAndConditionsPage />
+    </main>
+  );
 }

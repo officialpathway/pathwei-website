@@ -22,14 +22,6 @@ const nextConfig: NextConfig = {
       }
     ],
   },
-  webpack: (config, { dev }) => {
-    // Improve source maps in development mode
-    if (dev) {
-      config.devtool = 'eval-source-map';
-    }
-    
-    return config;
-  },
   reactStrictMode: true,
   
   async rewrites() {

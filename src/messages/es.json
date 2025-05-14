@@ -183,7 +183,7 @@
         "connect": "Conéctate con nosotros",
         "about_pathway": "Acerca de Pathway",
         "rights": "© 2025 Pathway. Todos los derechos reservados.",
-        "privacy_policy": "Nuestra política de privacidad.",
+        "privacy_policy": "Política de privacidad.",
         "terms_conditions": "Términos y condiciones."
       },
       
@@ -682,20 +682,20 @@
       "members": [
         {
           "name": "Alvaro Rios Rodriguez",
-          "role": "Directora Ejecutivo",
-          "description": "Ex ejecutiva de Google con más de 15 años de experiencia en tecnología educativa.",
+          "role": "Director Ejecutivo",
+          "description": "Desarrolador full-stack junior y estudiante de Ingeniería.",
           "linkedin": "LinkedIn"
         },
         {
           "name": "Rayan Chairi Ben Yamna Boulaich",
           "role": "Director de Tecnología",
-          "description": "Investigador de IA y desarrollador full-stack apasionado por aprovechar la tecnología para la educación.",
+          "description": "Diseñador de UI y UX. Estudiante de Ingeniería Informática",
           "linkedin": "LinkedIn"
         },
         {
           "name": "Maria Victoria Sanchez Serrano",
           "role": "Directora de Marketing",
-          "description": "Ex decana universitaria con amplio conocimiento en desarrollo curricular.",
+          "description": "Estudiante universitaria de Ingeniería con experiencia en redes sociales.",
           "linkedin": "LinkedIn"
         }
       ]

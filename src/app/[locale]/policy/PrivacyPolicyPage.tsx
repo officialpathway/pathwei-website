@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useTranslations } from 'next-intl';
-import Link from 'next/link';
+import CurvedBorder from "@/components/client/pathway/CurvedBorder";
 
 const PrivacyPolicyPage = () => {
   const t = useTranslations("Pathway.legal.privacy");
@@ -44,8 +44,8 @@ const PrivacyPolicyPage = () => {
   ];
 
   return (
-    <div className="bg-white text-gray-800">
-      <div className="container mx-auto px-4 pt-30 pb-16 max-w-4xl">
+    <div className="bg-white text-gray-800 pt-24">
+      <div className="container mx-auto px-4 max-w-4xl">
         {/* Header */}
         <div className="mb-12 text-center">
           <h1 className="text-3xl sm:text-4xl font-bold mb-4">{t("page_title")}</h1>
@@ -128,21 +128,13 @@ const PrivacyPolicyPage = () => {
         </section>
 
         {/* Contact */}
-        <section className="mb-10">
+        <section>
           <h2 className="text-2xl font-bold mb-4">{t("sections.contact.title")}</h2>
           <p className="mb-4">{t("sections.contact.paragraph")}</p>
         </section>
-
-        {/* Back to home link */}
-        <div className="mt-12 text-center">
-          <Link 
-            href="/" 
-            className="inline-block px-6 py-3 bg-secondary text-white font-medium rounded-lg hover:bg-opacity-90 transition-colors duration-300"
-          >
-            {t("back_to_home")}
-          </Link>
-        </div>
       </div>
+
+      <CurvedBorder fillColor='fill-black' />
     </div>
   );
 };

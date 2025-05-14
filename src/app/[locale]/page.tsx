@@ -17,7 +17,7 @@ export default function Home() {
   const t = useTranslations('Pathway.ui.features');
 
   return (
-    <div className="flex flex-col min-h-screen bg-white overflow-x-hidden w-full">
+    <div className="flex flex-col min-h-screen bg-white overflow-x-hidden w-full -mb-1">
       <DotFollower />
       <main className="flex-grow w-full overflow-x-hidden">
         <NeonFuturismBackground>
@@ -27,7 +27,7 @@ export default function Home() {
         </NeonFuturismBackground>
         
         {/* Functionality Section - Centered */}
-        <section id='demo-section' className="relative w-full min-h-screen flex flex-col items-center justify-center bg-white px-4 pt-16 overflow-hidden">
+        <section id='demo-section' className="relative -mt-1 w-full min-h-screen flex flex-col items-center justify-center bg-white px-4 pt-16 overflow-hidden">
           <div className="text-center space-y-16 z-10 mb-16 max-w-8xl mx-auto w-full">
             {/* Section Header */}
             <div className="space-y-8">
