@@ -81,7 +81,7 @@ export const Header = () => {
           <Link href={`/${locale}`}>
             <div className="flex items-center">
               <Image 
-                src="/images/pathway/logo.png"
+                src="/icons/pathway/favicon.ico"
                 alt="Pathway"
                 width={32}
                 height={32}

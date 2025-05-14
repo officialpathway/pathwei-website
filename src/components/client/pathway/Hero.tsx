@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import Modal from "./PricingModal";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from 'next-intl';
 
 const STATIC_PRICE = 4.99;
@@ -11,25 +10,33 @@ const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const t = useTranslations("Pathway");
 
-  const trackClick = async () => {
-    try {
-      await fetch('/api/admin/price-A-B/track-price', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ price: STATIC_PRICE }),
-      });
-      console.log("tracked correctly")
-    } catch (error) {
-      console.error('Error tracking price click:', error);
+  // Close modal with escape key
+  useEffect(() => {
+    const handleEscapeKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isModalOpen) {
+        setIsModalOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscapeKey);
+    return () => document.removeEventListener("keydown", handleEscapeKey);
+  }, [isModalOpen]);
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
     }
-  };
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isModalOpen]);
 
   return (
     <>
       <section className="relative bg-transparent overflow-hidden h-screen flex items-center justify-center">
-
         {/* Content */}
         <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
           <motion.div
@@ -71,23 +78,13 @@ const Hero = () => {
                 type="button" 
                 className="relative overflow-hidden group bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-4 
                           rounded-full font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-                onClick={() => {
-                  setIsModalOpen(true);
-                  trackClick();
-                }}
+                onClick={() => setIsModalOpen(true)}
               >
                 <span className="relative z-10">
                   {`${t("ui.hero.cta")} ${STATIC_PRICE.toFixed(2)}€`}
                 </span>
                 <span className="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </button>
-
-              <Modal 
-                isOpen={isModalOpen} 
-                onClose={() => setIsModalOpen(false)} 
-                price={STATIC_PRICE}
-                trackClick={trackClick}
-              />
 
               <button 
                 type="button" 
@@ -98,7 +95,7 @@ const Hero = () => {
                   if (demoSection) {
                     demoSection.scrollIntoView({ 
                       behavior: 'smooth',
-                      block: 'start' // Explicitly set scroll position
+                      block: 'start'
                     });
                   }
                 }}
@@ -148,6 +145,59 @@ const Hero = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Modal - Built directly into the Hero component */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50"
+              onClick={() => setIsModalOpen(false)}
+            />
+            
+            {/* Modal Content */}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", duration: 0.4 }}
+              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-gray-900 to-gray-800 
+                        rounded-2xl shadow-2xl p-8 max-w-md w-full z-50 text-center"
+            >
+              <button
+                title="close modal"
+                type="button"
+                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+                onClick={() => setIsModalOpen(false)}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+              
+              <div className="py-8 px-4">
+                <h3 className="text-2xl font-bold text-white mb-6">Aún no disponible</h3>
+                <p className="text-gray-300 mb-6">
+                  Estamos trabajando para lanzar pronto. ¡Gracias por tu interés!
+                </p>
+                <button
+                  className="w-full bg-gradient-to-r from-amber-500 to-orange-600 text-white px-6 py-3 
+                            rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  Cerrar
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 };
