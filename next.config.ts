@@ -10,10 +10,6 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'aihavenlabs.com',
-      },
-      {
-        protocol: 'https',
         hostname: 'mypathwayapp.com'
       },
       {
@@ -23,18 +19,29 @@ const nextConfig: NextConfig = {
     ],
   },
   reactStrictMode: true,
-  
   async rewrites() {
     return [
+      // Admin paths should not have locale prefixes
       {
         source: '/:locale/admin/:path*',
         destination: '/admin/:path*',
         locale: false
       },
+      // API paths should not have locale prefixes
       {
         source: '/:locale/api/:path*',
         destination: '/api/:path*',
         locale: false
+      }
+    ]
+  },
+  // Add redirects to ensure root path goes to default locale
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/es',
+        permanent: true,
       }
     ]
   }

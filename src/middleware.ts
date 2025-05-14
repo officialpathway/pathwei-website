@@ -6,9 +6,6 @@ import { updateSession } from '@/lib/utils/supabase/middleware';
 /**
  * Configuration constants
  */
-// Price options for A/B testing (in USD)
-const PRICE_OPTIONS = [4.99, 7.49, 9.99];
-
 // Supported locale codes
 const LOCALES = ['en', 'es'];
 
@@ -178,32 +175,16 @@ export default async function middleware(request: NextRequest): Promise<NextResp
   }
   
   /**
-   * 3. Handle admin routes - check both direct admin routes and localized admin routes
+   * 3. Handle admin routes
    */
-  const adminPaths = ['/login', '/', '/users', '/settings', '/profile', '/content', 
-    '/forgot-password', '/reset-password', '/activity', '/analytics', '/manage-users', '/system-logs'];
-  
-  // Check if this is a direct admin route
-  const isDirectAdminRoute = adminPaths.some(route => 
-    pathname === route || pathname.startsWith(`${route}/`)
-  );
-  
-  // Check if this is a localized admin route
-  const isLocalizedAdminRoute = LOCALES.some(locale => 
-    adminPaths.some(route => 
-      pathname === `/${locale}${route}` || pathname.startsWith(`/${locale}${route}/`)
-    )
-  );
-  
-  // Handle admin authentication
-  if (isDirectAdminRoute || isLocalizedAdminRoute) {
+  if (pathname.startsWith('/admin')) {
     // Skip authentication for login and password recovery pages
-    if (pathname.endsWith('/login') || pathname.endsWith('/forgot-password') || pathname.endsWith('/reset-password')) {
+    if (pathname === '/admin/login' || pathname === '/admin/forgot-password' || pathname === '/admin/reset-password') {
       const response = NextResponse.next();
       return applyCacheHeaders(request, response);
     }
     
-    // Process authentication
+    // Process authentication for other admin routes
     const authResponse = await updateSession(request);
     return applyCacheHeaders(request, authResponse);
   }
@@ -221,28 +202,14 @@ export default async function middleware(request: NextRequest): Promise<NextResp
   let response = intlMiddleware(request);
   
   /**
-   * 6. Handle price A/B testing
-   */
-  const priceCookie = request.cookies.get('selected_price');
-  if (!priceCookie?.value) {
-    response.cookies.set({
-      name: 'selected_price',
-      value: PRICE_OPTIONS[Math.floor(Math.random() * PRICE_OPTIONS.length)].toString(),
-      maxAge: 60 * 60 * 24 * 30, // 30 days
-      sameSite: 'lax',
-      secure: process.env.NODE_ENV === 'production'
-    });
-  }
-
-  /**
-   * 7. Apply CORS headers
+   * 6. Apply CORS headers
    */
   response = handleCORS(request, response);
   
   /**
-   * 8. Apply cache headers
+   * 7. Apply cache headers
+   */
   response = applyCacheHeaders(request, response);
-  */
 
   return response;
 }
@@ -261,45 +228,7 @@ export const config = {
     '/api/seo-data.json',
     // Match static assets for caching
     '/:path*\\.(js|css|jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf)',
-    // Match admin routes directly (the actual URL patterns)
-    '/login',
-    '/forgot-password',
-    '/reset-password',
-    '/users',
-    '/users/:path*',
-    '/settings',
-    '/settings/:path*',
-    '/profile',
-    '/profile/:path*',
-    '/content',
-    '/content/:path*',
-    '/activity',
-    '/activity/:path*',
-    '/analytics',
-    '/analytics/:path*',
-    '/manage-users',
-    '/manage-users/:path*',
-    '/system-logs',
-    '/system-logs/:path*',
-    // Match localized admin routes
-    '/:locale/login',
-    '/:locale/forgot-password',
-    '/:locale/reset-password',
-    '/:locale/users',
-    '/:locale/users/:path*',
-    '/:locale/settings',
-    '/:locale/settings/:path*',
-    '/:locale/profile',
-    '/:locale/profile/:path*',
-    '/:locale/content',
-    '/:locale/content/:path*',
-    '/:locale/activity',
-    '/:locale/activity/:path*',
-    '/:locale/analytics',
-    '/:locale/analytics/:path*',
-    '/:locale/manage-users',
-    '/:locale/manage-users/:path*',
-    '/:locale/system-logs',
-    '/:locale/system-logs/:path*'
+    // Match admin routes
+    '/admin/:path*'
   ]
 };

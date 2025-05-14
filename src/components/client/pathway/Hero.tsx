@@ -1,48 +1,24 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Modal from "./PricingModal";
 import { useTranslations } from 'next-intl';
 
-const PRICE_OPTIONS = [4.99, 7.49, 9.99];
+const STATIC_PRICE = 4.99;
 
 const Hero = () => {
-
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [price, setPrice] = useState(PRICE_OPTIONS[0]);
-  const [priceLoaded, setPriceLoaded] = useState(false);
-
   const t = useTranslations("Pathway");
 
-  // Set random price on component mount
-  useEffect(() => {
-    // Check for existing cookie first
-    const cookiePrice = document.cookie
-      .split('; ')
-      .find(row => row.startsWith('selected_price='))
-      ?.split('=')[1];
-    
-    if (cookiePrice) {
-      setPrice(Number(cookiePrice));
-      setPriceLoaded(true);
-      return;
-    }
-    
-    // Fallback to random selection
-    const randomPrice = PRICE_OPTIONS[Math.floor(Math.random() * PRICE_OPTIONS.length)];
-    setPrice(randomPrice);
-    setPriceLoaded(true);
-  }, []);
-
-  const trackClick = async (clickedPrice: number) => {
+  const trackClick = async () => {
     try {
       await fetch('/api/admin/price-A-B/track-price', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ price: clickedPrice }),
+        body: JSON.stringify({ price: STATIC_PRICE }),
       });
       console.log("tracked correctly")
     } catch (error) {
@@ -90,18 +66,18 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 0.8 }}
             >
-              {/* Modal Button for tracking */}
+              {/* Modal Button with static price */}
               <button 
                 type="button" 
                 className="relative overflow-hidden group bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-4 
                           rounded-full font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                 onClick={() => {
                   setIsModalOpen(true);
-                  trackClick(price);
+                  trackClick();
                 }}
               >
                 <span className="relative z-10">
-                  {priceLoaded ? `${t("ui.hero.cta")} $${price.toFixed(2)}` : `${t("ui.loading")}`}
+                  {`${t("ui.hero.cta")} ${STATIC_PRICE.toFixed(2)}€`}
                 </span>
                 <span className="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </button>
@@ -109,7 +85,7 @@ const Hero = () => {
               <Modal 
                 isOpen={isModalOpen} 
                 onClose={() => setIsModalOpen(false)} 
-                price={price}
+                price={STATIC_PRICE}
                 trackClick={trackClick}
               />
 
