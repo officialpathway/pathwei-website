@@ -12,7 +12,7 @@ import axios from 'axios';
 
 // Supabase
 import { User } from '@supabase/supabase-js';
-import { supabase } from '@/lib/new/supabase';
+import { supabase } from '@/lib/auth/supabase';
 
 // Components import
 import { Button } from '@/components/ui/button';
@@ -65,11 +65,11 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
-import { signOut } from '@/lib/new/auth';
+import { signOut } from '@/lib/auth/auth';
 import Sidebar from '@/components/client/admin/sidebar';
 
 // Auth imports
-import { AdminUser } from '@/lib/new/admin';
+import { AdminUser } from '@/lib/auth/admin';
 
 type Filter = {
   role: string | null;

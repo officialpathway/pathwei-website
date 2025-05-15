@@ -6,8 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { signOut } from '@/lib/new/auth';
-import { updateAdminUser } from '@/lib/new/admin';
+import { signOut } from '@/lib/auth/auth';
+import { updateAdminUser } from '@/lib/auth/admin';
 import { 
   ArrowLeft, 
   Save,

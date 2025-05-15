@@ -11,7 +11,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils/utils';
-import { signOut } from '@/lib/new/auth';
+import { signOut } from '@/lib/auth/auth';
 import { useRouter } from 'next/navigation';
 
 const navItems = [
@@ -68,7 +68,7 @@ export default function Sidebar({ user }: { user: User }) {
       <div className="lg:hidden flex items-center justify-between p-4 bg-gray-900 border-b border-gray-800">
         <div className="flex items-center">
           <Image
-            src="/images/logo.png"
+            src="/icons/pathway/favicon.ico"
             alt="Logo"
             width={32}
             height={32}
@@ -107,7 +107,7 @@ export default function Sidebar({ user }: { user: User }) {
         <aside className="fixed left-0 top-0 z-50 h-full w-64 bg-gray-900 border-r border-gray-800 p-4 flex flex-col lg:relative">
           <div className="mb-8 flex items-center">
             <Image
-              src="/images/logo.png"
+              src="/icons/pathway/favicon.ico"
               alt="Logo"
               width={36}
               height={36}

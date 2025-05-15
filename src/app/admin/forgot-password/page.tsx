@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import { requestPasswordReset } from '@/lib/new/auth';
+import { requestPasswordReset } from '@/lib/auth/auth';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');

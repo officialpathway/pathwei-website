@@ -16,7 +16,7 @@ import {
 import { Users, DollarSign } from 'lucide-react';
 import Sidebar from '@/components/client/admin/sidebar';
 import { useAdminAuth } from '@/hooks/use-admin-auth';
-import { signOut } from '@/lib/new/auth';
+import { signOut } from '@/lib/auth/auth';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 
 export default function Dashboard() {

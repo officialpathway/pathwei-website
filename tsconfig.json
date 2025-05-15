@@ -9,6 +9,7 @@
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
+    "types": ["vitest/globals"],
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -20,9 +21,10 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
     }
   },
+  "types": ["vitest/globals", "node"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/.trash/Heroo.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "node_modules/@vercel"]
 }

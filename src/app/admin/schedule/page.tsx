@@ -24,7 +24,7 @@ import { Progress } from '@/components/ui/progress';
 import { format, addMonths, subMonths } from 'date-fns';
 import Sidebar from '@/components/client/admin/sidebar';
 import { useAdminAuth } from '@/hooks/use-admin-auth';
-import { signOut } from '@/lib/new/auth';
+import { signOut } from '@/lib/auth/auth';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import React, { useState } from 'react';
 import {

@@ -1,0 +1,11 @@
+diff --git a/node_modules/@vercel/speed-insights/tsconfig.json b/node_modules/@vercel/speed-insights/tsconfig.json
+index 435362c..fb3d970 100644
+--- a/node_modules/@vercel/speed-insights/tsconfig.json
++++ b/node_modules/@vercel/speed-insights/tsconfig.json
+@@ -1,5 +1,5 @@
+ {
+-  "extends": "../../tsconfig.json",
++  "extends": "../../../tsconfig.json",
+   "compilerOptions": {
+     "module": "esnext"
+   },

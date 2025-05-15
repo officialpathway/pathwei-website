@@ -16,7 +16,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { signOut } from '@/lib/new/auth';
+import { signOut } from '@/lib/auth/auth';
 import { 
   LogOut, ArrowLeft, 
   Save, Loader2

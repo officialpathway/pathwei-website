@@ -221,7 +221,7 @@ export default async function middleware(request: NextRequest): Promise<NextResp
 export const config = {
   matcher: [
     // Match all paths except static files, API routes, and Next.js internals
-    '/((?!_next|_vercel|.*\\..*).*)',
+    '/((?!api|_next|.*\\..*|favicon.ico).*)',
     // Match API routes for CORS handling and caching
     '/api/:path*',
     // Match SEO static data path

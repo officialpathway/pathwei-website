@@ -22,7 +22,7 @@ import { Button } from '@/components/ui/button';
 import Sidebar from '@/components/client/admin/sidebar';
 import { useAdminAuth } from '@/hooks/use-admin-auth';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
-import { signOut } from '@/lib/new/auth';
+import { signOut } from '@/lib/auth/auth';
 import { useRouter } from 'next/navigation';
 import {
   Dialog,

@@ -1,8 +1,6 @@
 // src/app/sitemap.ts
 import { MetadataRoute } from 'next';
-
-const locales = ['en', 'es']; // Supported locales
-const baseUrl = 'https://www.mypathwayapp.com';
+import { SUPPORTED_LOCALES, BASE_URL } from '@/lib/seo/config';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const basePages = [
@@ -14,8 +12,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Generate localized URLs
   const localizedUrls = basePages.flatMap((page) => 
-    locales.map((locale) => ({
-      url: `${baseUrl}/${locale}${page.url}`,
+    SUPPORTED_LOCALES.map((locale) => ({
+      url: `${BASE_URL}/${locale}${page.url}`,
       lastModified: new Date(),
       changefreq: page.changefreq,
       priority: page.priority,

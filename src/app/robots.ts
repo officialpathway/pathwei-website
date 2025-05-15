@@ -1,5 +1,6 @@
 // src/app/robots.ts
 import { MetadataRoute } from 'next'
+import { BASE_URL } from '@/lib/seo/config';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,17 +9,17 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: [
           '/',
-          '/terms',
-          '/privacy',
-          '/team',
+          '/*/terms',
+          '/*/privacy',
+          '/*/team',
         ],
         disallow: [
-          '/admin',               // No /pages/ needed in App Router
-          '/api',                 // API routes
-          '/_next/',              // Next.js internals
+          '/admin',
+          '/api',
+          '/_next/',
           '/node_modules/',
-          '/src/',                // Source code protection
-          '/.git/'                // Version control
+          '/src/',
+          '/.git/'
         ]
       },
       {
@@ -32,6 +33,6 @@ export default function robots(): MetadataRoute.Robots {
         ]
       }
     ],
-    sitemap: 'https://mypathwayapp.com/sitemap.xml'
+    sitemap: `${BASE_URL}/sitemap.xml`
   }
 }

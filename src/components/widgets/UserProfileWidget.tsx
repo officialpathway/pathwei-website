@@ -63,7 +63,7 @@ export function UserProfileWidget({
       <div className="space-y-4">
         <div className="flex items-center">
           {user.avatarUrl ? (
-            <div className="h-12 w-12 overflow-hidden rounded-full mr-4 relative">
+            <div className="h-12 w-12 overflow-hidden rounded-full relative flex items-center justify-center">
               <Image 
                 src={user.avatarUrl} 
                 alt={user.name}

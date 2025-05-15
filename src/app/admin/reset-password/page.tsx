@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Eye, EyeOff } from 'lucide-react';
-import { updatePassword } from '@/lib/new/auth';
+import { updatePassword } from '@/lib/auth/auth';
 
 // Separate component that uses useSearchParams
 function ResetPasswordForm() {

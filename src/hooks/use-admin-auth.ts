@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/utils/supabase/client';
-import { getAdminUser, hasRole } from '@/lib/new/admin';
+import { getAdminUser, hasRole } from '@/lib/auth/admin';
 import { User } from '@supabase/supabase-js';
 
 // Custom hook to handle admin authentication and data fetching
