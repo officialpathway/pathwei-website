@@ -8,7 +8,8 @@ import {
   Settings,
   ArrowLeft, Globe, Sliders, Shield,
   Users, Database,
-  Clock, History
+  Clock, History,
+  RefreshCw
 } from 'lucide-react';
 import { useAdminAuth } from '@/hooks/use-admin-auth';
 import Sidebar from '@/components/client/admin/sidebar';
@@ -18,6 +19,7 @@ import {
   ActivityWidget,
   StatusWidget
 } from '@/components/widgets/index';
+import IndexNowButton from '@/components/client/admin/indexnow-button';
 
 export default function AdminSettings() {
   const { adminData, loading, error } = useAdminAuth();
@@ -127,6 +129,10 @@ export default function AdminSettings() {
     {
       label: 'Restore Settings',
       onClick: () => console.log('Restore dialog opened')
+    },
+    {
+      label: 'Index Now',
+      onClick: () => console.log('Index Now triggered')
     }
   ];
 
@@ -212,6 +218,22 @@ export default function AdminSettings() {
             }}
             actions={backupActions}
             requiredRole="manager"
+            userRole={adminData?.role || 'viewer'}
+          />
+          
+          {/* IndexNow Widget */}
+          <StatusWidget 
+            title="Search Engine Indexing" 
+            description="Notify search engines of content updates"
+            size="2x1"
+            icon={RefreshCw}
+            statusInfo={{
+              title: 'IndexNow API',
+              details: 'Submit URLs for immediate crawling',
+              status: 'info'
+            }}
+            customContent={<IndexNowButton />}
+            requiredRole="editor"
             userRole={adminData?.role || 'viewer'}
           />
         </WidgetGrid>

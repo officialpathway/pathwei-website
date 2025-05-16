@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Widget, WidgetProps } from '@/components/widgets/Widgets';
+import { ReactNode } from 'react';
 
 export interface StatusInfo {
   title: string;
@@ -11,10 +12,11 @@ export interface StatusInfo {
 
 export interface StatusWidgetProps extends Omit<WidgetProps, 'children'> {
   statusInfo: StatusInfo;
-  actions: {
+  actions?: {
     label: string;
     onClick: () => void;
   }[];
+  customContent?: ReactNode;
 }
 
 export function StatusWidget({
@@ -22,7 +24,8 @@ export function StatusWidget({
   description,
   size = '3x1',
   statusInfo,
-  actions,
+  actions = [],
+  customContent,
   ...props
 }: StatusWidgetProps) {
   const statusColorMap = {
@@ -45,18 +48,28 @@ export function StatusWidget({
           <div className="text-sm text-gray-400">{statusInfo.details}</div>
         </div>
         
-        <div className="flex space-x-2">
-          {actions.map((action, index) => (
-            <Button 
-              key={index}
-              variant="outline"
-              className="flex-1 justify-center border-gray-700 text-gray-200 hover:bg-gray-800"
-              onClick={action.onClick}
-            >
-              {action.label}
-            </Button>
-          ))}
-        </div>
+        {/* Render custom content if provided */}
+        {customContent && (
+          <div className="mt-4">
+            {customContent}
+          </div>
+        )}
+        
+        {/* Only render actions if there are any */}
+        {actions.length > 0 && (
+          <div className="flex space-x-2">
+            {actions.map((action, index) => (
+              <Button 
+                key={index}
+                variant="outline"
+                className="flex-1 justify-center border-gray-700 text-gray-200 hover:bg-gray-800"
+                onClick={action.onClick}
+              >
+                {action.label}
+              </Button>
+            ))}
+          </div>
+        )}
       </div>
     </Widget>
   );
