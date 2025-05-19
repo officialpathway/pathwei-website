@@ -34,6 +34,12 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={myCustomFont.variable}>
       <head>
+        {/* Favicon and icon metadata */}
+        <link rel="icon" href="/icons/pathway/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/icons/pathway/apple-touch-icon.png" />
+        <meta property="og:image" content="/images/pathway/logo.png" />
+        
+        {/* SEO Tags */}
         <SEOTags 
           appName={seoSettings.ogSiteName}
           description={seoSettings.description}
