@@ -6,7 +6,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const basePages = [
     { url: '/', changefreq: 'weekly', priority: 1.0 },
     { url: '/team', changefreq: 'monthly', priority: 0.5 },
-    { url: '/privacy', changefreq: 'yearly', priority: 0.3 },
+    { url: '/policy', changefreq: 'yearly', priority: 0.3 },
     { url: '/terms', changefreq: 'yearly', priority: 0.3 },
   ];
 
