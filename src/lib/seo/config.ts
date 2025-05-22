@@ -6,13 +6,13 @@ export const SUPPORTED_LOCALES = ['en', 'es'];
 export const DEFAULT_SEO = {
   title: 'Pathway - App de Productividad Universitaria con IA',
   description: 'Maximiza tu productividad y motivación con Pathway, la app gamificada que usa inteligencia artificial para ayudarte a alcanzar tus metas diarias. Descarga ahora.',
-  keywords: "productividad universitaria, app estudiantes, inteligencia artificial, gamificación estudio, gestión tiempo, organización apuntes, hábitos estudio, motivación académica, planificador universitario, técnica pomodoro, rendimiento académico, estudiantes España",
+  keywords: "productividad universitaria españa, app estudiantes, inteligencia artificial, gamificación estudio, gestión tiempo, organización apuntes, hábitos fitness, motivación objetivos, planificador universitario, técnica pomodoro, rendimiento académico, estudiantes España",
   allowIndexing: true,
   ogTitle: 'Pathway - Productividad Universitaria Gamificada con IA',
   ogDescription: 'Convierte tus metas en juegos, conéctate con amigos y deja que la IA te ayude a lograr más cada día con Pathway.',
-  ogImage: '/images/pathway/logo.png',
+  ogImage: 'https://www.mypathwayapp.com/images/pathway/logo.png',
   twitterCard: 'summary_large_image',
-  twitterImage: '/images/pathway/logo.png',
+  twitterImage: 'https://www.mypathwayapp.com/images/pathway/logo.png',
   twitterHandle: '@pathwayapp',
   themeColor: '#5E42D3',
   metaRobots: 'index, follow',
@@ -64,9 +64,9 @@ export const LOCALE_SEO = {
     allowIndexing: true,
     ogTitle: 'Pathway - Gamified Social Productivity with AI',
     ogDescription: 'Turn your goals into games, connect with friends, and let AI help you achieve more every day with Pathway.',
-    ogImage: '/images/pathway/logo.png',
+    ogImage: 'https://www.mypathwayapp.com/images/pathway/logo.png',
     twitterCard: 'summary_large_image',
-    twitterImage: '/images/pathway/logo.png',
+    twitterImage: 'https://www.mypathwayapp.com/images/pathway/logo.png',
     twitterHandle: '@pathwayapp',
     canonicalUrl: `${BASE_URL}/en`,
     themeColor: '#5E42D3',
@@ -84,8 +84,8 @@ export const LOCALE_SEO = {
       "operatingSystem": "iOS, ANDROID",
       "offers": {
         "@type": "Offer",
-        "price": "4.99",
-        "priceCurrency": "USD"
+        "price": "1.99",
+        "priceCurrency": "EUR"
       },
       "description": "Maximize your productivity and motivation with Pathway, the gamified app that uses artificial intelligence to help you achieve your daily goals.",
       "aggregateRating": {

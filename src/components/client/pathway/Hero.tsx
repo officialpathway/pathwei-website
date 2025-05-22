@@ -6,9 +6,103 @@ import { useTranslations } from 'next-intl';
 
 const STATIC_PRICE = 4.99;
 
+// Emoji data for productivity/routine planner theme
+const FLOATING_EMOJIS = [
+  { 
+    id: 1, 
+    emoji: "💪", 
+    finalX: "10%", 
+    finalY: "20%",
+    delay: 0.2,
+    size: "4rem"
+  },
+  { 
+    id: 2, 
+    emoji: "🏃‍♂️", 
+    finalX: "85%", 
+    finalY: "15%",
+    delay: 0.3,
+    size: "3.5rem"
+  },
+  { 
+    id: 3, 
+    emoji: "📚", 
+    finalX: "15%", 
+    finalY: "70%",
+    delay: 0.4,
+    size: "3rem"
+  },
+  { 
+    id: 4, 
+    emoji: "🎯", 
+    finalX: "90%", 
+    finalY: "65%",
+    delay: 0.5,
+    size: "3.5rem"
+  },
+  { 
+    id: 5, 
+    emoji: "⏰", 
+    finalX: "5%", 
+    finalY: "45%",
+    delay: 0.6,
+    size: "3rem"
+  },
+  { 
+    id: 6, 
+    emoji: "🧠", 
+    finalX: "88%", 
+    finalY: "40%",
+    delay: 0.7,
+    size: "3.2rem"
+  },
+  { 
+    id: 7, 
+    emoji: "✅", 
+    finalX: "12%", 
+    finalY: "85%",
+    delay: 0.8,
+    size: "2.8rem"
+  },
+  { 
+    id: 8, 
+    emoji: "🏆", 
+    finalX: "85%", 
+    finalY: "85%",
+    delay: 0.9,
+    size: "3.8rem"
+  },
+  { 
+    id: 9, 
+    emoji: "🤝", 
+    finalX: "8%", 
+    finalY: "60%",
+    delay: 1.0,
+    size: "3rem"
+  },
+  { 
+    id: 10, 
+    emoji: "📈", 
+    finalX: "92%", 
+    finalY: "75%",
+    delay: 1.1,
+    size: "3.2rem"
+  }
+];
+
 const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showEmojis, setShowEmojis] = useState(false);
   const t = useTranslations("Pathway");
+
+  // Start emoji animation after a brief delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowEmojis(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // Close modal with escape key
   useEffect(() => {
@@ -37,6 +131,59 @@ const Hero = () => {
   return (
     <>
       <section className="relative bg-transparent overflow-hidden h-screen flex items-center justify-center">
+        {/* Floating Emojis */}
+        <AnimatePresence>
+          {showEmojis && FLOATING_EMOJIS.map((item) => (
+            <motion.div
+              key={item.id}
+              initial={{ 
+                left: "50%",
+                top: "50%",
+                scale: 0,
+                opacity: 0,
+                rotate: 0
+              }}
+              animate={{ 
+                left: item.finalX, 
+                top: item.finalY, 
+                scale: 1,
+                opacity: 0.8,
+                rotate: [0, 10, -10, 0]
+              }}
+              transition={{ 
+                delay: item.delay,
+                duration: 1.5,
+                type: "spring",
+                stiffness: 100,
+                damping: 15,
+                rotate: {
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatType: "reverse"
+                }
+              }}
+              className="absolute z-5 pointer-events-none select-none transform -translate-x-1/2 -translate-y-1/2"
+              style={{ 
+                fontSize: item.size
+              }}
+            >
+              <motion.span
+                animate={{
+                  y: [0, -8, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  delay: item.delay + 2
+                }}
+              >
+                {item.emoji}
+              </motion.span>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+
         {/* Content */}
         <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
           <motion.div
@@ -77,7 +224,8 @@ const Hero = () => {
               <button 
                 type="button" 
                 className="relative overflow-hidden group bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-4 
-                          rounded-full font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                          rounded-full font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer
+                          hover:scale-105 transform"
                 onClick={() => setIsModalOpen(true)}
               >
                 <span className="relative z-10">
@@ -89,7 +237,8 @@ const Hero = () => {
               <button 
                 type="button" 
                 className="bg-transparent border-2 border-white/30 text-white px-8 py-4 rounded-full font-medium text-lg 
-                         hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                         hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer
+                         hover:scale-105 transform hover:border-white/50"
                 onClick={() => {
                   const demoSection = document.getElementById('demo-section');
                   if (demoSection) {
