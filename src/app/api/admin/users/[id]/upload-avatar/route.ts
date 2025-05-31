@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
     redirect('/admin/login');
   }
   
-  console.log('[POST /api/admin/user-management/upload-avatar] Authentication successful. User ID:', data.user.id);
+  console.log('[POST /api/admin/user-management/upload-avatar] Authentication successful.');
   
   // Create the admin client for administrative operations
   const adminClient = createAdminClient();

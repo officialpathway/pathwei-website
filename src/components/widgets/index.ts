@@ -18,7 +18,6 @@ export * from './PriceDistributionChartWidget';
 export * from './PriceTableWidget';
 export * from './DownloadSubscribersWidget';
 export * from './SubscriberCountWidget';
-export * from './LatestSubscriberWidget';
 export * from './LastUpdatedWidget';
 export * from './SubscribersTableWidget';
 

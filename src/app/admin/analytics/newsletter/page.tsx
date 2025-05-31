@@ -14,12 +14,11 @@ import { useRouter } from 'next/navigation';
 import { SubscriberCountWidget } from '@/components/widgets/SubscriberCountWidget';
 import { 
   LastUpdatedWidget,
-  LatestSubscriberWidget,
-  SubscribersTableWidget,
   DownloadSubscribersWidget,
+  SubscribersTableWidget,
  } from '@/components/widgets/index';
 
-// Define the SubscriberData type
+// Define the SubscriberData type to match what the existing widget expects
 interface SubscriberData {
   email: string;
 }
@@ -80,16 +79,37 @@ export default function NewsletterSubscribersPage() {
       const data = await response.json();
       console.log('Successfully fetched subscribers:', data);
       
-      // Transform the data to match our interface
-      const subscribersList: SubscriberData[] = data.subscribers.map((email: string) => ({ 
-        email,
-      }));
+      // Fix the data transformation - convert to simple email objects to match existing widget
+      let subscribersList: SubscriberData[] = [];
+      
+      if (Array.isArray(data.subscribers)) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        subscribersList = data.subscribers.map((item: any) => {
+          // If item is a string (old format from blob storage)
+          if (typeof item === 'string') {
+            return { email: item };
+          }
+          // If item is an object (new format from database)
+          else if (typeof item === 'object' && item.email) {
+            return { email: item.email };
+          }
+          // Fallback
+          else {
+            console.warn('Unexpected subscriber format:', item);
+            return { email: String(item) };
+          }
+        });
+      } else {
+        console.warn('Unexpected data format - subscribers is not an array:', data);
+        subscribersList = [];
+      }
       
       setSubscribers(subscribersList);
       setLastUpdated(data.lastUpdated || null);
     } catch (error) {
       console.error('Error fetching subscribers:', error);
-      setStatsError(error instanceof Error ? error.message : 'Unknown error');
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      setStatsError(errorMessage);
     } finally {
       setDataLoading(false);
     }
@@ -107,7 +127,7 @@ export default function NewsletterSubscribersPage() {
     try {
       console.log("Deleting subscriber:", email);
       
-      const apiPath = getApiPath('/api/admin/newsletter/subscribers');
+      const apiPath = getApiPath('/api/newsletter/subscribers');
       console.log('Using API path:', apiPath);
       
       const response = await fetch(apiPath, {
@@ -128,7 +148,8 @@ export default function NewsletterSubscribersPage() {
       console.log("Subscribers refreshed successfully");
     } catch (error) {
       console.error("Error deleting subscriber:", error);
-      setStatsError(error instanceof Error ? error.message : 'Failed to delete subscriber');
+      const errorMessage = error instanceof Error ? error.message : 'Failed to delete subscriber';
+      setStatsError(errorMessage);
       throw error; // Rethrow so the widget can handle it
     }
   }
@@ -181,6 +202,9 @@ export default function NewsletterSubscribersPage() {
     );
   }
 
+  // Extract user role safely
+  const userRole = typeof adminData.role === 'string' ? adminData.role : 'viewer';
+
   return (
     <div className="flex h-screen bg-gray-950">
       {/* Include Sidebar with adminData */}
@@ -210,7 +234,7 @@ export default function NewsletterSubscribersPage() {
         {statsError && (
           <Alert variant="destructive" className="mb-6">
             <AlertTitle>Error</AlertTitle>
-            <AlertDescription>{statsError}</AlertDescription>
+            <AlertDescription>{String(statsError)}</AlertDescription>
           </Alert>
         )}
         
@@ -218,30 +242,24 @@ export default function NewsletterSubscribersPage() {
           {/* Stats Summary Widgets */}
           <SubscriberCountWidget 
             count={subscribers.length} 
-            userRole={adminData.role}
+            userRole={userRole}
           />
           
           <LastUpdatedWidget 
             lastUpdated={lastUpdated} 
-            userRole={adminData.role}
+            userRole={userRole}
           />
           
           <DownloadSubscribersWidget 
             subscribers={subscribers} 
-            userRole={adminData.role}
-          />
-
-          {/* Latest Subscription Widget */}
-          <LatestSubscriberWidget
-            lastSubscription={lastUpdated}
-            userRole={adminData.role}
+            userRole={userRole}
           />
           
           {/* Subscribers Table Widget */}
           <SubscribersTableWidget
             subscribers={subscribers}
             onDeleteSubscriber={handleDeleteSubscriber}
-            userRole={adminData.role}
+            userRole={userRole}
           />
         </WidgetGrid>
       </main>

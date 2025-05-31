@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     redirect('/admin/login');
   }
 
-  console.log('[POST /api/admin/users] Admin authentication successful. User ID:', data.user.id);
+  console.log('[POST /api/admin/users] Admin authentication successful.');
   
   const adminClient = createAdminClient();
   
@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
       throw new Error(authError.message);
     }
     
-    console.log('[POST /api/admin/users] Auth user created successfully. User ID:', authData.user.id);
+    console.log('[POST /api/admin/users] Auth user created successfully.');
     
     // Check if user with this ID already exists in users table
     const { data: existingUserById, error: checkIdError } = await adminClient

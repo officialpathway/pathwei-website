@@ -1,271 +1,190 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTranslations } from 'next-intl';
 
-const STATIC_PRICE = 4.99;
-
-// Emoji data for productivity/routine planner theme
-const FLOATING_EMOJIS = [
-  { 
-    id: 1, 
-    emoji: "💪", 
-    finalX: "10%", 
-    finalY: "20%",
-    delay: 0.2,
-    size: "4rem"
-  },
-  { 
-    id: 2, 
-    emoji: "🏃‍♂️", 
-    finalX: "85%", 
-    finalY: "15%",
-    delay: 0.3,
-    size: "3.5rem"
-  },
-  { 
-    id: 3, 
-    emoji: "📚", 
-    finalX: "15%", 
-    finalY: "70%",
-    delay: 0.4,
-    size: "3rem"
-  },
-  { 
-    id: 4, 
-    emoji: "🎯", 
-    finalX: "90%", 
-    finalY: "65%",
-    delay: 0.5,
-    size: "3.5rem"
-  },
-  { 
-    id: 5, 
-    emoji: "⏰", 
-    finalX: "5%", 
-    finalY: "45%",
-    delay: 0.6,
-    size: "3rem"
-  },
-  { 
-    id: 6, 
-    emoji: "🧠", 
-    finalX: "88%", 
-    finalY: "40%",
-    delay: 0.7,
-    size: "3.2rem"
-  },
-  { 
-    id: 7, 
-    emoji: "✅", 
-    finalX: "12%", 
-    finalY: "85%",
-    delay: 0.8,
-    size: "2.8rem"
-  },
-  { 
-    id: 8, 
-    emoji: "🏆", 
-    finalX: "85%", 
-    finalY: "85%",
-    delay: 0.9,
-    size: "3.8rem"
-  },
-  { 
-    id: 9, 
-    emoji: "🤝", 
-    finalX: "8%", 
-    finalY: "60%",
-    delay: 1.0,
-    size: "3rem"
-  },
-  { 
-    id: 10, 
-    emoji: "📈", 
-    finalX: "92%", 
-    finalY: "75%",
-    delay: 1.1,
-    size: "3.2rem"
-  }
-];
-
 const Hero = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showEmojis, setShowEmojis] = useState(false);
+  const [timeLeft, setTimeLeft] = useState<{
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+  } | null>(null);
+  
   const t = useTranslations("Pathway");
 
-  // Start emoji animation after a brief delay
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowEmojis(true);
-    }, 1000);
+    // Move targetDate inside useEffect to prevent recalculation
+    const targetDate = new Date('2025-07-01T00:00:00Z').getTime();
 
-    return () => clearTimeout(timer);
-  }, []);
+    const calculateTimeLeft = () => {
+      const now = Date.now();
+      const difference = targetDate - now;
 
-  // Close modal with escape key
-  useEffect(() => {
-    const handleEscapeKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isModalOpen) {
-        setIsModalOpen(false);
+      if (difference > 0) {
+        return {
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000)
+        };
+      } else {
+        return { days: 0, hours: 0, minutes: 0, seconds: 0 };
       }
     };
 
-    document.addEventListener("keydown", handleEscapeKey);
-    return () => document.removeEventListener("keydown", handleEscapeKey);
-  }, [isModalOpen]);
+    // Initial calculation
+    setTimeLeft(calculateTimeLeft());
+    
+    // Set up interval
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
 
-  // Prevent body scroll when modal is open
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [isModalOpen]);
+    return () => clearInterval(timer);
+  }, []); // Empty dependency array since targetDate is now inside the effect
+
+  const CountdownUnit = ({ value, label }: { value: number; label: string }) => (
+    <div className="relative group">
+      {/* Glow effect background */}
+      <div className="absolute inset-0 bg-amber-500/20 rounded-2xl blur-xl group-hover:bg-amber-500/30 transition-all duration-300" />
+      
+      {/* Main container */}
+      <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-6 md:p-8 
+                      hover:bg-white/15 hover:border-amber-500/30 transition-all duration-300
+                      shadow-2xl hover:shadow-amber-500/20">
+        {/* Value */}
+        <div
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-amber-500 mb-2 
+                     drop-shadow-lg font-mono tracking-tight"
+          style={{
+            textShadow: '0 0 20px rgba(245, 158, 11, 0.5)'
+          }}
+        >
+          {value.toString().padStart(2, '0')}
+        </div>
+        
+        {/* Label */}
+        <div className="text-white/80 text-xs sm:text-sm md:text-base font-medium uppercase tracking-wider">
+          {label}
+        </div>
+        
+        {/* Animated border */}
+        <div className="absolute inset-0 rounded-2xl border border-amber-500/0 group-hover:border-amber-500/50 transition-all duration-300" />
+      </div>
+    </div>
+  );
 
   return (
-    <>
-      <section className="relative bg-transparent overflow-hidden h-screen flex items-center justify-center">
-        {/* Floating Emojis */}
-        <AnimatePresence>
-          {showEmojis && FLOATING_EMOJIS.map((item) => (
-            <motion.div
-              key={item.id}
-              initial={{ 
-                left: "50%",
-                top: "50%",
-                scale: 0,
-                opacity: 0,
-                rotate: 0
-              }}
-              animate={{ 
-                left: item.finalX, 
-                top: item.finalY, 
-                scale: 1,
-                opacity: 0.8,
-                rotate: [0, 10, -10, 0]
-              }}
-              transition={{ 
-                delay: item.delay,
-                duration: 1.5,
-                type: "spring",
-                stiffness: 100,
-                damping: 15,
-                rotate: {
-                  duration: 2,
-                  repeat: Infinity,
-                  repeatType: "reverse"
-                }
-              }}
-              className="absolute z-5 pointer-events-none select-none transform -translate-x-1/2 -translate-y-1/2"
-              style={{ 
-                fontSize: item.size
-              }}
-            >
-              <motion.span
-                animate={{
-                  y: [0, -8, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  delay: item.delay + 2
-                }}
-              >
-                {item.emoji}
-              </motion.span>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+    <section className="relative bg-transparent overflow-hidden h-screen flex items-center pt-20 justify-center">
+      {/* Content */}
+      <div className="relative z-10 text-center px-4 sm:px-6 max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Main Headline */}
+          <motion.h1 
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+          >
+            <span className="block mb-2">{t("ui.hero.heading.part1")}</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-orange-500">
+              {t("ui.hero.heading.part2")}
+            </span>
+          </motion.h1>
 
-        {/* Content */}
-        <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
+          {/* Countdown announcement */}
+          <motion.p 
+            className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-12 max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            Lanazmiento el 1 de Julio, 2025
+          </motion.p>
+
+          {/* Countdown Timer - Only render when timeLeft is available */}
+          {timeLeft && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-8 mb-8 sm:mb-12">
+              <CountdownUnit value={timeLeft.days} label="Días" />
+              <CountdownUnit value={timeLeft.hours} label="Horas" />
+              <CountdownUnit value={timeLeft.minutes} label="Minutos" />
+              <CountdownUnit value={timeLeft.seconds} label="Segundos" />
+            </div>
+          )}
+
+          {/* Loading state for countdown */}
+          {!timeLeft && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-8 mb-8 sm:mb-12">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="relative">
+                  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-6 md:p-8">
+                    <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-amber-500/50 mb-2 font-mono">
+                      --
+                    </div>
+                    <div className="text-white/40 text-xs sm:text-sm md:text-base font-medium uppercase tracking-wider">
+                      {['Days', 'Hours', 'Minutes', 'Seconds'][i]}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Call to action */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ delay: 1.4, duration: 0.8 }}
+            className="space-y-4"
           >
-            {/* Animated Headline */}
-            <motion.h1 
-              className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
+            <p className="text-white/60 text-sm md:text-base mb-4 sm:mb-6">
+              Sé el primero en enterarte de las novedades y el lanzamiento de Pathway
+            </p>
+            
+            {/* Newsletter signup button */}
+            <motion.button 
+              type="button" 
+              className="relative overflow-hidden group bg-gradient-to-r from-amber-500 to-orange-600 text-white px-6 sm:px-8 py-3 sm:py-4 
+                        rounded-full font-medium text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer
+                        hover:scale-105 transform hover:shadow-amber-500/25"
+              onClick={() => {
+                const newsletterSection = document.getElementById('newsletter');
+                if (newsletterSection) {
+                  newsletterSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                  });
+                }
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <span className="block mb-2">{t("ui.hero.heading.part1")}</span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-orange-500">
-                {t("ui.hero.heading.part2")}
-              </span>
-            </motion.h1>
-
-            <motion.p 
-              className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-            >
-              {t("ui.hero.subheading")}
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div 
-              className="flex flex-col sm:flex-row justify-center gap-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9, duration: 0.8 }}
-            >
-              {/* Modal Button with static price */}
-              <button 
-                type="button" 
-                className="relative overflow-hidden group bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-4 
-                          rounded-full font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer
-                          hover:scale-105 transform"
-                onClick={() => setIsModalOpen(true)}
-              >
-                <span className="relative z-10">
-                  {`${t("ui.hero.cta")} ${STATIC_PRICE.toFixed(2)}€`}
-                </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              </button>
-
-              <button 
-                type="button" 
-                className="bg-transparent border-2 border-white/30 text-white px-8 py-4 rounded-full font-medium text-lg 
-                         hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer
-                         hover:scale-105 transform hover:border-white/50"
-                onClick={() => {
-                  const demoSection = document.getElementById('demo-section');
-                  if (demoSection) {
-                    demoSection.scrollIntoView({ 
-                      behavior: 'smooth',
-                      block: 'start'
-                    });
-                  }
-                }}
-              >
-                <span>{t("ui.hero.demo_cta")}</span>
+              <span className="relative z-10 flex items-center gap-2">
+                Ser Notificado
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  <path d="M7 7h10v10"/>
+                  <path d="M7 17 17 7"/>
                 </svg>
-              </button>
-            </motion.div>
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </motion.button>
           </motion.div>
 
           {/* Scroll Down Indicator */}
           <motion.div 
-            className="flex flex-col items-center mt-4"
+            className="flex flex-col items-center mt-8 sm:mt-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.5, duration: 0.8 }}
+            transition={{ delay: 1.8, duration: 0.8 }}
           >
             <p className="text-gray-300 mb-2 text-sm font-medium">
-              {t("ui.hero.scroll_down") || "Scroll down for more"}
+              Aprende más sobre Pathway
             </p>
             <motion.div
               animate={{ 
@@ -292,62 +211,9 @@ const Hero = () => {
               />
             </motion.div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Modal - Built directly into the Hero component */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50"
-              onClick={() => setIsModalOpen(false)}
-            />
-            
-            {/* Modal Content */}
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: "spring", duration: 0.4 }}
-              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-gray-900 to-gray-800 
-                        rounded-2xl shadow-2xl p-8 max-w-md w-full z-50 text-center"
-            >
-              <button
-                title="close modal"
-                type="button"
-                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
-                onClick={() => setIsModalOpen(false)}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
-              
-              <div className="py-8 px-4">
-                <h3 className="text-2xl font-bold text-white mb-6">Aún no disponible</h3>
-                <p className="text-gray-300 mb-6">
-                  Estamos trabajando para lanzar pronto. ¡Gracias por tu interés!
-                </p>
-                <button
-                  className="w-full bg-gradient-to-r from-amber-500 to-orange-600 text-white px-6 py-3 
-                            rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300"
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  Cerrar
-                </button>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </>
+        </motion.div>
+      </div>
+    </section>
   );
 };
 

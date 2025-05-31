@@ -17,7 +17,7 @@ export async function POST() {
   }
 
   console.log(data);
-  console.log(`[POST /api/admin/price-A-B/reset-stats] Admin authentication successful. User ID:`, data.user.id);
+  console.log("[POST /api/admin/price-A-B/reset-stats] Admin authentication successful.");
   
   try {
     // Reset stats by writing an empty object

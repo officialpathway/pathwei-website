@@ -16,7 +16,7 @@ export async function GET() {
     redirect('/admin/login');
   }
 
-  console.log(`[GET /api/admin/price-A-B/get-download-url] Admin authentication successful. User ID:`, data.user.id);
+  console.log("[GET /api/admin/price-A-B/get-download-url] Admin authentication successful.");
   
   try {
     const blob = await head(BLOB_KEY, {

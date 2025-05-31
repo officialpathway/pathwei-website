@@ -19,7 +19,7 @@ export async function GET(
     redirect('/admin/login');
   }
 
-  console.log(`[GET /api/admin/users/${userId}] Admin authentication successful. User ID:`, data.user.id);
+  console.log('[GET /api/admin/users/${userId}] Admin authentication successful.');
   
   const adminClient = createAdminClient();
 
@@ -53,7 +53,7 @@ export async function PUT(
     redirect('/admin/login');
   }
 
-  console.log(`[PUT /api/admin/users/${userId}] Admin authentication successful. User ID:`, data.user.id);
+  console.log('[PUT /api/admin/users/${userId}] Admin authentication successful.');
   
   const adminClient = createAdminClient();
 
@@ -115,7 +115,7 @@ export async function DELETE(
     redirect('/admin/login');
   }
 
-  console.log(`[DELETE /api/admin/users/${userId}] Admin authentication successful. User ID:`, data.user.id);
+  console.log('[DELETE /api/admin/users/${userId}] Admin authentication successful');
   
   const adminClient = createAdminClient();
 

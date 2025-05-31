@@ -6,7 +6,7 @@ import React, { ReactNode } from 'react';
 import { Lock } from 'lucide-react';
 
 // Widget size types
-export type WidgetSize = '1x1' | '1x2' | '2x1' | '2x2' | '3x1' | '3x2' | '4x1' | '4x2' | 'full';
+export type WidgetSize = '1x1' | '1x2' | '2x1' | '2x2' | '3x1' | '3x2' | '4x1' | '4x2' | '4x4' | 'full';
 
 // Access level for widgets
 export type WidgetAccessLevel = 'admin' | 'manager' | 'editor' | 'viewer' | 'all';
@@ -21,6 +21,7 @@ const sizeClassMap: Record<WidgetSize, string> = {
   '3x2': 'col-span-3 row-span-2',
   '4x1': 'col-span-4 row-span-1',
   '4x2': 'col-span-4 row-span-2',
+  '4x4': 'col-span-4 row-span-4',
   'full': 'col-span-full',
 };
 
@@ -60,7 +61,8 @@ export function Widget({
   icon: Icon,
   iconClassName,
   requiredRole = 'all', // Default to accessible for all
-  userRole = 'all'}: WidgetProps) {
+  userRole = 'all'
+}: WidgetProps) {
   // Check if user has access to this widget
   const hasAccess = roleHierarchy[userRole] >= roleHierarchy[requiredRole];
   

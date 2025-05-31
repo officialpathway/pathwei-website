@@ -1,3 +1,4 @@
+// components/widgets/SubscriberCountWidget.tsx
 'use client';
 
 import { Users } from 'lucide-react';
@@ -21,7 +22,7 @@ export function SubscriberCountWidget({
   return (
     <Widget
       title="Total Subscribers"
-      description="Number of newsletter subscribers"
+      description="Active newsletter subscribers"
       icon={Users}
       iconClassName="bg-blue-500/20"
       size={size}
@@ -30,8 +31,13 @@ export function SubscriberCountWidget({
       userRole={userRole}
     >
       <div className="flex items-center justify-center h-full">
-        <div className="text-3xl font-bold text-white">
-          {count.toLocaleString()}
+        <div className="text-center">
+          <div className="text-3xl font-bold text-white mb-1">
+            {count.toLocaleString()}
+          </div>
+          <div className="text-sm text-gray-400">
+            {count === 1 ? 'subscriber' : 'subscribers'}
+          </div>
         </div>
       </div>
     </Widget>

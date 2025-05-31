@@ -1,9 +1,9 @@
-// src/app/api/admin/newsletter/subscribers/route.ts
-import { list } from "@vercel/blob";
+// src/app/api/newsletter/subscribers/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { redirect } from "next/navigation";
 import { createClient } from '@/lib/utils/supabase/server';
 import { createAdminClient } from '@/lib/utils/supabase/admin';
+import { NewsletterService } from "@/lib/db/newsletter";
 
 export async function GET() {
   console.log(`[GET /api/admin/newsletter/subscribers] Request received`);
@@ -15,7 +15,7 @@ export async function GET() {
     redirect('/admin/login');
   }
 
-  console.log(`[GET /api/admin/newsletter/subscribers] Admin authentication successful. User ID:`, data.user.id);
+  console.log('[GET /api/admin/newsletter/subscribers] Admin authentication successful.');
   
   const adminClient = createAdminClient();
 
@@ -28,38 +28,23 @@ export async function GET() {
       .single();
     
     if (userError || userData?.role !== 'admin') {
-      console.error(`[GET /api/admin/newsletter/subscribers] Unauthorized access attempt by user:`, data.user.id);
+      console.error('[GET /api/admin/newsletter/subscribers]');
       return NextResponse.json({ error: 'Unauthorized access' }, { status: 403 });
     }
     
-    // Fetch emails from blob storage
-    const { blobs } = await list({
-      prefix: "emails.txt",
-      token: process.env.BLOB_READ_WRITE_TOKEN
-    });
+    // Get subscribers from database
+    const subscribers = await NewsletterService.getAllSubscribers();
+    const count = await NewsletterService.getSubscriberCount();
+    const lastUpdated = await NewsletterService.getLatestSubscriptionDate();
     
-    if (blobs.length === 0) {
-      console.log(`[GET /api/admin/newsletter/subscribers] No subscribers found`);
-      return NextResponse.json({ subscribers: [] });
-    }
-    
-    // Get content from the blob
-    const response = await fetch(blobs[0].url);
-    const content = await response.text();
-    
-    // Parse the content into an array of emails
-    const emails = content
-      .split('\n')
-      .filter(email => email.trim() !== '')
-      .map(email => email.trim());
-    
-    console.log(`[GET /api/admin/newsletter/subscribers] Retrieved ${emails.length} subscribers`);
+    console.log(`[GET /api/admin/newsletter/subscribers] Retrieved ${count} subscribers`);
     
     return NextResponse.json({
-      subscribers: emails,
-      count: emails.length,
-      lastUpdated: blobs[0].uploadedAt
+      subscribers: subscribers.map(sub => ({ email: sub.email })),
+      count,
+      lastUpdated: lastUpdated?.toISOString()
     });
+    
   } catch (error) {
     console.error(`[GET /api/admin/newsletter/subscribers] Error fetching subscribers:`, error);
     return NextResponse.json({ 
@@ -69,7 +54,7 @@ export async function GET() {
   }
 }
 
-// Optional: Add DELETE endpoint to remove a subscriber
+// Delete a subscriber
 export async function DELETE(request: NextRequest) {
   console.log(`[DELETE /api/admin/newsletter/subscribers] Request received`);
   
@@ -80,7 +65,7 @@ export async function DELETE(request: NextRequest) {
     redirect('/admin/login');
   }
 
-  console.log(`[DELETE /api/admin/newsletter/subscribers] Admin authentication successful. User ID:`, data.user.id);
+  console.log('[DELETE /api/admin/newsletter/subscribers] Admin authentication successful.');
   
   const adminClient = createAdminClient();
 
@@ -93,7 +78,7 @@ export async function DELETE(request: NextRequest) {
       .single();
     
     if (userError || userData?.role !== 'admin') {
-      console.error(`[DELETE /api/admin/newsletter/subscribers] Unauthorized access attempt by user:`, data.user.id);
+      console.error('[DELETE /api/admin/newsletter/subscribers]');
       return NextResponse.json({ error: 'Unauthorized access' }, { status: 403 });
     }
     
@@ -105,41 +90,22 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
     }
     
-    // Fetch existing emails
-    const { blobs } = await list({
-      prefix: "emails.txt",
-      token: process.env.BLOB_READ_WRITE_TOKEN
-    });
+    // Delete the subscriber
+    const success = await NewsletterService.deleteSubscriber(email);
     
-    if (blobs.length === 0) {
-      console.log(`[DELETE /api/admin/newsletter/subscribers] No subscribers found`);
-      return NextResponse.json({ message: 'No subscribers found' });
+    if (!success) {
+      return NextResponse.json({ error: 'Subscriber not found' }, { status: 404 });
     }
     
-    const response = await fetch(blobs[0].url);
-    const content = await response.text();
-    
-    // Filter out the email to remove
-    const emails = content
-      .split('\n')
-      .filter(e => e.trim() !== '' && e.trim() !== email.trim())
-      .map(e => e.trim());
-    
-    // Update the blob with the new list
-    const { put } = await import("@vercel/blob");
-    await put("emails.txt", emails.join('\n') + '\n', {
-      access: "public",
-      token: process.env.BLOB_READ_WRITE_TOKEN,
-      addRandomSuffix: false,
-      allowOverwrite: true
-    });
+    const remainingCount = await NewsletterService.getSubscriberCount();
     
     console.log(`[DELETE /api/admin/newsletter/subscribers] Successfully removed email: ${email}`);
     
     return NextResponse.json({
       message: 'Subscriber removed successfully',
-      remaining: emails.length
+      remaining: remainingCount
     });
+    
   } catch (error) {
     console.error(`[DELETE /api/admin/newsletter/subscribers] Error removing subscriber:`, error);
     return NextResponse.json({ 

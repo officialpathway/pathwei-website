@@ -12,7 +12,7 @@ export async function POST(
   // Await the params Promise to get the actual ID
   const { id: userId } = await context.params;
   
-  console.log('[POST /api/admin/users/[id]/invite] Request received for user ID:', userId);
+  console.log('[POST /api/admin/users/[id]/invite]');
   
   // Create the Supabase client and verify authentication
   const supabase = await createClient();
@@ -22,7 +22,7 @@ export async function POST(
     redirect('/admin/login');
   }
 
-  console.log('[POST /api/admin/users/[id]/invite] Admin authentication successful. Admin ID:', data.user.id);
+  console.log('[POST /api/admin/users/[id]/invite] Admin authentication successful.');
   
   // Create the admin client for administrative operations
   const adminClient = createAdminClient();

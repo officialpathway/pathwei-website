@@ -175,9 +175,7 @@ export async function uploadAvatar(userId: string, file: File) {
       console.error('Authentication error:', authError);
       throw new Error('You must be logged in to upload an avatar');
     }
-    
-    console.log(`Current authenticated user: ${user.id}`);
-    
+        
     // Check if user is updating their own avatar or is an admin
     const needsAdminCheck = user.id !== userId;
     
