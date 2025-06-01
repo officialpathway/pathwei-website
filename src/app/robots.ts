@@ -1,6 +1,7 @@
 // src/app/robots.ts
 import { MetadataRoute } from 'next'
-import { BASE_URL } from '@/lib/seo/config';
+
+const BASE_URL = 'https://www.mypathwayapp.com';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -9,9 +10,9 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: [
           '/',
-          '/*/terms',
-          '/*/privacy',
-          '/*/team',
+          '/equipo',
+          '/privacidad',
+          '/terminos',
         ],
         disallow: [
           '/admin',
@@ -19,14 +20,17 @@ export default function robots(): MetadataRoute.Robots {
           '/_next/',
           '/node_modules/',
           '/src/',
-          '/.git/'
+          '/.git/',
+          '/_locale_inactive/', // Prevent indexing of inactive locale files
         ]
       },
       {
         userAgent: 'Googlebot-Image',
         allow: [
           '/screenshots/',
-          '/og-images/'
+          '/og-images/',
+          '/images/',
+          '/icons/',
         ],
         disallow: [
           '/private-images/'

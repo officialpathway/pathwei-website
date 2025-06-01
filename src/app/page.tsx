@@ -1,3 +1,4 @@
+// src/app/page.tsx
 "use client";
 import Hero from '@/components/client/pathway/Hero';
 import SloganSection from '@/components/client/pathway/SloganSection';
@@ -13,7 +14,6 @@ import ProgressAnalyticsSection from '@/components/client/pathway/ProgressAnalyt
 import CollegeLifeOrganizationSection from '@/components/client/pathway/CollegeLifeOrganizationSection';
 
 export default function Home() {
-
   const t = useTranslations('Pathway.ui.features');
 
   return (

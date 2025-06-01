@@ -79,7 +79,7 @@ const Footer = () => {
               <Link href="/" className="hover:text-gray-300 transition-colors">
                 {t("links.home")}
               </Link>
-              <Link href="/team" className="hover:text-gray-300 transition-colors">
+              <Link href="/equipo" className="hover:text-gray-300 transition-colors">
                 {t("links.team")}
               </Link>
             </nav>
@@ -87,7 +87,7 @@ const Footer = () => {
           
           {/* Social Links */}
           <div className="flex flex-col items-center lg:items-end">
-            <h3 className="text-xl font-bold mb-4 border-b border-gray-700 pb-2">Connect With Us</h3>
+            <h3 className="text-xl font-bold mb-4 border-b border-gray-700 pb-2">Conecta con Nosotros</h3>
             <div className="flex gap-6 mt-2">
               {socialLinks.map((social, index) => {
                 const Icon = social.icon;
@@ -113,13 +113,13 @@ const Footer = () => {
           <p className="text-sm text-gray-400 mb-3 md:mb-0">{t("rights")}</p>
           <div className="flex gap-6">
             <Link
-              href="/policy"
+              href="/privacidad"
               className="text-sm text-gray-400 hover:text-white transition-colors"
             >
               {t("privacy_policy")}
             </Link>
             <Link
-              href="/terms"
+              href="/terminos"
               className="text-sm text-gray-400 hover:text-white transition-colors"
             >
               {t("terms_conditions")}

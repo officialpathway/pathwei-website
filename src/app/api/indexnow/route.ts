@@ -11,9 +11,9 @@ const LOCALES = ['en', 'es'];
 // Paths that should be indexed for each locale
 const PATHS = [
   '',
-  '/terms',
-  '/policy',
-  '/team',
+  '/terminos',
+  '/privacidad',
+  '/equipo',
   // Add other paths here
 ];
 

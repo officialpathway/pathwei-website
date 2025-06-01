@@ -1,16 +1,11 @@
+// src/middleware.ts
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import createMiddleware from 'next-intl/middleware';
 import { updateSession } from '@/lib/utils/supabase/middleware';
 
 /**
  * Configuration constants
  */
-// Supported locale codes
-const LOCALES = ['en', 'es'];
-
-// Default locale for redirects and fallbacks
-const DEFAULT_LOCALE = 'es';
 
 // SEO-related paths
 const SEO_STATIC_PATHS = ['/api/seo-data.json'];
@@ -35,52 +30,10 @@ const ALLOWED_ORIGINS = [
   'http://localhost:3000',
   'https://aihavenlabs.com',
   'https://www.aihavenlabs.com',
-  'https://ai-haven-labs-git-develop-alvr10s-projects.vercel.app',
+  'https://www.mypathwayapp.com',
+  'https://mypathwayapp.com',
   // Add any additional domains here
 ];
-
-/**
- * Initialize the internationalization middleware from next-intl
- */
-const intlMiddleware = createMiddleware({
-  locales: LOCALES,
-  defaultLocale: DEFAULT_LOCALE,
-  localePrefix: 'always', // Always show locale in URL, e.g., /en/about
-  pathnames: {
-    // Define paths to exclude from locale prefixing
-    '/admin': {
-      exclude: 'true'
-    },
-    // Add other admin routes
-    '/admin/login': {
-      exclude: 'true'
-    },
-    '/admin/forgot-password': {
-      exclude: 'true'
-    },
-    '/admin/reset-password': {
-      exclude: 'true'
-    },
-    '/admin/users': {
-      exclude: 'true'
-    },
-    '/admin/activity': {
-      exclude: 'true'
-    },
-    '/admin/analytics': {
-      exclude: 'true'
-    },
-    '/admin/profile': {
-      exclude: 'true'
-    },
-    '/admin/settings': {
-      exclude: 'true'
-    },
-    '/admin/schedule': {
-      exclude: 'true'
-    },
-  }
-});
 
 /**
  * CORS handling function
@@ -190,24 +143,17 @@ export default async function middleware(request: NextRequest): Promise<NextResp
   }
 
   /**
-   * 4. Handle requests to the root path
+   * 4. Handle regular pages - no locale processing needed
    */
-  if (pathname === '/') {
-    return NextResponse.redirect(new URL(`/${DEFAULT_LOCALE}`, request.url));
-  }
-
-  /**
-   * 5. Apply internationalization middleware for non-admin routes
-   */
-  let response = intlMiddleware(request);
+  let response = NextResponse.next();
   
   /**
-   * 6. Apply CORS headers
+   * 5. Apply CORS headers
    */
   response = handleCORS(request, response);
   
   /**
-   * 7. Apply cache headers
+   * 6. Apply cache headers
    */
   response = applyCacheHeaders(request, response);
 

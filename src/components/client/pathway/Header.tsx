@@ -1,11 +1,11 @@
+// src/components/client/pathway/Header.tsx
 'use client';
 
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { useTranslations, useLocale } from 'next-intl';
-import LanguageSwitcher from '@/components/locales/LanguageSwitcher';
-import Link from 'next/link'; // Switched back to next/link for direct URL control
+import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,22 +15,12 @@ export const Header = () => {
   const { scrollY } = useScroll();
 
   const t = useTranslations("Pathway");
-  const locale = useLocale();
 
   // Mobile detection without resize listeners
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
   }, []);
-
-  // Redirect to localized home page when on root
-  useEffect(() => {
-    // Check if we're on the root path (/)
-    if (typeof window !== 'undefined' && window.location.pathname === '/') {
-      // Redirect to the localized version
-      window.location.replace(`/${locale}`);
-    }
-  }, [locale]);
 
   // Optimized scroll handler - now also closes menu when scrolling down
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -77,8 +67,8 @@ export const Header = () => {
         }}
       >
         <div className="container mx-auto px-4 h-full flex justify-between items-center">
-          {/* Logo - hardcoding locale in the URL */}
-          <Link href={`/${locale}`}>
+          {/* Logo */}
+          <Link href="/">
             <div className="flex items-center">
               <Image 
                 src="/icons/pathway/favicon.ico"
@@ -94,24 +84,25 @@ export const Header = () => {
           {!isMobile && (
             <nav className="flex space-x-6 items-center">
               {[
-                { label: `${t("ui.header.team")}`, href: '/team' },
+                { label: `${t("ui.header.team")}`, href: '/equipo' },
               ].map((item) => (
-                <a 
+                <Link 
                   key={item.label} 
-                  href={`/${locale}${item.href}`}
+                  href={item.href}
                   className="text-white/80 hover:text-white text-sm transition-colors"
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
-              <LanguageSwitcher />
+              {/* Keep LanguageSwitcher component but hide it for now */}
+              {/* <LanguageSwitcher /> */}
             </nav>
           )}
 
           {/* Mobile Menu Button */}
           {isMobile && (
             <div className='flex gap-6 items-center'>
-              <LanguageSwitcher />
+              {/* <LanguageSwitcher /> */}
 
               <button
                 type='button'
@@ -163,16 +154,16 @@ export const Header = () => {
         >
           <div className="container mx-auto px-4 py-2 flex flex-col">
             {[
-              { label: t("ui.header.team"), href: '/team' },
+              { label: t("ui.header.team"), href: '/equipo' },
             ].map((item) => (
-              <a
+              <Link
                 key={item.label}
-                href={`/${locale}${item.href}`}
+                href={item.href}
                 className="py-3 text-white/80 hover:text-white border-b border-white/10 text-sm"
                 onClick={() => setMenuOpen(false)}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
         </motion.div>

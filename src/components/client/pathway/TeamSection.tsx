@@ -26,14 +26,6 @@ const TeamSection = () => {
       role: t('members.1.role'),
       description: t('members.1.description'),
       linkedinUrl: "https://www.linkedin.com/in/rayan-chairi-ben-yamna-boulaich-026605293/",
-    },
-    {
-      id: 3,
-      imgSrc: "/images/team_members/cmo.jpeg",
-      name: t('members.2.name'),
-      role: t('members.2.role'),
-      description: t('members.2.description'),
-      linkedinUrl: "https://www.linkedin.com/in/mar%C3%ADa-victoria-s%C3%A1nchez-738b71339/",
     }
   ];
   
@@ -53,7 +45,7 @@ const TeamSection = () => {
           </div>
           
           {/* Team Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {teamMembers.map((member) => (
               <TeamMemberCard
                 key={member.id}

@@ -1,8 +1,5 @@
 // next.config.ts
-import createNextIntlPlugin from 'next-intl/plugin';
 import type { NextConfig } from 'next';
-
-const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["192.168.0.17"],
@@ -23,28 +20,20 @@ const nextConfig: NextConfig = {
     return [
       // Admin paths should not have locale prefixes
       {
-        source: '/:locale/admin/:path*',
+        source: '/admin/:path*',
         destination: '/admin/:path*',
-        locale: false
       },
       // API paths should not have locale prefixes
       {
-        source: '/:locale/api/:path*',
+        source: '/api/:path*',
         destination: '/api/:path*',
-        locale: false
       }
     ]
   },
-  // Add redirects to ensure root path goes to default locale
+  // Remove all locale-related redirects for now
   async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/es',
-        permanent: true,
-      }
-    ]
+    return []
   }
 };
 
-export default withNextIntl(nextConfig);
+export default nextConfig;

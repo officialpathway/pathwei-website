@@ -114,7 +114,7 @@ const Newsletter = () => {
               />
               <span className="text-sm">
                 {t("ui.newsletter.terms.agreement")}{" "}
-                <Link href="/terms" className="underline font-medium hover:text-gray-300 transition-colors duration-300">
+                <Link href="/terminos" className="underline font-medium hover:text-gray-300 transition-colors duration-300">
                   {t("ui.newsletter.terms.link")}
                 </Link>
               </span>
