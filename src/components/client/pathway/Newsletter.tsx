@@ -104,19 +104,23 @@ const Newsletter = () => {
 
           {/* Terms and Conditions Checkbox */}
           <div className="flex items-center justify-center w-full">
-            <label className="flex items-center gap-2 cursor-pointer">
+            <label className="flex items-start gap-3 cursor-pointer max-w-md">
               <input
                 type="checkbox"
                 checked={termsAgreed}
                 onChange={(e) => setTermsAgreed(e.target.checked)}
-                className="w-4 h-4 accent-white cursor-pointer"
+                className="w-4 h-4 accent-white cursor-pointer mt-0.5 flex-shrink-0"
                 required
               />
-              <span className="text-sm">
-                {t("ui.newsletter.terms.agreement")}{" "}
-                <Link href="/terminos" className="underline font-medium hover:text-gray-300 transition-colors duration-300">
-                  {t("ui.newsletter.terms.link")}
+              <span className="text-sm leading-relaxed">
+                Al suscribirte aceptas nuestra{" "}
+                <Link 
+                  href="/privacidad" 
+                  className="underline font-bold hover:text-gray-300 transition-colors duration-300"
+                >
+                  Política de Privacidad
                 </Link>
+                {" "}para tratar tus datos con la finalidad de conocer cuando nuestra aplicación está disponible y posteriormente recibir newsletter
               </span>
             </label>
           </div>

@@ -7,6 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react";
 import { Header } from "@/components/client/pathway/Header";
 import Footer from "@/components/client/pathway/Footer";
+import CookieBanner from "@/components/client/pathway/CookieBanner";
 import { Metadata } from "next";
 import { SEOTags } from "@/components/seo/SEOTags";
 
@@ -74,33 +75,7 @@ export default function RootLayout({
         <SEOTags 
           appName="Pathway App"
           description="Maximiza tu productividad y motivación con Pathway, la app gamificada que usa inteligencia artificial para ayudarte a alcanzar tus metas diarias."
-          jsonLd={`{
-            "@context": "https://schema.org",
-            "@type": "MobileApplication",
-            "name": "Pathway App",
-            "applicationCategory": "ProductivityApplication",
-            "operatingSystem": "iOS, ANDROID",
-            "offers": {
-              "@type": "Offer",
-              "price": "4,99",
-              "priceCurrency": "EUR"
-            },
-            "description": "Maximiza tu productividad y motivación con Pathway, la app gamificada que usa inteligencia artificial para ayudarte a alcanzar tus metas diarias.",
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.8",
-              "ratingCount": "2546"
-            },
-            "author": {
-              "@type": "Organization",
-              "name": "Pathway Inc.",
-              "url": "https://www.mypathwayapp.com"
-            },
-            "downloadUrl": [
-              "#",
-              "#"
-            ]
-          }`}
+          jsonLd={""}
         />
       </head>
       <body className="antialiased">
@@ -108,6 +83,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <CookieBanner />
           <SpeedInsights />
           <Analytics />
         </StaticTranslationProvider>

@@ -14,7 +14,7 @@ const Footer = () => {
     { href: "https://www.tiktok.com/@pathwayapp", icon: FaTiktok, label: "TikTok" },
     { href: "https://www.instagram.com/pathway.app", icon: FaInstagram, label: "Instagram" },
     { href: "https://www.linkedin.com/company/pathway-ai-haven-labs", icon: FaLinkedin, label: "LinkedIn" },
-    { href: "mailto:officialpathwayapp@gmail.com", icon: FaEnvelope, label: "Email" }
+    { href: "mailto:info@mypathwayapp.com", icon: FaEnvelope, label: "Email" }
   ];
 
   // Dynamic flame effect on scroll
@@ -113,6 +113,12 @@ const Footer = () => {
           <p className="text-sm text-gray-400 mb-3 md:mb-0">{t("rights")}</p>
           <div className="flex gap-6">
             <Link
+              href="/cookies"
+              className="text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              Política de Cookies
+            </Link>
+            <Link
               href="/privacidad"
               className="text-sm text-gray-400 hover:text-white transition-colors"
             >
@@ -123,6 +129,12 @@ const Footer = () => {
               className="text-sm text-gray-400 hover:text-white transition-colors"
             >
               {t("terms_conditions")}
+            </Link>
+            <Link
+              href="/aviso-legal"
+              className="text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              Aviso Legal
             </Link>
           </div>
         </div>

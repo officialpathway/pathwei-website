@@ -186,6 +186,46 @@
         "privacy_policy": "Política de privacidad.",
         "terms_conditions": "Términos y condiciones."
       },
+
+      "cookies": {
+        "banner": {
+          "title": "Uso de Cookies",
+          "description": "Utilizamos cookies para mejorar tu experiencia de navegación, personalizar contenido y analizar nuestro tráfico. Al continuar navegando, aceptas nuestro uso de cookies.",
+          "learn_more": "Saber más",
+          "buttons": {
+            "accept_all": "Aceptar Todas",
+            "necessary_only": "Solo Necesarias",
+            "customize": "Personalizar"
+          }
+        },
+        "settings": {
+          "title": "Configuración de Cookies",
+          "description": "Gestiona tus preferencias de cookies. Puedes activar o desactivar diferentes tipos de cookies según tus preferencias. Ten en cuenta que deshabilitar algunas cookies puede afectar tu experiencia en el sitio web.",
+          "always_active": "Siempre Activo",
+          "buttons": {
+            "save": "Guardar Preferencias",
+            "accept_all": "Aceptar Todas"
+          },
+          "categories": {
+            "necessary": {
+              "title": "Cookies Necesarias",
+              "description": "Estas cookies son esenciales para que el sitio web funcione correctamente. No se pueden desactivar ya que permiten funciones básicas como la navegación segura y el acceso a áreas protegidas."
+            },
+            "analytics": {
+              "title": "Cookies de Análisis",
+              "description": "Estas cookies nos ayudan a entender cómo los visitantes interactúan con nuestro sitio web, proporcionándonos información sobre métricas como número de visitantes, tiempo de permanencia y páginas más visitadas."
+            },
+            "marketing": {
+              "title": "Cookies de Marketing",
+              "description": "Estas cookies se utilizan para mostrar anuncios relevantes y realizar campañas de marketing. También nos ayudan a medir la efectividad de nuestras campañas publicitarias."
+            },
+            "preferences": {
+              "title": "Cookies de Preferencias",
+              "description": "Estas cookies permiten que el sitio web recuerde información sobre tus preferencias (como idioma, región, configuraciones de accesibilidad) para ofrecerte una experiencia más personalizada."
+            }
+          }
+        }
+      },
       
       "loading": "Cargando..."
     },
@@ -529,7 +569,7 @@
       "terms": {
         "page_title": "Términos y Condiciones",
         "last_updated": "Última actualización: {date}",
-        "update_date": "22 de abril de 2025",
+        "update_date": "3 de Junio de 2025",
         
         "intro_paragraph": "Bienvenido a nuestra aplicación. Estos Términos y Condiciones rigen tu uso de nuestro servicio de boletín y describen las reglas para suscribirte a nuestras comunicaciones.",
         "acceptance_paragraph": "Al suscribirte a nuestro boletín, reconoces que has leído, entendido y aceptas estar sujeto a estos Términos y Condiciones. Si no estás de acuerdo con cualquier parte de estos términos, por favor no te suscribas a nuestro boletín.",
@@ -589,11 +629,455 @@
         
         "back_to_home": "Volver a Inicio"
       },
+
+      "notice": {
+        "page_title": "Aviso Legal",
+        "last_updated": "Última actualización: {date}",
+        "update_date": "3 de Junio de 2025",
+        "sections": {
+          "general_info": {
+            "title": "I. INFORMACIÓN GENERAL",
+            "intro": "En cumplimiento con el deber de información dispuesto en la Ley 34/2002 de Servicios de la Sociedad de la Información y el Comercio Electrónico (LSSI-CE) de 11 de julio, se facilitan los siguientes datos de información general de este sitio web:",
+            "website_owner_label": "Titular del sitio web:",
+            "website_owner": "Pathway",
+            "email_label": "Correo electrónico:",
+            "email": "info@mypathwayapp.com",
+            "website_label": "Sitio web:",
+            "website": "www.mypathwayapp.com",
+            "note": "Nota: Pathway es una aplicación móvil de productividad personal. Este sitio web constituye nuestra landing page informativa."
+          },
+          "general_terms": {
+            "title": "II. TÉRMINOS Y CONDICIONES GENERALES DE USO",
+            "object": {
+              "title": "Objeto de las condiciones: El Sitio Web",
+              "description": "El objeto de las presentes Condiciones Generales de Uso es regular el acceso y utilización de nuestra landing page. Se entiende como Sitio Web:",
+              "modification_rights": "Pathway se reserva la facultad de modificar, en cualquier momento y sin aviso previo, la presentación y configuración del Sitio Web. El usuario reconoce y acepta que Pathway puede interrumpir, desactivar o cancelar cualquier elemento del sitio web."
+            },
+            "website_elements": [
+              "La landing page de Pathway con información sobre la aplicación",
+              "Todo el contenido informativo sobre funcionalidades y características",
+              "El formulario de suscripción al newsletter",
+              "Los enlaces de descarga a Google Play Store",
+              "Cualquier contenido multimedia (imágenes, videos, testimonios)"
+            ],
+            "access": {
+              "title": "Acceso al Sitio Web",
+              "features": [
+                "Gratuito: El acceso es libre y gratuito",
+                "Sin registro: No requiere suscripción previa para consultar información",
+                "Newsletter opcional: La suscripción al newsletter es completamente voluntaria",
+                "Descarga externa: La descarga de la app se realiza a través de Google Play Store"
+              ]
+            }
+          },
+          "user": {
+            "title": "III. EL USUARIO",
+            "intro": "Al acceder y navegar por nuestro sitio web, adquiere la condición de Usuario y acepta estas Condiciones Generales, así como sus modificaciones posteriores.",
+            "responsibilities": {
+              "title": "Responsabilidades del Usuario",
+              "intro": "El Usuario asume la responsabilidad de:",
+              "items": [
+                "Uso correcto de la información: Utilizar la información del sitio web conforme a la ley, moral y orden público",
+                "Veracidad en formularios: Proporcionar información veraz en el formulario de newsletter (si decide suscribirse)",
+                "Notificación de incidencias: Comunicar cualquier uso indebido o acceso no autorizado",
+                "Cumplimiento normativo: Respetar la legislación vigente y estos términos"
+              ]
+            },
+            "target_audience": {
+              "title": "Público objetivo",
+              "intro": "Este sitio web se dirige a:",
+              "items": [
+                "Personas interesadas en aplicaciones de productividad personal",
+                "Usuarios potenciales de Pathway",
+                "Público general mayor de 16 años (con consentimiento parental para menores)"
+              ]
+            }
+          },
+          "access_guarantees": {
+            "title": "IV. ACCESO Y NAVEGACIÓN: EXCLUSIÓN DE GARANTÍAS",
+            "availability": {
+              "title": "Disponibilidad del servicio",
+              "intro": "Pathway no garantiza:",
+              "efforts": "Pathway se esfuerza por mantener el sitio web operativo, pero no se responsabiliza de:"
+            },
+            "no_guarantees": {
+              "items": [
+                "Continuidad ininterrumpida del sitio web",
+                "Ausencia total de errores técnicos",
+                "Disponibilidad 24/7 sin mantenimientos"
+              ]
+            },
+            "not_responsible": {
+              "items": [
+                "Interrupciones por mantenimiento",
+                "Fallos de telecomunicaciones",
+                "Problemas derivados de virus o malware",
+                "Incompatibilidades con navegadores obsoletos"
+              ]
+            },
+            "limitation": {
+              "title": "Limitación de responsabilidad",
+              "intro": "En ningún caso Pathway será responsable por:",
+              "items": [
+                "Pérdidas o daños derivados del uso del sitio web",
+                "Problemas técnicos en dispositivos de usuarios",
+                "Decisiones tomadas basándose en la información del sitio"
+              ]
+            }
+          },
+          "links": {
+            "title": "V. POLÍTICA DE ENLACES",
+            "outgoing": {
+              "title": "Enlaces salientes",
+              "intro": "Nuestro sitio web puede contener enlaces a:",
+              "items": [
+                "Google Play Store: Para descarga de la aplicación Pathway",
+                "Redes sociales: Enlaces a perfiles oficiales de Pathway",
+                "Recursos informativos: Enlaces a contenido relacionado con productividad"
+              ]
+            },
+            "external_responsibility": {
+              "title": "Responsabilidad sobre enlaces externos",
+              "intro": "Pathway:",
+              "pathway_prefix": "Pathway",
+              "items": [
+                "NO controla el contenido de sitios web externos",
+                "NO se responsabiliza por el contenido de Google Play Store o redes sociales",
+                "NO garantiza la disponibilidad de enlaces externos",
+                "NO asume responsabilidad por daños derivados de sitios enlazados"
+              ]
+            },
+            "incoming": {
+              "title": "Enlaces entrantes (hipervínculos hacia nuestro sitio)",
+              "intro": "Si desea enlazar a nuestro sitio web desde otra página:",
+              "allowed": {
+                "title": "Permitido",
+                "items": [
+                  "Enlaces directos a la página principal",
+                  "Referencias informativas a Pathway",
+                  "Menciones en blogs o medios (con atribución correcta)"
+                ]
+              },
+              "prohibited": {
+                "title": "Prohibido",
+                "items": [
+                  "Reproducción del contenido sin autorización",
+                  "Declaraciones falsas sobre Pathway",
+                  "Uso de nuestro contenido protegido por derechos de autor",
+                  "Enlaces que impliquen relación comercial sin autorización"
+                ]
+              }
+            }
+          },
+          "intellectual_property": {
+            "title": "VI. PROPIEDAD INTELECTUAL E INDUSTRIAL",
+            "pathway_rights": {
+              "title": "Derechos de Pathway",
+              "intro": "Pathway es titular de todos los derechos sobre:",
+              "items": [
+                "Diseño y estructura del sitio web",
+                "Contenidos textuales (descripciones, textos promocionales)",
+                "Elementos gráficos (logotipos, imágenes, iconos)",
+                "Material multimedia (videos, animaciones)",
+                "Código fuente del sitio web",
+                "Marca \"Pathway\" y elementos distintivos"
+              ]
+            },
+            "user_use": {
+              "title": "Uso permitido por usuarios"
+            },
+            "allowed_use": {
+              "title": "Permitido",
+              "items": [
+                "Visualizar contenido para uso personal",
+                "Compartir enlaces al sitio web",
+                "Citar información con atribución adecuada"
+              ]
+            },
+            "prohibited_use": {
+              "title": "Prohibido",
+              "items": [
+                "Reproducir contenido con fines comerciales",
+                "Modificar o manipular elementos gráficos",
+                "Usar la marca \"Pathway\" sin autorización",
+                "Crear contenido derivado sin permiso"
+              ]
+            },
+            "legal_protection": {
+              "title": "Protección legal",
+              "intro": "Estos contenidos están protegidos por:",
+              "items": [
+                "Ley de Propiedad Intelectual española",
+                "Normativa comunitaria sobre derechos de autor",
+                "Tratados internacionales suscritos por España"
+              ]
+            }
+          },
+          "modifications": {
+            "title": "VII. MODIFICACIONES",
+            "changes": {
+              "title": "Cambios en las condiciones",
+              "intro": "Pathway se reserva el derecho de modificar:"
+            },
+            "items": [
+              "Estas Condiciones Generales de Uso",
+              "La estructura o contenido del sitio web",
+              "Las funcionalidades disponibles"
+            ],
+            "notification": {
+              "title": "Notificación de cambios",
+              "intro": "Los cambios significativos se comunicarán mediante:"
+            },
+            "notification_methods": [
+              "Aviso visible en el sitio web",
+              "Email a suscriptores del newsletter (cuando proceda)",
+              "Actualización de fecha en este documento"
+            ]
+          },
+          "legislation": {
+            "title": "VIII. LEGISLACIÓN APLICABLE Y JURISDICCIÓN",
+            "applicable_regulations": {
+              "title": "Normativa aplicable",
+              "intro": "Estas condiciones se rigen por:"
+            },
+            "applicable_laws": [
+              "Legislación española vigente",
+              "Reglamento (UE) 2016/679 (RGPD)",
+              "Ley 34/2002 (LSSI-CE)",
+              "Ley Orgánica 3/2018 de Protección de Datos"
+            ],
+            "jurisdiction": {
+              "title": "Jurisdicción",
+              "intro": "Para cualquier controversia:",
+              "items": [
+                "Jurisdicción: Tribunales de Ceuta competentes",
+                "Ley aplicable: Derecho español",
+                "Resolución amistosa: Preferencia por mediación antes de litigio"
+              ]
+            }
+          },
+          "contact": {
+            "title": "IX. CONTACTO",
+            "general": {
+              "title": "Consultas sobre este Aviso Legal",
+              "email_label": "Email:",
+              "email": "info@mypathwayapp.com",
+              "subject_label": "Asunto:",
+              "subject": "\"Consulta Aviso Legal\""
+            },
+            "specialized": {
+              "title": "Otros contactos especializados",
+              "data_protection": {
+                "type": "Datos personales",
+                "email": "info@mypathwayapp.com",
+                "subject": "Asunto: \"RGPD\""
+              },
+              "intellectual_property": {
+                "type": "Propiedad intelectual",
+                "email": "info@mypathwayapp.com",
+                "subject": "Asunto: \"Derechos de Autor\""
+              },
+              "technical_support": {
+                "type": "Soporte técnico",
+                "email": "info@mypathwayapp.com",
+                "subject": "Asunto: \"Soporte Web\""
+              }
+            }
+          }
+        }
+      },
+
+      "cookies": {
+        "page_title": "Política de Cookies",
+        "last_updated": "Última actualización: {date}",
+        "update_date": "3 de Junio de 2025",
+        "sections": {
+          "what_are": {
+            "title": "¿Qué son las Cookies?",
+            "paragraph1": "Las cookies son pequeños archivos de datos que se almacenan en su dispositivo (ordenador, tablet, smartphone) cuando visita nuestra landing page. Estos archivos contienen información que permite recordar ciertas preferencias y mejorar su experiencia de navegación.",
+            "paragraph2": "Las cookies que utilizamos almacenan únicamente datos técnicos y estadísticos anonimizados, no siendo perjudiciales para su equipo ni comprometiendo su privacidad personal.",
+            "important_note": "Importante: Las cookies que permiten identificar a una persona se consideran datos personales, por lo que su uso requiere su consentimiento explícito según el RGPD y la legislación española aplicable."
+          },
+          "types": {
+            "title": "¿Qué Tipos de Cookies Utiliza Pathway?",
+            "intro": "En Pathway utilizamos únicamente cookies esenciales y analíticas básicas, manteniendo nuestro compromiso con la minimización de datos:"
+          },
+          "technical": {
+            "title": "Cookies Técnicas (Esenciales)",
+            "purpose_label": "Finalidad:",
+            "purpose": "Imprescindibles para el correcto funcionamiento de nuestra landing page",
+            "duration_label": "Duración:",
+            "duration": "Sesión (se eliminan al cerrar el navegador)",
+            "data_label": "Datos recopilados:",
+            "data": [
+              "Configuración técnica básica",
+              "Preferencias de idioma",
+              "Estado de sesión"
+            ],
+            "legal_basis_label": "Base legal:",
+            "legal_basis": "Interés legítimo (necesarias para prestar el servicio solicitado)",
+            "note": "Estas cookies NO requieren consentimiento ya que son estrictamente necesarias para el funcionamiento del sitio web."
+          },
+          "analytical": {
+            "title": "Cookies Analíticas",
+            "purpose_label": "Finalidad:",
+            "purpose": "Análisis estadístico anónimo del uso de la landing page para mejorar la experiencia de usuario",
+            "duration_label": "Duración:",
+            "duration": "Máximo 26 meses",
+            "data_label": "Datos recopilados:",
+            "data": [
+              "Páginas visitadas",
+              "Tiempo de permanencia",
+              "Origen del tráfico (todo anonimizado)"
+            ],
+            "legal_basis_label": "Base legal:",
+            "legal_basis": "Consentimiento del usuario",
+            "note": "Estas cookies SÍ requieren su consentimiento explícito."
+          },
+          "not_used": {
+            "title": "Cookies que NO Utilizamos",
+            "intro": "Pathway se compromete a NO utilizar:",
+            "items": [
+              "Cookies de seguimiento entre sitios web",
+              "Cookies de terceros para perfilado comercial",
+              "Cookies de redes sociales (excepto las estrictamente técnicas si las integra)",
+              "Cookies para crear perfiles personalizados con fines comerciales"
+            ]
+          },
+          "consent": {
+            "title": "Gestión de su Consentimiento",
+            "subtitle": "Consentimiento para Cookies Analíticas",
+            "description": "Al acceder a nuestra landing page, se le presenta un banner de cookies donde puede:",
+            "options": [
+              "\"Aceptar Todas\": Consiente el uso de cookies técnicas y analíticas",
+              "\"Solo Esenciales\": Permite únicamente cookies técnicas necesarias",
+              "\"Configurar\": Personaliza sus preferencias por categorías"
+            ]
+          },
+          "withdrawal": {
+            "title": "Retirada del Consentimiento",
+            "description": "Puede retirar su consentimiento en cualquier momento mediante:",
+            "methods": [
+              "Panel de configuración: Accesible desde el enlace \"Configuración de Cookies\" en el pie de página",
+              "Configuración del navegador: Eliminando las cookies manualmente",
+              "Contacto directo: Escribiendo a info@mypathwayapp.com"
+            ]
+          },
+          "browser_config": {
+            "title": "Configuración de Cookies por Navegador",
+            "intro": "Si prefiere gestionar las cookies directamente desde su navegador:",
+            "or_visit": "O visite:",
+            "browsers": {
+              "chrome": {
+                "name": "Google Chrome",
+                "instruction": "Menú (⋮) > Configuración > Privacidad y seguridad > Cookies y otros datos de sitios",
+                "url": "chrome://settings/cookies"
+              },
+              "firefox": {
+                "name": "Mozilla Firefox",
+                "instruction": "Menú (☰) > Configuración > Privacidad y seguridad > Cookies y datos del sitio",
+                "url": "about:preferences#privacy"
+              },
+              "safari": {
+                "name": "Safari",
+                "instruction": "Safari > Preferencias > Privacidad > Gestionar datos del sitio web",
+                "url": "Preferencias de privacidad del navegador"
+              },
+              "edge": {
+                "name": "Microsoft Edge",
+                "instruction": "Menú (⋯) > Configuración > Cookies y permisos de sitio",
+                "url": "edge://settings/cookies"
+              }
+            }
+          },
+          "dnt_tools": {
+            "title": "Herramientas \"Do Not Track\"",
+            "description": "Para un mayor control, puede instalar extensiones o complementos que bloqueen cookies de seguimiento, como:",
+            "tools": [
+              "uBlock Origin",
+              "Privacy Badger",
+              "Ghostery"
+            ]
+          },
+          "consequences": {
+            "title": "Consecuencias de Rechazar Cookies",
+            "accepting": {
+              "title": "Si acepta solo cookies técnicas:",
+              "items": [
+                "Funcionalidad completa: La landing page funcionará correctamente",
+                "Información sobre la app: Podrá acceder a toda la información",
+                "Descarga de la app: Podrá descargar Pathway desde Google Play Store y Play Store de Apple"
+              ]
+            },
+            "rejecting": {
+              "title": "Si rechaza cookies analíticas:",
+              "items": [
+                "Analíticas limitadas: No podremos conocer estadísticas de uso anonimizadas",
+                "Menos optimización: La mejora de la experiencia de usuario será más lenta"
+              ]
+            },
+            "important_note": "Importante: Rechazar cookies NO afecta a la funcionalidad principal de nuestra landing page ni a la descarga de la aplicación."
+          },
+          "third_party": {
+            "title": "Cookies de Terceros",
+            "services": {
+              "google_play": {
+                "name": "Google Play Store",
+                "description": "Si accede a Google Play Store desde nuestra landing page para descargar Pathway, estará sujeto a la política de cookies de Google. Le recomendamos revisar sus términos de privacidad."
+              },
+              "apple_store": {
+                "name": "Apple App Store",
+                "description": "Si descarga Pathway a través del Apple App Store, se aplicará la política de privacidad y cookies de Apple. Recomendamos consultar sus términos en la página oficial de Apple."
+              },
+              "analytics": {
+                "name": "Servicios de Analíticas",
+                "description": "Utilizamos servicios de analíticas que procesan datos anonimizados y agregados. Estos servicios no pueden identificar usuarios individuales."
+              }
+            }
+          },
+          "duration": {
+            "title": "Duración y Conservación",
+            "items": [
+              "Cookies técnicas: Se eliminan automáticamente al cerrar el navegador",
+              "Cookies analíticas: Máximo 26 meses, después se eliminan automáticamente",
+              "Consentimiento: Su elección se recuerda durante 12 meses, tras los cuales se solicitará nuevamente"
+            ]
+          },
+          "updates": {
+            "title": "Actualizaciones de la Política",
+            "description": "Esta Política de Cookies puede actualizarse para reflejar cambios en nuestras prácticas o normativa aplicable. Los cambios significativos se notificarán mediante:",
+            "methods": [
+              "Aviso visible en la landing page",
+              "Nuevo banner de cookies (si procede)",
+              "Email a suscriptores (cuando corresponda)"
+            ]
+          },
+          "contact": {
+            "title": "Contacto y Consultas",
+            "description": "Para consultas sobre nuestra política de cookies:",
+            "email_label": "Email:",
+            "email": "info@mypathwayapp.com",
+            "subject_label": "Asunto:",
+            "subject": "\"Consulta Política de Cookies\"",
+            "response_time": "Pathway está comprometido con la transparencia y responderá a sus consultas en un plazo máximo de 48 horas laborables."
+          },
+          "regulations": {
+            "title": "Normativa Aplicable",
+            "description": "Esta política cumple con:",
+            "items": [
+              "Reglamento (UE) 2016/679 (RGPD)",
+              "Ley Orgánica 3/2018 de Protección de Datos Personales y garantía de los derechos digitales",
+              "Ley 34/2002 de Servicios de la Sociedad de la Información y de Comercio Electrónico"
+            ]
+          },
+          "final_note": "Al continuar navegando por nuestro sitio web sin modificar la configuración de cookies de su navegador, entiende y acepta el uso de cookies técnicas esenciales. Para cookies analíticas, siempre solicitaremos su consentimiento explícito."
+        }
+      },
       
       "privacy": {
         "page_title": "Política de Privacidad",
         "last_updated": "Última actualización: {date}",
-        "update_date": "22 de abril de 2025",
+        "update_date": "3 de Junio de 2025",
         
         "intro_paragraph": "Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos la información cuando utilizas nuestra aplicación y servicios. Estamos comprometidos a garantizar la privacidad y seguridad de todos nuestros usuarios.",
         "scope_paragraph": "Al usar nuestra aplicación, suscribirte a nuestro boletín o interactuar con nuestros servicios, consientes las prácticas descritas en esta Política de Privacidad.",
