@@ -307,18 +307,21 @@ const CookieBanner = () => {
                 
                 <div className="flex flex-col sm:flex-row gap-3 lg:flex-shrink-0">
                   <button
+                    type='button'
                     onClick={() => setShowSettings(true)}
-                    className="px-4 py-2 text-gray-600 hover:text-gray-800 border border-gray-300 rounded-lg transition-colors font-medium"
+                    className="px-4 py-2 text-gray-600 hover:text-gray-800 border hover:bg-gray-100 border-gray-300 rounded-lg transition-all font-medium"
                   >
                     {t('banner.buttons.customize')}
                   </button>
                   <button
+                    type='button'
                     onClick={acceptNecessary}
-                    className="px-4 py-2 text-gray-600 hover:text-gray-800 border border-gray-300 rounded-lg transition-colors font-medium"
+                    className="px-4 py-2 text-gray-600 hover:text-gray-800 border hover:bg-gray-100 border-gray-300 rounded-lg transition-all font-medium"
                   >
                     {t('banner.buttons.necessary_only')}
                   </button>
                   <button
+                    type='button'
                     onClick={acceptAll}
                     className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium"
                   >

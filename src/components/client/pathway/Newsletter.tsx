@@ -113,14 +113,14 @@ const Newsletter = () => {
                 required
               />
               <span className="text-sm leading-relaxed">
-                Al suscribirte aceptas nuestra{" "}
+                {t("ui.newsletter.terms.agreement")}{" "}
                 <Link 
                   href="/privacidad" 
                   className="underline font-bold hover:text-gray-300 transition-colors duration-300"
                 >
-                  Política de Privacidad
+                  {t("ui.newsletter.terms.link")}
                 </Link>
-                {" "}para tratar tus datos con la finalidad de conocer cuando nuestra aplicación está disponible y posteriormente recibir newsletter
+                {" "}{t("ui.newsletter.terms.agreement_2")}
               </span>
             </label>
           </div>

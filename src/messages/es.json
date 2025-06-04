@@ -167,9 +167,10 @@
           "success_checker": "Gracias"
         },
         "terms": {
-          "agreement": "Al suscribirme, acepto los",
-          "link": "Términos y Condiciones",
-          "agree_message": "Por favor, acepta los términos y condiciones para continuar."
+          "agreement": "Al suscribirte, aceptas nuestra",
+          "link": "Política de Privacidad",
+          "agreement_2": "para tratar tus datos con la finalidad de conocer cuándo nuestra aplicación está disponible y posteriormente recibir newsletter.",
+          "agree_message": "Por favor, acepta la Política de Privacidad para continuar."
         }
       },
       
@@ -184,13 +185,15 @@
         "about_pathway": "Acerca de Pathway",
         "rights": "© 2025 Pathway. Todos los derechos reservados.",
         "privacy_policy": "Política de privacidad.",
-        "terms_conditions": "Términos y condiciones."
+        "terms_conditions": "Términos y condiciones.",
+        "cookie_policy": "Política de cookies.",
+        "legal_notice": "Aviso legal."
       },
 
       "cookies": {
         "banner": {
           "title": "Uso de Cookies",
-          "description": "Utilizamos cookies para mejorar tu experiencia de navegación, personalizar contenido y analizar nuestro tráfico. Al continuar navegando, aceptas nuestro uso de cookies.",
+          "description": "Este sitio web utiliza cookies que permiten el funcionamiento y la prestación de los servicios ofrecidos en el mismo.",
           "learn_more": "Saber más",
           "buttons": {
             "accept_all": "Aceptar Todas",
@@ -568,66 +571,217 @@
     "legal": {
       "terms": {
         "page_title": "Términos y Condiciones",
-        "last_updated": "Última actualización: {date}",
         "update_date": "3 de Junio de 2025",
-        
-        "intro_paragraph": "Bienvenido a nuestra aplicación. Estos Términos y Condiciones rigen tu uso de nuestro servicio de boletín y describen las reglas para suscribirte a nuestras comunicaciones.",
-        "acceptance_paragraph": "Al suscribirte a nuestro boletín, reconoces que has leído, entendido y aceptas estar sujeto a estos Términos y Condiciones. Si no estás de acuerdo con cualquier parte de estos términos, por favor no te suscribas a nuestro boletín.",
-        
+        "last_updated": "Última actualización: {date}",
         "sections": {
-          "newsletter": {
-            "title": "Descripción del Servicio de Boletín",
-            "description": "Nuestro boletín está diseñado para mantener a los suscriptores informados sobre nuestra aplicación y servicios. Al suscribirte, recibirás correos electrónicos relacionados con:",
-            "purposes": [
-              "Ofertas comerciales, promociones y oportunidades de descuento relacionadas con nuestra aplicación",
-              "Invitaciones para participar en pruebas beta de nuevas características y funcionalidades de la aplicación",
-              "Encuestas y sondeos sobre posibles nuevas características y tus preferencias",
-              "Anuncios de lanzamiento de nuevas características, servicios y actualizaciones de la aplicación"
-            ]
+          "intro": {
+            "title": "¡Te damos la bienvenida a Pathway!",
+            "welcome": "En Pathway, nos apasiona ayudarte a alcanzar tus metas y transformar tus sueños en realidad. Queremos que te sientas parte de una comunidad donde puedas compartir tus logros y motivar a otros a hacer lo mismo.",
+            "purpose": "Para garantizar una experiencia positiva y segura para todos nuestros usuarios, hemos creado estos Términos y Condiciones, junto con nuestra Política de Privacidad.",
+            "support": "Estamos aquí para acompañarte en cada paso de tu camino hacia el éxito. Si tienes alguna pregunta o inquietud, no dudes en ponerte en contacto con nosotros. ¡Estamos aquí para ayudarte a lograr tus objetivos en Pathway!"
           },
-          
-          "subscription": {
-            "title": "Términos de Suscripción",
-            "paragraphs": [
-              "Para suscribirte a nuestro boletín, debes proporcionar una dirección de correo electrónico válida. Eres responsable de asegurar la precisión de la información que proporcionas.",
-              "La frecuencia de nuestras comunicaciones puede variar según nuestro calendario de lanzamientos, promociones y otros factores. Nos esforzamos por enviar contenido relevante y evitar comunicaciones excesivas."
-            ]
+          "agreement": {
+            "title": "1. Acuerdo de Términos",
+            "acceptance": "Al utilizar nuestros Servicios, usted acepta estar sujeto a estos Términos y Condiciones. Si no acepta estar sujeto a estos Términos, no utilice los Servicios.",
+            "services_definition": "Por \"Servicios\" entendemos todos los aspectos de las aplicaciones móviles de Pathway, nuestro sitio web (https://mypathwayapp.com/), así como el software, sistemas y funcionalidades que alimentan tanto las aplicaciones como nuestro sitio web."
           },
-          
-          "privacy": {
-            "title": "Privacidad y Uso de Datos",
-            "paragraphs": [
-              "Cuando te suscribes a nuestro boletín, recopilamos tu dirección de correo electrónico y cualquier otra información que proporciones voluntariamente. Esta información se utiliza para enviarte el boletín y personalizar el contenido según tus preferencias.",
-              "Podemos utilizar tecnologías de seguimiento para monitorear cómo los suscriptores interactúan con nuestros correos electrónicos, incluidas las tasas de apertura y clics. Estos datos nos ayudan a mejorar nuestras comunicaciones y servicios.",
-              "Tu información personal será manejada de acuerdo con nuestra Política de Privacidad. No venderemos ni alquilaremos tu dirección de correo electrónico a terceros, aunque podemos compartir datos agregados anonimizados con fines analíticos."
-            ]
-          },
-          
-          "unsubscribe": {
-            "title": "Cancelación de Suscripción",
-            "paragraph": "Puedes cancelar tu suscripción a nuestro boletín en cualquier momento haciendo clic en el enlace 'Cancelar suscripción' incluido en cada correo electrónico que enviamos, o contactándonos directamente. Al cancelar la suscripción, eliminaremos rápidamente tu dirección de correo electrónico de nuestra lista de distribución para comunicaciones de marketing, aunque podemos conservar cierta información según lo requieran fines legales o comerciales legítimos."
-          },
-          
-          "content": {
-            "title": "Contenido del Boletín",
-            "paragraphs": [
-              "Si bien nos esforzamos por garantizar la precisión de la información contenida en nuestros boletines, no garantizamos que todo el contenido esté libre de errores. Las ofertas promocionales pueden estar sujetas a términos y condiciones adicionales, que se comunicarán claramente.",
-              "Nos reservamos el derecho de determinar el contenido, el momento y los destinatarios de nuestros boletines. Las invitaciones a pruebas beta y encuestas de características pueden enviarse a segmentos seleccionados de nuestra base de suscriptores según patrones de uso, comentarios anteriores u otros criterios."
-            ]
-          },
-          
           "changes": {
-            "title": "Cambios en los Términos",
-            "paragraph": "Nos reservamos el derecho de modificar estos Términos y Condiciones en cualquier momento. Notificaremos a los suscriptores de cualquier cambio material por correo electrónico. Tu continua suscripción a nuestro boletín después de dicha notificación constituye tu aceptación de los términos revisados."
+            "title": "2. Cambios en estos Términos o en los Servicios",
+            "intro": "En Pathway, nos esforzamos por mejorar continuamente nuestros servicios para brindarte la mejor experiencia posible. Por esta razón, podemos realizar actualizaciones periódicas en estos Términos, las cuales te notificaremos mediante:",
+            "notifications": [
+              "Publicaciones en el sitio web",
+              "Notificaciones en la aplicación",
+              "Comunicaciones por correo electrónico",
+              "Avisos push cuando corresponda"
+            ],
+            "acceptance": "Te recomendamos que revises estos Términos cada vez que haya una actualización o utilices nuestros servicios. Si decides continuar utilizando Pathway después de que hayamos publicado los Términos actualizados, entenderemos que aceptas los cambios realizados.",
+            "disagreement": "Sin embargo, si no estás de acuerdo con los cambios, lamentablemente no podrás seguir utilizando nuestros servicios. Ten en cuenta que, debido a la naturaleza en evolución de nuestros servicios, podemos realizar cambios o suspender parte o la totalidad de los mismos en cualquier momento, a nuestro criterio exclusivo, con previo aviso cuando sea posible."
           },
-          
+          "usage": {
+            "title": "3. ¿Quién Puede Utilizar los Servicios?",
+            "age_requirement": "Para utilizar los servicios de Pathway, debes tener al menos 14 años de edad (o la edad mínima requerida para dar tu consentimiento para el procesamiento de datos según las leyes de tu país). Además, debes cumplir con todas las leyes aplicables que regulen el uso de nuestros servicios.",
+            "minor_consent": "Si eres menor de 18 años pero mayor de 14 años, debes contar con el consentimiento de tus padres o tutores legales. Al utilizar nuestros servicios, declaras y garantizas que cuentas con el consentimiento de tus padres o tutores legales, quienes han leído y aceptado estos Términos en tu nombre. Los padres y tutores legales son responsables de supervisar el uso de los servicios por parte de los menores.",
+            "personal_use": {
+              "title": "Uso Personal y Auténtico",
+              "description": "Los servicios de Pathway están diseñados para ser utilizados exclusivamente por personas reales para fines personales y no comerciales. Los bots u otros programas automatizados no están autorizados a utilizar nuestros servicios.",
+              "confirmation": "Al registrarte y utilizar Pathway, confirmas que:"
+            },
+            "confirmations": [
+              "Eres una persona real",
+              "No estás utilizando nuestros servicios de forma automatizada",
+              "No actúas en representación de un tercero sin autorización",
+              "Proporcionas información veraz y actualizada"
+            ],
+            "enforcement": "Nos reservamos el derecho de tomar medidas, incluida la suspensión o eliminación de cuentas, si determinamos que se está utilizando nuestra plataforma de manera indebida."
+          },
+          "process": {
+            "title": "4. Proceso del Usuario y Servicios",
+            "registration": {
+              "title": "Registro y Configuración",
+              "description": "Una vez descargada la aplicación, el proceso de usuario incluye:",
+              "steps": [
+                "Registro inicial: Introducción de datos personales básicos para crear tu cuenta",
+                "Configuración del perfil: Personalización de preferencias y objetivos",
+                "Exploración gratuita: Acceso inmediato a las funcionalidades básicas de Pathway"
+              ]
+            },
+            "service_modes": {
+              "title": "Modalidades de Servicio",
+              "free": {
+                "title": "Servicio Gratuito:",
+                "features": [
+                  "Acceso a funcionalidades básicas de la aplicación",
+                  "Herramientas esenciales para el seguimiento de objetivos",
+                  "Contenido limitado y características estándar"
+                ]
+              },
+              "premium": {
+                "title": "Suscripción Premium (Mensual):",
+                "features": [
+                  "Acceso completo a todas las funcionalidades avanzadas",
+                  "Contenido exclusivo y herramientas premium",
+                  "Funciones de inteligencia artificial mejoradas",
+                  "Soporte prioritario",
+                  "Análisis detallados y reportes personalizados"
+                ]
+              }
+            },
+            "upgrade_option": "Los usuarios pueden decidir en cualquier momento actualizar de la versión gratuita a la suscripción mensual premium para acceder a características y contenidos adicionales."
+          },
+          "license": {
+            "title": "5. Licencia de la Aplicación y Términos de Uso",
+            "grant": {
+              "title": "A) Concesión de Licencia",
+              "description": "Al aceptar estos Términos, te concedemos una licencia limitada, no exclusiva, no transferible y revocable para:",
+              "rights": [
+                "Descargar e instalar la Aplicación en tus dispositivos personales",
+                "Utilizar la Aplicación exclusivamente para tus propios fines personales y no comerciales"
+              ]
+            },
+            "restrictions_title": "B) Restricciones de Uso",
+            "restrictions": [
+              "Copiar, modificar o crear obras derivadas basadas en la Aplicación",
+              "Distribuir, transferir, sublicenciar, arrendar, prestar o alquilar la Aplicación a terceros",
+              "Realizar ingeniería inversa, descompilar o desensamblar la Aplicación (salvo que lo permita expresamente la ley aplicable)",
+              "Poner la funcionalidad de la Aplicación a disposición de múltiples usuarios a través de cualquier medio",
+              "Utilizar la Aplicación para fines comerciales sin autorización previa por escrito"
+            ],
+            "intellectual_property": {
+              "title": "C) Propiedad Intelectual",
+              "description": "Pathway y sus licenciantes conservan todos los derechos, títulos e intereses sobre la Aplicación, incluyendo todos los derechos de propiedad intelectual. Esta licencia no te otorga ningún derecho de propiedad sobre la Aplicación."
+            },
+            "app_store": {
+              "title": "D) Compatibilidad con Tiendas de Aplicaciones",
+              "description": "Si obtienes la Aplicación a través de Google Play Store u otras tiendas de aplicaciones, también estarás sujeto a los términos y condiciones de dichas plataformas. En caso de conflicto entre estos Términos y los términos de las tiendas de aplicaciones, prevalecerán estos Términos en relación con el uso de la Aplicación."
+            }
+          },
+          "subscriptions": {
+            "title": "6. Política de Suscripciones y Cancelación",
+            "monthly": {
+              "title": "Suscripción Mensual",
+              "terms": [
+                "Las suscripciones se renuevan automáticamente cada mes",
+                "El cobro se realiza al inicio de cada período de facturación",
+                "Los precios pueden estar sujetos a cambios con previo aviso de 15 días"
+              ]
+            },
+            "cancellation_process": {
+              "title": "Proceso de Cancelación",
+              "description": "Los usuarios pueden cancelar su suscripción en cualquier momento a través de:"
+            },
+            "cancellation_methods": [
+              "Configuración de la cuenta en la aplicación",
+              "Configuración de suscripciones en Google Play Store, App Store o Stripe",
+              "Contacto directo con nuestro servicio de atención al cliente: info@mypathwayapp.com"
+            ],
+            "cancellation_terms_title": "Términos de Cancelación",
+            "cancellation_terms_intro": "Al cancelar tu suscripción:",
+            "cancellation_terms": [
+              "El período pagado permanece activo: Mantendrás acceso completo a todas las funciones premium hasta el final del período de facturación actual",
+              "No hay reembolsos prorrateados: El mes pagado se considera completamente utilizado, independientemente de cuándo se realice la cancelación",
+              "Transición gradual: Al finalizar el período pagado, tu cuenta se convertirá automáticamente a la versión gratuita",
+              "Reactivación: Puedes reactivar tu suscripción en cualquier momento"
+            ],
+            "refunds": {
+              "title": "Reembolsos",
+              "description": "No se proporcionan reembolsos por cancelaciones voluntarias de suscripciones. Los reembolsos solo se considerarán en casos excepcionales y conforme a la legislación aplicable de protección al consumidor."
+            }
+          },
+          "feedback": {
+            "title": "7. Comentarios y Sugerencias",
+            "intro": "Valoramos enormemente tus comentarios, ideas, propuestas y sugerencias para mejorar Pathway. Al enviarnos tus comentarios a través de cualquier medio, aceptas que:",
+            "rights": [
+              "Tenemos el derecho de utilizarlos libremente para mejorar y desarrollar nuestros servicios",
+              "No se requiere compensación alguna por parte nuestra",
+              "No hay restricciones sobre cómo podemos implementar tus sugerencias",
+              "Apreciamos sinceramente tu contribución para hacer de Pathway una mejor plataforma"
+            ],
+            "contact": "Puedes enviar tus comentarios a: info@mypathwayapp.com"
+          },
+          "termination": {
+            "title": "8. Finalización de Servicios",
+            "by_pathway": {
+              "title": "Terminación por Parte de Pathway",
+              "description": "Pathway se reserva el derecho de suspender o cancelar tu acceso y uso de los Servicios, incluyendo la suspensión del acceso o la cancelación de tu cuenta, a nuestra discreción, en cualquier momento. Esto puede ocurrir en casos de:"
+            },
+            "reasons": [
+              "Violación de estos Términos y Condiciones",
+              "Uso inapropiado o fraudulento de los servicios",
+              "Actividades que puedan dañar a otros usuarios o la plataforma",
+              "Razones técnicas o de seguridad"
+            ],
+            "by_user": {
+              "title": "Terminación por Parte del Usuario",
+              "description": "Puedes cancelar tu cuenta y eliminar su contenido en cualquier momento enviándonos un correo electrónico a info@mypathwayapp.com con el asunto \"Cancelación de Cuenta\"."
+            },
+            "effects_title": "Efectos de la Terminación",
+            "effects": [
+              "Se suspenderá inmediatamente tu acceso a los servicios",
+              "Se eliminarán tus datos personales conforme a nuestra Política de Privacidad",
+              "Las obligaciones que por su naturaleza deban sobrevivir continuarán vigentes"
+            ]
+          },
+          "liability": {
+            "title": "9. Limitación de Responsabilidad",
+            "intro": "En la máxima medida permitida por la ley aplicable, Pathway no será responsable de:",
+            "exclusions": [
+              "Daños indirectos, incidentales, especiales o consecuentes",
+              "Pérdida de beneficios, datos, uso, oportunidades comerciales o reputación",
+              "Daños que excedan el monto pagado por los servicios en los 12 meses anteriores"
+            ]
+          },
+          "jurisdiction": {
+            "title": "10. Jurisdicción y Ley Aplicable",
+            "odr_intro": "En caso de conflicto y de cualquier controversia, las partes acuerdan acudir al sistema extrajudicial de resolución de conflictos en sede electrónica de la Comisión Europea (ODR: Online Dispute Resolutions), pudiéndose realizar por medio de arbitraje electrónico o mediación electrónica.",
+            "odr_description": "La Plataforma ODR es una herramienta online que crea la Comisión Europea para resolver las posibles incidencias que surgen al comprar productos o contratar servicios por Internet.",
+            "odr_link": "https://ec.europa.eu/consumers/odr",
+            "fallback": "No obstante, en caso de no estar de acuerdo con el resultado de la mediación extrajudicial, las partes podrán acudir a la jurisdicción de los tribunales de Ceuta, España y la aplicación de la ley española."
+          },
+          "general": {
+            "title": "11. Disposiciones Generales",
+            "severability": {
+              "title": "Divisibilidad",
+              "description": "Si cualquier disposición de estos Términos se considera inválida o inaplicable, las disposiciones restantes permanecerán en pleno vigor y efecto."
+            },
+            "complete_agreement": {
+              "title": "Acuerdo Completo",
+              "description": "Estos Términos, junto con nuestra Política de Privacidad, constituyen el acuerdo completo entre tú y Pathway con respecto al uso de los servicios."
+            },
+            "waiver": {
+              "title": "Renuncia",
+              "description": "El hecho de que no hagamos valer cualquier derecho o disposición de estos Términos no constituirá una renuncia a tal derecho o disposición."
+            }
+          },
           "contact": {
-            "title": "Contáctanos",
-            "paragraph": "Si tienes preguntas o inquietudes sobre estos Términos y Condiciones o nuestro servicio de boletín, por favor contacta a nuestro equipo de soporte. Estamos comprometidos a abordar tus consultas de manera rápida y exhaustiva."
+            "title": "12. Contacto",
+            "intro": "Para cualquier pregunta, consulta o inquietud sobre estos Términos y Condiciones:",
+            "email": "info@mypathwayapp.com",
+            "subject": "\"Consulta Términos y Condiciones\"",
+            "address": "Murallas Reales, Ángulo de San Pablo · 51001 Ceuta, España",
+            "response_time": "Nos comprometemos a responder a tus consultas en un plazo máximo de 48 horas laborables."
           }
         },
-        
-        "back_to_home": "Volver a Inicio"
+        "final_confirmation": "Al utilizar los servicios de Pathway, confirmas que has leído, comprendido y aceptado estar sujeto a estos Términos y Condiciones en su totalidad."
       },
 
       "notice": {
@@ -1174,12 +1328,6 @@
           "name": "Rayan Chairi Ben Yamna Boulaich",
           "role": "Director de Tecnología",
           "description": "Diseñador de UI y UX. Estudiante de Ingeniería Informática",
-          "linkedin": "LinkedIn"
-        },
-        {
-          "name": "Maria Victoria Sanchez Serrano",
-          "role": "Directora de Marketing",
-          "description": "Estudiante universitaria de Ingeniería con experiencia en redes sociales.",
           "linkedin": "LinkedIn"
         }
       ]

@@ -116,7 +116,7 @@ const Footer = () => {
               href="/cookies"
               className="text-sm text-gray-400 hover:text-white transition-colors"
             >
-              Política de Cookies
+              {t("cookie_policy")}
             </Link>
             <Link
               href="/privacidad"
@@ -134,7 +134,7 @@ const Footer = () => {
               href="/aviso-legal"
               className="text-sm text-gray-400 hover:text-white transition-colors"
             >
-              Aviso Legal
+              {t("legal_notice")}
             </Link>
           </div>
         </div>
