@@ -456,7 +456,13 @@ function ActivityContent({ adminData }: ActivityContentProps) {
         {/* Activity Summary Widget - Shows counts by category */}
         <Widget 
           title="Activity Summary" 
-          description={`As of ${format(new Date(), 'PPP')}`}
+          description={`As of ${(() => {
+            try {
+              return format(new Date(), 'PPP');
+            } catch {
+              return new Date().toLocaleDateString();
+            }
+          })()}`}
           size="4x1"
           icon={Clock}
         >
