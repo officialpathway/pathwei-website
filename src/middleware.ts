@@ -32,6 +32,7 @@ const ALLOWED_ORIGINS = [
   'https://www.aihavenlabs.com',
   'https://www.mypathwayapp.com',
   'https://mypathwayapp.com',
+  'https://pathwei.com',
   // Add any additional domains here
 ];
 
