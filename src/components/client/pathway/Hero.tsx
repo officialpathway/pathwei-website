@@ -1,34 +1,73 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from 'next-intl';
 
 const Hero = () => {
+  const [timeLeft, setTimeLeft] = useState<{
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+  } | null>(null);
+  
   const t = useTranslations("Pathway");
 
-  const BetaFeature = ({ icon, title, description }: { icon: string; title: string; description: string }) => (
+  useEffect(() => {
+    // Move targetDate inside useEffect to prevent recalculation
+    const targetDate = new Date('2025-07-01T00:00:00Z').getTime();
+
+    const calculateTimeLeft = () => {
+      const now = Date.now();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        return {
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000)
+        };
+      } else {
+        return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+      }
+    };
+
+    // Initial calculation
+    setTimeLeft(calculateTimeLeft());
+    
+    // Set up interval
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []); // Empty dependency array since targetDate is now inside the effect
+
+  const CountdownUnit = ({ value, label }: { value: number; label: string }) => (
     <div className="relative group">
       {/* Glow effect background */}
       <div className="absolute inset-0 bg-amber-500/20 rounded-2xl blur-xl group-hover:bg-amber-500/30 transition-all duration-300" />
       
       {/* Main container */}
-      <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-6 
+      <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-6 md:p-8 
                       hover:bg-white/15 hover:border-amber-500/30 transition-all duration-300
                       shadow-2xl hover:shadow-amber-500/20">
-        {/* Icon */}
-        <div className="text-4xl mb-3 text-center">
-          {icon}
+        {/* Value */}
+        <div
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-amber-500 mb-2 
+                     drop-shadow-lg font-mono tracking-tight"
+          style={{
+            textShadow: '0 0 20px rgba(245, 158, 11, 0.5)'
+          }}
+        >
+          {value.toString().padStart(2, '0')}
         </div>
         
-        {/* Title */}
-        <div className="text-white font-semibold text-center mb-2">
-          {title}
-        </div>
-        
-        {/* Description */}
-        <div className="text-white/80 text-sm text-center">
-          {description}
+        {/* Label */}
+        <div className="text-white/80 text-xs sm:text-sm md:text-base font-medium uppercase tracking-wider">
+          {label}
         </div>
         
         {/* Animated border */}
@@ -38,26 +77,14 @@ const Hero = () => {
   );
 
   return (
-    <section className="relative bg-transparent overflow-hidden min-h-screen flex items-center justify-center">
+    <section className="relative bg-transparent overflow-hidden h-screen flex items-center pt-20 justify-center">
       {/* Content */}
-      <div className="relative z-10 text-center px-4 sm:px-6 max-w-6xl mx-auto pt-20 pb-8">
+      <div className="relative z-10 text-center px-4 sm:px-6 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Beta Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1, duration: 0.6 }}
-            className="inline-flex items-center mb-6"
-          >
-            <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide shadow-lg">
-              🚀 Beta Disponible Ahora
-            </div>
-          </motion.div>
-
           {/* Main Headline */}
           <motion.h1 
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white"
@@ -71,69 +98,61 @@ const Hero = () => {
             </span>
           </motion.h1>
 
-          {/* Beta announcement */}
-          <motion.div 
-            className="mb-8 sm:mb-12"
+          {/* Countdown announcement */}
+          <motion.p 
+            className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-12 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            <p className="text-lg sm:text-xl md:text-2xl text-white mb-4 font-medium">
-              ¡Únete a la Beta de Pathway!
-            </p>
-            <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto">
-              Sé uno de los primeros en probar nuestra revolucionaria app de productividad con IA. 
-              La beta está disponible ahora.
-            </p>
-          </motion.div>
+            Lanazmiento el 1 de Julio, 2025
+          </motion.p>
 
-          {/* Beta Features Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 sm:mb-12 max-w-4xl mx-auto"
-          >
-            <BetaFeature 
-              icon="🎯"
-              title="Funciones Completas"
-              description="Acceso a todas las características principales de Pathway"
-            />
-            <BetaFeature 
-              icon="🤖"
-              title="IA Integrada"
-              description="Experimenta nuestro asistente de productividad con inteligencia artificial"
-            />
-            <BetaFeature 
-              icon="📱"
-              title="APK Exclusivo"
-              description="Descarga directa del archivo APK por email"
-            />
-          </motion.div>
+          {/* Countdown Timer - Only render when timeLeft is available */}
+          {timeLeft && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-8 mb-8 sm:mb-12">
+              <CountdownUnit value={timeLeft.days} label="Días" />
+              <CountdownUnit value={timeLeft.hours} label="Horas" />
+              <CountdownUnit value={timeLeft.minutes} label="Minutos" />
+              <CountdownUnit value={timeLeft.seconds} label="Segundos" />
+            </div>
+          )}
+
+          {/* Loading state for countdown */}
+          {!timeLeft && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-8 mb-8 sm:mb-12">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="relative">
+                  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-6 md:p-8">
+                    <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-amber-500/50 mb-2 font-mono">
+                      --
+                    </div>
+                    <div className="text-white/40 text-xs sm:text-sm md:text-base font-medium uppercase tracking-wider">
+                      {['Days', 'Hours', 'Minutes', 'Seconds'][i]}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
           {/* Call to action */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="space-y-6"
+            transition={{ delay: 1.4, duration: 0.8 }}
+            className="space-y-4"
           >
-            <div className="space-y-4">
-              <p className="text-white/90 text-lg font-medium">
-                🔐 Acceso Beta Exclusivo
-              </p>
-              <p className="text-white/70 text-sm md:text-base max-w-2xl mx-auto">
-                Suscríbete a nuestro newsletter y recibe el enlace de descarga del APK directamente en tu email. 
-                ¡Solo para usuarios beta!
-              </p>
-            </div>
+            <p className="text-white/60 text-sm md:text-base mb-4 sm:mb-6">
+              Sé el primero en enterarte de las novedades y el lanzamiento de Pathway
+            </p>
             
             {/* Newsletter signup button */}
             <motion.button 
               type="button" 
-              className="relative overflow-hidden group bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 sm:px-8 py-3 sm:py-4 
+              className="relative overflow-hidden group bg-gradient-to-r from-amber-500 to-orange-600 text-white px-6 sm:px-8 py-3 sm:py-4 
                         rounded-full font-medium text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer
-                        hover:scale-105 transform hover:shadow-green-500/25"
+                        hover:scale-105 transform hover:shadow-amber-500/25"
               onClick={() => {
                 const newsletterSection = document.getElementById('newsletter');
                 if (newsletterSection) {
@@ -147,30 +166,14 @@ const Hero = () => {
               whileTap={{ scale: 0.95 }}
             >
               <span className="relative z-10 flex items-center gap-2">
-                Unirse a la Beta
+                Ser Notificado
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M7 7h10v10"/>
                   <path d="M7 17 17 7"/>
                 </svg>
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.button>
-
-            {/* Secondary info */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-white/60">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-                <span>Beta gratuita</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
-                <span>APK por email</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
-                <span>Acceso inmediato</span>
-              </div>
-            </div>
           </motion.div>
 
           {/* Scroll Down Indicator */}
@@ -178,10 +181,10 @@ const Hero = () => {
             className="flex flex-col items-center mt-8 sm:mt-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
+            transition={{ delay: 1.8, duration: 0.8 }}
           >
             <p className="text-gray-300 mb-2 text-sm font-medium">
-              Descubre más sobre Pathway
+              Aprende más sobre Pathway
             </p>
             <motion.div
               animate={{ 
