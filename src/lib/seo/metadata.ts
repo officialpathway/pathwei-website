@@ -38,7 +38,7 @@ export async function generateSiteMetadata({ params }: MetadataParams): Promise<
   return {
     title: {
       default: seoSettings.title,
-      template: `%s | ${seoSettings.ogSiteName || "Pathway"}`
+      template: `%s | ${seoSettings.ogSiteName || "Pathwei"}`
     },
     description: seoSettings.description,
     keywords: keywordsArray,
@@ -53,7 +53,7 @@ export async function generateSiteMetadata({ params }: MetadataParams): Promise<
       url: seoSettings.canonicalUrl || BASE_URL,
       title: seoSettings.ogTitle || seoSettings.title,
       description: seoSettings.ogDescription || seoSettings.description,
-      siteName: seoSettings.ogSiteName || "Pathway", 
+      siteName: seoSettings.ogSiteName || "Pathwei", 
       images: seoSettings.ogImage ? [
         {
           url: seoSettings.ogImage,

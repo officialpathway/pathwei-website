@@ -14,10 +14,10 @@ import { SEOTags } from "@/components/seo/SEOTags";
 // Static metadata for Spanish (default)
 export const metadata: Metadata = {
   title: {
-    default: "Pathway - App de Productividad Universitaria con IA",
-    template: "%s | Pathway"
+    default: "Pathwei - App de Productividad Universitaria con IA",
+    template: "%s | Pathwei"
   },
-  description: "Maximiza tu productividad y motivación con Pathway, la app gamificada que usa inteligencia artificial para ayudarte a alcanzar tus metas diarias. Descarga ahora.",
+  description: "Maximiza tu productividad y motivación con Pathwei, la app gamificada que usa inteligencia artificial para ayudarte a alcanzar tus metas diarias. Descarga ahora.",
   keywords: ["productividad universitaria españa", "app estudiantes", "inteligencia artificial", "gamificación estudio", "gestión tiempo", "organización apuntes", "hábitos fitness", "motivación objetivos", "planificador universitario", "técnica pomodoro", "rendimiento académico", "estudiantes España"],
   robots: "index, follow",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.mypathwayapp.com"),
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://www.mypathwayapp.com",
-    title: "Pathway - Productividad Universitaria Gamificada con IA",
-    description: "Convierte tus metas en juegos, conéctate con amigos y deja que la IA te ayude a lograr más cada día con Pathway.",
-    siteName: "Pathway App",
+    title: "Pathwei - Productividad Universitaria Gamificada con IA",
+    description: "Convierte tus metas en juegos, conéctate con amigos y deja que la IA te ayude a lograr más cada día con Pathwei.",
+    siteName: "Pathwei App",
     images: [
       {
         url: "/images/pathway/logo.png",
@@ -37,15 +37,6 @@ export const metadata: Metadata = {
       }
     ],
     locale: "es_ES"
-  },
-  
-  twitter: {
-    card: "summary_large_image",
-    title: "Pathway - Productividad Universitaria Gamificada con IA",
-    description: "Convierte tus metas en juegos, conéctate con amigos y deja que la IA te ayude a lograr más cada día con Pathway.",
-    site: "@pathwayapp",
-    creator: "@pathwayapp",
-    images: ["/images/pathway/logo.png"]
   },
   
   icons: {
@@ -73,8 +64,8 @@ export default function RootLayout({
         
         {/* SEO Tags */}
         <SEOTags 
-          appName="Pathway App"
-          description="Maximiza tu productividad y motivación con Pathway, la app gamificada que usa inteligencia artificial para ayudarte a alcanzar tus metas diarias."
+          appName="Pathwei App"
+          description="Maximiza tu productividad y motivación con Pathwei, la app gamificada que usa inteligencia artificial para ayudarte a alcanzar tus metas diarias."
           jsonLd={""}
         />
       </head>

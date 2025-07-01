@@ -1,15 +1,15 @@
 // src/lib/seo/config.ts
-export const BASE_URL = "https://www.mypathwayapp.com";
+export const BASE_URL = "https://www.pathwei.app";
 export const SUPPORTED_LOCALES = ['en', 'es'];
 
 // Default SEO settings for Spanish (es) locale
 export const DEFAULT_SEO = {
-  title: 'Pathway - App de Productividad Universitaria con IA',
-  description: 'Maximiza tu productividad y motivación con Pathway, la app gamificada que usa inteligencia artificial para ayudarte a alcanzar tus metas diarias. Descarga ahora.',
+  title: 'Pathwei - App de Productividad Universitaria con IA',
+  description: 'Maximiza tu productividad y motivación con Pathwei, la app gamificada que usa inteligencia artificial para ayudarte a alcanzar tus metas diarias. Descarga ahora.',
   keywords: "productividad universitaria españa, app estudiantes, inteligencia artificial, gamificación estudio, gestión tiempo, organización apuntes, hábitos fitness, motivación objetivos, planificador universitario, técnica pomodoro, rendimiento académico, estudiantes España",
   allowIndexing: true,
-  ogTitle: 'Pathway - Productividad Universitaria Gamificada con IA',
-  ogDescription: 'Convierte tus metas en juegos, conéctate con amigos y deja que la IA te ayude a lograr más cada día con Pathway.',
+  ogTitle: 'Pathwei - Productividad Universitaria Gamificada con IA',
+  ogDescription: 'Convierte tus metas en juegos, conéctate con amigos y deja que la IA te ayude a lograr más cada día con Pathwei.',
   ogImage: 'https://www.mypathwayapp.com/images/pathway/logo.png',
   twitterCard: 'summary_large_image',
   twitterImage: 'https://www.mypathwayapp.com/images/pathway/logo.png',
@@ -20,7 +20,7 @@ export const DEFAULT_SEO = {
   twitterCreator: '@pathwayapp',
   ogLocale: 'es_ES',
   ogType: 'website',
-  ogSiteName: 'Pathway App',
+  ogSiteName: 'Pathwei App',
 };
 
 // Locale-specific SEO settings
@@ -32,7 +32,7 @@ export const LOCALE_SEO = {
     jsonLd: `{
       "@context": "https://schema.org",
       "@type": "MobileApplication",
-      "name": "Pathway App",
+      "name": "Pathwei App",
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "iOS, ANDROID",
       "offers": {
@@ -40,7 +40,7 @@ export const LOCALE_SEO = {
         "price": "4,99",
         "priceCurrency": "EUR"
       },
-      "description": "Maximiza tu productividad y motivación con Pathway, la app gamificada que usa inteligencia artificial para ayudarte a alcanzar tus metas diarias.",
+      "description": "Maximiza tu productividad y motivación con Pathwei, la app gamificada que usa inteligencia artificial para ayudarte a alcanzar tus metas diarias.",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.8",
@@ -48,7 +48,7 @@ export const LOCALE_SEO = {
       },
       "author": {
         "@type": "Organization",
-        "name": "Pathway Inc.",
+        "name": "Pathwei Inc.",
         "url": "https://www.mypathwayapp.com"
       },
       "downloadUrl": [
@@ -58,12 +58,12 @@ export const LOCALE_SEO = {
     }`
   },
   'en': {
-    title: 'Pathway - Social Productivity App with AI',
-    description: 'Maximize your productivity and motivation with Pathway, the gamified app that uses artificial intelligence to help you achieve your daily goals. Download now.',
+    title: 'Pathwei - Social Productivity App with AI',
+    description: 'Maximize your productivity and motivation with Pathwei, the gamified app that uses artificial intelligence to help you achieve your daily goals. Download now.',
     keywords: "university productivity, student app, artificial intelligence, gamification study, time management, note organization, study habits, academic motivation, university planner, pomodoro technique, academic performance, Spanish students",
     allowIndexing: true,
-    ogTitle: 'Pathway - Gamified Social Productivity with AI',
-    ogDescription: 'Turn your goals into games, connect with friends, and let AI help you achieve more every day with Pathway.',
+    ogTitle: 'Pathwei - Gamified Social Productivity with AI',
+    ogDescription: 'Turn your goals into games, connect with friends, and let AI help you achieve more every day with Pathwei.',
     ogImage: 'https://www.mypathwayapp.com/images/pathway/logo.png',
     twitterCard: 'summary_large_image',
     twitterImage: 'https://www.mypathwayapp.com/images/pathway/logo.png',
@@ -75,11 +75,11 @@ export const LOCALE_SEO = {
     twitterCreator: '@pathwayapp',
     ogLocale: 'en_US',
     ogType: 'website',
-    ogSiteName: 'Pathway App',
+    ogSiteName: 'Pathwei App',
     jsonLd: `{
       "@context": "https://schema.org",
       "@type": "MobileApplication",
-      "name": "Pathway App",
+      "name": "Pathwei App",
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "iOS, ANDROID",
       "offers": {
@@ -87,7 +87,7 @@ export const LOCALE_SEO = {
         "price": "1.99",
         "priceCurrency": "EUR"
       },
-      "description": "Maximize your productivity and motivation with Pathway, the gamified app that uses artificial intelligence to help you achieve your daily goals.",
+      "description": "Maximize your productivity and motivation with Pathwei, the gamified app that uses artificial intelligence to help you achieve your daily goals.",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.8",
@@ -95,7 +95,7 @@ export const LOCALE_SEO = {
       },
       "author": {
         "@type": "Organization",
-        "name": "Pathway Inc.",
+        "name": "Pathwei Inc.",
         "url": "https://www.mypathwayapp.com"
       },
       "downloadUrl": [

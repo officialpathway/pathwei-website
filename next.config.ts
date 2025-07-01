@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'mypathwayapp.com'
+        hostname: 'pathwei.app'
       },
       {
         protocol: 'https',

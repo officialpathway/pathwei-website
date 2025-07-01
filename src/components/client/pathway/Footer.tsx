@@ -11,8 +11,8 @@ const Footer = () => {
   
   // Social links with enhanced metadata for accessibility
   const socialLinks = [
-    { href: "https://www.tiktok.com/@pathwayapp", icon: FaTiktok, label: "TikTok" },
-    { href: "https://www.instagram.com/pathway.app", icon: FaInstagram, label: "Instagram" },
+    { href: "https://www.tiktok.com/@pathweiapp", icon: FaTiktok, label: "TikTok" },
+    { href: "https://www.instagram.com/pathwei.app", icon: FaInstagram, label: "Instagram" },
     { href: "https://www.linkedin.com/company/pathway-ai-haven-labs", icon: FaLinkedin, label: "LinkedIn" },
     { href: "mailto:info@mypathwayapp.com", icon: FaEnvelope, label: "Email" }
   ];

@@ -72,11 +72,11 @@ export const Header = () => {
             <div className="flex items-center">
               <Image 
                 src="/icons/pathway/favicon.ico"
-                alt="Pathway"
+                alt="Pathwei"
                 width={32}
                 height={32}
               />
-              <span className="ml-2 text-white font-bold">Pathway</span>
+              <span className="ml-2 text-white font-bold">Pathwei</span>
             </div>
           </Link>
 
