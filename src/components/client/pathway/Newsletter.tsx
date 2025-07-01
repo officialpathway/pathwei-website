@@ -16,12 +16,12 @@ const Newsletter = () => {
     e.preventDefault();
 
     if (!email || !email.includes("@")) {
-      setMessage(`${t("ui.newsletter.provide_valid_email")}`);
+      setMessage("Por favor, introduce una dirección de email válida");
       return;
     }
 
     if (!termsAgreed) {
-      setMessage(`${t("ui.newsletter.agree_message")}`);
+      setMessage("Debes aceptar los términos y condiciones");
       return;
     }
 
@@ -40,14 +40,14 @@ const Newsletter = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage(`${t("ui.newsletter.messages.subscription_success")}`);
+        setMessage("¡Perfecto! Revisa tu email para recibir el enlace de descarga de la beta de Pathway. ¡Bienvenido al equipo beta!");
         setEmail(""); // Clear the input
         setTermsAgreed(false); // Reset checkbox
       } else {
-        setMessage(data.error || `${t("ui.newsletter.messages.subscription_failed")}`);
+        setMessage(data.error || "Error en la suscripción. Inténtalo de nuevo.");
       }
     } catch (error) {
-      setMessage("An error occurred. Please try again.");
+      setMessage("Ha ocurrido un error. Por favor, inténtalo de nuevo.");
       console.error("An error occurred:", error);
     } finally {
       setIsSubmitting(false);
@@ -55,17 +55,34 @@ const Newsletter = () => {
   };
 
   return (
-    <section id="newsletter" className="py-20 bg-secondary text-white">
-      <div className="container mx-auto px-4 sm:px-6 text-center">
+    <section id="newsletter" className="py-20 bg-secondary text-white relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900"></div>
+      <div className="absolute top-0 left-0 w-full h-full opacity-10">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-green-500 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 right-20 w-24 h-24 bg-blue-500 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-10 left-1/3 w-28 h-28 bg-purple-500 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
+        {/* Beta Badge */}
+        <div className="inline-flex items-center mb-6">
+          <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide shadow-lg">
+            🚀 Acceso Beta Exclusivo
+          </div>
+        </div>
+
         {/* Heading */}
-        <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">
-          {t("ui.newsletter.heading")}
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
+          Recibe el APK de Pathway Beta
         </h2>
 
         {/* Subtext */}
-        <p className="text-base sm:text-xl mb-6 sm:mb-8">
-          {t("ui.newsletter.subheading")}
-        </p>
+        <div className="space-y-4 mb-8">
+          <p className="text-lg sm:text-xl mb-4">
+            Suscríbete y obtén acceso inmediato a la versión beta
+          </p>
+        </div>
 
         {/* Form */}
         <form
@@ -75,18 +92,18 @@ const Newsletter = () => {
           <div className="flex flex-col sm:flex-row justify-center items-stretch w-full gap-2 sm:gap-0">
             <input
               type="email"
-              placeholder={t("ui.newsletter.email_placeholder")}
+              placeholder="tu-email@ejemplo.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="flex-grow px-4 sm:px-6 py-3 sm:py-4 border-2 border-white bg-transparent text-white placeholder-gray-300 rounded-lg sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+              className="flex-grow px-4 sm:px-6 py-3 sm:py-4 border-2 border-green-500 bg-white/10 backdrop-blur-sm text-white placeholder-gray-300 rounded-lg sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
               required
             />
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-6 py-3 sm:py-4 bg-white text-black font-medium rounded-lg sm:rounded-l-none border-2 border-white cursor-pointer
-              hover:bg-black hover:text-white transition-colors duration-300 disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap 
-              focus:outline-none focus:ring-2 focus:ring-white shadow-lg hover:shadow-xl"
+              className="px-6 py-3 sm:py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-medium rounded-lg sm:rounded-l-none border-2 border-green-500 cursor-pointer
+              hover:from-green-600 hover:to-emerald-700 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap 
+              focus:outline-none focus:ring-2 focus:ring-green-400 shadow-lg hover:shadow-xl transform hover:scale-105"
             >
               {isSubmitting ? (
                 <span className="flex items-center justify-center gap-2">
@@ -94,10 +111,10 @@ const Newsletter = () => {
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                  {t("ui.newsletter.buttons.sending")}
+                  Enviando...
                 </span>
               ) : (
-                `${t("ui.newsletter.buttons.subscribe")}`
+                "Unirse a la Beta"
               )}
             </button>
           </div>
@@ -127,11 +144,44 @@ const Newsletter = () => {
 
           {/* Feedback Message */}
           {message && (
-            <p className={`mt-2 text-sm ${message.includes(`${t("ui.newsletter.messages.success_checker")}`) ? "text-green-400" : "text-red-400"}`}>
-              {message}
-            </p>
+            <div className={`mt-2 p-3 rounded-lg max-w-md w-full ${
+              message.includes("Perfecto") || message.includes("Bienvenido") 
+                ? "text-green-400 bg-green-500/20 border border-green-500/30" 
+                : "text-red-400 bg-red-500/20 border border-red-500/30"
+            }`}>
+              <p className="text-sm font-medium">{message}</p>
+            </div>
           )}
         </form>
+
+        {/* Additional Info */}
+        <div className="mt-8 space-y-4">
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 max-w-2xl mx-auto">
+            <h3 className="font-semibold text-lg mb-3 text-green-400">¿Qué incluye la Beta?</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">🤖</span>
+                <span>IA personalizada para productividad</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">📊</span>
+                <span>Análisis detallado de progreso</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">🎮</span>
+                <span>Sistema de gamificación completo</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">👥</span>
+                <span>Funciones sociales para estudiantes</span>
+              </div>
+            </div>
+          </div>
+          
+          <p className="text-white/60 text-sm">
+            * La beta es completamente gratuita. Recibirás el enlace de descarga en tu email en los próximos minutos.
+          </p>
+        </div>
       </div>
     </section>
   );
