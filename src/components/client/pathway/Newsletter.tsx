@@ -56,13 +56,6 @@ const Newsletter = () => {
 
   return (
     <section id="newsletter" className="py-20 bg-secondary text-white relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900"></div>
-      <div className="absolute top-0 left-0 w-full h-full opacity-10">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-green-500 rounded-full blur-3xl"></div>
-        <div className="absolute top-20 right-20 w-24 h-24 bg-blue-500 rounded-full blur-2xl"></div>
-        <div className="absolute bottom-10 left-1/3 w-28 h-28 bg-purple-500 rounded-full blur-3xl"></div>
-      </div>
 
       <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
         {/* Beta Badge */}
