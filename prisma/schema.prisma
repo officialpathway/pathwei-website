@@ -1,9 +1,4 @@
 // prisma/schema.prisma
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -22,22 +17,6 @@ model NewsletterSubscriber {
   @@map("newsletter_subscribers")
 }
 
-model StripeTransaction {
-  id           String   @id @default(cuid())
-  stripeId     String   @unique
-  type         String   // "subscription" or "ad_revenue"
-  amount       Int      // Amount in cents
-  currency     String   @default("usd")
-  status       String   // "succeeded", "pending", "failed"
-  customerId   String?
-  description  String?
-  metadata     Json?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  @@map("stripe_transactions")
-}
-
 model ActiveAsset {
   id          String    @id @default(cuid())
   name        String
@@ -49,22 +28,48 @@ model ActiveAsset {
   expiryDate  DateTime?
   status      String    @default("active") // "active", "expired", "cancelled"
   autoRenew   Boolean   @default(false)
+  recurringPeriod String? @default("yearly") // "monthly", "yearly", "quarterly", "one-time"
   notes       String?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-
+  
+  // Relationship to bills
+  bills       Bill[]
+  
   @@map("active_assets")
 }
 
-model BulkEmail {
-  id          String   @id @default(cuid())
-  subject     String
-  content     String   @db.Text
-  sentTo      Int      // Number of recipients
-  status      String   // "sending", "sent", "failed"
-  sentAt      DateTime @default(now())
-  createdBy   String   // Admin email who sent it
-  createdAt   DateTime @default(now())
-
-  @@map("bulk_emails")
+model Bill {
+  id          String    @id @default(cuid())
+  assetId     String?   // Optional - link to an asset
+  asset       ActiveAsset? @relation(fields: [assetId], references: [id], onDelete: SetNull)
+  
+  // Bill Details
+  description String    // "Domain renewal", "Vercel Pro subscription", etc.
+  amount      Float
+  currency    String    @default("USD")
+  category    String    // "hosting", "domain", "software", "marketing", etc.
+  vendor      String    // "GoDaddy", "Vercel", "Adobe", etc.
+  
+  // Dates
+  dueDate     DateTime
+  paidDate    DateTime?
+  periodStart DateTime?  // For recurring bills
+  periodEnd   DateTime?
+  
+  // Status
+  status      String    @default("pending") // "pending", "paid", "overdue", "cancelled"
+  recurring   Boolean   @default(false)
+  recurringPeriod String? // "monthly", "yearly", "quarterly"
+  
+  // Payment Info
+  paymentMethod String? // "credit_card", "paypal", "bank_transfer"
+  reference   String?   // Invoice number, transaction ID
+  
+  // Metadata
+  notes       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  @@map("bills")
 }

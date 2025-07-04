@@ -55,13 +55,17 @@ interface EmailFormData {
 
 // API Service for Bulk Email
 class BulkEmailAPIService {
-  private static baseURL = "http://localhost:3000/api/v1/email/bulk-email";
+  private static get baseURL() {
+    return `${
+      process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
+    }/api/v1/email/bulk-email`;
+  }
 
   private static async request(endpoint: string, options?: RequestInit) {
     const response = await fetch(`${this.baseURL}${endpoint}`, {
       headers: {
         "Content-Type": "application/json",
-        "X-Admin-Dashboard-Secret": "admin-secret-key",
+        "X-Admin-Dashboard-Secret": process.env.NEXT_PUBLIC_ADMIN_SECRET || "",
         ...options?.headers,
       },
       ...options,
@@ -300,7 +304,7 @@ export function BulkEmailManager() {
               Select Recipients
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <div
                 className={`p-4 border-2 rounded-lg cursor-pointer transition-colors ${
                   formData.recipients === "all"

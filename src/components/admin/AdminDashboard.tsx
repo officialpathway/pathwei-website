@@ -20,6 +20,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import AssetsManager from "./AssetsManager";
 
 type SidebarItem = {
   id: string;
@@ -388,17 +389,6 @@ function DatabaseManager() {
       <p className="text-gray-600">
         Database management features for mypathwayapp.com/api/v1/... will be
         implemented here.
-      </p>
-    </div>
-  );
-}
-
-function AssetsManager() {
-  return (
-    <div className="bg-white rounded-lg shadow p-6">
-      <h2 className="text-xl font-semibold mb-4">Assets & Bills</h2>
-      <p className="text-gray-600">
-        Asset and bill management features will be implemented here.
       </p>
     </div>
   );

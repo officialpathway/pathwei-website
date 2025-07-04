@@ -15,6 +15,7 @@ import {
   X,
   Folder,
   Mail,
+  Calendar,
 } from "lucide-react";
 
 type SidebarItem = {
@@ -50,6 +51,12 @@ const sidebarItems: SidebarItem[] = [
     href: "/admin/categories",
   },
   {
+    id: "assets",
+    label: "Assets & Bills",
+    icon: <Calendar className="w-5 h-5" />,
+    href: "/admin/assets",
+  },
+  {
     id: "settings",
     label: "Settings",
     icon: <Settings className="w-5 h-5" />,
@@ -66,13 +73,16 @@ export default function AdminSidebar() {
     <div
       className={`bg-white shadow-lg transition-all duration-300 ${
         sidebarOpen ? "w-64" : "w-16"
-      } fixed lg:relative z-10 h-full`}
+      } fixed lg:relative z-30 h-[100vh] overflow-y-auto
+  ${sidebarOpen ? "lg:translate-x-0" : "lg:translate-x-0"}
+  ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
+  `}
     >
       <div className="p-4">
         <div className="flex items-center justify-between">
           <div
             className={`flex items-center space-x-3 ${
-              sidebarOpen ? "opacity-100" : "opacity-0"
+              sidebarOpen ? "opacity-100" : "opacity-0 hidden"
             } transition-opacity`}
           >
             <Shield className="w-8 h-8 text-blue-600" />
@@ -82,7 +92,8 @@ export default function AdminSidebar() {
           </div>
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-1 rounded-lg hover:bg-gray-100"
+            className="p-1 rounded-lg hover:bg-gray-100 text-gray-700"
+            title={sidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
           >
             {sidebarOpen ? (
               <X className="w-5 h-5" />
@@ -106,12 +117,13 @@ export default function AdminSidebar() {
                   ? "bg-blue-50 border-r-2 border-blue-600 text-blue-600"
                   : "text-gray-700"
               }`}
+              title={!sidebarOpen ? item.label : undefined}
             >
-              {item.icon}
+              <div className="flex-shrink-0">{item.icon}</div>
               <span
                 className={`ml-3 ${
-                  sidebarOpen ? "opacity-100" : "opacity-0"
-                } transition-opacity`}
+                  sidebarOpen ? "opacity-100" : "opacity-0 hidden"
+                } transition-opacity whitespace-nowrap`}
               >
                 {item.label}
               </span>
@@ -122,14 +134,18 @@ export default function AdminSidebar() {
 
       <div className="absolute bottom-4 left-0 right-0 px-4">
         <button
+          type="button"
           onClick={logout}
           className="w-full flex items-center px-4 py-3 text-left hover:bg-red-50 text-red-600 rounded-lg transition-colors"
+          title={!sidebarOpen ? "Logout" : undefined}
         >
-          <LogOut className="w-5 h-5" />
+          <div className="flex-shrink-0">
+            <LogOut className="w-5 h-5" />
+          </div>
           <span
             className={`ml-3 ${
-              sidebarOpen ? "opacity-100" : "opacity-0"
-            } transition-opacity`}
+              sidebarOpen ? "opacity-100" : "opacity-0 hidden"
+            } transition-opacity whitespace-nowrap`}
           >
             Logout
           </span>

@@ -30,10 +30,13 @@ export default function AdminLayout({
       <body className="antialiased">
         <div className="min-h-screen bg-gray-50 flex">
           <AdminSidebar />
-
+          {/* Mobile overlay - add this */}
+          <div
+            className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-20 hidden"
+            id="mobile-overlay"
+          ></div>
           {/* Main Content */}
-          <div className="flex-1 lg:ml-0 ml-16">{children}</div>
-
+          <div className="flex-1 lg:ml-0 ml-0">{children}</div>{" "}
           {/* Admin-specific scripts */}
           <script
             dangerouslySetInnerHTML={{

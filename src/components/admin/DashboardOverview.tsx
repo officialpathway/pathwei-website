@@ -24,13 +24,16 @@ interface DashboardStats {
 
 // API Service
 class DashboardAPIService {
-  private static baseURL = "http://localhost:3000/api/v1/admin";
-
+  private static get baseURL() {
+    return `${
+      process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
+    }/api/v1/admin`;
+  }
   private static async request(endpoint: string, options?: RequestInit) {
     const response = await fetch(`${this.baseURL}${endpoint}`, {
       headers: {
         "Content-Type": "application/json",
-        "X-Admin-Dashboard-Secret": "admin-secret-key",
+        "X-Admin-Dashboard-Secret": process.env.NEXT_PUBLIC_ADMIN_SECRET || "",
         ...options?.headers,
       },
       ...options,

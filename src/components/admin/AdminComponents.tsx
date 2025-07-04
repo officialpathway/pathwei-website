@@ -14,7 +14,9 @@ import {
 } from "lucide-react";
 
 // Base API URL for production
-const API_BASE_URL = "http://localhost:3000/api/v1/admin";
+const API_BASE_URL = `${
+  process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
+}/api/v1/admin`;
 
 // Types
 interface User {
@@ -60,7 +62,7 @@ class AdminAPIService {
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       headers: {
         "Content-Type": "application/json",
-        "X-Admin-Dashboard-Secret": "admin-secret-key",
+        "X-Admin-Dashboard-Secret": process.env.NEXT_PUBLIC_ADMIN_SECRET || "",
         ...options?.headers,
       },
       ...options,
