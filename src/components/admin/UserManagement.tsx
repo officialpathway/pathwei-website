@@ -32,7 +32,7 @@ interface UserStats {
 class AdminAPIService {
   private static get baseURL() {
     return `${
-      process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
+      process.env.APP_URL || "http://localhost:3000"
     }/api/v1/email/bulk-email`;
   }
 
@@ -40,7 +40,7 @@ class AdminAPIService {
     const response = await fetch(`${this.baseURL}${endpoint}`, {
       headers: {
         "Content-Type": "application/json",
-        "X-Admin-Dashboard-Secret": process.env.NEXT_PUBLIC_ADMIN_SECRET || "",
+        "X-Admin-Dashboard-Secret": process.env.ADMIN_SECRET || "",
         ...options?.headers,
       },
       ...options,

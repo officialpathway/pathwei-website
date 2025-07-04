@@ -21,16 +21,14 @@ interface PathCategory {
 // API Service for Categories
 class CategoryAPIService {
   private static get baseURL() {
-    return `${
-      process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
-    }/api/v1/admin`;
+    return `${process.env.APP_URL || "http://localhost:3000"}/api/v1/admin`;
   }
 
   private static async request(endpoint: string, options?: RequestInit) {
     const response = await fetch(`${this.baseURL}${endpoint}`, {
       headers: {
         "Content-Type": "application/json",
-        "X-Admin-Dashboard-Secret": process.env.NEXT_PUBLIC_ADMIN_SECRET || "",
+        "X-Admin-Dashboard-Secret": process.env.ADMIN_SECRET || "",
         ...options?.headers,
       },
       ...options,
