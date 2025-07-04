@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'zfourrtiscdrogzcwxde.supabase.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'mypathwayapp.com'
       }
     ],
   },

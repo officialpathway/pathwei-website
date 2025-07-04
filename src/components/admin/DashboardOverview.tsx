@@ -31,7 +31,7 @@ class DashboardAPIService {
     const response = await fetch(`${this.baseURL}${endpoint}`, {
       headers: {
         "Content-Type": "application/json",
-        "X-Admin-Dashboard-Secret": process.env.ADMIN_SECRET || "",
+        "X-Admin-Dashboard-Secret": process.env.NEXT_PUBLIC_ADMIN_SECRET || "",
         ...options?.headers,
       },
       ...options,

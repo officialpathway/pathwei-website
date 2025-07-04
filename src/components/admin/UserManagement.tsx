@@ -31,16 +31,14 @@ interface UserStats {
 // API Service
 class AdminAPIService {
   private static get baseURL() {
-    return `${
-      process.env.APP_URL || "https://mypathwayapp.com"
-    }/api/v1/email/bulk-email`;
+    return `${process.env.APP_URL || "https://mypathwayapp.com"}/api/v1/admin`;
   }
 
   private static async request(endpoint: string, options?: RequestInit) {
     const response = await fetch(`${this.baseURL}${endpoint}`, {
       headers: {
         "Content-Type": "application/json",
-        "X-Admin-Dashboard-Secret": process.env.ADMIN_SECRET || "",
+        "X-Admin-Dashboard-Secret": process.env.NEXT_PUBLIC_ADMIN_SECRET || "",
         ...options?.headers,
       },
       ...options,

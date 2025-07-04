@@ -62,17 +62,33 @@ class BulkEmailAPIService {
   }
 
   private static async request(endpoint: string, options?: RequestInit) {
-    const response = await fetch(`${this.baseURL}${endpoint}`, {
+    const url = `${this.baseURL}${endpoint}`;
+    const requestOptions = {
       headers: {
         "Content-Type": "application/json",
-        "X-Admin-Dashboard-Secret": process.env.ADMIN_SECRET || "",
+        "X-Admin-Dashboard-Secret": "PathwegAdmin2025!",
         ...options?.headers,
       },
       ...options,
-    });
+    };
+
+    console.log("Making request to:", url);
+    console.log("Request options:", requestOptions);
+
+    const response = await fetch(url, requestOptions);
+
+    console.log("Response status:", response.status);
+    console.log(
+      "Response headers:",
+      Object.fromEntries(response.headers.entries())
+    );
 
     if (!response.ok) {
-      throw new Error(`API Error: ${response.status} ${response.statusText}`);
+      const errorText = await response.text();
+      console.error("Error response body:", errorText);
+      throw new Error(
+        `API Error: ${response.status} ${response.statusText} - ${errorText}`
+      );
     }
 
     return response.json();
