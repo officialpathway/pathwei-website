@@ -21,3 +21,50 @@ model NewsletterSubscriber {
   
   @@map("newsletter_subscribers")
 }
+
+model StripeTransaction {
+  id           String   @id @default(cuid())
+  stripeId     String   @unique
+  type         String   // "subscription" or "ad_revenue"
+  amount       Int      // Amount in cents
+  currency     String   @default("usd")
+  status       String   // "succeeded", "pending", "failed"
+  customerId   String?
+  description  String?
+  metadata     Json?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("stripe_transactions")
+}
+
+model ActiveAsset {
+  id          String    @id @default(cuid())
+  name        String
+  type        String    // "domain", "service", "software", etc.
+  provider    String?   // "GoDaddy", "Vercel", etc.
+  cost        Float
+  currency    String    @default("USD")
+  purchaseDate DateTime
+  expiryDate  DateTime?
+  status      String    @default("active") // "active", "expired", "cancelled"
+  autoRenew   Boolean   @default(false)
+  notes       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("active_assets")
+}
+
+model BulkEmail {
+  id          String   @id @default(cuid())
+  subject     String
+  content     String   @db.Text
+  sentTo      Int      // Number of recipients
+  status      String   // "sending", "sent", "failed"
+  sentAt      DateTime @default(now())
+  createdBy   String   // Admin email who sent it
+  createdAt   DateTime @default(now())
+
+  @@map("bulk_emails")
+}
