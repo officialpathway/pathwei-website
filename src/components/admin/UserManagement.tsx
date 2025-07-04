@@ -32,7 +32,7 @@ interface UserStats {
 class AdminAPIService {
   private static get baseURL() {
     return `${
-      process.env.APP_URL || "http://localhost:3000"
+      process.env.APP_URL || "https://mypathwayapp.com"
     }/api/v1/email/bulk-email`;
   }
 

@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
   try {
     const { endpoint, method = 'GET', data } = await request.json();
 
-    const baseUrl = `${process.env.APP_URL || 'http://localhost:3000'}/api/v1`;
+    const baseUrl = `${process.env.APP_URL || 'https://mypathwayapp.com'}/api/v1`;
     const url = `${baseUrl}${endpoint}`;
 
     const options: RequestInit = {

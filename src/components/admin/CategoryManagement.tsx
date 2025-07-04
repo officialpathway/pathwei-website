@@ -21,7 +21,7 @@ interface PathCategory {
 // API Service for Categories
 class CategoryAPIService {
   private static get baseURL() {
-    return `${process.env.APP_URL || "http://localhost:3000"}/api/v1/admin`;
+    return `${process.env.APP_URL || "https://mypathwayapp.com"}/api/v1/admin`;
   }
 
   private static async request(endpoint: string, options?: RequestInit) {

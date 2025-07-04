@@ -25,7 +25,7 @@ interface DashboardStats {
 // API Service
 class DashboardAPIService {
   private static get baseURL() {
-    return `${process.env.APP_URL || "http://localhost:3000"}/api/v1/admin`;
+    return `${process.env.APP_URL || "https://mypathwayapp.com"}/api/v1/admin`;
   }
   private static async request(endpoint: string, options?: RequestInit) {
     const response = await fetch(`${this.baseURL}${endpoint}`, {
