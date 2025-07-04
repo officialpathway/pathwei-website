@@ -1,7 +1,5 @@
-// Updated Dashboard Components to work with mypathwayapp.com/api/v1/admin/...
-
+// src/components/admin/adminComponents.tsx
 "use client";
-
 import { useState, useEffect } from "react";
 import {
   Users,

@@ -1,8 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
-import { useTranslations } from 'next-intl';
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
+import { useTranslations } from "next-intl";
 
 const STATIC_PRICE = 1.99;
 
@@ -11,109 +16,109 @@ const SIZE_MULTIPLIER = 1.0;
 
 // Parallax intensity values for different movement depths
 const PARALLAX_INTENSITY = {
-  SUBTLE: 0.5,    // Least movement
-  MEDIUM: 1.0,    // Standard movement
-  STRONG: 1.8     // Most movement
+  SUBTLE: 0.5, // Least movement
+  MEDIUM: 1.0, // Standard movement
+  STRONG: 1.8, // Most movement
 };
 
 // Emoji data for productivity/routine planner theme with parallax values
 const FLOATING_EMOJIS = [
-  { 
-    id: 1, 
-    emoji: "💪", 
-    finalX: "10%", 
+  {
+    id: 1,
+    emoji: "💪",
+    finalX: "10%",
     finalY: "20%",
     delay: 0.2,
     size: "4rem",
-    parallaxIntensity: PARALLAX_INTENSITY.MEDIUM
+    parallaxIntensity: PARALLAX_INTENSITY.MEDIUM,
   },
-  { 
-    id: 2, 
-    emoji: "🏃‍♂️", 
-    finalX: "85%", 
+  {
+    id: 2,
+    emoji: "🏃‍♂️",
+    finalX: "85%",
     finalY: "15%",
     delay: 0.3,
     size: "3.5rem",
-    parallaxIntensity: PARALLAX_INTENSITY.STRONG
+    parallaxIntensity: PARALLAX_INTENSITY.STRONG,
   },
-  { 
-    id: 3, 
-    emoji: "📚", 
-    finalX: "15%", 
+  {
+    id: 3,
+    emoji: "📚",
+    finalX: "15%",
     finalY: "70%",
     delay: 0.4,
     size: "3rem",
-    parallaxIntensity: PARALLAX_INTENSITY.SUBTLE
+    parallaxIntensity: PARALLAX_INTENSITY.SUBTLE,
   },
-  { 
-    id: 4, 
-    emoji: "🎯", 
-    finalX: "90%", 
+  {
+    id: 4,
+    emoji: "🎯",
+    finalX: "90%",
     finalY: "65%",
     delay: 0.5,
     size: "3.5rem",
-    parallaxIntensity: PARALLAX_INTENSITY.STRONG
+    parallaxIntensity: PARALLAX_INTENSITY.STRONG,
   },
-  { 
-    id: 5, 
-    emoji: "⏰", 
-    finalX: "5%", 
+  {
+    id: 5,
+    emoji: "⏰",
+    finalX: "5%",
     finalY: "45%",
     delay: 0.6,
     size: "3rem",
-    parallaxIntensity: PARALLAX_INTENSITY.MEDIUM
+    parallaxIntensity: PARALLAX_INTENSITY.MEDIUM,
   },
-  { 
-    id: 6, 
-    emoji: "🧠", 
-    finalX: "88%", 
+  {
+    id: 6,
+    emoji: "🧠",
+    finalX: "88%",
     finalY: "40%",
     delay: 0.7,
     size: "3.2rem",
-    parallaxIntensity: PARALLAX_INTENSITY.SUBTLE
+    parallaxIntensity: PARALLAX_INTENSITY.SUBTLE,
   },
-  { 
-    id: 7, 
-    emoji: "✅", 
-    finalX: "12%", 
+  {
+    id: 7,
+    emoji: "✅",
+    finalX: "12%",
     finalY: "85%",
     delay: 0.8,
     size: "2.8rem",
-    parallaxIntensity: PARALLAX_INTENSITY.MEDIUM
+    parallaxIntensity: PARALLAX_INTENSITY.MEDIUM,
   },
-  { 
-    id: 8, 
-    emoji: "🏆", 
-    finalX: "85%", 
+  {
+    id: 8,
+    emoji: "🏆",
+    finalX: "85%",
     finalY: "85%",
     delay: 0.9,
     size: "3.8rem",
-    parallaxIntensity: PARALLAX_INTENSITY.STRONG
+    parallaxIntensity: PARALLAX_INTENSITY.STRONG,
   },
-  { 
-    id: 9, 
-    emoji: "🤝", 
-    finalX: "8%", 
+  {
+    id: 9,
+    emoji: "🤝",
+    finalX: "8%",
     finalY: "60%",
     delay: 1.0,
     size: "3rem",
-    parallaxIntensity: PARALLAX_INTENSITY.SUBTLE
+    parallaxIntensity: PARALLAX_INTENSITY.SUBTLE,
   },
-  { 
-    id: 10, 
-    emoji: "📈", 
-    finalX: "92%", 
+  {
+    id: 10,
+    emoji: "📈",
+    finalX: "92%",
     finalY: "75%",
     delay: 1.1,
     size: "3.2rem",
-    parallaxIntensity: PARALLAX_INTENSITY.MEDIUM
-  }
+    parallaxIntensity: PARALLAX_INTENSITY.MEDIUM,
+  },
 ];
 
 const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showEmojis, setShowEmojis] = useState(false);
-  const t = useTranslations("Pathway");
+  const t = useTranslations("Pathweg");
 
   // Mouse position tracking
   const mouseX = useMotionValue(0);
@@ -135,8 +140,8 @@ const Hero = () => {
       mouseY.set(e.clientY);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
 
   // Close modal with escape key
@@ -164,7 +169,11 @@ const Hero = () => {
   }, [isModalOpen]);
 
   // Create cursor-responsive emoji component
-  const CursorResponsiveEmoji = ({ item }: { item: typeof FLOATING_EMOJIS[0] }) => {
+  const CursorResponsiveEmoji = ({
+    item,
+  }: {
+    item: (typeof FLOATING_EMOJIS)[0];
+  }) => {
     // Calculate movement range based on parallax intensity
     const movementRange = 15 * item.parallaxIntensity;
     const verticalRange = 8 * item.parallaxIntensity;
@@ -172,13 +181,13 @@ const Hero = () => {
     // Transform mouse position to emoji movement with individual parallax intensity
     const emojiX = useTransform(
       mouseX,
-      [0, typeof window !== 'undefined' ? window.innerWidth : 1920],
+      [0, typeof window !== "undefined" ? window.innerWidth : 1920],
       [-movementRange, movementRange]
     );
 
     const emojiY = useTransform(
       mouseY,
-      [0, typeof window !== 'undefined' ? window.innerHeight : 1080],
+      [0, typeof window !== "undefined" ? window.innerHeight : 1080],
       [-verticalRange, verticalRange]
     );
 
@@ -188,21 +197,21 @@ const Hero = () => {
     return (
       <motion.div
         key={item.id}
-        initial={{ 
+        initial={{
           left: "50%",
           top: "50%",
           scale: 0,
           opacity: 0,
-          rotate: 0
+          rotate: 0,
         }}
-        animate={{ 
-          left: item.finalX, 
-          top: item.finalY, 
+        animate={{
+          left: item.finalX,
+          top: item.finalY,
           scale: 1,
           opacity: 0.8,
-          rotate: [0, 10, -10, 0]
+          rotate: [0, 10, -10, 0],
         }}
-        transition={{ 
+        transition={{
           delay: item.delay,
           duration: 1.5,
           type: "spring",
@@ -211,14 +220,14 @@ const Hero = () => {
           rotate: {
             duration: 2,
             repeat: Infinity,
-            repeatType: "reverse"
-          }
+            repeatType: "reverse",
+          },
         }}
         className="absolute z-5 bg- pointer-events-none select-none transform -translate-x-1/2 -translate-y-1/2"
-        style={{ 
+        style={{
           fontSize: finalSize,
           x: emojiX,
-          y: emojiY
+          y: emojiY,
         }}
       >
         <motion.span
@@ -229,7 +238,7 @@ const Hero = () => {
             duration: 3,
             repeat: Infinity,
             repeatType: "reverse",
-            delay: item.delay + 2
+            delay: item.delay + 2,
           }}
         >
           {item.emoji}
@@ -243,9 +252,10 @@ const Hero = () => {
       <section className="relative bg-transparent overflow-hidden h-screen flex items-center justify-center">
         {/* Floating Emojis */}
         <AnimatePresence>
-          {showEmojis && FLOATING_EMOJIS.map((item) => (
-            <CursorResponsiveEmoji key={item.id} item={item} />
-          ))}
+          {showEmojis &&
+            FLOATING_EMOJIS.map((item) => (
+              <CursorResponsiveEmoji key={item.id} item={item} />
+            ))}
         </AnimatePresence>
 
         {/* Content */}
@@ -256,7 +266,7 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
           >
             {/* Animated Headline */}
-            <motion.h1 
+            <motion.h1
               className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -268,7 +278,7 @@ const Hero = () => {
               </span>
             </motion.h1>
 
-            <motion.p 
+            <motion.p
               className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -278,15 +288,15 @@ const Hero = () => {
             </motion.p>
 
             {/* CTA Buttons */}
-            <motion.div 
+            <motion.div
               className="flex flex-col sm:flex-row justify-center gap-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 0.8 }}
             >
               {/* Modal Button with static price */}
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="relative overflow-hidden group bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-4 
                           rounded-full font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer
                           hover:scale-105 transform"
@@ -298,23 +308,33 @@ const Hero = () => {
                 <span className="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </button>
 
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="bg-transparent border-2 border-white/30 text-white px-8 py-4 rounded-full font-medium text-lg 
                          hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer
                          hover:scale-105 transform hover:border-white/50"
                 onClick={() => {
-                  const demoSection = document.getElementById('demo-section');
+                  const demoSection = document.getElementById("demo-section");
                   if (demoSection) {
-                    demoSection.scrollIntoView({ 
-                      behavior: 'smooth',
-                      block: 'start'
+                    demoSection.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
                     });
                   }
                 }}
               >
                 <span>{t("ui.hero.demo_cta")}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
               </button>
@@ -322,7 +342,7 @@ const Hero = () => {
           </motion.div>
 
           {/* Scroll Down Indicator */}
-          <motion.div 
+          <motion.div
             className="flex flex-col items-center mt-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -332,25 +352,25 @@ const Hero = () => {
               {t("ui.hero.scroll_down") || "Scroll down for more"}
             </p>
             <motion.div
-              animate={{ 
+              animate={{
                 y: [0, 10, 0],
               }}
               transition={{
                 duration: 1.5,
                 repeat: Infinity,
-                repeatType: "loop"
+                repeatType: "loop",
               }}
               className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center pt-2"
             >
-              <motion.div 
-                animate={{ 
+              <motion.div
+                animate={{
                   y: [0, 6, 0],
-                  opacity: [1, 0.3, 1]
+                  opacity: [1, 0.3, 1],
                 }}
                 transition={{
                   duration: 1.5,
                   repeat: Infinity,
-                  repeatType: "loop"
+                  repeatType: "loop",
                 }}
                 className="w-1 h-2 bg-gray-300 rounded-full"
               />
@@ -372,7 +392,7 @@ const Hero = () => {
               className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50"
               onClick={() => setIsModalOpen(false)}
             />
-            
+
             {/* Modal Content */}
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -388,16 +408,29 @@ const Hero = () => {
                 className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
                 onClick={() => setIsModalOpen(false)}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
               </button>
-              
+
               <div className="py-8 px-4">
-                <h3 className="text-2xl font-bold text-white mb-6">Aún no disponible</h3>
+                <h3 className="text-2xl font-bold text-white mb-6">
+                  Aún no disponible
+                </h3>
                 <p className="text-gray-300 mb-6">
-                  Estamos trabajando para lanzar pronto. ¡Gracias por tu interés!
+                  Estamos trabajando para lanzar pronto. ¡Gracias por tu
+                  interés!
                 </p>
                 <button
                   className="w-full bg-gradient-to-r from-amber-500 to-orange-600 text-white px-6 py-3 

@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { useTranslations } from 'next-intl';
-import Link from 'next/link';
+import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +10,7 @@ const Newsletter = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [termsAgreed, setTermsAgreed] = useState(false);
 
-  const t = useTranslations("Pathway");
+  const t = useTranslations("Pathweg");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,11 +40,15 @@ const Newsletter = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage("¡Perfecto! Revisa tu email para recibir el enlace de descarga de la beta de Pathwei. ¡Bienvenido al equipo beta!");
+        setMessage(
+          "¡Perfecto! Revisa tu email para recibir el enlace de descarga de la beta de Pathweg. ¡Bienvenido al equipo beta!"
+        );
         setEmail(""); // Clear the input
         setTermsAgreed(false); // Reset checkbox
       } else {
-        setMessage(data.error || "Error en la suscripción. Inténtalo de nuevo.");
+        setMessage(
+          data.error || "Error en la suscripción. Inténtalo de nuevo."
+        );
       }
     } catch (error) {
       setMessage("Ha ocurrido un error. Por favor, inténtalo de nuevo.");
@@ -55,8 +59,10 @@ const Newsletter = () => {
   };
 
   return (
-    <section id="newsletter" className="py-20 bg-secondary text-white relative overflow-hidden">
-
+    <section
+      id="newsletter"
+      className="py-20 bg-secondary text-white relative overflow-hidden"
+    >
       <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
         {/* Beta Badge */}
         <div className="inline-flex items-center mb-6">
@@ -67,7 +73,7 @@ const Newsletter = () => {
 
         {/* Heading */}
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
-          Recibe el APK de Pathwei Beta
+          Recibe el APK de Pathweg Beta
         </h2>
 
         {/* Subtext */}
@@ -100,9 +106,25 @@ const Newsletter = () => {
             >
               {isSubmitting ? (
                 <span className="flex items-center justify-center gap-2">
-                  <svg className="animate-spin h-5 w-5 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  <svg
+                    className="animate-spin h-5 w-5 text-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
                   </svg>
                   Enviando...
                 </span>
@@ -124,24 +146,26 @@ const Newsletter = () => {
               />
               <span className="text-sm leading-relaxed">
                 {t("ui.newsletter.terms.agreement")}{" "}
-                <Link 
-                  href="/privacidad" 
+                <Link
+                  href="/privacidad"
                   className="underline font-bold hover:text-gray-300 transition-colors duration-300"
                 >
                   {t("ui.newsletter.terms.link")}
-                </Link>
-                {" "}{t("ui.newsletter.terms.agreement_2")}
+                </Link>{" "}
+                {t("ui.newsletter.terms.agreement_2")}
               </span>
             </label>
           </div>
 
           {/* Feedback Message */}
           {message && (
-            <div className={`mt-2 p-3 rounded-lg max-w-md w-full ${
-              message.includes("Perfecto") || message.includes("Bienvenido") 
-                ? "text-green-400 bg-green-500/20 border border-green-500/30" 
-                : "text-red-400 bg-red-500/20 border border-red-500/30"
-            }`}>
+            <div
+              className={`mt-2 p-3 rounded-lg max-w-md w-full ${
+                message.includes("Perfecto") || message.includes("Bienvenido")
+                  ? "text-green-400 bg-green-500/20 border border-green-500/30"
+                  : "text-red-400 bg-red-500/20 border border-red-500/30"
+              }`}
+            >
               <p className="text-sm font-medium">{message}</p>
             </div>
           )}
@@ -150,7 +174,9 @@ const Newsletter = () => {
         {/* Additional Info */}
         <div className="mt-8 space-y-4">
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 max-w-2xl mx-auto">
-            <h3 className="font-semibold text-lg mb-3 text-green-400">¿Qué incluye la Beta?</h3>
+            <h3 className="font-semibold text-lg mb-3 text-green-400">
+              ¿Qué incluye la Beta?
+            </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
               <div className="flex items-center gap-3">
                 <span className="text-2xl">🤖</span>
@@ -170,9 +196,10 @@ const Newsletter = () => {
               </div>
             </div>
           </div>
-          
+
           <p className="text-white/60 text-sm">
-            * La beta es completamente gratuita. Recibirás el enlace de descarga en tu email en los próximos minutos.
+            * La beta es completamente gratuita. Recibirás el enlace de descarga
+            en tu email en los próximos minutos.
           </p>
         </div>
       </div>

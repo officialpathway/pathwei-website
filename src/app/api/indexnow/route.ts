@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 // Update with your domain
-const INDEXNOW_HOST = 'www.mypathwayapp.com';
+const INDEXNOW_HOST = 'www.pathwei.app';
 const INDEXNOW_KEY = '480941de2c0b4980b807f4ef5734f3cd'; // You should generate a new key or use your existing one
 const INDEXNOW_KEY_LOCATION = `https://${INDEXNOW_HOST}/${INDEXNOW_KEY}.txt`;
 
@@ -20,7 +20,7 @@ const PATHS = [
 // Generate URLs for all locales
 function generateLocalizedUrls(): string[] {
   const urls: string[] = [];
-  
+
   // Add locale-specific URLs
   LOCALES.forEach(locale => {
     PATHS.forEach(path => {
@@ -32,7 +32,7 @@ function generateLocalizedUrls(): string[] {
       }
     });
   });
-  
+
   return urls;
 }
 
@@ -70,15 +70,15 @@ export async function POST(): Promise<NextResponse> {
     if (!response.ok) {
       const errorText = await response.text();
       console.error('IndexNow API error:', errorText);
-      
+
       return NextResponse.json(
-        { 
-          success: false, 
-          message: 'Failed to submit URLs to IndexNow API', 
+        {
+          success: false,
+          message: 'Failed to submit URLs to IndexNow API',
           error: errorText,
           status: response.status,
           statusText: response.statusText
-        }, 
+        },
         { status: response.status }
       );
     }
@@ -96,8 +96,8 @@ export async function POST(): Promise<NextResponse> {
 
     // Return a success response
     return NextResponse.json(
-      { 
-        success: true, 
+      {
+        success: true,
         message: 'URLs successfully submitted to IndexNow API',
         submittedUrls: URLS_TO_INDEX.length,
         urls: URLS_TO_INDEX,
@@ -107,13 +107,13 @@ export async function POST(): Promise<NextResponse> {
     );
   } catch (error) {
     console.error('Error submitting to IndexNow:', error);
-    
+
     return NextResponse.json(
-      { 
-        success: false, 
-        message: 'Error processing IndexNow request', 
-        error: error instanceof Error ? error.message : String(error) 
-      }, 
+      {
+        success: false,
+        message: 'Error processing IndexNow request',
+        error: error instanceof Error ? error.message : String(error)
+      },
       { status: 500 }
     );
   }

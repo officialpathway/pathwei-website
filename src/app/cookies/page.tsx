@@ -1,10 +1,11 @@
 // src/app/cookies/page.tsx
-import { Metadata } from 'next';
-import CookiePolicyPage from './CookiePolicyPage';
+import { Metadata } from "next";
+import CookiePolicyPage from "./CookiePolicyPage";
 
 export const metadata: Metadata = {
-  title: 'Política de Cookies - Pathwei',
-  description: 'Política de cookies de Pathwei. Conoce cómo utilizamos las cookies en nuestro sitio web.',
+  title: "Política de Cookies - Pathweg",
+  description:
+    "Política de cookies de Pathweg. Conoce cómo utilizamos las cookies en nuestro sitio web.",
 };
 
 export default function CookiesPage() {

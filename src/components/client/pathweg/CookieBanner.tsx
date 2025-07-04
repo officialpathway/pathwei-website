@@ -1,10 +1,10 @@
-// src/components/client/pathway/CookieBanner.tsx
+// src/components/client/pathweg/CookieBanner.tsx
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Cookie, Settings } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Cookie, Settings } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface CookiePreferences {
   necessary: boolean;
@@ -16,18 +16,20 @@ interface CookiePreferences {
 const CookieBanner = () => {
   const [showBanner, setShowBanner] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [cookiePreferences, setCookiePreferences] = useState<CookiePreferences>({
-    necessary: true, // Always true, cannot be disabled
-    analytics: false,
-    marketing: false,
-    preferences: false,
-  });
+  const [cookiePreferences, setCookiePreferences] = useState<CookiePreferences>(
+    {
+      necessary: true, // Always true, cannot be disabled
+      analytics: false,
+      marketing: false,
+      preferences: false,
+    }
+  );
 
-  const t = useTranslations('Pathway.ui.cookies');
+  const t = useTranslations("Pathweg.ui.cookies");
 
   useEffect(() => {
     // Check if user has already made a choice
-    const hasConsent = localStorage.getItem('cookie-consent');
+    const hasConsent = localStorage.getItem("cookie-consent");
     if (!hasConsent) {
       // Delay showing banner to avoid layout shift
       const timer = setTimeout(() => {
@@ -42,7 +44,7 @@ const CookieBanner = () => {
         // Apply saved preferences
         applyCookieSettings(savedPreferences);
       } catch (error) {
-        console.error('Error parsing saved cookie preferences:', error);
+        console.error("Error parsing saved cookie preferences:", error);
       }
     }
   }, []);
@@ -51,27 +53,30 @@ const CookieBanner = () => {
     // Handle analytics cookies (Vercel Analytics)
     if (preferences.analytics) {
       // Enable analytics
-      if (typeof window !== 'undefined' && window.va) {
-        window.va('event', { event: 'Cookie Consent', type: 'analytics_enabled' });
+      if (typeof window !== "undefined" && window.va) {
+        window.va("event", {
+          event: "Cookie Consent",
+          type: "analytics_enabled",
+        });
       }
     }
 
     // Handle marketing cookies
     if (preferences.marketing) {
       // You can add marketing cookie logic here
-      console.log('Marketing cookies enabled');
+      console.log("Marketing cookies enabled");
     }
 
     // Handle preference cookies
     if (preferences.preferences) {
       // You can add preference cookie logic here
-      console.log('Preference cookies enabled');
+      console.log("Preference cookies enabled");
     }
   };
 
   const savePreferences = (preferences: CookiePreferences) => {
-    localStorage.setItem('cookie-consent', JSON.stringify(preferences));
-    localStorage.setItem('cookie-consent-date', new Date().toISOString());
+    localStorage.setItem("cookie-consent", JSON.stringify(preferences));
+    localStorage.setItem("cookie-consent-date", new Date().toISOString());
     applyCookieSettings(preferences);
     setShowBanner(false);
     setShowSettings(false);
@@ -111,11 +116,11 @@ const CookieBanner = () => {
     }, []);
 
     const handleLocalPreferenceChange = (type: keyof CookiePreferences) => {
-      if (type === 'necessary') return; // Cannot disable necessary cookies
-      
-      setLocalPreferences(prev => ({
+      if (type === "necessary") return; // Cannot disable necessary cookies
+
+      setLocalPreferences((prev) => ({
         ...prev,
-        [type]: !prev[type]
+        [type]: !prev[type],
       }));
     };
 
@@ -155,11 +160,11 @@ const CookieBanner = () => {
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
                 <Settings className="w-6 h-6 text-indigo-600" />
-                {t('settings.title')}
+                {t("settings.title")}
               </h3>
               <button
-                title='Close Settings'
-                type='button'
+                title="Close Settings"
+                type="button"
                 onClick={() => setShowSettings(false)}
                 className="p-2 hover:bg-gray-100 rounded-full transition-colors"
               >
@@ -168,22 +173,20 @@ const CookieBanner = () => {
             </div>
 
             <div className="space-y-6">
-              <p className="text-gray-600">
-                {t('settings.description')}
-              </p>
+              <p className="text-gray-600">{t("settings.description")}</p>
 
               {/* Necessary Cookies */}
               <div className="border border-gray-200 rounded-lg p-4">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-semibold text-gray-900">
-                    {t('settings.categories.necessary.title')}
+                    {t("settings.categories.necessary.title")}
                   </h4>
                   <div className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-medium">
-                    {t('settings.always_active')}
+                    {t("settings.always_active")}
                   </div>
                 </div>
                 <p className="text-sm text-gray-600">
-                  {t('settings.categories.necessary.description')}
+                  {t("settings.categories.necessary.description")}
                 </p>
               </div>
 
@@ -191,21 +194,21 @@ const CookieBanner = () => {
               <div className="border border-gray-200 rounded-lg p-4">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-semibold text-gray-900">
-                    {t('settings.categories.analytics.title')}
+                    {t("settings.categories.analytics.title")}
                   </h4>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input
-                      title='Enable Analytics Cookies'
+                      title="Enable Analytics Cookies"
                       type="checkbox"
                       checked={localPreferences.analytics}
-                      onChange={() => handleLocalPreferenceChange('analytics')}
+                      onChange={() => handleLocalPreferenceChange("analytics")}
                       className="sr-only peer"
                     />
                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
                   </label>
                 </div>
                 <p className="text-sm text-gray-600">
-                  {t('settings.categories.analytics.description')}
+                  {t("settings.categories.analytics.description")}
                 </p>
               </div>
 
@@ -213,21 +216,21 @@ const CookieBanner = () => {
               <div className="border border-gray-200 rounded-lg p-4">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-semibold text-gray-900">
-                    {t('settings.categories.marketing.title')}
+                    {t("settings.categories.marketing.title")}
                   </h4>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input
-                      title='Marketing Cookies'
+                      title="Marketing Cookies"
                       type="checkbox"
                       checked={localPreferences.marketing}
-                      onChange={() => handleLocalPreferenceChange('marketing')}
+                      onChange={() => handleLocalPreferenceChange("marketing")}
                       className="sr-only peer"
                     />
                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
                   </label>
                 </div>
                 <p className="text-sm text-gray-600">
-                  {t('settings.categories.marketing.description')}
+                  {t("settings.categories.marketing.description")}
                 </p>
               </div>
 
@@ -235,21 +238,23 @@ const CookieBanner = () => {
               <div className="border border-gray-200 rounded-lg p-4">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-semibold text-gray-900">
-                    {t('settings.categories.preferences.title')}
+                    {t("settings.categories.preferences.title")}
                   </h4>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input
-                      title='preferences'
+                      title="preferences"
                       type="checkbox"
                       checked={localPreferences.preferences}
-                      onChange={() => handleLocalPreferenceChange('preferences')}
+                      onChange={() =>
+                        handleLocalPreferenceChange("preferences")
+                      }
                       className="sr-only peer"
                     />
                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
                   </label>
                 </div>
                 <p className="text-sm text-gray-600">
-                  {t('settings.categories.preferences.description')}
+                  {t("settings.categories.preferences.description")}
                 </p>
               </div>
             </div>
@@ -259,13 +264,13 @@ const CookieBanner = () => {
                 onClick={saveLocalPreferences}
                 className="flex-1 bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors"
               >
-                {t('settings.buttons.save')}
+                {t("settings.buttons.save")}
               </button>
               <button
                 onClick={acceptAllLocal}
                 className="flex-1 bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors"
               >
-                {t('settings.buttons.accept_all')}
+                {t("settings.buttons.accept_all")}
               </button>
             </div>
           </div>
@@ -291,41 +296,41 @@ const CookieBanner = () => {
                   <Cookie className="w-6 h-6 text-indigo-600 flex-shrink-0 mt-1" />
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">
-                      {t('banner.title')}
+                      {t("banner.title")}
                     </h3>
                     <p className="text-sm text-gray-600 leading-relaxed">
-                      {t('banner.description')}{' '}
+                      {t("banner.description")}{" "}
                       <a
                         href="/cookies"
                         className="text-indigo-600 hover:text-indigo-700 underline font-medium"
                       >
-                        {t('banner.learn_more')}
+                        {t("banner.learn_more")}
                       </a>
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex flex-col sm:flex-row gap-3 lg:flex-shrink-0">
                   <button
-                    type='button'
+                    type="button"
                     onClick={() => setShowSettings(true)}
                     className="px-4 py-2 text-gray-600 hover:text-gray-800 border hover:bg-gray-100 border-gray-300 rounded-lg transition-all font-medium"
                   >
-                    {t('banner.buttons.customize')}
+                    {t("banner.buttons.customize")}
                   </button>
                   <button
-                    type='button'
+                    type="button"
                     onClick={acceptNecessary}
                     className="px-4 py-2 text-gray-600 hover:text-gray-800 border hover:bg-gray-100 border-gray-300 rounded-lg transition-all font-medium"
                   >
-                    {t('banner.buttons.necessary_only')}
+                    {t("banner.buttons.necessary_only")}
                   </button>
                   <button
-                    type='button'
+                    type="button"
                     onClick={acceptAll}
                     className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium"
                   >
-                    {t('banner.buttons.accept_all')}
+                    {t("banner.buttons.accept_all")}
                   </button>
                 </div>
               </div>

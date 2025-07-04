@@ -3,17 +3,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import { FaStar, FaQuoteRight } from "react-icons/fa";
-import { useTranslations } from 'next-intl';
-import { getPathwayConstants } from "@/lib/constants/constants";
+import { useTranslations } from "next-intl";
+import { getPathwegConstants } from "@/lib/constants/constants";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const FeedbackSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  const t = useTranslations("Pathway");
-  const feedbackT = useTranslations("Pathway.ui.sections.feedback")
-  const constants = getPathwayConstants(t);
+  const t = useTranslations("Pathweg");
+  const feedbackT = useTranslations("Pathweg.ui.sections.feedback");
+  const constants = getPathwegConstants(t);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -36,8 +36,10 @@ const FeedbackSection = () => {
       cardsContainer.appendChild(clone);
     });
 
-    cardsContainer.style.animation = `scrollCards ${cards.length * 5}s linear infinite`;
-  }, [isMobile]);  
+    cardsContainer.style.animation = `scrollCards ${
+      cards.length * 5
+    }s linear infinite`;
+  }, [isMobile]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const renderCard = (feedback: any, index: number) => (
@@ -66,10 +68,10 @@ const FeedbackSection = () => {
   return (
     <section id="feedback" className="py-20 bg-black text-white">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-6">{feedbackT("heading")}</h2>
-        <p className="text-lg text-center mb-12">
-          {feedbackT("text")}
-        </p>
+        <h2 className="text-3xl font-bold text-center mb-6">
+          {feedbackT("heading")}
+        </h2>
+        <p className="text-lg text-center mb-12">{feedbackT("text")}</p>
 
         {/* Móvil: Slider manual con flechas */}
         {isMobile ? (
@@ -86,7 +88,10 @@ const FeedbackSection = () => {
           </Slider>
         ) : (
           // Desktop/Tablet: Movimiento automático infinito
-          <div className="overflow-hidden relative w-full" style={{ height: "280px" }}>
+          <div
+            className="overflow-hidden relative w-full"
+            style={{ height: "280px" }}
+          >
             <div ref={scrollRef} className="flex gap-4 w-max">
               {constants.FEEDBACK.map(renderCard)}
             </div>

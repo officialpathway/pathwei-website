@@ -2,35 +2,39 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { useTranslations } from 'next-intl';
+import { useTranslations } from "next-intl";
 
 const Hero = () => {
-  const t = useTranslations("Pathway");
+  const t = useTranslations("Pathweg");
 
-  const BetaFeature = ({ icon, title, description }: { icon: string; title: string; description: string }) => (
+  const BetaFeature = ({
+    icon,
+    title,
+    description,
+  }: {
+    icon: string;
+    title: string;
+    description: string;
+  }) => (
     <div className="relative group">
       {/* Glow effect background */}
       <div className="absolute inset-0 bg-amber-500/20 rounded-2xl blur-xl group-hover:bg-amber-500/30 transition-all duration-300" />
-      
+
       {/* Main container */}
-      <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-6 
+      <div
+        className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-6 
                       hover:bg-white/15 hover:border-amber-500/30 transition-all duration-300
-                      shadow-2xl hover:shadow-amber-500/20">
+                      shadow-2xl hover:shadow-amber-500/20"
+      >
         {/* Icon */}
-        <div className="text-4xl mb-3 text-center">
-          {icon}
-        </div>
-        
+        <div className="text-4xl mb-3 text-center">{icon}</div>
+
         {/* Title */}
-        <div className="text-white font-semibold text-center mb-2">
-          {title}
-        </div>
-        
+        <div className="text-white font-semibold text-center mb-2">{title}</div>
+
         {/* Description */}
-        <div className="text-white/80 text-sm text-center">
-          {description}
-        </div>
-        
+        <div className="text-white/80 text-sm text-center">{description}</div>
+
         {/* Animated border */}
         <div className="absolute inset-0 rounded-2xl border border-amber-500/0 group-hover:border-amber-500/50 transition-all duration-300" />
       </div>
@@ -59,7 +63,7 @@ const Hero = () => {
           </motion.div>
 
           {/* Main Headline */}
-          <motion.h1 
+          <motion.h1
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -72,18 +76,18 @@ const Hero = () => {
           </motion.h1>
 
           {/* Beta announcement */}
-          <motion.div 
+          <motion.div
             className="mb-8 sm:mb-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
             <p className="text-lg sm:text-xl md:text-2xl text-white mb-4 font-medium">
-              ¡Únete a la Beta de Pathwei!
+              ¡Únete a la Beta de Pathweg!
             </p>
             <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto">
-              Sé uno de los primeros en probar nuestra revolucionaria app de productividad con IA. 
-              La beta está disponible ahora.
+              Sé uno de los primeros en probar nuestra revolucionaria app de
+              productividad con IA. La beta está disponible ahora.
             </p>
           </motion.div>
 
@@ -94,17 +98,17 @@ const Hero = () => {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 sm:mb-12 max-w-4xl mx-auto"
           >
-            <BetaFeature 
+            <BetaFeature
               icon="🎯"
               title="Funciones Completas"
-              description="Acceso a todas las características principales de Pathway"
+              description="Acceso a todas las características principales de Pathweg"
             />
-            <BetaFeature 
+            <BetaFeature
               icon="🤖"
               title="IA Integrada"
               description="Experimenta nuestro asistente de productividad con inteligencia artificial"
             />
-            <BetaFeature 
+            <BetaFeature
               icon="📱"
               title="APK Exclusivo"
               description="Descarga directa del archivo APK por email"
@@ -123,23 +127,23 @@ const Hero = () => {
                 🔐 Acceso Beta Exclusivo
               </p>
               <p className="text-white/70 text-sm md:text-base max-w-2xl mx-auto">
-                Suscríbete a nuestro newsletter y recibe el enlace de descarga del APK directamente en tu email. 
-                ¡Solo para usuarios beta!
+                Suscríbete a nuestro newsletter y recibe el enlace de descarga
+                del APK directamente en tu email. ¡Solo para usuarios beta!
               </p>
             </div>
-            
+
             {/* Newsletter signup button */}
-            <motion.button 
-              type="button" 
+            <motion.button
+              type="button"
               className="relative overflow-hidden group bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 sm:px-8 py-3 sm:py-4 
                         rounded-full font-medium text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer
                         hover:scale-105 transform hover:shadow-green-500/25"
               onClick={() => {
-                const newsletterSection = document.getElementById('newsletter');
+                const newsletterSection = document.getElementById("newsletter");
                 if (newsletterSection) {
-                  newsletterSection.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
+                  newsletterSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
                   });
                 }
               }}
@@ -148,9 +152,19 @@ const Hero = () => {
             >
               <span className="relative z-10 flex items-center gap-2">
                 Unirse a la Beta
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M7 7h10v10"/>
-                  <path d="M7 17 17 7"/>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
                 </svg>
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -174,35 +188,35 @@ const Hero = () => {
           </motion.div>
 
           {/* Scroll Down Indicator */}
-          <motion.div 
+          <motion.div
             className="flex flex-col items-center mt-8 sm:mt-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.8 }}
           >
             <p className="text-gray-300 mb-2 text-sm font-medium">
-              Descubre más sobre Pathwei
+              Descubre más sobre Pathweg
             </p>
             <motion.div
-              animate={{ 
+              animate={{
                 y: [0, 10, 0],
               }}
               transition={{
                 duration: 1.5,
                 repeat: Infinity,
-                repeatType: "loop"
+                repeatType: "loop",
               }}
               className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center pt-2"
             >
-              <motion.div 
-                animate={{ 
+              <motion.div
+                animate={{
                   y: [0, 6, 0],
-                  opacity: [1, 0.3, 1]
+                  opacity: [1, 0.3, 1],
                 }}
                 transition={{
                   duration: 1.5,
                   repeat: Infinity,
-                  repeatType: "loop"
+                  repeatType: "loop",
                 }}
                 className="w-1 h-2 bg-gray-300 rounded-full"
               />

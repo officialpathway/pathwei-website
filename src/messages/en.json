@@ -1,15 +1,15 @@
 {
-  "Pathway": {
+  "Pathweg": {
     "meta": {
-      "name": "Pathwei",
+      "name": "Pathweg",
       "description": "Transform your productivity with AI, gamification and social networks."
     },
-    
+
     "ui": {
       "header": {
         "team": "Team"
       },
-      
+
       "hero": {
         "heading": {
           "part1": "Supercharge Your",
@@ -21,7 +21,7 @@
         "price": "€4.99/month",
         "scroll_down": "Scroll down for more"
       },
-      
+
       "subhero": {
         "heading": {
           "part1": "THE",
@@ -32,12 +32,12 @@
           "part1": "Take",
           "part2": "control",
           "part3": "of your",
-          "part4":"goals",
+          "part4": "goals",
           "part5": "and boost your",
           "part6": "productivity."
         }
       },
-      
+
       "sections": {
         "first": {
           "heading": "FROM INSPIRATION TO MASTERY",
@@ -151,7 +151,7 @@
           }
         }
       },
-      
+
       "newsletter": {
         "heading": "Don't Miss Out!",
         "subheading": "Subscribe to receive a notification when the app is available.",
@@ -172,7 +172,7 @@
           "agree_message": "Please agree to the terms and conditions to continue."
         }
       },
-      
+
       "footer": {
         "quick_links": "Quick Links",
         "links": {
@@ -181,25 +181,21 @@
         },
         "description": "Innovative AI solutions for tomorrow&apos;s challenges.",
         "connect": "Connect with us",
-        "about_pathway": "About Pathwei",
-        "rights": "© 2025 Pathwei. All rights reserved.",
+        "about_pathweg": "About Pathweg",
+        "rights": "© 2025 Pathweg. All rights reserved.",
         "privacy_policy": "Our privacy policy.",
         "terms_conditions": "Terms and conditions."
       },
-      
+
       "loading": "Loading..."
     },
-    
+
     "core_features": {
       "ai": {
-        "elements": [
-          "Artificial Intelligence",
-          "Knowledge",
-          "User"
-        ],
+        "elements": ["Artificial Intelligence", "Knowledge", "User"],
         "footer": "Empowering human goals"
       },
-      
+
       "animation": {
         "phrases": {
           "objective": "I want to:",
@@ -210,7 +206,7 @@
           "path_success": "Your path to success:"
         }
       },
-      
+
       "testing": {
         "ui": {
           "use": "We use tests to measure progress",
@@ -234,14 +230,14 @@
             "failed": "Failed"
           }
         },
-        
+
         "explanation": {
           "tracking_progress": "Track Progress With Tests",
           "how_tests_work": {
             "title": "How Our Tests Help You Learn",
             "description": "Our intelligent testing system adapts to your learning journey, providing personalized feedback and tracking your progress over time."
           },
-          
+
           "section1": {
             "title": "Answer Questions At Your Own Pace",
             "descriptions": [
@@ -270,7 +266,7 @@
               "submit_button": "Submit Answers"
             }
           },
-          
+
           "section2": {
             "title": "Smart Evaluation Process",
             "descriptions": [
@@ -295,7 +291,7 @@
               ]
             }
           },
-          
+
           "section3": {
             "title": "Track Your Progress Over Time",
             "descriptions": [
@@ -327,7 +323,7 @@
               "Active Learning"
             ]
           },
-          
+
           "cta": {
             "title": "Ready to Track Your Progress?",
             "description": "Start testing your knowledge and see how you're advancing toward your learning goals.",
@@ -336,7 +332,7 @@
         }
       }
     },
-    
+
     "content": {
       "categories": {
         "exercise": {
@@ -377,7 +373,7 @@
           }
         }
       },
-      
+
       "steps": {
         "exercise": {
           "marathon": [
@@ -499,7 +495,7 @@
         }
       }
     },
-    
+
     "feedback": {
       "user_opinions": {
         "gamification": {
@@ -524,16 +520,16 @@
         }
       }
     },
-    
+
     "legal": {
       "terms": {
         "page_title": "Terms and Conditions",
         "last_updated": "Last updated: {date}",
         "update_date": "April 22, 2025",
-        
+
         "intro_paragraph": "Welcome to our application. These Terms and Conditions govern your use of our newsletter service and outline the rules for subscribing to our communications.",
         "acceptance_paragraph": "By subscribing to our newsletter, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not subscribe to our newsletter.",
-        
+
         "sections": {
           "newsletter": {
             "title": "Newsletter Service Description",
@@ -545,7 +541,7 @@
               "Launch announcements for new features, services, and application updates"
             ]
           },
-          
+
           "subscription": {
             "title": "Subscription Terms",
             "paragraphs": [
@@ -553,7 +549,7 @@
               "The frequency of our communications may vary based on our release schedule, promotions, and other factors. We aim to send relevant content and avoid excessive communications."
             ]
           },
-          
+
           "privacy": {
             "title": "Privacy and Data Usage",
             "paragraphs": [
@@ -562,12 +558,12 @@
               "Your personal information will be handled in accordance with our Privacy Policy. We will not sell or rent your email address to third parties, although we may share anonymized, aggregated data for analytical purposes."
             ]
           },
-          
+
           "unsubscribe": {
             "title": "Unsubscribing",
             "paragraph": "You may unsubscribe from our newsletter at any time by clicking the 'Unsubscribe' link included in every email we send, or by contacting us directly. Upon unsubscribing, we will promptly remove your email address from our distribution list for marketing communications, though we may retain certain information as required for legal or legitimate business purposes."
           },
-          
+
           "content": {
             "title": "Newsletter Content",
             "paragraphs": [
@@ -575,29 +571,29 @@
               "We reserve the right to determine the content, timing, and recipients of our newsletters. Beta testing invitations and feature polls may be sent to selected segments of our subscriber base based on usage patterns, previous feedback, or other criteria."
             ]
           },
-          
+
           "changes": {
             "title": "Changes to Terms",
             "paragraph": "We reserve the right to modify these Terms and Conditions at any time. We will notify subscribers of any material changes via email. Your continued subscription to our newsletter following such notification constitutes your acceptance of the revised terms."
           },
-          
+
           "contact": {
             "title": "Contact Us",
             "paragraph": "If you have questions or concerns about these Terms and Conditions or our newsletter service, please contact our support team. We are committed to addressing your inquiries promptly and thoroughly."
           }
         },
-        
+
         "back_to_home": "Back to Home"
       },
-      
+
       "privacy": {
         "page_title": "Privacy Policy",
         "last_updated": "Last updated: {date}",
         "update_date": "April 22, 2025",
-        
+
         "intro_paragraph": "This Privacy Policy explains how we collect, use, and protect information when you use our application and services. We are committed to ensuring the privacy and security of all our users.",
         "scope_paragraph": "By using our application, subscribing to our newsletter, or interacting with our services, you consent to the practices described in this Privacy Policy.",
-        
+
         "sections": {
           "collection": {
             "title": "Information We Collect",
@@ -608,7 +604,7 @@
               "Voluntary feedback and survey responses"
             ]
           },
-          
+
           "ai": {
             "title": "Artificial Intelligence Usage",
             "paragraphs": [
@@ -622,7 +618,7 @@
               "Providing automated support responses based on common queries"
             ]
           },
-          
+
           "no_personal_data": {
             "title": "No Collection of Personal Data",
             "paragraphs": [
@@ -630,7 +626,7 @@
               "When interacting with AI features in our application, your inputs are processed in real-time and are not stored or used to build user profiles."
             ]
           },
-          
+
           "cookies": {
             "title": "Cookies and Similar Technologies",
             "paragraphs": [
@@ -638,17 +634,17 @@
               "You can configure your browser to refuse cookies, although this may limit your ability to use certain features of our application."
             ]
           },
-          
+
           "security": {
             "title": "Data Security",
             "paragraph": "We implement appropriate technical and organizational measures to protect the information we collect and process. However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security."
           },
-          
+
           "third_party": {
             "title": "Third-Party Services",
             "paragraph": "Our application may integrate with third-party services for specific functionalities. These services have their own privacy policies, and we encourage you to review them. We do not share your information with third parties for marketing purposes."
           },
-          
+
           "rights": {
             "title": "Your Rights",
             "paragraph": "You have certain rights regarding your information. These include:",
@@ -658,22 +654,22 @@
               "The right to object to processing of your information"
             ]
           },
-          
+
           "changes": {
             "title": "Changes to This Policy",
             "paragraph": "We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify users of any material changes via email or through the application."
           },
-          
+
           "contact": {
             "title": "Contact Us",
             "paragraph": "If you have questions or concerns about this Privacy Policy or our data practices, please contact our support team. We are committed to addressing your inquiries promptly and thoroughly."
           }
         },
-        
+
         "back_to_home": "Back to Home"
       }
     },
-    
+
     "team": {
       "title": "Our Team",
       "subtitle": "Meet the brilliant minds behind our success",

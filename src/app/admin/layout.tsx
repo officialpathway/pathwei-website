@@ -24,7 +24,7 @@ export default function AdminLayout({
   return (
     <html lang="es" className={myCustomFont.variable}>
       <head>
-        <link rel="icon" href="/icons/pathway/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icons/Pathweg/favicon.ico" sizes="any" />
         <meta name="theme-color" content="#5E42D3" />
       </head>
       <body className="antialiased">

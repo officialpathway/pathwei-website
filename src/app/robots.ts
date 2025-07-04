@@ -1,7 +1,7 @@
 // src/app/robots.ts
 import { MetadataRoute } from 'next'
 
-const BASE_URL = 'https://www.mypathwayapp.com';
+const BASE_URL = 'https://www.pathwei.app';
 
 export default function robots(): MetadataRoute.Robots {
   return {

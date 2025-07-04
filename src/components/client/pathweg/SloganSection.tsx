@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useTranslations } from 'next-intl';
+import { useTranslations } from "next-intl";
 
 const SloganSection = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -9,24 +9,24 @@ const SloganSection = () => {
     target: ref,
     offset: ["start end", "end start"],
   });
-  
-  const t = useTranslations("Pathway");
-  
+
+  const t = useTranslations("Pathweg");
+
   // Smooth scroll-driven animations
   const y1 = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const opacity = useTransform(scrollYProgress, [0.1, 0.6], [0, 1]);
-  
+
   return (
     <section
       ref={ref}
-      className="relative h-[70vh] w-full overflow-hidden bg-transparent" 
+      className="relative h-[70vh] w-full overflow-hidden bg-transparent"
     >
       {/* Glowing Grid Overlay */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0 bg-[length:100px_100px]"></div>
       </div>
-      
+
       {/* Animated Content - Moved higher with flex alignment */}
       <motion.div
         className="h-full flex flex-col justify-start pt-16 sm:pt-24 px-8 sm:px-16 lg:px-32"
@@ -49,7 +49,7 @@ const SloganSection = () => {
           </motion.h3>
         </motion.div>
       </motion.div>
-      
+
       {/* Floating Decorative Elements */}
       <motion.div
         style={{ y: y2 }}

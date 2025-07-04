@@ -1,7 +1,7 @@
 // src/app/sitemap.ts
 import { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://www.mypathwayapp.com';
+const BASE_URL = 'https://www.pathwei.app';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pages = [

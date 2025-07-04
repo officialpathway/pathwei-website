@@ -1,15 +1,15 @@
 {
-  "Pathway": {
+  "Pathweg": {
     "meta": {
-      "name": "Pathwei",
+      "name": "Pathweg",
       "description": "Transforma tu productividad con IA, gamificación y redes sociales."
     },
-    
+
     "ui": {
       "header": {
         "team": "Equipo"
       },
-      
+
       "hero": {
         "heading": {
           "part1": "Organiza tus",
@@ -21,7 +21,7 @@
         "price": "€4.99/mes",
         "scroll_down": "Baja para ver maś"
       },
-      
+
       "subhero": {
         "heading": {
           "part1": "¡LA",
@@ -32,12 +32,12 @@
           "part1": "Toma",
           "part2": "control",
           "part3": "de tus",
-          "part4":"metas",
+          "part4": "metas",
           "part5": "y aumenta tu",
           "part6": "productividad."
         }
       },
-      
+
       "sections": {
         "first": {
           "heading": "DE LA INSPIRACIÓN AL DOMINIO",
@@ -151,7 +151,7 @@
           }
         }
       },
-      
+
       "newsletter": {
         "heading": "¡No Te Lo Pierdas!",
         "subheading": "Suscríbete para recibir una notificación cuando la aplicación esté disponible.",
@@ -173,7 +173,7 @@
           "agree_message": "Por favor, acepta la Política de Privacidad para continuar."
         }
       },
-      
+
       "footer": {
         "quick_links": "Enlaces Rápidos",
         "links": {
@@ -182,8 +182,8 @@
         },
         "description": "Soluciones innovadoras de IA para los desafíos del mañana.",
         "connect": "Conéctate con nosotros",
-        "about_pathway": "Acerca de Pathwei",
-        "rights": "© 2025 Pathwei. Todos los derechos reservados.",
+        "about_pathweg": "Acerca de Pathweg",
+        "rights": "© 2025 Pathweg. Todos los derechos reservados.",
         "privacy_policy": "Política de privacidad.",
         "terms_conditions": "Términos y condiciones.",
         "cookie_policy": "Política de cookies.",
@@ -229,20 +229,16 @@
           }
         }
       },
-      
+
       "loading": "Cargando..."
     },
-    
+
     "core_features": {
       "ai": {
-        "elements": [
-          "Inteligencia Artificial",
-          "Conocimiento",
-          "Usuario"
-        ],
+        "elements": ["Inteligencia Artificial", "Conocimiento", "Usuario"],
         "footer": "Potenciando metas humanas"
       },
-      
+
       "animation": {
         "phrases": {
           "objective": "Quiero:",
@@ -253,7 +249,7 @@
           "path_success": "Tu camino hacia el éxito:"
         }
       },
-      
+
       "testing": {
         "ui": {
           "use": "Usamos pruebas para medir el progreso",
@@ -277,14 +273,14 @@
             "failed": "Fallido"
           }
         },
-        
+
         "explanation": {
           "tracking_progress": "Seguimiento del Progreso Con Pruebas",
           "how_tests_work": {
             "title": "Cómo Nuestras Pruebas Te Ayudan a Aprender",
             "description": "Nuestro sistema de pruebas inteligente se adapta a tu viaje de aprendizaje, proporcionando retroalimentación personalizada y siguiendo tu progreso a lo largo del tiempo."
           },
-          
+
           "section1": {
             "title": "Responde Preguntas a Tu Propio Ritmo",
             "descriptions": [
@@ -313,7 +309,7 @@
               "submit_button": "Enviar Respuestas"
             }
           },
-          
+
           "section2": {
             "title": "Proceso de Evaluación Inteligente",
             "descriptions": [
@@ -338,7 +334,7 @@
               ]
             }
           },
-          
+
           "section3": {
             "title": "Sigue Tu Progreso a lo Largo del Tiempo",
             "descriptions": [
@@ -370,7 +366,7 @@
               "Aprendizaje Activo"
             ]
           },
-          
+
           "cta": {
             "title": "¿Listo para Seguir Tu Progreso?",
             "description": "Comienza a probar tus conocimientos y observa cómo estás avanzando hacia tus metas de aprendizaje.",
@@ -379,7 +375,7 @@
         }
       }
     },
-    
+
     "content": {
       "categories": {
         "exercise": {
@@ -420,7 +416,7 @@
           }
         }
       },
-      
+
       "steps": {
         "exercise": {
           "marathon": [
@@ -542,7 +538,7 @@
         }
       }
     },
-    
+
     "feedback": {
       "user_opinions": {
         "gamification": {
@@ -567,7 +563,7 @@
         }
       }
     },
-    
+
     "legal": {
       "terms": {
         "page_title": "Términos y Condiciones",
@@ -575,36 +571,36 @@
         "last_updated": "Última actualización: {date}",
         "sections": {
           "intro": {
-            "title": "¡Te damos la bienvenida a Pathwei!",
-            "welcome": "En Pathwei, nos apasiona ayudarte a alcanzar tus metas y transformar tus sueños en realidad. Queremos que te sientas parte de una comunidad donde puedas compartir tus logros y motivar a otros a hacer lo mismo.",
+            "title": "¡Te damos la bienvenida a Pathweg!",
+            "welcome": "En Pathweg, nos apasiona ayudarte a alcanzar tus metas y transformar tus sueños en realidad. Queremos que te sientas parte de una comunidad donde puedas compartir tus logros y motivar a otros a hacer lo mismo.",
             "purpose": "Para garantizar una experiencia positiva y segura para todos nuestros usuarios, hemos creado estos Términos y Condiciones, junto con nuestra Política de Privacidad.",
-            "support": "Estamos aquí para acompañarte en cada paso de tu camino hacia el éxito. Si tienes alguna pregunta o inquietud, no dudes en ponerte en contacto con nosotros. ¡Estamos aquí para ayudarte a lograr tus objetivos en Pathwei!"
+            "support": "Estamos aquí para acompañarte en cada paso de tu camino hacia el éxito. Si tienes alguna pregunta o inquietud, no dudes en ponerte en contacto con nosotros. ¡Estamos aquí para ayudarte a lograr tus objetivos en Pathweg!"
           },
           "agreement": {
             "title": "1. Acuerdo de Términos",
             "acceptance": "Al utilizar nuestros Servicios, usted acepta estar sujeto a estos Términos y Condiciones. Si no acepta estar sujeto a estos Términos, no utilice los Servicios.",
-            "services_definition": "Por \"Servicios\" entendemos todos los aspectos de las aplicaciones móviles de Pathwei, nuestro sitio web (https://pathwei.app/), así como el software, sistemas y funcionalidades que alimentan tanto las aplicaciones como nuestro sitio web."
+            "services_definition": "Por \"Servicios\" entendemos todos los aspectos de las aplicaciones móviles de Pathweg, nuestro sitio web (https://www.pathwei.app/), así como el software, sistemas y funcionalidades que alimentan tanto las aplicaciones como nuestro sitio web."
           },
           "changes": {
             "title": "2. Cambios en estos Términos o en los Servicios",
-            "intro": "En Pathwei, nos esforzamos por mejorar continuamente nuestros servicios para brindarte la mejor experiencia posible. Por esta razón, podemos realizar actualizaciones periódicas en estos Términos, las cuales te notificaremos mediante:",
+            "intro": "En Pathweg, nos esforzamos por mejorar continuamente nuestros servicios para brindarte la mejor experiencia posible. Por esta razón, podemos realizar actualizaciones periódicas en estos Términos, las cuales te notificaremos mediante:",
             "notifications": [
               "Publicaciones en el sitio web",
               "Notificaciones en la aplicación",
               "Comunicaciones por correo electrónico",
               "Avisos push cuando corresponda"
             ],
-            "acceptance": "Te recomendamos que revises estos Términos cada vez que haya una actualización o utilices nuestros servicios. Si decides continuar utilizando Pathwei después de que hayamos publicado los Términos actualizados, entenderemos que aceptas los cambios realizados.",
+            "acceptance": "Te recomendamos que revises estos Términos cada vez que haya una actualización o utilices nuestros servicios. Si decides continuar utilizando Pathweg después de que hayamos publicado los Términos actualizados, entenderemos que aceptas los cambios realizados.",
             "disagreement": "Sin embargo, si no estás de acuerdo con los cambios, lamentablemente no podrás seguir utilizando nuestros servicios. Ten en cuenta que, debido a la naturaleza en evolución de nuestros servicios, podemos realizar cambios o suspender parte o la totalidad de los mismos en cualquier momento, a nuestro criterio exclusivo, con previo aviso cuando sea posible."
           },
           "usage": {
             "title": "3. ¿Quién Puede Utilizar los Servicios?",
-            "age_requirement": "Para utilizar los servicios de Pathwei, debes tener al menos 14 años de edad (o la edad mínima requerida para dar tu consentimiento para el procesamiento de datos según las leyes de tu país). Además, debes cumplir con todas las leyes aplicables que regulen el uso de nuestros servicios.",
+            "age_requirement": "Para utilizar los servicios de Pathweg, debes tener al menos 14 años de edad (o la edad mínima requerida para dar tu consentimiento para el procesamiento de datos según las leyes de tu país). Además, debes cumplir con todas las leyes aplicables que regulen el uso de nuestros servicios.",
             "minor_consent": "Si eres menor de 18 años pero mayor de 14 años, debes contar con el consentimiento de tus padres o tutores legales. Al utilizar nuestros servicios, declaras y garantizas que cuentas con el consentimiento de tus padres o tutores legales, quienes han leído y aceptado estos Términos en tu nombre. Los padres y tutores legales son responsables de supervisar el uso de los servicios por parte de los menores.",
             "personal_use": {
               "title": "Uso Personal y Auténtico",
-              "description": "Los servicios de Pathwei están diseñados para ser utilizados exclusivamente por personas reales para fines personales y no comerciales. Los bots u otros programas automatizados no están autorizados a utilizar nuestros servicios.",
-              "confirmation": "Al registrarte y utilizar Pathwei, confirmas que:"
+              "description": "Los servicios de Pathweg están diseñados para ser utilizados exclusivamente por personas reales para fines personales y no comerciales. Los bots u otros programas automatizados no están autorizados a utilizar nuestros servicios.",
+              "confirmation": "Al registrarte y utilizar Pathweg, confirmas que:"
             },
             "confirmations": [
               "Eres una persona real",
@@ -622,7 +618,7 @@
               "steps": [
                 "Registro inicial: Introducción de datos personales básicos para crear tu cuenta",
                 "Configuración del perfil: Personalización de preferencias y objetivos",
-                "Exploración gratuita: Acceso inmediato a las funcionalidades básicas de Pathwei"
+                "Exploración gratuita: Acceso inmediato a las funcionalidades básicas de Pathweg"
               ]
             },
             "service_modes": {
@@ -668,7 +664,7 @@
             ],
             "intellectual_property": {
               "title": "C) Propiedad Intelectual",
-              "description": "Pathwei y sus licenciantes conservan todos los derechos, títulos e intereses sobre la Aplicación, incluyendo todos los derechos de propiedad intelectual. Esta licencia no te otorga ningún derecho de propiedad sobre la Aplicación."
+              "description": "Pathweg y sus licenciantes conservan todos los derechos, títulos e intereses sobre la Aplicación, incluyendo todos los derechos de propiedad intelectual. Esta licencia no te otorga ningún derecho de propiedad sobre la Aplicación."
             },
             "app_store": {
               "title": "D) Compatibilidad con Tiendas de Aplicaciones",
@@ -709,20 +705,20 @@
           },
           "feedback": {
             "title": "7. Comentarios y Sugerencias",
-            "intro": "Valoramos enormemente tus comentarios, ideas, propuestas y sugerencias para mejorar Pathwei. Al enviarnos tus comentarios a través de cualquier medio, aceptas que:",
+            "intro": "Valoramos enormemente tus comentarios, ideas, propuestas y sugerencias para mejorar Pathweg. Al enviarnos tus comentarios a través de cualquier medio, aceptas que:",
             "rights": [
               "Tenemos el derecho de utilizarlos libremente para mejorar y desarrollar nuestros servicios",
               "No se requiere compensación alguna por parte nuestra",
               "No hay restricciones sobre cómo podemos implementar tus sugerencias",
-              "Apreciamos sinceramente tu contribución para hacer de Pathwei una mejor plataforma"
+              "Apreciamos sinceramente tu contribución para hacer de Pathweg una mejor plataforma"
             ],
             "contact": "Puedes enviar tus comentarios a: info@mypathwayapp.com"
           },
           "termination": {
             "title": "8. Finalización de Servicios",
-            "by_pathway": {
-              "title": "Terminación por Parte de Pathwei",
-              "description": "Pathwei se reserva el derecho de suspender o cancelar tu acceso y uso de los Servicios, incluyendo la suspensión del acceso o la cancelación de tu cuenta, a nuestra discreción, en cualquier momento. Esto puede ocurrir en casos de:"
+            "by_pathweg": {
+              "title": "Terminación por Parte de Pathweg",
+              "description": "Pathweg se reserva el derecho de suspender o cancelar tu acceso y uso de los Servicios, incluyendo la suspensión del acceso o la cancelación de tu cuenta, a nuestra discreción, en cualquier momento. Esto puede ocurrir en casos de:"
             },
             "reasons": [
               "Violación de estos Términos y Condiciones",
@@ -743,7 +739,7 @@
           },
           "liability": {
             "title": "9. Limitación de Responsabilidad",
-            "intro": "En la máxima medida permitida por la ley aplicable, Pathwei no será responsable de:",
+            "intro": "En la máxima medida permitida por la ley aplicable, Pathweg no será responsable de:",
             "exclusions": [
               "Daños indirectos, incidentales, especiales o consecuentes",
               "Pérdida de beneficios, datos, uso, oportunidades comerciales o reputación",
@@ -765,7 +761,7 @@
             },
             "complete_agreement": {
               "title": "Acuerdo Completo",
-              "description": "Estos Términos, junto con nuestra Política de Privacidad, constituyen el acuerdo completo entre tú y Pathwei con respecto al uso de los servicios."
+              "description": "Estos Términos, junto con nuestra Política de Privacidad, constituyen el acuerdo completo entre tú y Pathweg con respecto al uso de los servicios."
             },
             "waiver": {
               "title": "Renuncia",
@@ -781,7 +777,7 @@
             "response_time": "Nos comprometemos a responder a tus consultas en un plazo máximo de 48 horas laborables."
           }
         },
-        "final_confirmation": "Al utilizar los servicios de Pathwei, confirmas que has leído, comprendido y aceptado estar sujeto a estos Términos y Condiciones en su totalidad."
+        "final_confirmation": "Al utilizar los servicios de Pathweg, confirmas que has leído, comprendido y aceptado estar sujeto a estos Términos y Condiciones en su totalidad."
       },
 
       "notice": {
@@ -793,22 +789,22 @@
             "title": "I. INFORMACIÓN GENERAL",
             "intro": "En cumplimiento con el deber de información dispuesto en la Ley 34/2002 de Servicios de la Sociedad de la Información y el Comercio Electrónico (LSSI-CE) de 11 de julio, se facilitan los siguientes datos de información general de este sitio web:",
             "website_owner_label": "Titular del sitio web:",
-            "website_owner": "Pathwei",
+            "website_owner": "Pathweg",
             "email_label": "Correo electrónico:",
             "email": "info@mypathwayapp.com",
             "website_label": "Sitio web:",
-            "website": "www.mypathwayapp.com",
-            "note": "Nota: Pathwei es una aplicación móvil de productividad personal. Este sitio web constituye nuestra landing page informativa."
+            "website": "www.pathwei.app",
+            "note": "Nota: Pathweg es una aplicación móvil de productividad personal. Este sitio web constituye nuestra landing page informativa."
           },
           "general_terms": {
             "title": "II. TÉRMINOS Y CONDICIONES GENERALES DE USO",
             "object": {
               "title": "Objeto de las condiciones: El Sitio Web",
               "description": "El objeto de las presentes Condiciones Generales de Uso es regular el acceso y utilización de nuestra landing page. Se entiende como Sitio Web:",
-              "modification_rights": "Pathwei se reserva la facultad de modificar, en cualquier momento y sin aviso previo, la presentación y configuración del Sitio Web. El usuario reconoce y acepta que Pathway puede interrumpir, desactivar o cancelar cualquier elemento del sitio web."
+              "modification_rights": "Pathweg se reserva la facultad de modificar, en cualquier momento y sin aviso previo, la presentación y configuración del Sitio Web. El usuario reconoce y acepta que Pathweg puede interrumpir, desactivar o cancelar cualquier elemento del sitio web."
             },
             "website_elements": [
-              "La landing page de Pathwei con información sobre la aplicación",
+              "La landing page de Pathweg con información sobre la aplicación",
               "Todo el contenido informativo sobre funcionalidades y características",
               "El formulario de suscripción al newsletter",
               "Los enlaces de descarga a Google Play Store",
@@ -842,7 +838,7 @@
               "intro": "Este sitio web se dirige a:",
               "items": [
                 "Personas interesadas en aplicaciones de productividad personal",
-                "Usuarios potenciales de Pathwei",
+                "Usuarios potenciales de Pathweg",
                 "Público general mayor de 16 años (con consentimiento parental para menores)"
               ]
             }
@@ -851,8 +847,8 @@
             "title": "IV. ACCESO Y NAVEGACIÓN: EXCLUSIÓN DE GARANTÍAS",
             "availability": {
               "title": "Disponibilidad del servicio",
-              "intro": "Pathwei no garantiza:",
-              "efforts": "Pathwei se esfuerza por mantener el sitio web operativo, pero no se responsabiliza de:"
+              "intro": "Pathweg no garantiza:",
+              "efforts": "Pathweg se esfuerza por mantener el sitio web operativo, pero no se responsabiliza de:"
             },
             "no_guarantees": {
               "items": [
@@ -871,7 +867,7 @@
             },
             "limitation": {
               "title": "Limitación de responsabilidad",
-              "intro": "En ningún caso Pathway será responsable por:",
+              "intro": "En ningún caso Pathweg será responsable por:",
               "items": [
                 "Pérdidas o daños derivados del uso del sitio web",
                 "Problemas técnicos en dispositivos de usuarios",
@@ -885,15 +881,15 @@
               "title": "Enlaces salientes",
               "intro": "Nuestro sitio web puede contener enlaces a:",
               "items": [
-                "Google Play Store: Para descarga de la aplicación Pathwei",
-                "Redes sociales: Enlaces a perfiles oficiales de Pathwei",
+                "Google Play Store: Para descarga de la aplicación Pathweg",
+                "Redes sociales: Enlaces a perfiles oficiales de Pathweg",
                 "Recursos informativos: Enlaces a contenido relacionado con productividad"
               ]
             },
             "external_responsibility": {
               "title": "Responsabilidad sobre enlaces externos",
-              "intro": "Pathwei:",
-              "pathway_prefix": "Pathwei",
+              "intro": "Pathweg:",
+              "pathweg_prefix": "Pathweg",
               "items": [
                 "NO controla el contenido de sitios web externos",
                 "NO se responsabiliza por el contenido de Google Play Store o redes sociales",
@@ -908,7 +904,7 @@
                 "title": "Permitido",
                 "items": [
                   "Enlaces directos a la página principal",
-                  "Referencias informativas a Pathwei",
+                  "Referencias informativas a Pathweg",
                   "Menciones en blogs o medios (con atribución correcta)"
                 ]
               },
@@ -916,7 +912,7 @@
                 "title": "Prohibido",
                 "items": [
                   "Reproducción del contenido sin autorización",
-                  "Declaraciones falsas sobre Pathwei",
+                  "Declaraciones falsas sobre Pathweg",
                   "Uso de nuestro contenido protegido por derechos de autor",
                   "Enlaces que impliquen relación comercial sin autorización"
                 ]
@@ -925,16 +921,16 @@
           },
           "intellectual_property": {
             "title": "VI. PROPIEDAD INTELECTUAL E INDUSTRIAL",
-            "pathway_rights": {
-              "title": "Derechos de Pathwei",
-              "intro": "Pathwei es titular de todos los derechos sobre:",
+            "pathweg_rights": {
+              "title": "Derechos de Pathweg",
+              "intro": "Pathweg es titular de todos los derechos sobre:",
               "items": [
                 "Diseño y estructura del sitio web",
                 "Contenidos textuales (descripciones, textos promocionales)",
                 "Elementos gráficos (logotipos, imágenes, iconos)",
                 "Material multimedia (videos, animaciones)",
                 "Código fuente del sitio web",
-                "Marca \"Pathwei\" y elementos distintivos"
+                "Marca \"Pathweg\" y elementos distintivos"
               ]
             },
             "user_use": {
@@ -953,7 +949,7 @@
               "items": [
                 "Reproducir contenido con fines comerciales",
                 "Modificar o manipular elementos gráficos",
-                "Usar la marca \"Pathwei\" sin autorización",
+                "Usar la marca \"Pathweg\" sin autorización",
                 "Crear contenido derivado sin permiso"
               ]
             },
@@ -971,7 +967,7 @@
             "title": "VII. MODIFICACIONES",
             "changes": {
               "title": "Cambios en las condiciones",
-              "intro": "Pathwei se reserva el derecho de modificar:"
+              "intro": "Pathweg se reserva el derecho de modificar:"
             },
             "items": [
               "Estas Condiciones Generales de Uso",
@@ -1053,8 +1049,8 @@
             "important_note": "Importante: Las cookies que permiten identificar a una persona se consideran datos personales, por lo que su uso requiere su consentimiento explícito según el RGPD y la legislación española aplicable."
           },
           "types": {
-            "title": "¿Qué Tipos de Cookies Utiliza Pathwei?",
-            "intro": "En Pathwei utilizamos únicamente cookies esenciales y analíticas básicas, manteniendo nuestro compromiso con la minimización de datos:"
+            "title": "¿Qué Tipos de Cookies Utiliza Pathweg?",
+            "intro": "En Pathweg utilizamos únicamente cookies esenciales y analíticas básicas, manteniendo nuestro compromiso con la minimización de datos:"
           },
           "technical": {
             "title": "Cookies Técnicas (Esenciales)",
@@ -1090,7 +1086,7 @@
           },
           "not_used": {
             "title": "Cookies que NO Utilizamos",
-            "intro": "Pathwei se compromete a NO utilizar:",
+            "intro": "Pathweg se compromete a NO utilizar:",
             "items": [
               "Cookies de seguimiento entre sitios web",
               "Cookies de terceros para perfilado comercial",
@@ -1147,11 +1143,7 @@
           "dnt_tools": {
             "title": "Herramientas \"Do Not Track\"",
             "description": "Para un mayor control, puede instalar extensiones o complementos que bloqueen cookies de seguimiento, como:",
-            "tools": [
-              "uBlock Origin",
-              "Privacy Badger",
-              "Ghostery"
-            ]
+            "tools": ["uBlock Origin", "Privacy Badger", "Ghostery"]
           },
           "consequences": {
             "title": "Consecuencias de Rechazar Cookies",
@@ -1160,7 +1152,7 @@
               "items": [
                 "Funcionalidad completa: La landing page funcionará correctamente",
                 "Información sobre la app: Podrá acceder a toda la información",
-                "Descarga de la app: Podrá descargar Pathwei desde Google Play Store y Play Store de Apple"
+                "Descarga de la app: Podrá descargar Pathweg desde Google Play Store y Play Store de Apple"
               ]
             },
             "rejecting": {
@@ -1177,11 +1169,11 @@
             "services": {
               "google_play": {
                 "name": "Google Play Store",
-                "description": "Si accede a Google Play Store desde nuestra landing page para descargar Pathwei, estará sujeto a la política de cookies de Google. Le recomendamos revisar sus términos de privacidad."
+                "description": "Si accede a Google Play Store desde nuestra landing page para descargar Pathweg, estará sujeto a la política de cookies de Google. Le recomendamos revisar sus términos de privacidad."
               },
               "apple_store": {
                 "name": "Apple App Store",
-                "description": "Si descarga Pathwei a través del Apple App Store, se aplicará la política de privacidad y cookies de Apple. Recomendamos consultar sus términos en la página oficial de Apple."
+                "description": "Si descarga Pathweg a través del Apple App Store, se aplicará la política de privacidad y cookies de Apple. Recomendamos consultar sus términos en la página oficial de Apple."
               },
               "analytics": {
                 "name": "Servicios de Analíticas",
@@ -1213,7 +1205,7 @@
             "email": "info@mypathwayapp.com",
             "subject_label": "Asunto:",
             "subject": "\"Consulta Política de Cookies\"",
-            "response_time": "Pathwei está comprometido con la transparencia y responderá a sus consultas en un plazo máximo de 48 horas laborables."
+            "response_time": "Pathweg está comprometido con la transparencia y responderá a sus consultas en un plazo máximo de 48 horas laborables."
           },
           "regulations": {
             "title": "Normativa Aplicable",
@@ -1227,15 +1219,15 @@
           "final_note": "Al continuar navegando por nuestro sitio web sin modificar la configuración de cookies de su navegador, entiende y acepta el uso de cookies técnicas esenciales. Para cookies analíticas, siempre solicitaremos su consentimiento explícito."
         }
       },
-      
+
       "privacy": {
         "page_title": "Política de Privacidad",
         "last_updated": "Última actualización: {date}",
         "update_date": "3 de Junio de 2025",
-        
+
         "intro_paragraph": "Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos la información cuando utilizas nuestra aplicación y servicios. Estamos comprometidos a garantizar la privacidad y seguridad de todos nuestros usuarios.",
         "scope_paragraph": "Al usar nuestra aplicación, suscribirte a nuestro boletín o interactuar con nuestros servicios, consientes las prácticas descritas en esta Política de Privacidad.",
-        
+
         "sections": {
           "collection": {
             "title": "Información Que Recopilamos",
@@ -1246,7 +1238,7 @@
               "Comentarios voluntarios y respuestas a encuestas"
             ]
           },
-          
+
           "ai": {
             "title": "Uso de Inteligencia Artificial",
             "paragraphs": [
@@ -1260,7 +1252,7 @@
               "Proporcionar respuestas de soporte automatizadas basadas en consultas comunes"
             ]
           },
-          
+
           "no_personal_data": {
             "title": "Sin Recopilación de Datos Personales",
             "paragraphs": [
@@ -1268,7 +1260,7 @@
               "Al interactuar con las características de IA en nuestra aplicación, tus entradas se procesan en tiempo real y no se almacenan ni se utilizan para crear perfiles de usuario."
             ]
           },
-          
+
           "cookies": {
             "title": "Cookies y Tecnologías Similares",
             "paragraphs": [
@@ -1276,17 +1268,17 @@
               "Puedes configurar tu navegador para rechazar cookies, aunque esto puede limitar tu capacidad para usar ciertas características de nuestra aplicación."
             ]
           },
-          
+
           "security": {
             "title": "Seguridad de Datos",
             "paragraph": "Implementamos medidas técnicas y organizativas apropiadas para proteger la información que recopilamos y procesamos. Sin embargo, ningún método de transmisión por Internet o almacenamiento electrónico es 100% seguro, y no podemos garantizar la seguridad absoluta."
           },
-          
+
           "third_party": {
             "title": "Servicios de Terceros",
             "paragraph": "Nuestra aplicación puede integrarse con servicios de terceros para funcionalidades específicas. Estos servicios tienen sus propias políticas de privacidad, y te animamos a revisarlas. No compartimos tu información con terceros con fines de marketing."
           },
-          
+
           "rights": {
             "title": "Tus Derechos",
             "paragraph": "Tienes ciertos derechos con respecto a tu información. Estos incluyen:",
@@ -1296,22 +1288,22 @@
               "El derecho a oponerte al procesamiento de tu información"
             ]
           },
-          
+
           "changes": {
             "title": "Cambios en Esta Política",
             "paragraph": "Podemos actualizar esta Política de Privacidad de vez en cuando para reflejar cambios en nuestras prácticas o por otras razones operativas, legales o regulatorias. Notificaremos a los usuarios de cualquier cambio material por correo electrónico o a través de la aplicación."
           },
-          
+
           "contact": {
             "title": "Contáctanos",
             "paragraph": "Si tienes preguntas o inquietudes sobre esta Política de Privacidad o nuestras prácticas de datos, por favor contacta a nuestro equipo de soporte. Estamos comprometidos a abordar tus consultas de manera rápida y exhaustiva."
           }
         },
-        
+
         "back_to_home": "Volver a Inicio"
       }
     },
-    
+
     "team": {
       "title": "Nuestro Equipo",
       "subtitle": "Conoce a las mentes brillantes detrás de nuestro progreso",

@@ -1,11 +1,11 @@
-// src/components/client/pathway/Header.tsx
-'use client';
+// src/components/client/pathweg/Header.tsx
+"use client";
 
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
-import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
-import Link from 'next/link';
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,7 +14,7 @@ export const Header = () => {
   const ticking = useRef(false);
   const { scrollY } = useScroll();
 
-  const t = useTranslations("Pathway");
+  const t = useTranslations("Pathweg");
 
   // Mobile detection without resize listeners
   const [isMobile, setIsMobile] = useState(false);
@@ -30,14 +30,14 @@ export const Header = () => {
         if (latest > lastScrollY.current && menuOpen) {
           setMenuOpen(false);
         }
-        
+
         // Handle header visibility
         if (latest > lastScrollY.current && latest > 50) {
           setHidden(true);
         } else {
           setHidden(false);
         }
-        
+
         lastScrollY.current = latest;
         ticking.current = false;
       });
@@ -55,45 +55,45 @@ export const Header = () => {
       <motion.header
         className="fixed w-full z-50 bg-black/50 backdrop-blur-sm"
         animate={{ y: hidden ? -100 : 0 }}
-        transition={{ 
-          type: 'tween',
-          ease: 'easeInOut',
-          duration: 0.3
+        transition={{
+          type: "tween",
+          ease: "easeInOut",
+          duration: 0.3,
         }}
         style={{
-          willChange: 'transform',
-          backfaceVisibility: 'hidden',
-          height: '4rem' // Fixed height (h-16)
+          willChange: "transform",
+          backfaceVisibility: "hidden",
+          height: "4rem", // Fixed height (h-16)
         }}
       >
         <div className="container mx-auto px-4 h-full flex justify-between items-center">
           {/* Logo */}
           <Link href="/">
             <div className="flex items-center">
-              <Image 
-                src="/icons/pathway/favicon.ico"
-                alt="Pathwei"
+              <Image
+                src="/icons/pathweg/favicon.ico"
+                alt="Pathweg"
                 width={32}
                 height={32}
               />
-              <span className="ml-2 text-white font-bold">Pathwei</span>
+              <span className="ml-2 text-white font-bold">Pathweg</span>
             </div>
           </Link>
 
           {/* Desktop Nav */}
           {!isMobile && (
             <nav className="flex space-x-6 items-center">
-              {[
-                { label: `${t("ui.header.team")}`, href: '/equipo' },
-              ].map((item) => (
-                <Link 
-                  key={item.label} 
-                  href={item.href}
-                  className="text-white/80 hover:text-white text-sm transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {[{ label: `${t("ui.header.team")}`, href: "/equipo" }].map(
+                (item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className="text-white/80 hover:text-white text-sm transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
               {/* Keep LanguageSwitcher component but hide it for now */}
               {/* <LanguageSwitcher /> */}
             </nav>
@@ -101,11 +101,11 @@ export const Header = () => {
 
           {/* Mobile Menu Button */}
           {isMobile && (
-            <div className='flex gap-6 items-center'>
+            <div className="flex gap-6 items-center">
               {/* <LanguageSwitcher /> */}
 
               <button
-                type='button'
+                type="button"
                 onClick={toggleMenu}
                 className="w-8 h-8 flex flex-col justify-center items-center"
                 aria-label="Menú"
@@ -114,7 +114,7 @@ export const Header = () => {
                   className="block w-6 h-0.5 bg-white mb-1.5"
                   animate={{
                     rotate: menuOpen ? 45 : 0,
-                    y: menuOpen ? 6 : 0
+                    y: menuOpen ? 6 : 0,
                   }}
                   transition={{ duration: 0.2 }}
                 />
@@ -127,7 +127,7 @@ export const Header = () => {
                   className="block w-6 h-0.5 bg-white mt-1.5"
                   animate={{
                     rotate: menuOpen ? -45 : 0,
-                    y: menuOpen ? -6 : 0
+                    y: menuOpen ? -6 : 0,
                   }}
                   transition={{ duration: 0.2 }}
                 />
@@ -144,18 +144,16 @@ export const Header = () => {
           animate={{
             opacity: menuOpen ? 1 : 0,
             y: menuOpen ? 0 : -20,
-            display: menuOpen ? 'block' : 'none'
+            display: menuOpen ? "block" : "none",
           }}
           transition={{ duration: 0.2 }}
           className="fixed top-16 left-0 w-full z-40 bg-black/50 backdrop-blur-sm"
           style={{
-            pointerEvents: menuOpen ? 'auto' : 'none'
+            pointerEvents: menuOpen ? "auto" : "none",
           }}
         >
           <div className="container mx-auto px-4 py-2 flex flex-col">
-            {[
-              { label: t("ui.header.team"), href: '/equipo' },
-            ].map((item) => (
+            {[{ label: t("ui.header.team"), href: "/equipo" }].map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
