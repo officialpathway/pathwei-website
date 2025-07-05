@@ -1,4 +1,4 @@
-// src/components/admin/DashboardOverview.tsx
+// admin/DashboardOverview.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -25,7 +25,9 @@ interface DashboardStats {
 // API Service
 class DashboardAPIService {
   private static get baseURL() {
-    return `${process.env.APP_URL || "https://mypathwayapp.com"}/api/v1/admin`;
+    return `${
+      process.env.NEXT_PUBLIC_APP_URL || "https://mypathwayapp.com"
+    }/api/v1/admin`;
   }
   private static async request(endpoint: string, options?: RequestInit) {
     const response = await fetch(`${this.baseURL}${endpoint}`, {

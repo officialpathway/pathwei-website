@@ -1,4 +1,4 @@
-// components/admin/components/AssetsTable.tsx
+// admin/components/AssetsTable.tsx
 "use client";
 
 import { Edit, AlertTriangle } from "lucide-react";

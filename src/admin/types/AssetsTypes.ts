@@ -1,4 +1,4 @@
-// components/admin/types/AssetsTypes.ts
+// admin/types/AssetsTypes.ts
 
 export interface Asset {
   id: string;

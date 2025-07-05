@@ -1,4 +1,4 @@
-// src/components/admin/AdminSettings.tsx
+// admin/AdminSettings.tsx
 "use client";
 
 import { useState } from "react";

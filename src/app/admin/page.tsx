@@ -1,40 +1,13 @@
 // src/app/admin/page.tsx
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useSimpleAuth } from "@/hooks/use-simple-auth";
-import AdminHeader from "@/components/admin/AdminHeader";
-import DashboardOverview from "@/components/admin/DashboardOverview";
+import AdminLayout from "@/admin/components/AdminLayout";
+import DashboardOverview from "@/admin/components/DashboardOverview";
 
-export default function AdminDashboard() {
-  const { user, loading } = useSimpleAuth();
-  const router = useRouter();
-
-  const handleNavigate = (path: string) => {
-    router.push(path);
-  };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading admin dashboard...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    return null;
-  }
-
+export default function AdminDashboardPage() {
   return (
-    <>
-      <AdminHeader title="Dashboard Overview" />
-      <main className="p-6">
-        <DashboardOverview onNavigate={handleNavigate} />
-      </main>
-    </>
+    <AdminLayout title="Dashboard Overview">
+      <DashboardOverview />
+    </AdminLayout>
   );
 }

@@ -1,4 +1,4 @@
-// components/admin/components/AssetForm.tsx
+// admin/components/AssetForm.tsx
 "use client";
 
 import { useState } from "react";

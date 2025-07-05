@@ -1,4 +1,4 @@
-// components/admin/AssetsManager.tsx
+// admin/AssetsManager.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -9,12 +9,12 @@ import {
   Monitor,
   Receipt,
 } from "lucide-react";
-import { Asset, Bill } from "./types/AssetsTypes";
-import { AssetsTable } from "./components/AssetsTable";
-import { BillsTable } from "./components/BillsTable";
-import { AssetForm } from "./components/AssetForm";
-import { BillForm } from "./components/BillForm";
-import { getAssetIcon, isExpiringSoon } from "./utils/assetsUtils";
+import { Asset, Bill } from "../types/AssetsTypes";
+import { AssetsTable } from "./AssetsTable";
+import { BillsTable } from "./BillsTable";
+import { AssetForm } from "./AssetForm";
+import { BillForm } from "./BillForm";
+import { getAssetIcon, isExpiringSoon } from "../utils/assetsUtils";
 
 export default function AssetsManager() {
   const [activeTab, setActiveTab] = useState<"assets" | "bills">("assets");

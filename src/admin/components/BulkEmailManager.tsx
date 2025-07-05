@@ -1,5 +1,4 @@
-// Bulk Email Manager Component for Admin Dashboard
-
+// admin/BulkEmailManager.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -57,7 +56,7 @@ interface EmailFormData {
 class BulkEmailAPIService {
   private static get baseURL() {
     return `${
-      process.env.APP_URL || "https://mypathwayapp.com"
+      process.env.NEXT_PUBLIC_APP_URL || "https://mypathwayapp.com"
     }/api/v1/email/bulk-email`;
   }
 

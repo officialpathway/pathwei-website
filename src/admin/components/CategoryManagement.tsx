@@ -1,4 +1,4 @@
-// src/components/admin/CategoryManagement.tsx
+// admin/CategoryManagement.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -21,7 +21,9 @@ interface PathCategory {
 // API Service for Categories
 class CategoryAPIService {
   private static get baseURL() {
-    return `${process.env.APP_URL || "https://mypathwayapp.com"}/api/v1/admin`;
+    return `${
+      process.env.NEXT_PUBLIC_APP_URL || "https://mypathwayapp.com"
+    }/api/v1/admin`;
   }
 
   private static async request(endpoint: string, options?: RequestInit) {

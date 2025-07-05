@@ -1,4 +1,4 @@
-// components/admin/components/BillsTable.tsx
+// admin/components/BillsTable.tsx
 "use client";
 
 import { Edit } from "lucide-react";

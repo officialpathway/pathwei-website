@@ -1,4 +1,4 @@
-// components/admin/utils/assetsUtils.tsx
+// admin/utils/assetsUtils.tsx
 import { Globe, Server, Smartphone, Monitor } from "lucide-react";
 
 export const getAssetIcon = (type: string): React.ReactNode => {

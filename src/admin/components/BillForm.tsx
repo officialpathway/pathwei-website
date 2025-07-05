@@ -1,4 +1,4 @@
-// components/admin/components/BillForm.tsx
+// admin/components/BillForm.tsx
 "use client";
 
 import { useState } from "react";
