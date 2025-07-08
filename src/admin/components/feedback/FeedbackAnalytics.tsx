@@ -13,11 +13,8 @@ import {
   Clock,
   MessageSquare,
 } from "lucide-react";
-import {
-  AdminAPIService,
-  FeedbackStats,
-  FeedbackTrends,
-} from "@/services/AdminAPIService";
+import { AdminAPIClient } from "@/admin/services/AdminAPIClient";
+import { FeedbackStats, FeedbackTrends } from "@/admin/types";
 
 interface DateRange {
   startDate: string;
@@ -46,16 +43,16 @@ export default function FeedbackAnalytics() {
     try {
       setLoading(true);
       const [statsData, trendsData] = await Promise.all([
-        AdminAPIService.getFeedbackStats(),
-        AdminAPIService.getFeedbackTrends(
+        AdminAPIClient.getFeedbackStats(),
+        AdminAPIClient.getFeedbackTrends(
           dateRange.startDate,
           dateRange.endDate,
           dateRange.groupBy
         ),
       ]);
 
-      setStats(statsData);
-      setTrends(trendsData);
+      setStats(statsData as FeedbackStats);
+      setTrends(trendsData as FeedbackTrends[]);
     } catch (error) {
       console.error("Failed to fetch analytics:", error);
     } finally {
@@ -423,17 +420,14 @@ export default function FeedbackAnalytics() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                   {trends.slice(-12).map((trend, index) => {
-                    const maxValue = Math.max(...trends.map((t) => t.total));
+                    const maxValue = Math.max(...trends.map((t) => t.count));
                     const totalHeight =
-                      maxValue > 0 ? (trend.total / maxValue) * 100 : 0;
+                      maxValue > 0 ? (trend.count / maxValue) * 100 : 0;
                     const resolvedHeight =
-                      trend.total > 0
-                        ? (trend.resolved / trend.total) * totalHeight
+                      trend.count > 0
+                        ? (trend.resolved / trend.count) * totalHeight
                         : 0;
-                    const pendingHeight =
-                      trend.total > 0
-                        ? (trend.pending / trend.total) * totalHeight
-                        : 0;
+                    const pendingHeight = totalHeight - resolvedHeight;
 
                     return (
                       <div key={index} className="text-center">
@@ -462,7 +456,7 @@ export default function FeedbackAnalytics() {
                           {formatTrendDate(trend.date)}
                         </div>
                         <div className="text-xs font-medium text-gray-900">
-                          {trend.total}
+                          {trend.count}
                         </div>
                       </div>
                     );

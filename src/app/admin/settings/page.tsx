@@ -2,8 +2,8 @@
 "use client";
 
 import { useSimpleAuth } from "@/hooks/use-simple-auth";
-import AdminHeader from "@/admin/components/AdminHeader";
-import AdminSettings from "@/admin/components/AdminSettings";
+import AdminHeader from "@/admin/components/layout/AdminHeader";
+import AdminSettings from "@/admin/components/settings/AdminSettings";
 
 export default function AdminSettingsPage() {
   const { user, loading } = useSimpleAuth();

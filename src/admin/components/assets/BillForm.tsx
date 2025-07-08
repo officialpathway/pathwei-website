@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import { Asset, Bill, BillFormData } from "../types/AssetsTypes";
+import { Asset, Bill, BillFormData } from "@/admin/types";
 
 interface BillFormProps {
   bill?: Bill;

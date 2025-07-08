@@ -2,12 +2,12 @@
 "use client";
 
 import { Edit, AlertTriangle } from "lucide-react";
-import { Asset } from "../types/AssetsTypes";
+import { Asset } from "@/admin/types";
 import {
   formatCurrency,
   formatDate,
   getStatusColor,
-} from "../utils/assetsUtils";
+} from "@/admin/utils/assetsUtils";
 
 interface AssetsTableProps {
   assets: Asset[];

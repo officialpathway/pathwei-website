@@ -1,8 +1,8 @@
 // src/app/admin/bulk-email/page.tsx
 "use client";
 
-import AdminLayout from "@/admin/components/AdminLayout";
-import { BulkEmailManager } from "@/admin/components/BulkEmailManager";
+import AdminLayout from "@/admin/components/layout/AdminLayout";
+import { BulkEmailManager } from "@/admin/components/email/BulkEmailManager";
 
 export default function AdminBulkEmailPage() {
   return (

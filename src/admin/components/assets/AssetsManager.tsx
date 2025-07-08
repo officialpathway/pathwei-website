@@ -9,12 +9,12 @@ import {
   Monitor,
   Receipt,
 } from "lucide-react";
-import { Asset, Bill } from "../types/AssetsTypes";
+import { Asset, Bill } from "@/admin/types";
 import { AssetsTable } from "./AssetsTable";
 import { BillsTable } from "./BillsTable";
 import { AssetForm } from "./AssetForm";
 import { BillForm } from "./BillForm";
-import { getAssetIcon, isExpiringSoon } from "../utils/assetsUtils";
+import { getAssetIcon, isExpiringSoon } from "@/admin/utils/assetsUtils";
 
 export default function AssetsManager() {
   const [activeTab, setActiveTab] = useState<"assets" | "bills">("assets");

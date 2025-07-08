@@ -2,12 +2,12 @@
 "use client";
 
 import { Edit } from "lucide-react";
-import { Bill } from "../types/AssetsTypes";
+import { Bill } from "@/admin/types";
 import {
   formatCurrency,
   formatDate,
   getStatusColor,
-} from "../utils/assetsUtils";
+} from "@/admin/utils/assetsUtils";
 
 interface BillsTableProps {
   bills: Bill[];

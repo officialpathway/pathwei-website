@@ -1,8 +1,8 @@
 // src/app/admin/feedback/analytics/page.tsx
 "use client";
 
-import AdminLayout from "@/admin/components/AdminLayout";
-import FeedbackAnalytics from "@/admin/components/FeedbackAnalytics";
+import AdminLayout from "@/admin/components/layout/AdminLayout";
+import FeedbackAnalytics from "@/admin/components/feedback/FeedbackAnalytics";
 
 export default function AdminFeedbackAnalyticsPage() {
   return (

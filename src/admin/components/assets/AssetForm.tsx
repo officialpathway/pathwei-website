@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import { Asset, AssetFormData } from "../types/AssetsTypes";
+import { Asset, AssetFormData } from "@/admin/types";
 
 interface AssetFormProps {
   asset?: Asset;

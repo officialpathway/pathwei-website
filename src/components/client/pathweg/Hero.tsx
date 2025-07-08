@@ -27,29 +27,25 @@ const Hero = () => {
     setError("");
 
     try {
-      const response = await fetch("/api/download/apk", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(credentials),
-      });
+      // Check credentials against environment variables
+      const correctUsername =
+        process.env.NEXT_PUBLIC_BETA_USERNAME || "beta_tester";
+      const correctPassword =
+        process.env.NEXT_PUBLIC_BETA_PASSWORD || "PathwegBeta2025!";
+      const driveUrl =
+        process.env.NEXT_PUBLIC_APK_STORAGE_URL ||
+        "https://drive.google.com/file/d/1xArTNVQEg_Ic3pznxakBPeeiIHuoEMKo/view?usp=drivesdk";
 
-      if (response.ok) {
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "pathweg-beta.apk";
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(a);
+      if (
+        credentials.username === correctUsername &&
+        credentials.password === correctPassword
+      ) {
+        // Redirect to Google Drive download
+        window.open(driveUrl, "_blank");
         setShowCredentialModal(false);
         setCredentials({ username: "", password: "" });
       } else {
-        const data = await response.json();
-        setError(data.message || "Credenciales incorrectas");
+        setError("Credenciales incorrectas");
       }
     } catch (error) {
       console.log(error);
@@ -192,12 +188,6 @@ const Hero = () => {
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </motion.button>
-
-                <p className="text-white/70 text-sm">
-                  <Lock className="inline w-4 h-4 mr-1" />
-                  Requiere credenciales beta - Suscríbete al newsletter para
-                  recibirlas
-                </p>
               </div>
 
               {/* Newsletter CTA */}

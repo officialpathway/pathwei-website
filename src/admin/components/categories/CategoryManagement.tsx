@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { Plus, Edit, Trash2 } from "lucide-react";
+import { AdminAPIClient } from "@/admin/services/AdminAPIClient";
 
 interface PathCategory {
   id: number;
@@ -18,74 +19,10 @@ interface PathCategory {
   updated_at: string;
 }
 
-// API Service for Categories
-class CategoryAPIService {
-  private static get baseURL() {
-    return `${
-      process.env.NEXT_PUBLIC_APP_URL || "https://mypathwayapp.com"
-    }/api/v1/admin`;
-  }
-
-  private static async request(endpoint: string, options?: RequestInit) {
-    const response = await fetch(`${this.baseURL}${endpoint}`, {
-      headers: {
-        "Content-Type": "application/json",
-        "X-Admin-Dashboard-Secret": process.env.NEXT_PUBLIC_ADMIN_SECRET || "",
-        ...options?.headers,
-      },
-      ...options,
-    });
-
-    if (!response.ok) {
-      throw new Error(`API Error: ${response.status} ${response.statusText}`);
-    }
-
-    return response.json();
-  }
-
-  static async getPathCategories(): Promise<PathCategory[]> {
-    const response = await this.request("/categories");
-    return response.data.categories;
-  }
-
-  static async createPathCategory(categoryData: {
-    name: string;
-    description: string;
-    icon: string;
-    color: string;
-    parent_category_id?: number;
-    is_active?: boolean;
-    display_order?: number;
-    is_testable?: boolean;
-  }): Promise<PathCategory> {
-    const response = await this.request("/categories", {
-      method: "POST",
-      body: JSON.stringify(categoryData),
-    });
-    return response.data.category;
-  }
-
-  static async updatePathCategory(
-    categoryId: number,
-    updates: Partial<PathCategory>
-  ): Promise<PathCategory> {
-    const response = await this.request(`/categories/${categoryId}`, {
-      method: "PUT",
-      body: JSON.stringify(updates),
-    });
-    return response.data.category;
-  }
-
-  static async deletePathCategory(categoryId: number): Promise<void> {
-    await this.request(`/categories/${categoryId}`, {
-      method: "DELETE",
-    });
-  }
-}
-
 export default function CategoryManagement() {
   const [categories, setCategories] = useState<PathCategory[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string>("");
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingCategory, setEditingCategory] = useState<PathCategory | null>(
     null
@@ -107,10 +44,22 @@ export default function CategoryManagement() {
 
   const fetchCategories = async () => {
     try {
-      const categoriesData = await CategoryAPIService.getPathCategories();
-      setCategories(categoriesData);
+      setLoading(true);
+      setError("");
+      const categoriesData = await AdminAPIClient.getCategories();
+
+      // Ensure categoriesData is an array
+      if (Array.isArray(categoriesData)) {
+        setCategories(categoriesData);
+      } else {
+        console.warn("Categories data is not an array:", categoriesData);
+        setCategories([]);
+        setError("Received invalid categories data format");
+      }
     } catch (error) {
       console.error("Failed to fetch categories:", error);
+      setError("Failed to load categories. Please try again.");
+      setCategories([]); // Set empty array as fallback
     } finally {
       setLoading(false);
     }
@@ -127,16 +76,16 @@ export default function CategoryManagement() {
       };
 
       if (editingCategory) {
-        await CategoryAPIService.updatePathCategory(editingCategory.id, data);
+        await AdminAPIClient.updatePathCategory(editingCategory.id, data);
       } else {
-        await CategoryAPIService.createPathCategory(data);
+        await AdminAPIClient.createPathCategory(data);
       }
 
-      fetchCategories();
-      resetForm();
+      resetForm(); // Reset form first
+      await fetchCategories(); // Then refresh data
     } catch (error) {
       console.error("Failed to save category:", error);
-      alert("Failed to save category");
+      setError("Failed to save category. Please try again.");
     }
   };
 
@@ -144,11 +93,11 @@ export default function CategoryManagement() {
     if (!confirm("Are you sure you want to delete this category?")) return;
 
     try {
-      await CategoryAPIService.deletePathCategory(categoryId);
-      fetchCategories();
+      await AdminAPIClient.deletePathCategory(categoryId);
+      await fetchCategories();
     } catch (error) {
       console.error("Failed to delete category:", error);
-      alert("Failed to delete category");
+      setError("Failed to delete category. Please try again.");
     }
   };
 
@@ -165,6 +114,7 @@ export default function CategoryManagement() {
     });
     setShowAddForm(false);
     setEditingCategory(null);
+    setError("");
   };
 
   const startEdit = (category: PathCategory) => {
@@ -180,10 +130,15 @@ export default function CategoryManagement() {
     });
     setEditingCategory(category);
     setShowAddForm(true);
+    setError("");
   };
 
   if (loading) {
-    return <div className="animate-pulse bg-gray-300 h-64 rounded"></div>;
+    return (
+      <div className="space-y-6">
+        <div className="animate-pulse bg-gray-300 h-64 rounded"></div>
+      </div>
+    );
   }
 
   return (
@@ -201,6 +156,12 @@ export default function CategoryManagement() {
             <span>Add Category</span>
           </button>
         </div>
+
+        {error && (
+          <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+            {error}
+          </div>
+        )}
 
         {/* Add/Edit Form */}
         {showAddForm && (
@@ -339,55 +300,64 @@ export default function CategoryManagement() {
               </tr>
             </thead>
             <tbody>
-              {categories.map((category) => (
-                <tr key={category.id} className="border-b border-gray-100">
-                  <td className="py-3 px-4 font-medium">{category.name}</td>
-                  <td className="py-3 px-4 text-sm text-gray-600">
-                    {category.description}
-                  </td>
-                  <td className="py-3 px-4">
-                    <div className="flex items-center space-x-2">
-                      <div
-                        className="w-4 h-4 rounded"
-                        style={{ backgroundColor: category.color }}
-                      ></div>
-                      <span className="text-sm">{category.color}</span>
-                    </div>
-                  </td>
-                  <td className="py-3 px-4">{category.display_order}</td>
-                  <td className="py-3 px-4">
-                    <span
-                      className={`px-2 py-1 rounded-full text-xs ${
-                        category.is_active
-                          ? "bg-green-100 text-green-800"
-                          : "bg-red-100 text-red-800"
-                      }`}
-                    >
-                      {category.is_active ? "Active" : "Inactive"}
-                    </span>
-                  </td>
-                  <td className="py-3 px-4">
-                    <div className="flex space-x-2">
-                      <button
-                        title="Edit Category"
-                        type="button"
-                        onClick={() => startEdit(category)}
-                        className="text-blue-600 hover:text-blue-800"
-                      >
-                        <Edit className="w-4 h-4" />
-                      </button>
-                      <button
-                        title="Delete Category"
-                        type="button"
-                        onClick={() => handleDelete(category.id)}
-                        className="text-red-600 hover:text-red-800"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
+              {categories.length === 0 ? (
+                <tr>
+                  <td colSpan={6} className="py-8 text-center text-gray-500">
+                    No categories found. Click &quot;Add Category&quot; to
+                    create your first category.
                   </td>
                 </tr>
-              ))}
+              ) : (
+                categories.map((category) => (
+                  <tr key={category.id} className="border-b border-gray-100">
+                    <td className="py-3 px-4 font-medium">{category.name}</td>
+                    <td className="py-3 px-4 text-sm text-gray-600">
+                      {category.description}
+                    </td>
+                    <td className="py-3 px-4">
+                      <div className="flex items-center space-x-2">
+                        <div
+                          className="w-4 h-4 rounded"
+                          style={{ backgroundColor: category.color }}
+                        ></div>
+                        <span className="text-sm">{category.color}</span>
+                      </div>
+                    </td>
+                    <td className="py-3 px-4">{category.display_order}</td>
+                    <td className="py-3 px-4">
+                      <span
+                        className={`px-2 py-1 rounded-full text-xs ${
+                          category.is_active
+                            ? "bg-green-100 text-green-800"
+                            : "bg-red-100 text-red-800"
+                        }`}
+                      >
+                        {category.is_active ? "Active" : "Inactive"}
+                      </span>
+                    </td>
+                    <td className="py-3 px-4">
+                      <div className="flex space-x-2">
+                        <button
+                          title="Edit Category"
+                          type="button"
+                          onClick={() => startEdit(category)}
+                          className="text-blue-600 hover:text-blue-800"
+                        >
+                          <Edit className="w-4 h-4" />
+                        </button>
+                        <button
+                          title="Delete Category"
+                          type="button"
+                          onClick={() => handleDelete(category.id)}
+                          className="text-red-600 hover:text-red-800"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

@@ -1,17 +1,17 @@
-// admin/types/AssetsTypes.ts
+// src/admin/types/assets.ts
 
 export interface Asset {
   id: string;
   name: string;
-  type: string;
+  type: AssetType;
   provider?: string;
   cost: number;
   currency: string;
   purchaseDate: string;
   expiryDate?: string;
-  status: string;
+  status: AssetStatus;
   autoRenew: boolean;
-  recurringPeriod?: string; // "monthly", "yearly", "quarterly", "one-time"
+  recurringPeriod?: RecurringPeriod;
   notes?: string;
   bills: Bill[];
   createdAt?: string;
@@ -31,9 +31,9 @@ export interface Bill {
   paidDate?: string;
   periodStart?: string;
   periodEnd?: string;
-  status: string;
+  status: BillStatus;
   recurring: boolean;
-  recurringPeriod?: string;
+  recurringPeriod?: RecurringPeriod;
   paymentMethod?: string;
   reference?: string;
   notes?: string;
@@ -41,17 +41,32 @@ export interface Bill {
   updatedAt?: string;
 }
 
+export type AssetType =
+  | 'software'
+  | 'hardware'
+  | 'service'
+  | 'subscription'
+  | 'domain'
+  | 'ssl_certificate'
+  | 'hosting'
+  | 'saas'
+  | 'other';
+
+export type AssetStatus = 'active' | 'inactive' | 'expired' | 'cancelled' | 'pending';
+export type BillStatus = 'pending' | 'paid' | 'overdue' | 'cancelled' | 'partial';
+export type RecurringPeriod = 'monthly' | 'yearly' | 'quarterly' | 'weekly' | 'one-time';
+
 export interface AssetFormData {
   name: string;
-  type: string;
+  type: AssetType;
   provider: string;
   cost: string;
   currency: string;
   purchaseDate: string;
   expiryDate: string;
-  recurringPeriod: string;
+  recurringPeriod: RecurringPeriod;
   autoRenew: boolean;
-  status: string;
+  status: AssetStatus;
   notes: string;
 }
 
@@ -64,9 +79,9 @@ export interface BillFormData {
   vendor: string;
   dueDate: string;
   paidDate: string;
-  status: string;
+  status: BillStatus;
   recurring: boolean;
-  recurringPeriod: string;
+  recurringPeriod: RecurringPeriod;
   paymentMethod: string;
   reference: string;
   notes: string;

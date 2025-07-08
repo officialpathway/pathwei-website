@@ -13,13 +13,13 @@ import {
   Calendar,
   RefreshCw,
 } from "lucide-react";
+import { AdminAPIClient } from "@/admin/services/AdminAPIClient";
 import {
-  AdminAPIService,
+  ApiFilters,
   Feedback,
   FeedbackStats,
   FeedbackTrends,
-  ApiFilters,
-} from "@/services/AdminAPIService";
+} from "@/admin/types";
 
 interface FeedbackFilters extends ApiFilters {
   status?: "pending" | "in_progress" | "resolved" | "closed" | "";
@@ -74,7 +74,10 @@ export default function FeedbackManagement() {
   const fetchFeedbackData = async () => {
     try {
       setLoading(true);
-      const response = await AdminAPIService.getAllFeedback(filters);
+      const response = (await AdminAPIClient.getAllFeedback(filters)) as {
+        feedback: Feedback[];
+        pagination?: typeof pagination;
+      };
       setFeedback(response.feedback);
       if (response.pagination) {
         setPagination(response.pagination);
@@ -88,8 +91,8 @@ export default function FeedbackManagement() {
 
   const fetchStats = async () => {
     try {
-      const statsData = await AdminAPIService.getFeedbackStats();
-      setStats(statsData);
+      const statsData = await AdminAPIClient.getFeedbackStats();
+      setStats(statsData as FeedbackStats);
     } catch (error) {
       console.error("Failed to fetch feedback stats:", error);
     }
@@ -101,11 +104,11 @@ export default function FeedbackManagement() {
       const startDate = new Date();
       startDate.setDate(endDate.getDate() - 30); // Last 30 days
 
-      const trendsData = await AdminAPIService.getFeedbackTrends(
+      const trendsData = await AdminAPIClient.getFeedbackTrends(
         startDate.toISOString().split("T")[0],
         endDate.toISOString().split("T")[0]
       );
-      setTrends(trendsData);
+      setTrends(trendsData as FeedbackTrends[]);
     } catch (error) {
       console.error("Failed to fetch feedback trends:", error);
     }
@@ -126,9 +129,14 @@ export default function FeedbackManagement() {
 
   const handleViewDetails = async (feedbackItem: Feedback) => {
     try {
-      const fullFeedback = await AdminAPIService.getFeedbackById(
+      const response = (await AdminAPIClient.getFeedbackById(
         feedbackItem.id
-      );
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      )) as any;
+      console.log("Feedback details response:", response);
+
+      const fullFeedback =
+        response.feedback || response.data?.feedback || response;
       setSelectedFeedback(fullFeedback);
       setAdminResponse(fullFeedback.adminResponse || "");
       setShowDetails(true);
@@ -142,7 +150,7 @@ export default function FeedbackManagement() {
 
     try {
       setUpdating(true);
-      await AdminAPIService.updateFeedbackStatus(selectedFeedback.id, {
+      await AdminAPIClient.updateFeedbackStatus(selectedFeedback.id, {
         status,
         adminResponse: adminResponse.trim() || undefined,
       });
@@ -164,7 +172,9 @@ export default function FeedbackManagement() {
   };
 
   // Utility Functions
-  const getStatusIcon = (status: string) => {
+  const getStatusIcon = (status: string | undefined) => {
+    if (!status) return <Clock className="w-4 h-4 text-yellow-500" />;
+
     switch (status) {
       case "pending":
         return <Clock className="w-4 h-4 text-yellow-500" />;
@@ -421,7 +431,7 @@ export default function FeedbackManagement() {
                           {item.subject}
                         </div>
                         <div className="text-sm text-gray-500 truncate max-w-xs">
-                          {item.description}
+                          {item.message}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -429,7 +439,7 @@ export default function FeedbackManagement() {
                           <User className="w-4 h-4 text-gray-400 mr-2" />
                           <div>
                             <div className="text-sm font-medium text-gray-900">
-                              {item.user?.firstName || "Unknown"}
+                              {item.user?.username || "Unknown"}
                             </div>
                             <div className="text-sm text-gray-500">
                               {item.user?.email || "No email"}
@@ -459,7 +469,7 @@ export default function FeedbackManagement() {
                         <div className="flex items-center">
                           {getStatusIcon(item.status)}
                           <span className="ml-2 text-sm text-gray-900 capitalize">
-                            {item.status.replace("_", " ")}
+                            {item.status?.replace("_", " ") || "Unknown"}
                           </span>
                         </div>
                       </td>
@@ -558,7 +568,8 @@ export default function FeedbackManagement() {
                     <div className="flex items-center mt-1">
                       {getStatusIcon(selectedFeedback.status)}
                       <span className="ml-2 text-sm text-gray-900 capitalize">
-                        {selectedFeedback.status.replace("_", " ")}
+                        {selectedFeedback.status?.replace("_", " ") ||
+                          "Unknown"}
                       </span>
                     </div>
                   </div>
@@ -598,7 +609,7 @@ export default function FeedbackManagement() {
                       <User className="w-5 h-5 text-gray-400 mr-3" />
                       <div>
                         <p className="text-sm font-medium text-gray-900">
-                          {selectedFeedback.user?.firstName || "Unknown User"}
+                          {selectedFeedback.user?.username || "Unknown User"}
                         </p>
                         <p className="text-sm text-gray-500">
                           {selectedFeedback.user?.email || "No email available"}
@@ -625,7 +636,7 @@ export default function FeedbackManagement() {
                   </label>
                   <div className="mt-1 p-3 bg-gray-50 rounded-md">
                     <p className="text-sm text-gray-900 whitespace-pre-wrap">
-                      {selectedFeedback.description}
+                      {selectedFeedback.message}
                     </p>
                   </div>
                 </div>
