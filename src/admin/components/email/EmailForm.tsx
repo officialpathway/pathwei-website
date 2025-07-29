@@ -101,7 +101,7 @@ export function EmailForm({
         headers: {
           "Content-Type": "application/json",
           ...(type === "bulk" && {
-            "X-Admin-Dashboard-Secret": "PathwegAdmin2025!",
+            "X-Admin-Dashboard-Secret": "PathwayAdmin2025!",
           }),
         },
         body: JSON.stringify(emailData),

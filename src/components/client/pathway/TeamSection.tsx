@@ -7,7 +7,7 @@ import TeamMemberCard from "./TeamMemberCard";
 import CurvedBorder from "./CurvedBorder";
 
 const TeamSection = () => {
-  const t = useTranslations("Pathweg.team");
+  const t = useTranslations("Pathway.team");
 
   // Team members data
   const teamMembers = [

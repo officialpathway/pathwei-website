@@ -2,10 +2,10 @@
 "use client";
 import React from "react";
 import { useTranslations } from "next-intl";
-import CurvedBorder from "@/components/client/pathweg/CurvedBorder";
+import CurvedBorder from "@/components/client/pathway/CurvedBorder";
 
 const TermsAndConditionsPage = () => {
-  const t = useTranslations("Pathweg.legal.terms");
+  const t = useTranslations("Pathway.legal.terms");
 
   // Arrays for license restrictions and cancellation methods
   const licenseRestrictions = [
@@ -281,10 +281,10 @@ const TermsAndConditionsPage = () => {
           </h2>
 
           <h3 className="text-xl font-semibold mb-3">
-            {t("sections.termination.by_pathweg.title")}
+            {t("sections.termination.by_pathway.title")}
           </h3>
           <p className="mb-4">
-            {t("sections.termination.by_pathweg.description")}
+            {t("sections.termination.by_pathway.description")}
           </p>
           <ul className="list-disc pl-6 mb-4 space-y-2">
             {terminationReasons.map((reason, index) => (

@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
 
     // Your external storage URL with token
     const baseUrl = process.env.APK_STORAGE_URL || 'https://your-storage-provider.com';
-    const downloadUrl = `${baseUrl}/download/pathweg-beta.apk?token=${token}&user=${encodeURIComponent(username)}`;
+    const downloadUrl = `${baseUrl}/download/pathway-beta.apk?token=${token}&user=${encodeURIComponent(username)}`;
 
     return NextResponse.json({
       success: true,

@@ -22,13 +22,13 @@ export function SEOTags({ appName, description, jsonLd }: SEOTagsProps) {
         rel="icon"
         type="image/png"
         sizes="16x16"
-        href="/icons/pathweg/favicon-16x16.png"
+        href="/icons/pathway/favicon-16x16.png"
       />
       <link
         rel="icon"
         type="image/png"
         sizes="32x32"
-        href="/icons/pathweg/favicon-32x32.png"
+        href="/icons/pathway/favicon-32x32.png"
       />
 
       {/* Mobile app specific links */}

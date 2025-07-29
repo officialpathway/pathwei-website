@@ -3,10 +3,10 @@
 
 import React from "react";
 import { useTranslations } from "next-intl";
-import CurvedBorder from "@/components/client/pathweg/CurvedBorder";
+import CurvedBorder from "@/components/client/pathway/CurvedBorder";
 
 const PrivacyPolicyPage = () => {
-  const t = useTranslations("Pathweg.legal.privacy");
+  const t = useTranslations("Pathway.legal.privacy");
 
   // Para manejar arrays en next-intl, necesitamos acceder a cada elemento individualmente
   const collectionItems = [

@@ -4,7 +4,7 @@ import { createTranslator } from 'next-intl';
 import type { Messages } from 'next-intl';
 
 // Actualizado para reflejar la nueva estructura JSON
-type PathwegMessages = Messages & {
+type PathwayMessages = Messages & {
   meta: {
     name: string;
     description: string;
@@ -93,7 +93,7 @@ type PathwegMessages = Messages & {
   };
 };
 
-export const getPathwegConstants = (t: ReturnType<typeof createTranslator<PathwegMessages>>) => ({
+export const getPathwayConstants = (t: ReturnType<typeof createTranslator<PathwayMessages>>) => ({
   APP: {
     NAME: t('meta.name'),
     DESCRIPTION: t('meta.description')
@@ -306,11 +306,11 @@ export const getPathwegConstants = (t: ReturnType<typeof createTranslator<Pathwe
 // Usage example in a component:
 /*
 import { useTranslations } from 'next-intl';
-import { getPathwegConstants } from '@/utils/constants';
+import { getPathwayConstants } from '@/utils/constants';
 
 function MyComponent() {
-  const t = useTranslations('Pathweg');
-  const constants = getPathwegConstants(t);
+  const t = useTranslations('Pathway');
+  const constants = getPathwayConstants(t);
   // Use constants.APP_NAME, etc.
 }
 */

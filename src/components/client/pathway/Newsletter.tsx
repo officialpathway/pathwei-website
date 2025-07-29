@@ -10,7 +10,7 @@ const Newsletter = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [termsAgreed, setTermsAgreed] = useState(false);
 
-  const t = useTranslations("Pathweg");
+  const t = useTranslations("Pathway");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ const Newsletter = () => {
 
       if (response.ok) {
         setMessage(
-          "¡Perfecto! Revisa tu email para recibir el enlace de descarga de la beta de Pathweg. ¡Bienvenido al equipo beta!"
+          "¡Perfecto! Revisa tu email para recibir el enlace de descarga de la beta de Pathway. ¡Bienvenido al equipo beta!"
         );
         setEmail(""); // Clear the input
         setTermsAgreed(false); // Reset checkbox
@@ -64,16 +64,9 @@ const Newsletter = () => {
       className="py-20 bg-secondary text-white relative overflow-hidden"
     >
       <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
-        {/* Beta Badge */}
-        <div className="inline-flex items-center mb-6">
-          <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide shadow-lg">
-            🚀 Acceso Beta Exclusivo
-          </div>
-        </div>
-
         {/* Heading */}
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
-          Recibe el APK de Pathweg Beta
+          Recibe el APK de Pathway Beta
         </h2>
 
         {/* Subtext */}
@@ -170,38 +163,6 @@ const Newsletter = () => {
             </div>
           )}
         </form>
-
-        {/* Additional Info */}
-        <div className="mt-8 space-y-4">
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 max-w-2xl mx-auto">
-            <h3 className="font-semibold text-lg mb-3 text-green-400">
-              ¿Qué incluye la Beta?
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">🤖</span>
-                <span>IA personalizada para productividad</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">📊</span>
-                <span>Análisis detallado de progreso</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">🎮</span>
-                <span>Sistema de gamificación completo</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">👥</span>
-                <span>Funciones sociales para estudiantes</span>
-              </div>
-            </div>
-          </div>
-
-          <p className="text-white/60 text-sm">
-            * La beta es completamente gratuita. Recibirás el enlace de descarga
-            en tu email en los próximos minutos.
-          </p>
-        </div>
       </div>
     </section>
   );

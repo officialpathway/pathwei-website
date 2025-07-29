@@ -118,7 +118,7 @@ const FLOATING_EMOJIS = [
 const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showEmojis, setShowEmojis] = useState(false);
-  const t = useTranslations("Pathweg");
+  const t = useTranslations("Pathway");
 
   // Mouse position tracking
   const mouseX = useMotionValue(0);

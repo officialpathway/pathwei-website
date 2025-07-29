@@ -3,12 +3,12 @@ import { Metadata } from "next";
 import TermsAndConditionsPage from "./TermsAndConditionsPage";
 
 export const metadata: Metadata = {
-  title: "Términos y Condiciones - Pathweg",
+  title: "Términos y Condiciones - Pathway",
   description:
-    "Términos y condiciones completos para el uso de Pathweg. Conoce tus derechos y responsabilidades al utilizar nuestra aplicación de productividad universitaria con IA.",
+    "Términos y condiciones completos para el uso de Pathway. Conoce tus derechos y responsabilidades al utilizar nuestra aplicación de productividad universitaria con IA.",
   keywords: [
     "términos y condiciones",
-    "Pathweg",
+    "Pathway",
     "legal",
     "derechos de usuario",
     "responsabilidades",

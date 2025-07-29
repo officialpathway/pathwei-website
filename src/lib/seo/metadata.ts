@@ -38,7 +38,7 @@ export async function generateSiteMetadata({ params }: MetadataParams): Promise<
   return {
     title: {
       default: seoSettings.title,
-      template: `%s | ${seoSettings.ogSiteName || "Pathweg"}`
+      template: `%s | ${seoSettings.ogSiteName || "Pathway"}`
     },
     description: seoSettings.description,
     keywords: keywordsArray,
@@ -53,7 +53,7 @@ export async function generateSiteMetadata({ params }: MetadataParams): Promise<
       url: seoSettings.canonicalUrl || BASE_URL,
       title: seoSettings.ogTitle || seoSettings.title,
       description: seoSettings.ogDescription || seoSettings.description,
-      siteName: seoSettings.ogSiteName || "Pathweg",
+      siteName: seoSettings.ogSiteName || "Pathway",
       images: seoSettings.ogImage ? [
         {
           url: seoSettings.ogImage,
@@ -75,8 +75,8 @@ export async function generateSiteMetadata({ params }: MetadataParams): Promise<
     },
 
     icons: {
-      icon: "/icons/pathweg/favicon.ico",
-      apple: "/icons/pathweg/apple-touch-icon.png"
+      icon: "/icons/pathway/favicon.ico",
+      apple: "/icons/pathway/apple-touch-icon.png"
     },
 
     other: {

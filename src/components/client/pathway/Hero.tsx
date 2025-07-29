@@ -1,4 +1,4 @@
-// components/client/pathweg/Hero.tsx
+// components/client/pathway/Hero.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import { Download, Lock, Eye, EyeOff } from "lucide-react";
 
 const Hero = () => {
-  const t = useTranslations("Pathweg");
+  const t = useTranslations("Pathway");
   const [showCredentialModal, setShowCredentialModal] = useState(false);
   const [credentials, setCredentials] = useState({
     username: "",
@@ -31,7 +31,7 @@ const Hero = () => {
       const correctUsername =
         process.env.NEXT_PUBLIC_BETA_USERNAME || "beta_tester";
       const correctPassword =
-        process.env.NEXT_PUBLIC_BETA_PASSWORD || "PathwegBeta2025!";
+        process.env.NEXT_PUBLIC_BETA_PASSWORD || "PathwayBeta2025!";
       const driveUrl =
         process.env.NEXT_PUBLIC_APK_STORAGE_URL ||
         "https://drive.google.com/file/d/1xArTNVQEg_Ic3pznxakBPeeiIHuoEMKo/view?usp=drivesdk";
@@ -132,7 +132,7 @@ const Hero = () => {
               transition={{ delay: 0.4, duration: 0.8 }}
             >
               <p className="text-lg sm:text-xl md:text-2xl text-white mb-4 font-medium">
-                ¡Únete a la Beta de Pathweg!
+                ¡Únete a la Beta de Pathway!
               </p>
               <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto">
                 Sé uno de los primeros en probar nuestra revolucionaria app de
@@ -150,7 +150,7 @@ const Hero = () => {
               <BetaFeature
                 icon="🎯"
                 title="Funciones Completas"
-                description="Acceso a todas las características principales de Pathweg"
+                description="Acceso a todas las características principales de Pathway"
               />
               <BetaFeature
                 icon="🤖"
@@ -266,7 +266,7 @@ const Hero = () => {
               transition={{ delay: 1.2, duration: 0.8 }}
             >
               <p className="text-gray-300 mb-2 text-sm font-medium">
-                Descubre más sobre Pathweg
+                Descubre más sobre Pathway
               </p>
               <motion.div
                 animate={{

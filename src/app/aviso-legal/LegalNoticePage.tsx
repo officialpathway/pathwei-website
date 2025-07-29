@@ -3,10 +3,10 @@
 
 import React from "react";
 import { useTranslations } from "next-intl";
-import CurvedBorder from "@/components/client/pathweg/CurvedBorder";
+import CurvedBorder from "@/components/client/pathway/CurvedBorder";
 
 const LegalNoticePage = () => {
-  const t = useTranslations("Pathweg.legal.notice");
+  const t = useTranslations("Pathway.legal.notice");
 
   // Para manejar arrays en next-intl, necesitamos acceder a cada elemento individualmente
   const websiteElements = [
@@ -82,13 +82,13 @@ const LegalNoticePage = () => {
     t("sections.links.incoming.prohibited.items.3"),
   ];
 
-  const pathwegRights = [
-    t("sections.intellectual_property.pathweg_rights.items.0"),
-    t("sections.intellectual_property.pathweg_rights.items.1"),
-    t("sections.intellectual_property.pathweg_rights.items.2"),
-    t("sections.intellectual_property.pathweg_rights.items.3"),
-    t("sections.intellectual_property.pathweg_rights.items.4"),
-    t("sections.intellectual_property.pathweg_rights.items.5"),
+  const pathwayRights = [
+    t("sections.intellectual_property.pathway_rights.items.0"),
+    t("sections.intellectual_property.pathway_rights.items.1"),
+    t("sections.intellectual_property.pathway_rights.items.2"),
+    t("sections.intellectual_property.pathway_rights.items.3"),
+    t("sections.intellectual_property.pathway_rights.items.4"),
+    t("sections.intellectual_property.pathway_rights.items.5"),
   ];
 
   const allowedUse = [
@@ -342,7 +342,7 @@ const LegalNoticePage = () => {
               {externalResponsibility.map((item, index) => (
                 <li key={index}>
                   <strong>
-                    {t("sections.links.external_responsibility.pathweg_prefix")}
+                    {t("sections.links.external_responsibility.pathway_prefix")}
                     :
                   </strong>{" "}
                   {item}
@@ -389,13 +389,13 @@ const LegalNoticePage = () => {
 
           <div className="mb-6">
             <h3 className="text-xl font-semibold mb-3">
-              {t("sections.intellectual_property.pathweg_rights.title")}
+              {t("sections.intellectual_property.pathway_rights.title")}
             </h3>
             <p className="mb-4">
-              {t("sections.intellectual_property.pathweg_rights.intro")}
+              {t("sections.intellectual_property.pathway_rights.intro")}
             </p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              {pathwegRights.map((right, index) => (
+              {pathwayRights.map((right, index) => (
                 <li key={index}>{right}</li>
               ))}
             </ul>

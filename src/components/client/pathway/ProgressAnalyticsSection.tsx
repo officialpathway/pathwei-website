@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import ContentSection from "@/components/client/pathweg/ContentSection";
+import ContentSection from "@/components/client/pathway/ContentSection";
 import {
   BarChart,
   Bar,
@@ -13,7 +13,7 @@ import { useTranslations } from "next-intl";
 
 const ProgressAnalyticsSection = () => {
   // Get the translations
-  const t = useTranslations("Pathweg.ui.features.progress_analytics");
+  const t = useTranslations("Pathway.ui.features.progress_analytics");
 
   // Define our hardcoded progress values as a fallback
   const progressValues = [40, 65, 45, 80, 60, 75, 90];

@@ -56,7 +56,7 @@ class BulkEmailAPIService {
     const response = await fetch(`${this.baseURL}${endpoint}`, {
       headers: {
         "Content-Type": "application/json",
-        "X-Admin-Dashboard-Secret": "PathwegAdmin2025!",
+        "X-Admin-Dashboard-Secret": "PathwayAdmin2025!",
         ...options?.headers,
       },
       ...options,

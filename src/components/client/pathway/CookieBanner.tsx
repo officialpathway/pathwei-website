@@ -1,4 +1,4 @@
-// src/components/client/pathweg/CookieBanner.tsx
+// src/components/client/pathway/CookieBanner.tsx
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -25,7 +25,7 @@ const CookieBanner = () => {
     }
   );
 
-  const t = useTranslations("Pathweg.ui.cookies");
+  const t = useTranslations("Pathway.ui.cookies");
 
   useEffect(() => {
     // Check if user has already made a choice

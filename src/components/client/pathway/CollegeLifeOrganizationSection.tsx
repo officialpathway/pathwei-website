@@ -5,7 +5,7 @@ import ContentSection from "./ContentSection";
 import { useTranslations } from "next-intl";
 
 const CollegeLifeOrganizationSection = () => {
-  const t = useTranslations("Pathweg.ui.features.college_organization");
+  const t = useTranslations("Pathway.ui.features.college_organization");
 
   // Days of week array - create it manually from individual translations
   const daysOfWeek = [

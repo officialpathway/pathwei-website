@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
-import ContentSection from "@/components/client/pathweg/ContentSection";
-import InfiniteGoalAnimation from "@/components/client/pathweg/InfiniteGoalAnimation";
+import ContentSection from "@/components/client/pathway/ContentSection";
+import InfiniteGoalAnimation from "@/components/client/pathway/InfiniteGoalAnimation";
 import { useTranslations } from "next-intl";
 
 const GoalSettingSection = () => {
   // Get the translations
-  const t = useTranslations("Pathweg.ui.features.goal_setting");
+  const t = useTranslations("Pathway.ui.features.goal_setting");
 
   // Get array data directly from translation keys
   const benefits = [0, 1, 2, 3].map((index) => t(`benefits.${index}`));

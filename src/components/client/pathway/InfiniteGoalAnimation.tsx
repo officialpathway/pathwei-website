@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { getPathwegConstants } from "@/lib/constants/constants";
+import { getPathwayConstants } from "@/lib/constants/constants";
 
 export default function InfiniteGoalAnimation() {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
@@ -22,11 +22,11 @@ export default function InfiniteGoalAnimation() {
   };
   const [particles, setParticles] = useState<Particle[]>([]);
 
-  const t = useTranslations("Pathweg");
+  const t = useTranslations("Pathway");
   const goalAnimationT = useTranslations(
-    "Pathweg.core_features.animation.phrases"
+    "Pathway.core_features.animation.phrases"
   );
-  const constants = getPathwegConstants(t);
+  const constants = getPathwayConstants(t);
 
   const activeCategory = constants.CATEGORIES[activeCategoryIndex];
   const activeGoal = activeCategory.goals[activeGoalIndex];
@@ -365,7 +365,7 @@ function getStepText(
   goal: string,
   stepIndex: number
 ) {
-  const constants = getPathwegConstants(t);
+  const constants = getPathwayConstants(t);
 
   // Return the step text if it exists, otherwise a generic step
   return constants.STEPS[category] &&

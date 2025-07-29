@@ -4,16 +4,16 @@ import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import { FaStar, FaQuoteRight } from "react-icons/fa";
 import { useTranslations } from "next-intl";
-import { getPathwegConstants } from "@/lib/constants/constants";
+import { getPathwayConstants } from "@/lib/constants/constants";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const FeedbackSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  const t = useTranslations("Pathweg");
-  const feedbackT = useTranslations("Pathweg.ui.sections.feedback");
-  const constants = getPathwegConstants(t);
+  const t = useTranslations("Pathway");
+  const feedbackT = useTranslations("Pathway.ui.sections.feedback");
+  const constants = getPathwayConstants(t);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);

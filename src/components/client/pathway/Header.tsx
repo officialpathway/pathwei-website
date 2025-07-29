@@ -1,4 +1,4 @@
-// src/components/client/pathweg/Header.tsx
+// src/components/client/pathway/Header.tsx
 "use client";
 
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
@@ -14,7 +14,7 @@ export const Header = () => {
   const ticking = useRef(false);
   const { scrollY } = useScroll();
 
-  const t = useTranslations("Pathweg");
+  const t = useTranslations("Pathway");
 
   // Mobile detection without resize listeners
   const [isMobile, setIsMobile] = useState(false);
@@ -71,12 +71,12 @@ export const Header = () => {
           <Link href="/">
             <div className="flex items-center">
               <Image
-                src="/icons/pathweg/favicon.ico"
-                alt="Pathweg"
+                src="/icons/pathway/favicon.ico"
+                alt="Pathway"
                 width={32}
                 height={32}
               />
-              <span className="ml-2 text-white font-bold">Pathweg</span>
+              <span className="ml-2 text-white font-bold">Pathway</span>
             </div>
           </Link>
 

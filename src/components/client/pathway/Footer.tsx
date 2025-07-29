@@ -7,17 +7,17 @@ import Link from "next/link";
 import { FaTiktok, FaInstagram, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const Footer = () => {
-  const t = useTranslations("Pathweg.ui.footer");
+  const t = useTranslations("Pathway.ui.footer");
 
   // Social links with enhanced metadata for accessibility
   const socialLinks = [
     {
-      href: "https://www.tiktok.com/@pathweiapp",
+      href: "https://www.tiktok.com/@pathwayapp",
       icon: FaTiktok,
       label: "TikTok",
     },
     {
-      href: "https://www.instagram.com/pathwei.app",
+      href: "https://www.instagram.com/pathway.app",
       icon: FaInstagram,
       label: "Instagram",
     },
@@ -26,7 +26,11 @@ const Footer = () => {
       icon: FaLinkedin,
       label: "LinkedIn",
     },
-    { href: "mailto:info@mypathwayapp.com", icon: FaEnvelope, label: "Email" },
+    {
+      href: "mailto:officialpathwayapp@gmail.com",
+      icon: FaEnvelope,
+      label: "Email",
+    },
   ];
 
   // Dynamic flame effect on scroll
@@ -64,7 +68,7 @@ const Footer = () => {
         {/* COF Banner prominently displayed */}
         <div className="flex justify-center mb-12">
           <Image
-            src="/images/pathweg/COF.png"
+            src="/images/pathway/COF.png"
             alt="COF Sponsors"
             width={600}
             height={120}
@@ -79,7 +83,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="flex flex-col items-center lg:items-start">
             <h3 className="text-xl font-bold mb-4 border-b border-gray-700 pb-2">
-              {t("about_pathweg")}
+              {t("about_pathway")}
             </h3>
             <p className="text-gray-300 text-center lg:text-left">
               {t("description")}

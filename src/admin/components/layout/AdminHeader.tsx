@@ -27,7 +27,7 @@ export default function AdminHeader({ title }: AdminHeaderProps) {
               <div className="text-right">
                 <div className="text-sm font-medium text-gray-900">Admin</div>
                 <div className="text-sm text-gray-500">
-                  {user?.email || "admin@pathweg.com"}
+                  {user?.email || "admin@pathway.com"}
                 </div>
               </div>
               <div className="h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">

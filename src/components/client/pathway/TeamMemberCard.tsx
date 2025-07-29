@@ -20,7 +20,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
   description,
   linkedinUrl = "#",
 }) => {
-  const t = useTranslations("Pathweg.team");
+  const t = useTranslations("Pathway.team");
   const [isHovered, setIsHovered] = useState(false);
 
   // Handler to stop event propagation for mouse events

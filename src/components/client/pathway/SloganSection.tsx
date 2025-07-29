@@ -10,7 +10,7 @@ const SloganSection = () => {
     offset: ["start end", "end start"],
   });
 
-  const t = useTranslations("Pathweg");
+  const t = useTranslations("Pathway");
 
   // Smooth scroll-driven animations
   const y1 = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
