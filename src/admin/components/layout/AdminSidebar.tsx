@@ -1,7 +1,7 @@
 // src/components/admin/AdminSidebar.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSimpleAuth } from "@/hooks/use-simple-auth";
@@ -18,6 +18,7 @@ import {
   Calendar,
   MessageSquare,
   PieChart,
+  Book,
 } from "lucide-react";
 
 type SidebarItem = {
@@ -73,6 +74,12 @@ const sidebarItems: SidebarItem[] = [
     href: "/admin/assets",
   },
   {
+    id: "dev-guides",
+    label: "Dev Guides",
+    icon: <Book className="w-5 h-5" />,
+    href: "/admin/guides",
+  },
+  {
     id: "settings",
     label: "Settings",
     icon: <Settings className="w-5 h-5" />,
@@ -80,28 +87,45 @@ const sidebarItems: SidebarItem[] = [
   },
 ];
 
-export default function AdminSidebar() {
+interface AdminSidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
   const { logout } = useSimpleAuth();
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+  const [desktopOpen, setDesktopOpen] = useState(true);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 1024;
+      setIsMobile(mobile);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const toggleDesktopSidebar = () => {
+    setDesktopOpen(!desktopOpen);
+  };
+
+  const sidebarOpen = isMobile ? isOpen : desktopOpen;
 
   return (
     <>
-      {/* Mobile backdrop */}
-      {sidebarOpen && (
-        <div
-          className="fixed inset-0 bg-gray-600 bg-opacity-75 z-20 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
-
       <div
-        className={`bg-white shadow-lg transition-all duration-300 ${
-          sidebarOpen ? "w-64" : "w-16"
-        } fixed lg:relative z-30 h-[100vh] overflow-y-auto flex flex-col
-        ${sidebarOpen ? "lg:translate-x-0" : "lg:translate-x-0"}
-        ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
-        `}
+        className={`bg-white shadow-lg transition-all duration-300 h-[100vh] overflow-y-auto flex flex-col
+        ${
+          isMobile
+            ? `fixed inset-y-0 left-0 z-50 ${
+                isOpen ? "w-full translate-x-0" : "w-full -translate-x-full"
+              }`
+            : `lg:relative z-10 ${desktopOpen ? "w-64" : "w-16"}`
+        }`}
       >
         {/* Header */}
         <div className="p-4 border-b border-gray-200">
@@ -116,26 +140,33 @@ export default function AdminSidebar() {
                 Admin Panel
               </span>
             </div>
-            <button
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-1 rounded-lg hover:bg-gray-100 text-gray-700 lg:block hidden"
-              title={sidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
-            >
-              {sidebarOpen ? (
+
+            {/* Close button for mobile */}
+            {isMobile && (
+              <button
+                type="button"
+                onClick={onClose}
+                className="p-1 rounded-lg hover:bg-gray-100 text-gray-700"
+                title="Close sidebar"
+              >
                 <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
-            </button>
-            {/* Mobile close button */}
-            <button
-              type="button"
-              onClick={() => setSidebarOpen(false)}
-              className="p-1 rounded-lg hover:bg-gray-100 text-gray-700 lg:hidden"
-              title="Close sidebar"
-            >
-              <X className="w-5 h-5" />
-            </button>
+              </button>
+            )}
+
+            {/* Toggle button for desktop */}
+            {!isMobile && (
+              <button
+                onClick={toggleDesktopSidebar}
+                className="p-1 rounded-lg hover:bg-gray-100 text-gray-700"
+                title={desktopOpen ? "Collapse sidebar" : "Expand sidebar"}
+              >
+                {desktopOpen ? (
+                  <X className="w-5 h-5" />
+                ) : (
+                  <Menu className="w-5 h-5" />
+                )}
+              </button>
+            )}
           </div>
         </div>
 
@@ -151,6 +182,7 @@ export default function AdminSidebar() {
                 <li key={item.id}>
                   <Link
                     href={item.href}
+                    onClick={isMobile ? onClose : undefined}
                     className={`flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 group ${
                       isActive
                         ? "bg-blue-50 text-blue-700 border-r-2 border-blue-600"
@@ -211,22 +243,11 @@ export default function AdminSidebar() {
         {sidebarOpen && (
           <div className="p-4 pt-0">
             <div className="text-xs text-gray-500 text-center">
-              Admin Panel v2.0
+              Admin Panel v1.0.0
             </div>
           </div>
         )}
       </div>
-
-      {/* Mobile menu button */}
-      <button
-        onClick={() => setSidebarOpen(true)}
-        className={`fixed top-4 left-4 z-40 lg:hidden p-2 rounded-lg bg-white shadow-lg border border-gray-200 ${
-          sidebarOpen ? "hidden" : "block"
-        }`}
-        title="Open sidebar"
-      >
-        <Menu className="w-5 h-5 text-gray-600" />
-      </button>
     </>
   );
 }
