@@ -49,6 +49,7 @@
     "next-intl": "^4.1.0",
     "next-mdx-remote": "^5.0.0",
     "nodemailer": "^7.0.4",
+    "patch-package": "^8.0.0",
     "react": "^19.0.0",
     "react-chartjs-2": "^5.3.0",
     "react-datepicker": "^8.3.0",

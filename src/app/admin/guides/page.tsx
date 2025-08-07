@@ -18,12 +18,20 @@ import {
   Repeat,
   Settings,
   Cpu,
+  Logs,
 } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
 // Guide metadata with icons
 const guideConfig = {
+  "logging-architecture-system": {
+    icon: Logs,
+    color: "text-yellow-600",
+    bgColor: "bg-yellow-50",
+    borderColor: "border-yellow-200",
+    title: "Entire Project Logging Architecture",
+  },
   "admin-activity-logging": {
     icon: Activity,
     color: "text-orange-600",
