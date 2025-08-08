@@ -19,12 +19,48 @@ import {
   Settings,
   Cpu,
   Logs,
+  BookHeart,
 } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
 // Guide metadata with icons
 const guideConfig = {
+  ddd_best_practices_es: {
+    icon: BookHeart,
+    color: "text-purple-600",
+    bgColor: "bg-purple-50",
+    borderColor: "border-purple-200",
+    title: "DDD Best Practices",
+  },
+  ddd_development_guide_es: {
+    icon: BookHeart,
+    color: "text-purple-600",
+    bgColor: "bg-purple-50",
+    borderColor: "border-purple-200",
+    title: "DDD Development Guide",
+  },
+  ddd_events_guide_es: {
+    icon: BookHeart,
+    color: "text-purple-600",
+    bgColor: "bg-purple-50",
+    borderColor: "border-purple-200",
+    title: "DDD Events Guide",
+  },
+  ddd_intro_guide_es: {
+    icon: BookHeart,
+    color: "text-purple-600",
+    bgColor: "bg-purple-50",
+    borderColor: "border-purple-200",
+    title: "DDD Intro Guide",
+  },
+  ddd_troubleshooting_guide_es: {
+    icon: BookHeart,
+    color: "text-purple-600",
+    bgColor: "bg-purple-50",
+    borderColor: "border-purple-200",
+    title: "DDD Troubleshooting Guide",
+  },
   "logging-architecture-system": {
     icon: Logs,
     color: "text-yellow-600",
